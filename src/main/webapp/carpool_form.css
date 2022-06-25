@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+#title{
+
+	padding-bottom: 70px;
+	text-align: center;
+	margin: auto;
+	font-size: 80px;
+}
+ .panel-heading {
+	display: flex;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+	
+}
+
+.write_h4 {
+	margin-left: 10px;
+	font-size: 30px;
+	width: 300px;
+	
+	
+}
+
+.form_category {
+	height: 30px;
+	width: 200px;
+	margin-left: 470px;
+	float: right;
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+	margin-top: 10px;
+}
+
+.btn{
+	margin:  auto;
+	
+}
+
