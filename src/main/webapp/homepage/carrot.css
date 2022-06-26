@@ -2,17 +2,12 @@
 
 
 body{ 
+	margin:0; 
 	
-	padding:80px; 
+	font-family:'맑은 고딕', verdana;
+    padding:80px;
 }
 
-#title{
-
-	padding-bottom: 70px;
-	text-align: center;
-	margin: auto;
-	font-size: 80px;
-}
  .top{
  	width: 100%;
  	margin-bottom: 40px;
@@ -33,24 +28,80 @@ body{
 
  }
 
-.table_list{
-
-	width: 100%;
+section> #container { 
+	padding:20px 0; 
+	border-top:2px solid #eee; 
+	border-bottom:2px solid #eee;
+	
 	margin-left: auto;
 	margin-right: auto;
 	
+	 }
+ 
+ aside { 
+ 	float:left; 
+ 	width:200px; 
+ 	}
+
+ div#container_box { 
+ 	float:right; 
+ 	width:calc(100% - 200px - 20px); 
+ 
+ 	}
+ 	
+ 
+ aside>ul>li { 
+	 text-align:center; 
+	 margin-bottom:10px; 
+	
+	 }
+	 
+
+li { 
+		
+		font-size:20px; 
+		text-align:center; 
+		padding:15px;
+		
+		
+		
+		}
+		
+#category { font-size:30px; 
+ 	 		margin-bottom:20px; 
+ 	  		text-align:center; 
+ 	  		width: 20%;}
+
+li a { 
+		color:#000; 
+		display:block; 
+		padding:10px 0; 
+		text-decoration: none;
+		}
+
+li a:hover { 
+		text-decoration:none; 
+		background:#eee; 
+		}
+		
+.table_list{
+
+
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	
+	
+}
+.table_list th {
+	font-size:  20px;
+	font-weight: bold;
+	text-align: center;
+	padding: 10px;
+	border-bottom: 2px solid #666;
 	
 }
 
-.table_list thead th  {
-	
-	border-top: 1px solid ;
-	border-bottom: 1px solid;
-	font: bold;
-	font-size: 14px;
-	height: 33px;
-	
-}
 
 .table_list tbody td{
 	
@@ -60,16 +111,8 @@ body{
 	
 }
 
-.table_list tbody td.subject{
-	
-	text-align:left;
-	font-size: 12px;
-	height: 33px;
-	padding-left: 15px;
-	
-}
 
-.table_list tbody td.subject a  {
+.table_list tbody td a  {
 	
 	text-align:left;
 	font-size: 12px;
@@ -79,11 +122,27 @@ body{
 	
 }
 
-.table_list tbody td.subject a:hover  {
+.table_list tbody td a:hover  {
 	
 	text-decoration: underline;
 	
 }
+
+.table_list tbody td img  {
+	
+	width: 100px;
+	
+}
+
+
+#title{
+
+	padding-bottom: 70px;
+	text-align: center;
+	margin: auto;
+	font-size: 80px;
+}
+
 
 .page_wrap {
 	padding-top: 100px;
@@ -139,6 +198,7 @@ body{
 	color:#fff;
 	border:1px solid #42454c;
 }
+
 
 
 

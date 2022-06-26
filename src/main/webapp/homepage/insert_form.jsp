@@ -61,7 +61,7 @@
 </head>
 <body>
 
-<h3 id="title">carpool</h3>
+<h3 id="title"></h3>
 	<form>
 		<div id="box">
 			<div class="panel">
@@ -72,7 +72,6 @@
 					  <option>review게시판</option>
 					  <option>carpool게시판</option>
 					  <option>carrot게시판</option>
-					  <option>게시판선택하기</option>
 					</select>
 				</div>
 				<div class="panel-body">
@@ -95,7 +94,7 @@
 							<td><input type="password" name="pwd1" placeholder="비밀번호를 입력하세요."style="width:300px;font-size:15px;"></td>
 						</tr>
 						<tr>
-							<td><input type="password" name="pwd2" placeholder="비밀번호를 입력하세요."style="width:300px;font-size:15px;"></td>
+							<td><input type="password" name="pwd2" placeholder="비밀번호를 한번 더 입력하세요."style="width:300px;font-size:15px;"></td>
 						</tr>
 						
 						<tr>
