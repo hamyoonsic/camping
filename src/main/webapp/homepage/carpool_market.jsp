@@ -132,7 +132,7 @@
          		<td>조회수</td>
          		<td>게시날짜</td>
          		<td>작성자</td>
-         		<td>♥</td>
+         		<td><img src="images/heart-1.png" width="20px" height="20px"></td>
          		<td>좋아요수</td>
          	</tr>
          </table>
@@ -157,7 +157,7 @@
          		<td>조회수</td>
          		<td>게시날짜</td>
          		<td>작성자</td>
-         		<td>♥</td>
+         		<td><img src="images/heart-1.png" width="20px" height="20px"></td>
          		<td>좋아요수</td>
          	</tr>
          </table>
