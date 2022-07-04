@@ -58,42 +58,7 @@
 	background: rgba(0, 0, 0, 0.5);
 }
 
-.search_area>form>input {
-	border: none;
-	width: 250px;
-	height: 40px;
-	background: rgba(0, 0, 0, 0);
-	color: black;
-	padding-left: 10px;
-}
 
-.search_area>form>span {
-	width: 550px;
-	color: black;
-	font-weight: bold;
-	cursor: pointer;
-}
-
-.nav {
-	display: flex;
-	width: calc(1280px-300px);
-	justify-content: flex-end;
-	line-height: 100px;
-	color: black;
-	margin-bottom: 30px;
-	list-style: none;
-}
-
-.nav>li {
-	margin-left: 40px;
-	font-size: 21px;
-	
-}
-
-.nav>li>a {
-	margin-left:50px;
-	color: black;
-}
 
 .intro_text {
 	width: 100%;
