@@ -13,6 +13,10 @@
 	
 }
 
+b{
+  	padding-left: 500px;
+}
+
 .wrap{
 	
 	text-align: center;
@@ -87,6 +91,7 @@
 	list-style: none;
 	color: black;
 	
+	
 }
 
 .hashtag>li{
@@ -97,8 +102,9 @@
 .hashtag>li>a{
 	margin-top: 10px;
 	color: black;
-	
 }
+
+
 
 .slidebox>ul,li{ list-style: none; }
 
@@ -114,7 +120,7 @@
 
 .slideitem img{
 	border-radius: 25px;
-
+	height: 400px;
 	width: 100%;
 	/* overflow: hidden;
 	height: 600px; */
@@ -233,5 +239,6 @@ label.right{
 	100%{left:0%}
 	
 }
+
 
 

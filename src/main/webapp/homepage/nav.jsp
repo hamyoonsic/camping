@@ -5,7 +5,6 @@
 <html>
 <head>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
