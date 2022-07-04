@@ -6,7 +6,6 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="rec.css">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="main.css">
 	<%-- <jsp:include page="nav.jsp"></jsp:include>
 	<jsp:include page="main.jsp"></jsp:include> --%>
