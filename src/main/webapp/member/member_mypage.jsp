@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
 
@@ -100,12 +100,12 @@
 </style>
 </head>
 <body>
-	<!--³×ÀÌ°ÔÀÌ¼Ç bar ºÎºĞ  -->
+	<!--ë„¤ì´ê²Œì´ì…˜ bar ë¶€ë¶„  -->
 	<div id="header"></div>
 
 	<div id="content">
 		<div id="mem_profile" >
-			<img alt="ÀÌ¹ÌÁö ¾øÀ½" src="../img/member_profile.png">
+			<img alt="ì´ë¯¸ì§€ ì—†ìŒ" src="../img/member_profile.png">
 		</div>
 		<div id="member_form">
 			<table class="table_mypage" >

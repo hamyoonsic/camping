@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 
 <style type="text/css">
@@ -176,20 +176,20 @@
 <body>
 
 	<div id="header">
-		<div id="title">´Ü¾ç Ä·ÇÎ ´Ù³à¿Ô¾î¿ä</div>
+		<div id="title">ë‹¨ì–‘ ìº í•‘ ë‹¤ë…€ì™”ì–´ìš”</div>
 		<div id="post_profile_box">
 			<img src="images/unsplash_people/people1.jpg" id="post_writer_profile">
 		</div>
-		<div id="subject"> ±èÁÖ¿ø / 2022.6.30</div>
+		<div id="subject"> ê¹€ì£¼ì› / 2022.6.30</div>
 	</div>
 	
 	<div id="content">
 		<div id="main_content_size">
-			<div id="main_content">±Û+ »çÁø µé¾î°¥ °÷</div>
+			<div id="main_content">ê¸€+ ì‚¬ì§„ ë“¤ì–´ê°ˆ ê³³</div>
 		</div>
-		<div id="views_like_count"> Á¶È¸¼ö 112 ÁÁ¾Æ¿ä 72</div>
+		<div id="views_like_count"> ì¡°íšŒìˆ˜ 112 ì¢‹ì•„ìš” 72</div>
 		
-		<input id="comment_btn" type="button" value="´ñ±Û 4">
+		<input id="comment_btn" type="button" value="ëŒ“ê¸€ 4">
 		
 		<%-- <c:if test=""> --%>
 			<div id="comment_box">
@@ -200,7 +200,7 @@
 							<img src="images/unsplash_people/people2.jpg" id="comment_profile">
 						</div>
 						
-						<div id="comment_writer">±èÀÏ¼º Dec10.2016 <br><br>È¤½Ã ±× ¿ä¸®À¥Å÷ ´õºíÇÇ¿¡¿Í ¶ÈµüÄíÅ· ¾Æ´Ï¿´³ª¿ä?¤»¤»¤»Àúµµ ÇÐ»ý¶§ ¾öÃ» ¸¹ÀÌ ºÃ¾î¿ä!</div>
+						<div id="comment_writer">ê¹€ì¼ì„± Dec10.2016 <br><br>í˜¹ì‹œ ê·¸ ìš”ë¦¬ì›¹íˆ° ë”ë¸”í”¼ì—ì™€ ë˜‘ë”±ì¿ í‚¹ ì•„ë‹ˆì˜€ë‚˜ìš”?ã…‹ã…‹ã…‹ì €ë„ í•™ìƒë•Œ ì—„ì²­ ë§Žì´ ë´¤ì–´ìš”!</div>
 						<div id="comment_content"></div>
 						<div id="comment_like">
 							<img src="images/like.png" id="like_btn" onclick="">

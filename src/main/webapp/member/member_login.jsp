@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- Bootstrap 3.x -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -98,7 +98,7 @@ h1{
 <body>
 	<div id="login" >
 		<div  id="imgbok" >
-			<img alt="ÀÌ¹ÌÁö¾øÀ½" src="../img/camp.png">
+			<img alt="ì´ë¯¸ì§€ì—†ìŒ" src="../img/camp.png">
 		</div>
 			<h1>login</h1>
 		<div id="login_form" >

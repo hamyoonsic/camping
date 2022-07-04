@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- Bootstrap 3.x -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -100,11 +100,11 @@ h1{
 </head>
 <body>
 	<!-- <form enctype="multipart/form-data" id="ajaxForm" method="post">
-    <input type="file" id="ajaxFile" style="display:none;"  onChange="ajaxFileChange();" >ÆÄÀÏÀÌ Ã¼ÀÎÁö µÇ¾úÀ»½Ã 
+    <input type="file" id="ajaxFile" style="display:none;"  onChange="ajaxFileChange();" >íŒŒì¼ì´ ì²´ì¸ì§€ ë˜ì—ˆì„ì‹œ 
 	</form> -->
 	<div id="signup" >
 		<div  id="imgbok" >
-			<img alt="ÀÌ¹ÌÁö¾øÀ½" src="../img/camp.png">
+			<img alt="ì´ë¯¸ì§€ì—†ìŒ" src="../img/camp.png">
 		</div>
 			<h1>signup</h1>
 		<div id="signup_form" >
@@ -112,7 +112,7 @@ h1{
 				<tr>
 					
 					<td><input type="text" id="mem_email" name="mem_email" 
-						 required="required" placeholder="  @¸¦ Æ÷ÇÔÇÑ emailÁÖ¼Ò¸¦ ÀÔ·ÂÇÏ¼¼¿ä."/></td>
+						 required="required" placeholder="  @ë¥¼ í¬í•¨í•œ emailì£¼ì†Œë¥¼ ì…ë ¥í•˜ì„¸ìš”."/></td>
 					
 				</tr>
 				
