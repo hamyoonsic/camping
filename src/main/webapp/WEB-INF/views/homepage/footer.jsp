@@ -8,13 +8,16 @@
 <style type="text/css">
 
 footer {
-		width: 100%;
+		vertical-align: middle;
+		height	:	200px;
+		/* width: 100%; */
         clear: both;
-        padding: 20px;
-        border: 1px solid #bcbcbc;
+       /*  padding: 20px; */
+        /* border: 1px solid #bcbcbc; */
         background-color: #bcbcbc;
-        position : absolute;
-		bottom : 0;
+        /* position : absolute; */
+		/* bottom : 0; */
+		
       }
 </style>
 </head>

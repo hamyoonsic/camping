@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link href="review_board.css" rel="stylesheet" type="text/css">
+<link href="${ pageContext.request.contextPath }/resources/review_board.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>

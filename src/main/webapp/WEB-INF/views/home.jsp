@@ -3,6 +3,12 @@
 <html>
 <head>
 	<title>Home</title>
+	
+	
+<script type="text/javascript">
+location.href="/homepage/main.jsp"
+
+</script>
 </head>
 <body>
 <h1>
