@@ -23,5 +23,5 @@
 | --- | --- | --- |
 |김주원| joowon |    |
 |최미영| choimiyoung |    |
-|최원영| won |    |
+|최원영| evenoahchoi |    |
 |함윤식| hys |    |
