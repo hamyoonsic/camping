@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link href="review.css" rel="stylesheet" type="text/css">
+<link href="review_board.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>

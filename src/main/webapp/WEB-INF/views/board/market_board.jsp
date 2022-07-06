@@ -7,12 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link href="carpool_board.css" rel="stylesheet" type="text/css">
+<link href="market_board.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
 
-<h3 id="title">Carpool</h3>
+<h3 id="title">Market</h3>
 <div><a href="">사진리뷰만 보이게 하는 게시판으로 가는 링크</a></div><br>
 <div class="top">
 	<form method="post" name="search" action="">
@@ -25,7 +25,7 @@
 				</select></td>
 				<td>
 				  <input type="text" class="form-control"
-					     placeholder="검색어 입력" name="searchText" maxlength="100" >
+					     placeholder="검색어 입력" name="searchText" maxlength="100">
 				</td>
 				<td>
 				  <button type="submit" class="btn-search">검색</button>
@@ -60,7 +60,7 @@
 <tbody>
  <tr>
   <td>1</td>
-  <td class="subject"><a href="#">7월2일 토요일 서울 출발 동행구해요</a></td>
+  <td class="subject"><a href="#">1번 사용한 1인용 텐트 팝니다</a></td>
   <td>1</td>
   <td>13</td>
   <td>캠핑조아</td>
@@ -68,7 +68,7 @@
  </tr>
  <tr>
   <td>2</td>
-  <td class="subject"><a href="#">동행구함</a></td>
+  <td class="subject"><a href="#">사용감 있는 랜턴 팔아요</a></td>
   <td>7</td>
   <td>13</td>
   <td>캠핑짱</td>
@@ -76,7 +76,7 @@
  </tr>
  <tr>
   <td>3</td>
-  <td class="subject"><a href="#">같이가실분</a></td>
+  <td class="subject"><a href="#">화롯대 미개봉 팝니다</a></td>
   <td>3</td>
   <td>15</td>
   <td>캠핑</td>
