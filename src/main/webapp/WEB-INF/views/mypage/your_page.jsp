@@ -23,11 +23,10 @@
 	<div class="right_side_box">
 	</div>
 	
-	<!-- 누구님, 자기소개 -->
+		<!-- 누구님, 자기소개 -->
 	<div class="top_left_box">
-	<h2>MY PAGE</h2>
-	<h2>주원님</h2><!-- 누구인지 가져올것 -->
-	<span>나랏말싸미 듕국에 달아 서로 사맣디 아니할세<br>어린백성들을 굽어 살피시는 세종이오</span>
+	<h2>윤식님</h2><!-- 누구인지 가져올것 -->
+	<span>조선의 궁궐에 당도한 것을 환영하오 낯선이여<br>나는 어질고 굳은 임금 세종이라오</span>
 	</div>
 	
 	<!-- 프로필사진,개인정보수정,우편함 -->
@@ -35,17 +34,16 @@
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<img src="../homepage/images/member_profile.png" width="120px" height="120px"><br>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<a href="">개인정보수정</a>
-	<img src="../homepage/images/message.png" width="30px" height="30px"><!-- 뱃지기능추가 -->
+	<img src="../homepage/images/send_message.png" width="30px" height="30px">
 	</div>
 	
 	<!-- 내가쓴글,내가쓴댓글,좋아요글,좋아요댓글 -->
 	<div class="middle_box">
 	<br><br><br><br>
-	<span>내가 쓴 글</span>&nbsp;&nbsp;
-	<span>내가 쓴 댓글</span>&nbsp;&nbsp;
-	<span>내가 좋아요한 글</span>&nbsp;&nbsp;
-	<span>내가 좋아요한 댓글</span>
+	<span>윤식님이 쓴 글</span>&nbsp;&nbsp;
+	<span>윤식님이 쓴 댓글</span>&nbsp;&nbsp;
+	<span>윤식님이 좋아요한 글</span>&nbsp;&nbsp;
+	<span>윤식님이 좋아요한 댓글</span>
 	</div>
 	
 	<!-- 실제 아래에 목록 보여주기 -->
@@ -54,6 +52,10 @@
 	</div>
 	
 	
+
+
+
+
 
 </div>
 </body>
