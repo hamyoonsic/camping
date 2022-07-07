@@ -10,6 +10,10 @@
 
 <style type="text/css">
 
+
+
+
+
 *{
 	font-family: 'Noto Sans KR', sans-serif;
 /* 	list-style: none; */
@@ -33,7 +37,6 @@
 .intro_text2 {
 	margin-bottom: 40px;
 	margin-top:500px;
-	
 }
 
 .intro_text2 h1 {
@@ -48,7 +51,7 @@
 
 .intro_text2>h3>a{
 	
-	float: right;
+	/* float: right; */
 	margin-right: 100px;
 	color: black;
 	font-size: 20d/*  */px;
@@ -124,7 +127,7 @@
 .profile{
 	color: black;
 	font-size: 20px;
-	text-decoration: none;
+	/* text-decoration: none; */
 	text-align: center;
 	margin-bottom: 100px; 
 }
@@ -146,6 +149,7 @@
 
 .more1{
 	color: white;
+	text-align:center;
 }
 
 .pro{
@@ -170,64 +174,75 @@
 
 </head>
 <body style="margin: 0">
-
-	<div class="wrap2">
-		<div class="intro_bg2">
-			<div class="intro_text2">
-				<h1> REVIEW </h1><h3><a href="join.jsp">MORE+</a></h3>
+	<div id="review2_main_box">
+		<div class="wrap2">
+			<div class="intro_bg2">
+				<div class="intro_text2">
+					<h1>REVIEW</h1><h3><a href="">MORE+</a></h3>
+				</div>
+					<h2>이 달의 best review를 소개합니다.</h2>
+				</div>
 			</div>
-				<h2>이 달의 best review를 소개합니다.</h2>
-			</div>
+	
+		<div class="row">
+			<ul class="icons">
+				<li>
+					<div class="card">
+						<a href="https://blog.naver.com/minororo/222758255231">
+							<img class="big" src="${ pageContext.request.contextPath }/resources/images/camping2.png">
+						</a>	
+					</div>
+					<div class="card-title">태안 어은돌 힐링 아영장을 다녀왔어요.</div>
+					<div class="more">
+						<a class="more1" href="https://blog.naver.com/minororo/222758255231">
+							MORE
+						</a>
+					</div>
+		
+					<div class="pro">
+						<img class="small" src="${ pageContext.request.contextPath }/resources/images/slideimg01.jpg" >
+			   			<a class="profile" href="#">won</a>
+			   		</div>
+				</li>
+				
+				<li>
+					<div class="card">
+						<a href="https://blog.naver.com/minororo/222758255231">
+						<img class="big" src="${ pageContext.request.contextPath }/resources/images/rec4.jpg"></a>	
+					</div>
+					<div class="card-title">나의 첫번째 캠핑이야기</div>
+					<div class="more">
+						<a class="more1" href="https://blog.naver.com/minororo/222758255231">
+							MORE
+						</a>
+					</div>
+					<div class="pro">
+						<img class="small" src="${ pageContext.request.contextPath }/resources/images/slideimg01.jpg" >
+			   			<a class="profile" href="#">캠핑</a>
+			   		</div>
+				</li>
+				
+				<li>
+					<div class="card">
+						<a href="https://blog.naver.com/minororo/222758255231">
+						<img class="big" src="${ pageContext.request.contextPath }/resources/images/camping1.png"></a>	
+					</div>
+					<div class="card-title">강아지와 캠핑</div>
+					<div class="more">
+						<a class="more1" href="https://blog.naver.com/minororo/222758255231">
+						MORE
+						</a>
+					</div>
+					<div class="pro">
+						<img class="small" src="${ pageContext.request.contextPath }/resources/images/rec2.jpg" >
+			   			<a class="profile" href="#">강아지</a>
+			   		</div>
+				</li>
+			</ul>
+		
+	
 		</div>
-
-	<div class="row">
-		<ul class="icons">
-			<li>
-				<div class="card">
-					<a href="https://blog.naver.com/minororo/222758255231">
-					<img class="big" src="images/camping2.png"></a>	
-				</div>
-				<div class="card-title">태안 어은돌 힐링 아영장을 다녀왔어요.</div>
-				<a class="more1" href="https://blog.naver.com/minororo/222758255231">
-				<div class="more">MORE</a></div>
-				<div class="pro">
-				  <img class="small" src="images/slideimg01.jpg" >
-		   		   <a class="profile" href="#">won</a>
-		   		   </div>
-			</li>
-			
-				<li>
-				<div class="card">
-					<a href="https://blog.naver.com/minororo/222758255231">
-					<img class="big" src="images/rec4.jpg"></a>	
-				</div>
-				<div class="card-title">나의 첫번째 캠핑이야기</div>
-				<a class="more1" href="https://blog.naver.com/minororo/222758255231">
-				<div class="more">MORE</a></div>
-				<div class="pro">
-				  <img class="small" src="images/slideimg01.jpg" >
-		   		   <a class="profile" href="#">캠핑</a>
-		   		   </div>
-			</li>
-			
-				<li>
-				<div class="card">
-					<a href="https://blog.naver.com/minororo/222758255231">
-					<img class="big" src="images/camping1.png"></a>	
-				</div>
-				<div class="card-title">강아지와 캠핑</div>
-				<a class="more1" href="https://blog.naver.com/minororo/222758255231">
-				<div class="more">MORE</a></div>
-				<div class="pro">
-				  <img class="small" src="images/rec2.jpg" >
-		   		   <a class="profile" href="#">강아지</a>
-		   		   </div>
-			</li>
-		</ul>
 	</div>
-	</div>
-
-
 
 
 </body>
