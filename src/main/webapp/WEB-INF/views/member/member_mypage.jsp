@@ -1,22 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="EUC-KR">
 <title>Insert title here</title>
 <style type="text/css">
 
    #header{
       
-      width   :   1920px;
+      width   :   1700px;
       height   :   100px;
       border   :   1px solid red;
       margin   :   auto;
    }
    
    #content{
-      width   :   1920px;
+      width   :   1700px;
       height   :   1000px;
       border   :   1px solid blue; 
       margin   :   auto;
@@ -25,7 +25,7 @@
    
    #footer{
    
-      width   :   1920px;
+      width   :   1700px;
       height   :   150px;
       border   :   1px solid green; 
       margin   :   auto;
@@ -37,7 +37,7 @@
 	width: 300px;
 	height: 300px;
 	/* display: inline-block; */
-	margin-left: 100px;
+	margin-left: 150px;
 	margin-top: 170px;
 	border-radius: 70%;
 	overflow: hidden;
@@ -57,8 +57,9 @@
 
 .table_mypage{
 	border: 1px solid red;
-	width: 450px;
-	height: 400px;
+	width: 50%;
+	height: 360px;
+	
 	
 }
 .mypage_form{
@@ -83,8 +84,8 @@
 }
 
 #member_form{
-	margin-top:180px;
-	margin-left:300px;
+	margin-top:140px;
+	margin-left:400px;
 	text-align:left;
   	width: 50%;
   /* height: 500px; */
@@ -95,18 +96,45 @@
  
 }
 
+#mem_profile_text{
+
+   
+	float: left;
+	margin-left: 180px;
+
+ 	text-align: center;
+	border:  1px solid red; 
+  
+	/*   display: inline-block; */
+	  
+}
+
+.button{
+
+	margin-top: 210px;
+	text-align: center;
+	border: none;
+	margin-left: 50px;
+	
+	/* border-bottom: 1px solid gray; */
+}
 
 
 </style>
 </head>
 <body>
-	<!--ë„¤ì´ê²Œì´ì…˜ bar ë¶€ë¶„  -->
+	<!--³×ÀÌ°ÔÀÌ¼Ç bar ºÎºÐ  -->
 	<div id="header"></div>
 
 	<div id="content">
+	<!-- ÀÌ¹ÌÁö -->  
 		<div id="mem_profile" >
-			<img alt="ì´ë¯¸ì§€ ì—†ìŒ" src="../img/member_profile.png">
+			<img alt="ÀÌ¹ÌÁö ¾øÀ½" src="../img/member_profile.png">
+		
 		</div>
+		
+		
+		<!-- °³ÀÎÁ¤º¸ ¼öÁ¤ -->
 		<div id="member_form">
 			<table class="table_mypage" >
 			<tr>
@@ -134,8 +162,26 @@
 			</table>
 		
 		</div>
+	 	<!--ÀÚ±â¼Ò°³ text box  -->
+	 	
+		<div id="mem_profile_text"	>
+			<span >ÁÖ¿ø´Ô</span><br>
+			<textarea rows="3" cols="25">¹Ý°©½À´Ï´Ù</textarea><br>
+			 <input type="submit" value="Submit">
+		</div> 
+		
+		
+			<input class="button" type="text" value="¼öÁ¤">
+			<input class="button" type="text" value="Ãë¼Ò">
+			<input class="button" type="text" value="»èÁ¦">
+		
+		
+	
+		
+		
 		
 	</div>
+		
 		
 
 	<div  id="footer"	>
