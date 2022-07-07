@@ -7,12 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link href="${ pageContext.request.contextPath }/resources/review_board.css" rel="stylesheet" type="text/css">
+<link href="${ pageContext.request.contextPath }/resources/market_board.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
 
-<h3 id="title">Review</h3>
+<h3 id="title">Market</h3>
 <div><a href="">사진리뷰만 보이게 하는 게시판으로 가는 링크</a></div><br>
 <div class="top">
 	<form method="post" name="search" action="">
@@ -60,7 +60,7 @@
 <tbody>
  <tr>
   <td>1</td>
-  <td class="subject"><a href="#">난지 캠핑장 다녀온 썰 푼다</a></td>
+  <td class="subject"><a href="#">1번 사용한 1인용 텐트 팝니다</a></td>
   <td>1</td>
   <td>13</td>
   <td>캠핑조아</td>
@@ -68,7 +68,7 @@
  </tr>
  <tr>
   <td>2</td>
-  <td class="subject"><a href="#">시흥 기가막힌 캠핑카 여행!!</a></td>
+  <td class="subject"><a href="#">사용감 있는 랜턴 팔아요</a></td>
   <td>7</td>
   <td>13</td>
   <td>캠핑짱</td>
@@ -76,7 +76,7 @@
  </tr>
  <tr>
   <td>3</td>
-  <td class="subject"><a href="#">충주호를 바라보는 최고의 캠핑장!</a></td>
+  <td class="subject"><a href="#">화롯대 미개봉 팝니다</a></td>
   <td>3</td>
   <td>15</td>
   <td>캠핑</td>

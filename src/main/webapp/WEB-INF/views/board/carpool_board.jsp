@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link href="carpool.css" rel="stylesheet" type="text/css">
+<link href="${ pageContext.request.contextPath }/resources/carpool_board.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
