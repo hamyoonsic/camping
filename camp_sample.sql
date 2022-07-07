@@ -1,24 +1,28 @@
 /*
- member
-
-insert  into member values(seq_member_mem_idx.nextVal,5,'admin@campus.com','1234','남자','관리자임당','2022.07.07',sysdate,null,'반갑습니당',1)
-insert  into member values(seq_member_mem_idx.nextVal,3,'one@campus.com','1234','여자','one임당','2022.07.08',sysdate,null,'사랑합니다',1)
-insert  into member values(seq_member_mem_idx.nextVal,4,'two@campus.com','1234','남자','two임당','2022.07.09',sysdate,null,'힘내용',0)
-insert  into member values(seq_member_mem_idx.nextVal,2,'three@campus.com','1234','여자','three임당','2022.07.10',sysdate,null,'잘부탁드립니당',1)
-insert  into member values(seq_member_mem_idx.nextVal,1,'four@campus.com','1234','남자','four임당','2022.07.10',sysdate,null,'졸려용',1)
-
-mem_out
-
-insert into mem_out values(seq_mem_out_mem_out_idx.nextVal,3,'2022.07.10')
-
+select * from member
 
 grade
 
-insert into grade values('1','브론즈')
-insert into grade values('2','실버')
-insert into grade values('3','골드')
-insert into grade values('4','플래티넘')
-insert into grade values('5','관리자')
+insert into grade values('1','브론즈');
+insert into grade values('2','실버');
+insert into grade values('3','골드');
+insert into grade values('4','플래티넘');
+insert into grade values('5','관리자');
+
+
+
+ member
+
+insert  into member values(seq_member_mem_idx.nextVal,5,'admin@campus.com','1234','남자','관리자임당','2022.07.07',sysdate,null,'반갑습니당',1);
+insert  into member values(seq_member_mem_idx.nextVal,3,'one@campus.com','1234','여자','one임당','2022.07.08',sysdate,null,'사랑합니다',1);
+insert  into member values(seq_member_mem_idx.nextVal,4,'two@campus.com','1234','남자','two임당','2022.07.09',sysdate,null,'힘내용',0);
+insert  into member values(seq_member_mem_idx.nextVal,2,'three@campus.com','1234','여자','three임당','2022.07.10',sysdate,null,'잘부탁드립니당',1);
+insert  into member values(seq_member_mem_idx.nextVal,1,'four@campus.com','1234','남자','four임당','2022.07.10',sysdate,null,'졸려용',1);
+
+mem_out
+
+insert into mem_out values(seq_mem_out_idx.nextVal,3,'2022.07.10')
+
 
 
  gradeup

@@ -16,16 +16,21 @@ mem_nickname		varchar2(200)	not null,		--멤버닉네임
 mem_birth			varchar2(200),					--멤버생일
 mem_regdate			date,							--가입일자
 mem_pic_filename	varchar2(200),					--프로필사진
-mem_profile			varchar2(100)					--자기소개글
+mem_profile			varchar2(100),					--자기소개글
+mem_status			int				not null		--탈퇴계정관리
 )
+
 
 --기본키
 alter table member
  add constraint pk_member_mem_idx primary key(mem_idx);
+
+ 
+--alter table member drop constraint fk_member_mem_idx;--삭제용코드
  
 --외래키
 alter table member
- add constraint fk_member_mem_idx foreign key(mem_idx)
+ add constraint fk_member_mem_idx foreign key(grade_idx)
           							references grade(grade_idx);
 --이메일 유니크 제약  
 alter table member
@@ -38,6 +43,29 @@ alter table member
 --닉네임 유니크 제약 
 alter table member
        add constraint unique_mem_nickname unique(mem_nickname);
+ 
+-----------------------[  MEM_OUT ]------------------------------------------ 
+
+ create sequence seq_mem_out_idx;
+ 
+ create table mem_out
+ (
+ mem_out_idx		int,				--탈퇴회원 일련번호
+ mem_idx			int,				--멤버일련번호
+ mem_out_regdate	date	not null	--탈퇴일자
+ )
+ 
+--기본키
+alter table mem_out
+ add constraint pk_mem_out_idx primary key(mem_out_idx);
+ 
+ --외래키
+ alter table mem_out
+ add constraint fk_mem_out_idx foreign key(mem_out_idx)
+          references member(mem_idx);
+ 
+ 
+ 
  
 -----------------------[  GRADE ]------------------------------------------ 
 
@@ -56,7 +84,7 @@ alter table grade
 -----------------------[  GRADEUP ]------------------------------------------ 
 
 --시퀀스
-create sequence seq_gradeup_gradeup_idx;
+create sequence seq_gradeup_idx;
 
 create table gradeup
 (
