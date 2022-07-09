@@ -13,7 +13,6 @@ location.href="/homepage/main.jsp"
 <body>
 <h1>
 	Hello world!  
-	이거 yoon브런치에 들어가나?
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
