@@ -15,6 +15,7 @@ ALTER TABLE mem_out DROP CONSTRAINT fk_mem_out_idx CASCADE;
  
 --시퀀스
 create sequence seq_member_mem_idx;
+
 create table member
 (
 mem_idx				int,							--멤버일련번호
@@ -29,6 +30,8 @@ mem_pic_filename	varchar2(200),					--프로필사진
 mem_profile			varchar2(100),					--자기소개글
 mem_status			int	     default '0' not null	--탈퇴계정관리   '0'->일반회원,'1'->탈퇴회원 
 )
+
+
 --기본키
 alter table member
  add constraint pk_member_mem_idx primary key(mem_idx);
@@ -57,6 +60,7 @@ alter table member
        add constraint unique_mem_nickname unique(mem_nickname);
  
 -----------------------[  MEM_OUT ]------------------------------------------ 
+ 
  create sequence seq_mem_out_idx;
  
  create table mem_out
@@ -78,18 +82,25 @@ alter table mem_out
  
  
 -----------------------[  GRADE ]------------------------------------------ 
+
 --시퀀스 없음
+
 create table grade
 (
 grade_idx			int,									--등급일련번호
 grade_name			varchar2(100)	default '브론즈' not null --등급별이름
 )
+
 --기본키
 alter table grade
  add constraint pk_grade_grade_idx primary key(grade_idx);
+ 
+ 
 -----------------------[  GRADEUP ]------------------------------------------ 
+
 --시퀀스
 create sequence seq_gradeup_idx;
+
 create table gradeup
 (
 gradeup_idx			int,							--등급일련번호
@@ -98,9 +109,13 @@ gradeup_reply_count	int		default 0 not null,		--해당 멤버의 총 댓글 수
 gradeup_post_count	int		default 0 not null,		--해당 멤버의 총 게시글 수
 gradeup_like_count	int		default 0 not null		--해당 멤버의 총 좋아요 수
 )
+
+
 --기본키
 alter table gradeup
  add constraint pk_gradeup_gradeup_idx primary key(gradeup_idx);
+
+
 --외래키 
 alter table gradeup
  add constraint fk_gradeup_gradeup_idx foreign key(mem_idx)
@@ -108,8 +123,11 @@ alter table gradeup
           
            
 -----------------------[  MSG ]------------------------------------------ 
+
+
 --시퀀스
 create sequence seq_msg_idx;
+
 create table msg	
 (
 msg_idx				int,										--메세지 일련번호
@@ -120,22 +138,35 @@ msg_sendtime		date			not null,					--메세지 보낸시간
 msg_opentime		date,										--메세지 연 시간
 msg_read_check		varchar2(50)	default '읽지 않음' not null	--메세지 열었는지 확인
 )
+
 --기본키
 alter table msg
  add constraint pk_msg_msg_idx primary key(msg_idx);
+ 
+ 
 -----------------------[  CATEGORY ]------------------------------------------ 
+
 --시퀀스없음
+
 create table category
 (
 category_idx		int,							--카테고리일련번호
 category_type		varchar2(50) default '리뷰게시판'	--카테고리 종류
 )
+
+
 --기본키
 alter table category
  add constraint pk_category_category_idx primary key(category_idx);
+
+
 -----------------------[  REVIEW ]------------------------------------------ 
+
+
 --시퀀스
 create sequence seq_review_idx;
+
+
 create table review
 (
 review_idx			int,									--리뷰글 일련번호
@@ -149,9 +180,13 @@ review_like_count	int				default 0 not null,		--리뷰글 좋아요 수
 review_thumbnail	varchar2(500),							--리뷰글 썸네일
 review_ip			varchar2(100)	not null				--글쓸 당시ip
 )
+
+
 --기본키
 alter table review
  add constraint pk_review_review_idx primary key(review_idx);
+
+
 --외래키
 alter table review
  add constraint fk_review_review_idx foreign key(category_idx)
@@ -164,8 +199,12 @@ alter table review
           
           
 -----------------------[  REVIEW_REPLY ]------------------------------------------ 
+
+
 --시퀀스
 create sequence seq_review_reply_idx;
+
+
 create table review_reply
 (
 review_reply_idx		int,							--리뷰 댓글 일련번호
@@ -175,6 +214,8 @@ review_reply_content 	varchar2(500)	not null,		--리뷰댓글 내용
 review_reply_regdate 	date			not null,		--리뷰댓글 등록시간
 review_reply_ip			varchar2(100)	not null		--리뷰댓글ip
 )
+
+
 --기본키
 alter table review_reply
  add constraint pk_review_review_reply_idx primary key(review_reply_idx);
@@ -192,6 +233,8 @@ alter table review_reply
                     
           
 -----------------------[  REVIEW_LIKE ]------------------------------------------ 
+
+
 --시퀀스
 create sequence seq_review_like_idx;
 		
@@ -202,9 +245,12 @@ mem_idx				int		not null,				--멤버 일련번호
 review_idx			int		not null,				--리뷰글 일련번호
 review_like_check	int		default 0 not null		--리뷰글 좋아요 체크
 )
+
+
 --기본키
 alter table review_like
  add constraint pk_review_like_review_like_idx primary key(review_like_idx);
+
 
 --외래키
 alter table review_like
@@ -219,8 +265,12 @@ alter table review_like
           
           
 -----------------------[  REVIEW_REPLY_LIKE ]------------------------------------------           
+
+
 --시퀀스
-create sequence seq_review_reply_like_idx;          
+create sequence seq_review_reply_like_idx;       
+
+      
 create table review_reply_like
 (
 review_reply_like_idx	int,						--리뷰댓글 좋아요 일련번호
@@ -228,9 +278,12 @@ mem_idx					int		not null,			--멤버일련번호
 review_reply_idx		int		not null,			--리뷰댓글 일련번호
 review_reply_like_check int		default 0 not null	--리뷰글 좋아요 체크
 )
+
+
 --기본기
 alter table review_reply_like
  add constraint pk_review_reply_like_idx primary key(review_reply_like_idx);
+
 
 --외래키
 alter table review_reply_like
@@ -245,8 +298,11 @@ alter table review_reply_like
          
           
 -----------------------[  CARPOOL ]------------------------------------------ 
+
+
 --시퀀스
 create sequence seq_carpool_idx;
+
 create table carpool
 (
 carpool_idx			int,								--카풀글 일련번호
@@ -259,6 +315,7 @@ carpool_hit_count	int				default 0 not null,	--카풀글 조회수
 carpool_like_count	int				default 0 not null,	--카풀글 좋아요 수
 carpool_ip			varchar2(100)	not null			--글쓸 당시 ip
 )
+
 --기본기
 alter table carpool
  add constraint pk_carpool_carpool_idx primary key(carpool_idx);
@@ -288,6 +345,8 @@ carpool_reply_content 	varchar2(500)	not null,		--카풀댓글 내용
 carpool_reply_regdate 	date	not null,				--카풀댓글 등록시간
 carpool_reply_ip		varchar2(100)	not null		--카풀댓글ip
 )
+
+
 --기본키
 alter table carpool_reply
  add constraint pk_carpool_carpool_reply_idx primary key(carpool_reply_idx);
@@ -315,6 +374,8 @@ mem_idx				int		not null,				--멤버 일련번호
 carpool_idx			int		not null,				--카풀글 일련번호
 carpool_like_check	int		default 0 not null		--카풀글 좋아요 체크
 )
+
+
 --기본키
 alter table carpool_like
  add constraint pk_carpool_like_idx primary key(carpool_like_idx);
@@ -342,6 +403,8 @@ mem_idx						int		not null,			--멤버일련번호
 carpool_reply_idx			int		not null,			--카풀댓글 일련번호
 carpool_reply_like_check	int		default 0 not null	--카풀글 좋아요 체크
 )
+
+
 --기본키
 alter table carpool_reply_like
  add constraint pk_carpool_reply_like_idx primary key(carpool_reply_like_idx);
@@ -359,8 +422,12 @@ alter table carpool_reply_like
           
           
 -----------------------[  MARKET ]------------------------------------------ 
+
+
 --시퀀스
 create sequence seq_market_idx;
+
+
 create table market
 (
 market_idx			int,								--마켓글 일련번호
@@ -375,6 +442,8 @@ market_thumbnail	varchar2(500),						--마켓글 썸네일
 market_ip			varchar2(100)	not null,			--글쓸 당시ip
 market_buy_sell		varchar2(50)	not null			--삽니다/팝니다/나눔
 )
+
+
 --기본키
 alter table market
  add constraint pk_market_market_idx primary key(market_idx);
@@ -393,7 +462,10 @@ alter table market
 alter table market 
 add constraint check_market_buy_sell check(market_buy_sell='삽니다'or market_buy_sell='팝니다' or market_buy_sell='나눔');
 
+
 -----------------------[  MARKET_REPLY ]------------------------------------------ 
+
+
 --시퀀스
 create sequence seq_market_reply_idx;
 
@@ -423,10 +495,8 @@ alter table market_reply
           
           
 -----------------------[ MARKET_LIKE ]------------------------------------------ 
-
 --시퀀스
 create sequence seq_market_like_idx;
-
 create table market_like
 (
 market_like_idx		int,							--마켓글 좋아요 일련번호
@@ -442,7 +512,6 @@ alter table market_like
 alter table market_like
  add constraint fk_market_like_mem_idx foreign key(mem_idx)
           references member(mem_idx);
-
 --외래키
 alter table market_like
  add constraint fk_market_like_idx foreign key(market_idx)
@@ -460,10 +529,10 @@ mem_idx						int		not null,			--멤버일련번호
 market_reply_idx			int		not null,			--마켓댓글 일련번호
 market_reply_like_check		int		default 0 not null	--마켓글 좋아요 체크
 )
+
 --기본키
 alter table market_reply_like
  add constraint pk_market_reply_like_idx primary key(market_reply_like_idx);
-
 --외래키
 alter table market_reply_like
  add constraint fk_market_reply_like_mem_idx foreign key(mem_idx)
