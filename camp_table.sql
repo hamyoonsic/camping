@@ -1,11 +1,11 @@
 /*
- 
+  
 ----------------------
- ì œì•½ì¡°ê±´ í™•ì¸ /ìˆ˜ì • /ì‚­ì œìš© ëª…ë ¹ì–´
+ Á¦¾àÁ¶°Ç È®ÀÎ /¼öÁ¤ /»èÁ¦¿ë ¸í·É¾î
 ----------------------
- --í˜„ì¬ ì œì•½ì¡°ê±´ í™•ì¸
-SELECT * FROM ALL_CONSTRAINTS WHERE TABLE_NAME = 'MEMBER';
---ì œì•½ì¡°ê±´ì‚­ì œ
+ --ÇöÀç Á¦¾àÁ¶°Ç È®ÀÎ
+SELECT * FROM ALL_CONSTRAINTS WHERE TABLE_NAME = 'Å×ÀÌºí¸í (¹İµå½Ã ´ë¹®ÀÚ)';
+--Á¦¾àÁ¶°Ç»èÁ¦
 ALTER TABLE mem_out DROP CONSTRAINT fk_mem_out_idx CASCADE;
  
  
@@ -13,68 +13,63 @@ ALTER TABLE mem_out DROP CONSTRAINT fk_mem_out_idx CASCADE;
  
 -----------------------[  MEMBER ]------------------------------------------
  
---ì‹œí€€ìŠ¤
+--½ÃÄö½º
 create sequence seq_member_mem_idx;
-
 create table member
 (
-mem_idx				int,							--ë©¤ë²„ì¼ë ¨ë²ˆí˜¸
-grade_idx			int				not null,		--ë“±ê¸‰ì¼ë ¨ë²ˆí˜¸
-mem_email			varchar2(200)	not null,		--ë©¤ë²„ì´ë©”ì¼
-mem_pwd				varchar2(200)	not null,		--ë©¤ë²„ë¹„ë°€ë²ˆí˜¸
-mem_gender			varchar2(200)	not null,		--ë©¤ë²„ì„±ë³„
-mem_nickname		varchar2(200)	not null,		--ë©¤ë²„ë‹‰ë„¤ì„
-mem_birth			varchar2(200),					--ë©¤ë²„ìƒì¼
-mem_regdate			date,							--ê°€ì…ì¼ì
-mem_pic_filename	varchar2(200),					--í”„ë¡œí•„ì‚¬ì§„
-mem_profile			varchar2(100),					--ìê¸°ì†Œê°œê¸€
-mem_status			int	     default '0' not null	--íƒˆí‡´ê³„ì •ê´€ë¦¬   '0'->ì¼ë°˜íšŒì›,'1'->íƒˆí‡´íšŒì› 
+mem_idx				int,							--¸â¹öÀÏ·Ã¹øÈ£
+grade_idx			int				not null,		--µî±ŞÀÏ·Ã¹øÈ£
+mem_email			varchar2(200)	not null,		--¸â¹öÀÌ¸ŞÀÏ
+mem_pwd				varchar2(200)	not null,		--¸â¹öºñ¹Ğ¹øÈ£
+mem_gender			varchar2(200)	not null,		--¸â¹ö¼ºº°
+mem_nickname		varchar2(200)	not null,		--¸â¹ö´Ğ³×ÀÓ
+mem_birth			varchar2(200),					--¸â¹ö»ıÀÏ
+mem_regdate			date,							--°¡ÀÔÀÏÀÚ
+mem_pic_filename	varchar2(200),					--ÇÁ·ÎÇÊ»çÁø
+mem_profile			varchar2(100),					--ÀÚ±â¼Ò°³±Û
+mem_status			int	     default '0' not null	--Å»Åğ°èÁ¤°ü¸®   '0'->ÀÏ¹İÈ¸¿ø,'1'->Å»ÅğÈ¸¿ø 
 )
-
-
---ê¸°ë³¸í‚¤
+--±âº»Å°
 alter table member
  add constraint pk_member_mem_idx primary key(mem_idx);
  
---alter table member drop constraint fk_member_mem_idx;--ì‚­ì œìš©ì½”ë“œ
+--alter table member drop constraint fk_member_mem_idx;--»èÁ¦¿ëÄÚµå
  
---ì™¸ë˜í‚¤
+--¿Ü·¡Å°
 alter table member
  add constraint fk_member_mem_idx foreign key(grade_idx)
           							references grade(grade_idx);
-          							
---ì´ë©”ì¼ ìœ ë‹ˆí¬ ì œì•½  
+--ÀÌ¸ŞÀÏ À¯´ÏÅ© Á¦¾à  
 alter table member
        add constraint unique_mem_email unique(mem_email);
        
---ì„±ë³„ ì²´í¬ ì œì•½       
+--¼ºº° Ã¼Å© Á¦¾à       
 alter table member 
-	add constraint check_mem_gender check(mem_gender='ë‚¨ì'or mem_gender='ì—¬ì');
+	add constraint check_mem_gender check(mem_gender='³²ÀÚ'or mem_gender='¿©ÀÚ');
  
---ë©¤ë²„ìƒíƒœ ì²´í¬ ì œì•½       
+--¸â¹ö»óÅÂ Ã¼Å© Á¦¾à       
 alter table member 
 	add constraint check_mem_status check(mem_status='0' or mem_status='1');
  
---ë‹‰ë„¤ì„ ìœ ë‹ˆí¬ ì œì•½ 
+--´Ğ³×ÀÓ À¯´ÏÅ© Á¦¾à 
 alter table member
        add constraint unique_mem_nickname unique(mem_nickname);
  
 -----------------------[  MEM_OUT ]------------------------------------------ 
- 
  create sequence seq_mem_out_idx;
  
  create table mem_out
  (
- mem_out_idx		int,				--íƒˆí‡´íšŒì› ì¼ë ¨ë²ˆí˜¸
- mem_idx			int,				--ë©¤ë²„ì¼ë ¨ë²ˆí˜¸
- mem_out_regdate	date	not null	--íƒˆí‡´ì¼ì
+ mem_out_idx		int,				--Å»ÅğÈ¸¿ø ÀÏ·Ã¹øÈ£
+ mem_idx			int,				--¸â¹öÀÏ·Ã¹øÈ£
+ mem_out_regdate	date	not null	--Å»ÅğÀÏÀÚ
  )
  
---ê¸°ë³¸í‚¤
+--±âº»Å°
 alter table mem_out
  add constraint pk_mem_out_idx primary key(mem_out_idx);
  
- --ì™¸ë˜í‚¤
+ --¿Ü·¡Å°
 alter table mem_out
  add constraint fk_mem_out_idx foreign key(mem_idx)
           references member(mem_idx);
@@ -82,150 +77,113 @@ alter table mem_out
  
  
 -----------------------[  GRADE ]------------------------------------------ 
-
---ì‹œí€€ìŠ¤ ì—†ìŒ
-
+--½ÃÄö½º ¾øÀ½
 create table grade
 (
-grade_idx			int,									--ë“±ê¸‰ì¼ë ¨ë²ˆí˜¸
-grade_name			varchar2(100)	default 'ë¸Œë¡ ì¦ˆ' not null --ë“±ê¸‰ë³„ì´ë¦„
+grade_idx			int,									--µî±ŞÀÏ·Ã¹øÈ£
+grade_name			varchar2(100)	default 'ºê·ĞÁî' not null --µî±Şº°ÀÌ¸§
 )
-
---ê¸°ë³¸í‚¤
+--±âº»Å°
 alter table grade
  add constraint pk_grade_grade_idx primary key(grade_idx);
- 
- 
 -----------------------[  GRADEUP ]------------------------------------------ 
-
---ì‹œí€€ìŠ¤
+--½ÃÄö½º
 create sequence seq_gradeup_idx;
-
 create table gradeup
 (
-gradeup_idx			int,							--ë“±ê¸‰ì¼ë ¨ë²ˆí˜¸
-mem_idx				int,							--ë©¤ë²„ì¼ë ¨ë²ˆí˜¸
-gradeup_reply_count	int		default 0 not null,		--í•´ë‹¹ ë©¤ë²„ì˜ ì´ ëŒ“ê¸€ ìˆ˜
-gradeup_post_count	int		default 0 not null,		--í•´ë‹¹ ë©¤ë²„ì˜ ì´ ê²Œì‹œê¸€ ìˆ˜
-gradeup_like_count	int		default 0 not null		--í•´ë‹¹ ë©¤ë²„ì˜ ì´ ì¢‹ì•„ìš” ìˆ˜
+gradeup_idx			int,							--µî±ŞÀÏ·Ã¹øÈ£
+mem_idx				int,							--¸â¹öÀÏ·Ã¹øÈ£
+gradeup_reply_count	int		default 0 not null,		--ÇØ´ç ¸â¹öÀÇ ÃÑ ´ñ±Û ¼ö
+gradeup_post_count	int		default 0 not null,		--ÇØ´ç ¸â¹öÀÇ ÃÑ °Ô½Ã±Û ¼ö
+gradeup_like_count	int		default 0 not null		--ÇØ´ç ¸â¹öÀÇ ÃÑ ÁÁ¾Æ¿ä ¼ö
 )
-
-
---ê¸°ë³¸í‚¤
+--±âº»Å°
 alter table gradeup
  add constraint pk_gradeup_gradeup_idx primary key(gradeup_idx);
-
-
---ì™¸ë˜í‚¤ 
+--¿Ü·¡Å° 
 alter table gradeup
  add constraint fk_gradeup_gradeup_idx foreign key(mem_idx)
           references member(mem_idx);
           
            
 -----------------------[  MSG ]------------------------------------------ 
-
-
---ì‹œí€€ìŠ¤
+--½ÃÄö½º
 create sequence seq_msg_idx;
-
 create table msg	
 (
-msg_idx				int,										--ë©”ì„¸ì§€ ì¼ë ¨ë²ˆí˜¸
-msg_content			varchar2(200)	not null,					--ë©”ì„¸ì§€ë‚´ìš©
-msg_sender			int				not null,					--ë©”ì„¸ì§€ ë³´ë‚¸ì‚¬ëŒ
-msg_receiver		int				not null,					--ë©”ì„¸ì§€ ë°›ëŠ”ì‚¬ëŒ
-msg_sendtime		date			not null,					--ë©”ì„¸ì§€ ë³´ë‚¸ì‹œê°„
-msg_opentime		date,										--ë©”ì„¸ì§€ ì—° ì‹œê°„
-msg_read_check		varchar2(50)	default 'ì½ì§€ ì•ŠìŒ' not null	--ë©”ì„¸ì§€ ì—´ì—ˆëŠ”ì§€ í™•ì¸
+msg_idx				int,										--¸Ş¼¼Áö ÀÏ·Ã¹øÈ£
+msg_content			varchar2(200)	not null,					--¸Ş¼¼Áö³»¿ë
+msg_sender			int				not null,					--¸Ş¼¼Áö º¸³½»ç¶÷
+msg_receiver		int				not null,					--¸Ş¼¼Áö ¹Ş´Â»ç¶÷
+msg_sendtime		date			not null,					--¸Ş¼¼Áö º¸³½½Ã°£
+msg_opentime		date,										--¸Ş¼¼Áö ¿¬ ½Ã°£
+msg_read_check		varchar2(50)	default 'ÀĞÁö ¾ÊÀ½' not null	--¸Ş¼¼Áö ¿­¾ú´ÂÁö È®ÀÎ
 )
-
---ê¸°ë³¸í‚¤
+--±âº»Å°
 alter table msg
  add constraint pk_msg_msg_idx primary key(msg_idx);
- 
- 
 -----------------------[  CATEGORY ]------------------------------------------ 
-
---ì‹œí€€ìŠ¤ì—†ìŒ
-
+--½ÃÄö½º¾øÀ½
 create table category
 (
-category_idx		int,							--ì¹´í…Œê³ ë¦¬ì¼ë ¨ë²ˆí˜¸
-category_type		varchar2(50) default 'ë¦¬ë·°ê²Œì‹œíŒ'	--ì¹´í…Œê³ ë¦¬ ì¢…ë¥˜
+category_idx		int,							--Ä«Å×°í¸®ÀÏ·Ã¹øÈ£
+category_type		varchar2(50) default '¸®ºä°Ô½ÃÆÇ'	--Ä«Å×°í¸® Á¾·ù
 )
-
-
---ê¸°ë³¸í‚¤
+--±âº»Å°
 alter table category
  add constraint pk_category_category_idx primary key(category_idx);
-
-
 -----------------------[  REVIEW ]------------------------------------------ 
-
-
---ì‹œí€€ìŠ¤
+--½ÃÄö½º
 create sequence seq_review_idx;
-
-
 create table review
 (
-review_idx			int,									--ë¦¬ë·°ê¸€ ì¼ë ¨ë²ˆí˜¸
-category_idx		int,									--ì¹´í…Œê³ ë¦¬ ì¼ë ¨ë²ˆí˜¸
-mem_idx				int,									--ë©¤ë²„ ì¼ë ¨ë²ˆí˜¸
-review_title		varchar2(100)	not null,				--ë¦¬ë·°ê¸€ ì œëª©
-review_content		varchar2(100)	not null,				--ë¦¬ë·°ê¸€ ë‚´ìš©
-review_regdate		date			not null,				--ë¦¬ë·°ê¸€ ë“±ë¡ì¼
-review_hit_count	int				default 0 not null,		--ë¦¬ë·°ê¸€ ì¡°íšŒì†Œ
-review_like_count	int				default 0 not null,		--ë¦¬ë·°ê¸€ ì¢‹ì•„ìš” ìˆ˜
-review_thumbnail	varchar2(500),							--ë¦¬ë·°ê¸€ ì¸ë„¤ì¼
-review_ip			varchar2(100)	not null				--ê¸€ì“¸ ë‹¹ì‹œip
+review_idx			int,									--¸®ºä±Û ÀÏ·Ã¹øÈ£
+category_idx		int,									--Ä«Å×°í¸® ÀÏ·Ã¹øÈ£
+mem_idx				int,									--¸â¹ö ÀÏ·Ã¹øÈ£
+review_title		varchar2(100)	not null,				--¸®ºä±Û Á¦¸ñ
+review_content		varchar2(100)	not null,				--¸®ºä±Û ³»¿ë
+review_regdate		date			not null,				--¸®ºä±Û µî·ÏÀÏ
+review_hit_count	int				default 0 not null,		--¸®ºä±Û Á¶È¸¼Ò
+review_like_count	int				default 0 not null,		--¸®ºä±Û ÁÁ¾Æ¿ä ¼ö
+review_thumbnail	varchar2(500),							--¸®ºä±Û ½æ³×ÀÏ
+review_ip			varchar2(100)	not null				--±Û¾µ ´ç½Ãip
 )
-
-
---ê¸°ë³¸í‚¤
+--±âº»Å°
 alter table review
  add constraint pk_review_review_idx primary key(review_idx);
-
-
---ì™¸ë˜í‚¤
+--¿Ü·¡Å°
 alter table review
  add constraint fk_review_review_idx foreign key(category_idx)
           references category(category_idx);
           
---ì™¸ë˜í‚¤  
+--¿Ü·¡Å°  
 alter table review
  add constraint fk_review_review_mem_idx foreign key(mem_idx)
           references member(mem_idx);
           
           
 -----------------------[  REVIEW_REPLY ]------------------------------------------ 
-
-
---ì‹œí€€ìŠ¤
+--½ÃÄö½º
 create sequence seq_review_reply_idx;
-
-
 create table review_reply
 (
-review_reply_idx		int,							--ë¦¬ë·° ëŒ“ê¸€ ì¼ë ¨ë²ˆí˜¸
-mem_idx					int				not null,		--ë©¤ë²„ ì¼ë ¨ë²ˆí˜¸
-review_idx				int				not null,		--ë¦¬ë·°ê¸€ ì¼ë ¨ë²ˆí˜¸
-review_reply_content 	varchar2(500)	not null,		--ë¦¬ë·°ëŒ“ê¸€ ë‚´ìš©
-review_reply_regdate 	date			not null,		--ë¦¬ë·°ëŒ“ê¸€ ë“±ë¡ì‹œê°„
-review_reply_ip			varchar2(100)	not null		--ë¦¬ë·°ëŒ“ê¸€ip
+review_reply_idx		int,							--¸®ºä ´ñ±Û ÀÏ·Ã¹øÈ£
+mem_idx					int				not null,		--¸â¹ö ÀÏ·Ã¹øÈ£
+review_idx				int				not null,		--¸®ºä±Û ÀÏ·Ã¹øÈ£
+review_reply_content 	varchar2(500)	not null,		--¸®ºä´ñ±Û ³»¿ë
+review_reply_regdate 	date			not null,		--¸®ºä´ñ±Û µî·Ï½Ã°£
+review_reply_ip			varchar2(100)	not null		--¸®ºä´ñ±Ûip
 )
-
-
---ê¸°ë³¸í‚¤
+--±âº»Å°
 alter table review_reply
  add constraint pk_review_review_reply_idx primary key(review_reply_idx);
  
---ì™¸ë˜í‚¤
+--¿Ü·¡Å°
 alter table review_reply
  add constraint fk_review_mem_idx foreign key(mem_idx)
           references member(mem_idx);
           
---ì™¸ë˜í‚¤
+--¿Ü·¡Å°
 alter table review_reply
  add constraint fk_review_reply__idx foreign key(review_idx)
           references review(review_idx);
@@ -233,31 +191,25 @@ alter table review_reply
                     
           
 -----------------------[  REVIEW_LIKE ]------------------------------------------ 
-
-
---ì‹œí€€ìŠ¤
+--½ÃÄö½º
 create sequence seq_review_like_idx;
 		
 create table review_like
 (
-review_like_idx		int,							--ë¦¬ë·°ê¸€ ì¢‹ì•„ìš” ì¼ë ¨ë²ˆí˜¸
-mem_idx				int		not null,				--ë©¤ë²„ ì¼ë ¨ë²ˆí˜¸
-review_idx			int		not null,				--ë¦¬ë·°ê¸€ ì¼ë ¨ë²ˆí˜¸
-review_like_check	int		default 0 not null		--ë¦¬ë·°ê¸€ ì¢‹ì•„ìš” ì²´í¬
+review_like_idx		int,							--¸®ºä±Û ÁÁ¾Æ¿ä ÀÏ·Ã¹øÈ£
+mem_idx				int		not null,				--¸â¹ö ÀÏ·Ã¹øÈ£
+review_idx			int		not null,				--¸®ºä±Û ÀÏ·Ã¹øÈ£
+review_like_check	int		default 0 not null		--¸®ºä±Û ÁÁ¾Æ¿ä Ã¼Å©
 )
-
-
---ê¸°ë³¸í‚¤
+--±âº»Å°
 alter table review_like
  add constraint pk_review_like_review_like_idx primary key(review_like_idx);
-
-
---ì™¸ë˜í‚¤
+--¿Ü·¡Å°
 alter table review_like
  add constraint fk_review_like_mem_idx foreign key(mem_idx)
           references member(mem_idx);
           
---ì™¸ë˜í‚¤
+--¿Ü·¡Å°
 alter table review_like
  add constraint fk_review_like_idx foreign key(review_idx)
           references review(review_idx);
@@ -265,32 +217,24 @@ alter table review_like
           
           
 -----------------------[  REVIEW_REPLY_LIKE ]------------------------------------------           
-
-
---ì‹œí€€ìŠ¤
-create sequence seq_review_reply_like_idx;       
-
-      
+--½ÃÄö½º
+create sequence seq_review_reply_like_idx;          
 create table review_reply_like
 (
-review_reply_like_idx	int,						--ë¦¬ë·°ëŒ“ê¸€ ì¢‹ì•„ìš” ì¼ë ¨ë²ˆí˜¸
-mem_idx					int		not null,			--ë©¤ë²„ì¼ë ¨ë²ˆí˜¸
-review_reply_idx		int		not null,			--ë¦¬ë·°ëŒ“ê¸€ ì¼ë ¨ë²ˆí˜¸
-review_reply_like_check int		default 0 not null	--ë¦¬ë·°ê¸€ ì¢‹ì•„ìš” ì²´í¬
+review_reply_like_idx	int,						--¸®ºä´ñ±Û ÁÁ¾Æ¿ä ÀÏ·Ã¹øÈ£
+mem_idx					int		not null,			--¸â¹öÀÏ·Ã¹øÈ£
+review_reply_idx		int		not null,			--¸®ºä´ñ±Û ÀÏ·Ã¹øÈ£
+review_reply_like_check int		default 0 not null	--¸®ºä±Û ÁÁ¾Æ¿ä Ã¼Å©
 )
-
-
---ê¸°ë³¸ê¸°
+--±âº»±â
 alter table review_reply_like
  add constraint pk_review_reply_like_idx primary key(review_reply_like_idx);
-
-
---ì™¸ë˜í‚¤
+--¿Ü·¡Å°
 alter table review_reply_like
  add constraint fk_review_reply_like_mem_idx foreign key(mem_idx)
           references member(mem_idx);
           
---ì™¸ë˜í‚¤
+--¿Ü·¡Å°
 alter table review_reply_like
  add constraint fk_review_reply_like_idx foreign key(review_reply_idx)
           references review_reply(review_reply_idx);
@@ -298,34 +242,29 @@ alter table review_reply_like
          
           
 -----------------------[  CARPOOL ]------------------------------------------ 
-
-
---ì‹œí€€ìŠ¤
+--½ÃÄö½º
 create sequence seq_carpool_idx;
-
 create table carpool
 (
-carpool_idx			int,								--ì¹´í’€ê¸€ ì¼ë ¨ë²ˆí˜¸
-category_idx		int,								--ì¹´í…Œê³ ë¦¬ ì¼ë ¨ë²ˆí˜¸
-mem_idx				int,								--ë©¤ë²„ ì¼ë ¨ë²ˆí˜¸
-carpool_title		varchar2(100)	not null,			--ì¹´í’€ê¸€ ì œëª©
-carpool_content		varchar2(2000)	not null,			--ì¹´í’€ê¸€ ë‚´ìš©
-carpool_regdate		date			not null,			--ì¹´í’€ê¸€ ë“±ë¡ì¼
-carpool_hit_count	int				default 0 not null,	--ì¹´í’€ê¸€ ì¡°íšŒìˆ˜
-carpool_like_count	int				default 0 not null,	--ì¹´í’€ê¸€ ì¢‹ì•„ìš” ìˆ˜
-carpool_ip			varchar2(100)	not null			--ê¸€ì“¸ ë‹¹ì‹œ ip
+carpool_idx			int,								--Ä«Ç®±Û ÀÏ·Ã¹øÈ£
+category_idx		int,								--Ä«Å×°í¸® ÀÏ·Ã¹øÈ£
+mem_idx				int,								--¸â¹ö ÀÏ·Ã¹øÈ£
+carpool_title		varchar2(100)	not null,			--Ä«Ç®±Û Á¦¸ñ
+carpool_content		varchar2(2000)	not null,			--Ä«Ç®±Û ³»¿ë
+carpool_regdate		date			not null,			--Ä«Ç®±Û µî·ÏÀÏ
+carpool_hit_count	int				default 0 not null,	--Ä«Ç®±Û Á¶È¸¼ö
+carpool_like_count	int				default 0 not null,	--Ä«Ç®±Û ÁÁ¾Æ¿ä ¼ö
+carpool_ip			varchar2(100)	not null			--±Û¾µ ´ç½Ã ip
 )
-
---ê¸°ë³¸ê¸°
+--±âº»±â
 alter table carpool
  add constraint pk_carpool_carpool_idx primary key(carpool_idx);
-
---ì™¸ë˜í‚¤
+--¿Ü·¡Å°
 alter table carpool
  add constraint fk_carpool_carpool_idx foreign key(category_idx)
           references category(category_idx);
          
---ì™¸ë˜í‚¤
+--¿Ü·¡Å°
 alter table carpool
  add constraint fk_carpool_carpool_mem_idx foreign key(mem_idx)
           references member(mem_idx);
@@ -333,30 +272,27 @@ alter table carpool
          
 -----------------------[  CARPOOL_REPLY ]------------------------------------------ 
  
---ì‹œí€€ìŠ¤ 
+--½ÃÄö½º 
 create sequence seq_carpool_reply_idx; 
                  
 create table carpool_reply
 (
-carpool_reply_idx		int,							--ì¹´í’€ ëŒ“ê¸€ ì¼ë ¨ë²ˆí˜¸
-mem_idx					int		not null,				--ë©¤ë²„ ì¼ë ¨ë²ˆí˜¸
-carpool_idx				int		not null,				--ì¹´í’€ê¸€ ì¼ë ¨ë²ˆí˜¸
-carpool_reply_content 	varchar2(500)	not null,		--ì¹´í’€ëŒ“ê¸€ ë‚´ìš©
-carpool_reply_regdate 	date	not null,				--ì¹´í’€ëŒ“ê¸€ ë“±ë¡ì‹œê°„
-carpool_reply_ip		varchar2(100)	not null		--ì¹´í’€ëŒ“ê¸€ip
+carpool_reply_idx		int,							--Ä«Ç® ´ñ±Û ÀÏ·Ã¹øÈ£
+mem_idx					int		not null,				--¸â¹ö ÀÏ·Ã¹øÈ£
+carpool_idx				int		not null,				--Ä«Ç®±Û ÀÏ·Ã¹øÈ£
+carpool_reply_content 	varchar2(500)	not null,		--Ä«Ç®´ñ±Û ³»¿ë
+carpool_reply_regdate 	date	not null,				--Ä«Ç®´ñ±Û µî·Ï½Ã°£
+carpool_reply_ip		varchar2(100)	not null		--Ä«Ç®´ñ±Ûip
 )
-
-
---ê¸°ë³¸í‚¤
+--±âº»Å°
 alter table carpool_reply
  add constraint pk_carpool_carpool_reply_idx primary key(carpool_reply_idx);
-
---ì™¸ë˜í‚¤
+--¿Ü·¡Å°
 alter table carpool_reply
  add constraint fk_carpool_reply_mem_idx foreign key(mem_idx)
           references member(mem_idx);
           
---ì™¸ë˜í‚¤
+--¿Ü·¡Å°
 alter table carpool_reply
  add constraint fk_carpool_reply_idx foreign key(carpool_idx)
           references carpool(carpool_idx);
@@ -364,28 +300,25 @@ alter table carpool_reply
      
 -----------------------[  CARPOOL_LIKE ]------------------------------------------ 
       
---ì‹œí€€ìŠ¤
-create sequence seq_carpool_like_idx; 
-  
+--½ÃÄö½º
+create sequence seq_carpool_like_idx;    
 create table carpool_like
 (
-carpool_like_idx	int,							--ì¹´í’€ê¸€ ì¢‹ì•„ìš” ì¼ë ¨ë²ˆí˜¸
-mem_idx				int		not null,				--ë©¤ë²„ ì¼ë ¨ë²ˆí˜¸
-carpool_idx			int		not null,				--ì¹´í’€ê¸€ ì¼ë ¨ë²ˆí˜¸
-carpool_like_check	int		default 0 not null		--ì¹´í’€ê¸€ ì¢‹ì•„ìš” ì²´í¬
+carpool_like_idx	int,							--Ä«Ç®±Û ÁÁ¾Æ¿ä ÀÏ·Ã¹øÈ£
+mem_idx				int		not null,				--¸â¹ö ÀÏ·Ã¹øÈ£
+carpool_idx			int		not null,				--Ä«Ç®±Û ÀÏ·Ã¹øÈ£
+carpool_like_check	int		default 0 not null		--Ä«Ç®±Û ÁÁ¾Æ¿ä Ã¼Å©
 )
-
-
---ê¸°ë³¸í‚¤
+--±âº»Å°
 alter table carpool_like
  add constraint pk_carpool_like_idx primary key(carpool_like_idx);
  
---ì™¸ë˜í‚¤
+--¿Ü·¡Å°
 alter table carpool_like
  add constraint fk_carpool_like_mem_idx foreign key(mem_idx)
           references member(mem_idx);
  
---ì™¸ë˜í‚¤
+--¿Ü·¡Å°
 alter table carpool_like
  add constraint fk_carpool_like_idx foreign key(carpool_idx)
           references carpool(carpool_idx);
@@ -393,28 +326,26 @@ alter table carpool_like
           
 -----------------------[  CAPPOOL_REPLY_LIKE ]------------------------------------------ 
  
---ì‹œí€€ìŠ¤
+--½ÃÄö½º
 create sequence seq_carpool_reply_like_idx;
  
 create table carpool_reply_like
 (
-carpool_reply_like_idx		int,						--ì¹´í’€ëŒ“ê¸€ ì¢‹ì•„ìš” ì¼ë ¨ë²ˆí˜¸
-mem_idx						int		not null,			--ë©¤ë²„ì¼ë ¨ë²ˆí˜¸
-carpool_reply_idx			int		not null,			--ì¹´í’€ëŒ“ê¸€ ì¼ë ¨ë²ˆí˜¸
-carpool_reply_like_check	int		default 0 not null	--ì¹´í’€ê¸€ ì¢‹ì•„ìš” ì²´í¬
+carpool_reply_like_idx		int,						--Ä«Ç®´ñ±Û ÁÁ¾Æ¿ä ÀÏ·Ã¹øÈ£
+mem_idx						int		not null,			--¸â¹öÀÏ·Ã¹øÈ£
+carpool_reply_idx			int		not null,			--Ä«Ç®´ñ±Û ÀÏ·Ã¹øÈ£
+carpool_reply_like_check	int		default 0 not null	--Ä«Ç®±Û ÁÁ¾Æ¿ä Ã¼Å©
 )
-
-
---ê¸°ë³¸í‚¤
+--±âº»Å°
 alter table carpool_reply_like
  add constraint pk_carpool_reply_like_idx primary key(carpool_reply_like_idx);
  
---ì™¸ë˜í‚¤
+--¿Ü·¡Å°
 alter table carpool_reply_like
  add constraint fk_carpool_reply_like_mem_idx foreign key(mem_idx)
           references member(mem_idx);
           
---ì™¸ë˜í‚¤
+--¿Ü·¡Å°
 alter table carpool_reply_like
  add constraint fk_carpool_reply_like_idx foreign key(carpool_reply_idx)
           references carpool_reply(carpool_reply_idx);
@@ -422,72 +353,61 @@ alter table carpool_reply_like
           
           
 -----------------------[  MARKET ]------------------------------------------ 
-
-
---ì‹œí€€ìŠ¤
+--½ÃÄö½º
 create sequence seq_market_idx;
-
-
 create table market
 (
-market_idx			int,								--ë§ˆì¼“ê¸€ ì¼ë ¨ë²ˆí˜¸
-category_idx		int,								--ì¹´í…Œê³ ë¦¬ ì¼ë ¨ë²ˆí˜¸
-mem_idx				int,								--ë©¤ë²„ ì¼ë ¨ë²ˆí˜¸
-market_title		varchar2(100)	not null,			--ë§ˆì¼“ê¸€ ì œëª©
-market_content		varchar2(2000)	not null,			--ë§ˆì¼“ê¸€ ë‚´ìš©
-market_regdate		date			not null,			--ë§ˆì¼“ê¸€ ë“±ë¡ì¼
-market_hit_count	int				default 0 not null,	--ë§ˆì¼“ê¸€ ì¡°íšŒìˆ˜
-market_like_count	int				default 0 not null,	--ë§ˆì¼“ê¸€ ì¢‹ì•„ìš” ìˆ˜
-market_thumbnail	varchar2(500),						--ë§ˆì¼“ê¸€ ì¸ë„¤ì¼
-market_ip			varchar2(100)	not null,			--ê¸€ì“¸ ë‹¹ì‹œip
-market_buy_sell		varchar2(50)	not null			--ì‚½ë‹ˆë‹¤/íŒë‹ˆë‹¤/ë‚˜ëˆ”
+market_idx			int,								--¸¶ÄÏ±Û ÀÏ·Ã¹øÈ£
+category_idx		int,								--Ä«Å×°í¸® ÀÏ·Ã¹øÈ£
+mem_idx				int,								--¸â¹ö ÀÏ·Ã¹øÈ£
+market_title		varchar2(100)	not null,			--¸¶ÄÏ±Û Á¦¸ñ
+market_content		varchar2(2000)	not null,			--¸¶ÄÏ±Û ³»¿ë
+market_regdate		date			not null,			--¸¶ÄÏ±Û µî·ÏÀÏ
+market_hit_count	int				default 0 not null,	--¸¶ÄÏ±Û Á¶È¸¼ö
+market_like_count	int				default 0 not null,	--¸¶ÄÏ±Û ÁÁ¾Æ¿ä ¼ö
+market_thumbnail	varchar2(500),						--¸¶ÄÏ±Û ½æ³×ÀÏ
+market_ip			varchar2(100)	not null,			--±Û¾µ ´ç½Ãip
+market_buy_sell		varchar2(50)	not null			--»ğ´Ï´Ù/ÆË´Ï´Ù/³ª´®
 )
-
-
---ê¸°ë³¸í‚¤
+--±âº»Å°
 alter table market
  add constraint pk_market_market_idx primary key(market_idx);
  
---ì™¸ë˜í‚¤
+--¿Ü·¡Å°
 alter table market
  add constraint fk_market_idx foreign key(category_idx)
           references category(category_idx);
           
---ì™¸ë˜í‚¤
+--¿Ü·¡Å°
 alter table market
  add constraint fk_market_mem_idx foreign key(mem_idx)
           references member(mem_idx);
           
---ì‚½ë‹ˆë‹¤ íŒë‹ˆë‹¤ ë‚˜ëˆ” ì²´í¬ì œì•½
+--»ğ´Ï´Ù ÆË´Ï´Ù ³ª´® Ã¼Å©Á¦¾à
 alter table market 
-add constraint check_market_buy_sell check(market_buy_sell='ì‚½ë‹ˆë‹¤'or market_buy_sell='íŒë‹ˆë‹¤' or market_buy_sell='ë‚˜ëˆ”');
-
-
+add constraint check_market_buy_sell check(market_buy_sell='»ğ´Ï´Ù'or market_buy_sell='ÆË´Ï´Ù' or market_buy_sell='³ª´®');
 -----------------------[  MARKET_REPLY ]------------------------------------------ 
-
-
---ì‹œí€€ìŠ¤
+--½ÃÄö½º
 create sequence seq_market_reply_idx;
-
 create table market_reply
 (
-market_reply_idx		int,							--ë§ˆì¼“ ëŒ“ê¸€ ì¼ë ¨ë²ˆí˜¸
-mem_idx					int		not null,				--ë©¤ë²„ ì¼ë ¨ë²ˆí˜¸
-market_idx				int		not null,				--ë§ˆì¼“ê¸€ ì¼ë ¨ë²ˆí˜¸
-market_reply_content 	varchar2(500)	not null,		--ë§ˆì¼“ëŒ“ê¸€ ë‚´ìš©
-market_reply_regdate 	date	not null,				--ë§ˆì¼“ëŒ“ê¸€ ë“±ë¡ì‹œê°„
-market_reply_ip			varchar2(100)	not null		--ë§ˆì¼“ëŒ“ê¸€ip
+market_reply_idx		int,							--¸¶ÄÏ ´ñ±Û ÀÏ·Ã¹øÈ£
+mem_idx					int		not null,				--¸â¹ö ÀÏ·Ã¹øÈ£
+market_idx				int		not null,				--¸¶ÄÏ±Û ÀÏ·Ã¹øÈ£
+market_reply_content 	varchar2(500)	not null,		--¸¶ÄÏ´ñ±Û ³»¿ë
+market_reply_regdate 	date	not null,				--¸¶ÄÏ´ñ±Û µî·Ï½Ã°£
+market_reply_ip			varchar2(100)	not null		--¸¶ÄÏ´ñ±Ûip
 )
---ê¸°ë³¸í‚¤
+--±âº»Å°
 alter table market_reply
  add constraint pk_market_reply_idx primary key(market_reply_idx);
  
---ì™¸ë˜í‚¤
+--¿Ü·¡Å°
 alter table market_reply
  add constraint fk_market_reply_mem_idx foreign key(mem_idx)
           references member(mem_idx);
  
---ì™¸ë˜í‚¤
+--¿Ü·¡Å°
 alter table market_reply
  add constraint fk_market_reply_idx foreign key(market_idx)
           references market(market_idx);
@@ -495,50 +415,49 @@ alter table market_reply
           
           
 -----------------------[ MARKET_LIKE ]------------------------------------------ 
---ì‹œí€€ìŠ¤
+--½ÃÄö½º
 create sequence seq_market_like_idx;
 create table market_like
 (
-market_like_idx		int,							--ë§ˆì¼“ê¸€ ì¢‹ì•„ìš” ì¼ë ¨ë²ˆí˜¸
-mem_idx				int		not null,				--ë©¤ë²„ ì¼ë ¨ë²ˆí˜¸
-market_idx			int		not null,				--ë§ˆì¼“ê¸€ ì¼ë ¨ë²ˆí˜¸
-market_like_check	int		default 0  not null		--ë§ˆì¼“ê¸€ ì¢‹ì•„ìš” ì²´í¬
+market_like_idx		int,							--¸¶ÄÏ±Û ÁÁ¾Æ¿ä ÀÏ·Ã¹øÈ£
+mem_idx				int		not null,				--¸â¹ö ÀÏ·Ã¹øÈ£
+market_idx			int		not null,				--¸¶ÄÏ±Û ÀÏ·Ã¹øÈ£
+market_like_check	int		default 0  not null		--¸¶ÄÏ±Û ÁÁ¾Æ¿ä Ã¼Å©
 )
---ê¸°ë³¸í‚¤
+--±âº»Å°
 alter table market_like
  add constraint pk_market_like_idx primary key(market_like_idx);
  
---ì™¸ë˜í‚¤
+--¿Ü·¡Å°
 alter table market_like
  add constraint fk_market_like_mem_idx foreign key(mem_idx)
           references member(mem_idx);
---ì™¸ë˜í‚¤
+--¿Ü·¡Å°
 alter table market_like
  add constraint fk_market_like_idx foreign key(market_idx)
           references market(market_idx);
           
-          
+          ;
           
 -----------------------[ MARKET_REPLY_LIKE ]------------------------------------------ 
---ì‹œí€€ìŠ¤
+--½ÃÄö½º
 create sequence seq_market_reply_like_idx;
 create table market_reply_like
 (
-market_reply_like_idx		int,						--ë§ˆì¼“ëŒ“ê¸€ ì¢‹ì•„ìš” ì¼ë ¨ë²ˆí˜¸
-mem_idx						int		not null,			--ë©¤ë²„ì¼ë ¨ë²ˆí˜¸
-market_reply_idx			int		not null,			--ë§ˆì¼“ëŒ“ê¸€ ì¼ë ¨ë²ˆí˜¸
-market_reply_like_check		int		default 0 not null	--ë§ˆì¼“ê¸€ ì¢‹ì•„ìš” ì²´í¬
+market_reply_like_idx		int,						--¸¶ÄÏ´ñ±Û ÁÁ¾Æ¿ä ÀÏ·Ã¹øÈ£
+mem_idx						int		not null,			--¸â¹öÀÏ·Ã¹øÈ£
+market_reply_idx			int		not null,			--¸¶ÄÏ´ñ±Û ÀÏ·Ã¹øÈ£
+market_reply_like_check		int		default 0 not null	--¸¶ÄÏ±Û ÁÁ¾Æ¿ä Ã¼Å©
 )
-
---ê¸°ë³¸í‚¤
+--±âº»Å°
 alter table market_reply_like
  add constraint pk_market_reply_like_idx primary key(market_reply_like_idx);
---ì™¸ë˜í‚¤
+--¿Ü·¡Å°
 alter table market_reply_like
  add constraint fk_market_reply_like_mem_idx foreign key(mem_idx)
           references member(mem_idx);
           
---ì™¸ë˜í‚¤
+--¿Ü·¡Å°
 alter table market_reply_like
  add constraint fk_market_reply_like_idx foreign key(market_reply_idx)
           references market_reply(market_reply_idx);
