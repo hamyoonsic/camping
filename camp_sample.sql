@@ -1,5 +1,5 @@
 /*
-select * from member
+
 
 grade
 
@@ -21,15 +21,15 @@ insert  into member values(seq_member_mem_idx.nextVal,1,'four@campus.com','1234'
 
 mem_out
 
-insert into mem_out values(seq_mem_out_idx.nextVal,3,'2022.07.10')
+insert into mem_out values(seq_mem_out_idx.nextVal,32,'2022.07.10');
 
 
 
  gradeup
 
-insert into gradeup values(seq_gradeup_gradeup_idx.nextVal,2,5,1,10)
-insert into gradeup values(seq_gradeup_gradeup_idx.nextVal,5,0,0,0)
-insert into gradeup values(seq_gradeup_gradeup_idx.nextVal,4,3,1,3)
+insert into gradeup values(seq_gradeup_gradeup_idx.nextVal,2,5,1,10);
+insert into gradeup values(seq_gradeup_gradeup_idx.nextVal,5,0,0,0);
+insert into gradeup values(seq_gradeup_gradeup_idx.nextVal,4,3,1,3);
 
  msg
 

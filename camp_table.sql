@@ -1,5 +1,19 @@
 /*
   
+----------------------
+ 제약조건 확인 /수정 /삭제용 명령어
+----------------------
+ --현재 제약조건 확인
+SELECT * FROM ALL_CONSTRAINTS WHERE TABLE_NAME = '테이블명 (반드시 대문자)';
+
+--제약조건삭제
+ALTER TABLE mem_out DROP CONSTRAINT fk_mem_out_idx CASCADE;
+ 
+
+
+ 
+ 
+ 
 -----------------------[  MEMBER ]------------------------------------------
  
 --시퀀스
@@ -17,7 +31,7 @@ mem_birth			varchar2(200),					--멤버생일
 mem_regdate			date,							--가입일자
 mem_pic_filename	varchar2(200),					--프로필사진
 mem_profile			varchar2(100),					--자기소개글
-mem_status			int				not null		--탈퇴계정관리
+mem_status			int	     default '0' not null	--탈퇴계정관리   '0'->일반회원,'1'->탈퇴회원 
 )
 
 
@@ -40,6 +54,10 @@ alter table member
 alter table member 
 	add constraint check_mem_gender check(mem_gender='남자'or mem_gender='여자');
  
+--멤버상태 체크 제약       
+alter table member 
+	add constraint check_mem_status check(mem_status='0' or mem_status='1');
+ 
 --닉네임 유니크 제약 
 alter table member
        add constraint unique_mem_nickname unique(mem_nickname);
@@ -60,11 +78,13 @@ alter table mem_out
  add constraint pk_mem_out_idx primary key(mem_out_idx);
  
  --외래키
- alter table mem_out
- add constraint fk_mem_out_idx foreign key(mem_out_idx)
+alter table mem_out
+ add constraint fk_mem_out_idx foreign key(mem_idx)
           references member(mem_idx);
  
- 
+
+
+
  
  
 -----------------------[  GRADE ]------------------------------------------ 
@@ -101,8 +121,12 @@ alter table gradeup
 
 --외래키 
 alter table gradeup
- add constraint fk_gradeup_gradeup_idx foreign key(gradeup_idx)
+ add constraint fk_gradeup_gradeup_idx foreign key(mem_idx)
           references member(mem_idx);
+          
+           
+
+
 
 -----------------------[  MSG ]------------------------------------------ 
 
@@ -163,13 +187,15 @@ alter table review
 
 --외래키
 alter table review
- add constraint fk_review_review_idx foreign key(review_idx)
+ add constraint fk_review_review_idx foreign key(category_idx)
           references category(category_idx);
           
 --외래키  
 alter table review
- add constraint fk_review_review_mem_idx foreign key(review_idx)
+ add constraint fk_review_review_mem_idx foreign key(mem_idx)
           references member(mem_idx);
+          
+
           
 -----------------------[  REVIEW_REPLY ]------------------------------------------ 
 
@@ -192,13 +218,15 @@ alter table review_reply
  
 --외래키
 alter table review_reply
- add constraint fk_review_reply_idx foreign key(review_reply_idx)
+ add constraint fk_review_mem_idx foreign key(mem_idx)
           references member(mem_idx);
           
 --외래키
 alter table review_reply
- add constraint fk_review_reply__idx foreign key(review_reply_idx)
+ add constraint fk_review_reply__idx foreign key(review_idx)
           references review(review_idx);
+          
+                    
           
 -----------------------[  REVIEW_LIKE ]------------------------------------------ 
 
@@ -218,13 +246,15 @@ alter table review_like
  add constraint pk_review_like_review_like_idx primary key(review_like_idx);
 --외래키
 alter table review_like
- add constraint fk_review_like_mem_idx foreign key(review_like_idx)
+ add constraint fk_review_like_mem_idx foreign key(mem_idx)
           references member(mem_idx);
           
 --외래키
 alter table review_like
- add constraint fk_review_like_idx foreign key(review_like_idx)
+ add constraint fk_review_like_idx foreign key(review_idx)
           references review(review_idx);
+          
+          
           
 -----------------------[  REVIEW_REPLY_LIKE ]------------------------------------------           
 
@@ -245,13 +275,15 @@ alter table review_reply_like
 
 --외래키
 alter table review_reply_like
- add constraint fk_review_reply_like_mem_idx foreign key(review_reply_like_idx)
+ add constraint fk_review_reply_like_mem_idx foreign key(mem_idx)
           references member(mem_idx);
           
 --외래키
 alter table review_reply_like
- add constraint fk_review_reply_like_idx foreign key(review_reply_like_idx)
+ add constraint fk_review_reply_like_idx foreign key(review_reply_idx)
           references review_reply(review_reply_idx);
+          
+         
           
 -----------------------[  CARPOOL ]------------------------------------------ 
 
@@ -277,14 +309,15 @@ alter table carpool
 
 --외래키
 alter table carpool
- add constraint fk_carpool_carpool_idx foreign key(carpool_idx)
+ add constraint fk_carpool_carpool_idx foreign key(category_idx)
           references category(category_idx);
          
 --외래키
 alter table carpool
- add constraint fk_carpool_carpool_mem_idx foreign key(carpool_idx)
+ add constraint fk_carpool_carpool_mem_idx foreign key(mem_idx)
           references member(mem_idx);
           
+         
 -----------------------[  CARPOOL_REPLY ]------------------------------------------ 
  
 --시퀀스 
@@ -306,14 +339,15 @@ alter table carpool_reply
 
 --외래키
 alter table carpool_reply
- add constraint fk_carpool_reply_mem_idx foreign key(carpool_reply_idx)
+ add constraint fk_carpool_reply_mem_idx foreign key(mem_idx)
           references member(mem_idx);
           
 --외래키
 alter table carpool_reply
- add constraint fk_carpool_reply_idx foreign key(carpool_reply_idx)
+ add constraint fk_carpool_reply_idx foreign key(carpool_idx)
           references carpool(carpool_idx);
    
+     
 -----------------------[  CARPOOL_LIKE ]------------------------------------------ 
       
 --시퀀스
@@ -333,13 +367,14 @@ alter table carpool_like
  
 --외래키
 alter table carpool_like
- add constraint fk_carpool_like_mem_idx foreign key(carpool_like_idx)
+ add constraint fk_carpool_like_mem_idx foreign key(mem_idx)
           references member(mem_idx);
  
 --외래키
 alter table carpool_like
- add constraint fk_carpool_like_idx foreign key(carpool_like_idx)
+ add constraint fk_carpool_like_idx foreign key(carpool_idx)
           references carpool(carpool_idx);
+          
           
 -----------------------[  CAPPOOL_REPLY_LIKE ]------------------------------------------ 
  
@@ -360,13 +395,15 @@ alter table carpool_reply_like
  
 --외래키
 alter table carpool_reply_like
- add constraint fk_carpool_reply_like_mem_idx foreign key(carpool_reply_like_idx)
+ add constraint fk_carpool_reply_like_mem_idx foreign key(mem_idx)
           references member(mem_idx);
           
 --외래키
 alter table carpool_reply_like
- add constraint fk_carpool_reply_like_idx foreign key(carpool_reply_like_idx)
+ add constraint fk_carpool_reply_like_idx foreign key(carpool_reply_idx)
           references carpool_reply(carpool_reply_idx);
+          
+          
           
 -----------------------[  MARKET ]------------------------------------------ 
 
@@ -394,17 +431,19 @@ alter table market
  
 --외래키
 alter table market
- add constraint fk_market_idx foreign key(market_idx)
+ add constraint fk_market_idx foreign key(category_idx)
           references category(category_idx);
           
 --외래키
 alter table market
- add constraint fk_market_mem_idx foreign key(market_idx)
+ add constraint fk_market_mem_idx foreign key(mem_idx)
           references member(mem_idx);
           
 --삽니다 팝니다 나눔 체크제약
 alter table market 
 add constraint check_market_buy_sell check(market_buy_sell='삽니다'or market_buy_sell='팝니다' or market_buy_sell='나눔');
+
+
 
 -----------------------[  MARKET_REPLY ]------------------------------------------ 
 
@@ -427,13 +466,15 @@ alter table market_reply
  
 --외래키
 alter table market_reply
- add constraint fk_market_reply_mem_idx foreign key(market_reply_idx)
+ add constraint fk_market_reply_mem_idx foreign key(mem_idx)
           references member(mem_idx);
  
 --외래키
 alter table market_reply
- add constraint fk_market_reply_idx foreign key(market_reply_idx)
+ add constraint fk_market_reply_idx foreign key(market_idx)
           references market(market_idx);
+          
+          
           
 -----------------------[ MARKET_LIKE ]------------------------------------------ 
 
@@ -454,13 +495,15 @@ alter table market_like
  
 --외래키
 alter table market_like
- add constraint fk_market_like_mem_idx foreign key(market_like_idx)
+ add constraint fk_market_like_mem_idx foreign key(mem_idx)
           references member(mem_idx);
 
 --외래키
 alter table market_like
- add constraint fk_market_like_idx foreign key(market_like_idx)
+ add constraint fk_market_like_idx foreign key(market_idx)
           references market(market_idx);
+          
+          ;
           
 -----------------------[ MARKET_REPLY_LIKE ]------------------------------------------ 
 
@@ -481,11 +524,13 @@ alter table market_reply_like
 
 --외래키
 alter table market_reply_like
- add constraint fk_market_reply_like_mem_idx foreign key(market_reply_like_idx)
+ add constraint fk_market_reply_like_mem_idx foreign key(mem_idx)
           references member(mem_idx);
           
 --외래키
 alter table market_reply_like
- add constraint fk_market_reply_like_idx foreign key(market_reply_like_idx)
+ add constraint fk_market_reply_like_idx foreign key(market_reply_idx)
           references market_reply(market_reply_idx);
+          
+          
 */
