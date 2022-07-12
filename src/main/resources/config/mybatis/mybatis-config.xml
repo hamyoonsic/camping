@@ -11,6 +11,6 @@
 	
 	
 	<mappers>
-		<mapper resource="config/mybatis/mapper/sample.xml" />
+		<mapper resource="config/mybatis/mapper/carpool.xml" />
 	</mappers>
 </configuration>
