@@ -10,7 +10,12 @@
 	
 	
 	
+	
 	<mappers>
+		<mapper resource="config/mybatis/mapper/member.xml" />
 		<mapper resource="config/mybatis/mapper/carpool.xml" />
 	</mappers>
+	
+	
+	
 </configuration>

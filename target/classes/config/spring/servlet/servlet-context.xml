@@ -22,14 +22,25 @@
 	</beans:bean>
 	
 	
-	<context:component-scan base-package="com.ict.camping" />
+	<!-- <context:component-scan base-package="com.ict.camping" /> -->
 	
+	<!--수동생성  -->
+	<context:annotation-config/>
 	
+<<<<<<< .merge_file_a37352
+	<beans:bean class="controller.MemberController">
+		<beans:property name="member_dao" ref="member_dao"/>
+	</beans:bean>
+	
+	<beans:bean class="com.ict.camping.HomeController">
+	</beans:bean>
+=======
 	<!-- 수동생성 -->
 	<beans:bean class="controller.CarpoolController"> 
 		<beans:property name="carpool_dao" ref="carpool_dao"/>
 	</beans:bean>
 	
 	
+>>>>>>> .merge_file_a06440
 	
 </beans:beans>

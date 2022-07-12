@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
 
@@ -123,18 +123,18 @@
 </style>
 </head>
 <body>
-	<!--³×ÀÌ°ÔÀÌ¼Ç bar ºÎºĞ  -->
+	<!--ë„¤ì´ê²Œì´ì…˜ bar ë¶€ë¶„  -->
 	<div id="header"></div>
 
 	<div id="content">
-	<!-- ÀÌ¹ÌÁö -->  
+	<!-- ì´ë¯¸ì§€ -->  
 		<div id="mem_profile" >
-			<img alt="ÀÌ¹ÌÁö ¾øÀ½" src="../img/member_profile.png">
+			<img alt="ì´ë¯¸ì§€ ì—†ìŒ" src="../img/member_profile.png">
 		
 		</div>
 		
 		
-		<!-- °³ÀÎÁ¤º¸ ¼öÁ¤ -->
+		<!-- ê°œì¸ì •ë³´ ìˆ˜ì • -->
 		<div id="member_form">
 			<table class="table_mypage" >
 			<tr>
@@ -162,18 +162,18 @@
 			</table>
 		
 		</div>
-	 	<!--ÀÚ±â¼Ò°³ text box  -->
+	 	<!--ìê¸°ì†Œê°œ text box  -->
 	 	
 		<div id="mem_profile_text"	>
-			<span >ÁÖ¿ø´Ô</span><br>
-			<textarea rows="3" cols="25">¹İ°©½À´Ï´Ù</textarea><br>
+			<span >ì£¼ì›ë‹˜</span><br>
+			<textarea rows="3" cols="25">ë°˜ê°‘ìŠµë‹ˆë‹¤</textarea><br>
 			 <input type="submit" value="Submit">
 		</div> 
 		
 		
-			<input class="button" type="text" value="¼öÁ¤">
-			<input class="button" type="text" value="Ãë¼Ò">
-			<input class="button" type="text" value="»èÁ¦">
+			<input class="button" type="text" value="ìˆ˜ì •">
+			<input class="button" type="text" value="ì·¨ì†Œ">
+			<input class="button" type="text" value="ì‚­ì œ">
 		
 		
 	

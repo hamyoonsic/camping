@@ -104,7 +104,7 @@ h1{
 	</form> -->
 	<div id="signup" >
 		<div  id="imgbok" >
-			<img alt="이미지없음" src="../img/camp.png">
+			<img alt="이미지없음" src="${ pageContext.request.contextPath }/resources/img/camp.png">
 		</div>
 			<h1>signup</h1>
 		<div id="signup_form" >
