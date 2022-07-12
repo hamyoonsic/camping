@@ -248,15 +248,16 @@
 		 		   <th>grade</th>
 		 		   <th>nickname</th>
 		 		   <th>e_mail</th>
-		 		   <th>age</th>
-		 		   <th>ragdate</th>
+		 		   <th>birth</th>
+		 		   <th>regdate</th>
+		 		   <th>select</th>
 		 		</tr>
 		 	</thead>
 		 	
 		 	<tbody>
 			 		<c:if test="${empty list }">
 			 		<tr>
-			 			<td colspan="6" align="center">
+			 			<td colspan="7" align="center">
 			 				<font color="red">등록된 회원이 없습니다</font>
 			 			</td>
 			 		</tr> 
@@ -264,24 +265,21 @@
 		 	</tbody>
 		 		
 		 	<tbody>
-		 	   <c:forEach items="${list}" var="vo1">
+		 	   <c:forEach  var="vo" items="${list}">
 		
 				<tr>
 				
-					<td>${ vo1.idx }</td>
-					<td></td>
-					<td>${ vo1.lev_no }</td>
-					<td>${ vo1.name }</td>
-					<td>${ vo1.id }</td>
-					<td>${ vo1.pwd }</td>
-					<td>${ vo1.age }</td>
-					<td>${ vo1.gender }</td>
-					<td style="text-align:center;">${ vo1.email }</td>
-					<td>${fn:substring(vo1.regdate,0,10) }</td>
+					<td>${ vo.mem_idx }</td>
+					<td>${ vo.grade_idx}</td>
+					<td>${ vo.mem_nickname }</td>
+					<td>${ vo.mem_email }</td>
+					<td>${ vo.mem_birth }</td>
+					<td>${fn:substring(vo.mem_regdate,0,10) }</td>
+				
 					<td>
 						 <div style="text-align:center;"> 
-						 <button class="btn btn-outline-dark" onclick="update(this.form);">수정</button>
-						 <button class="btn btn-outline-dark" onclick="del('${vo1.id}');">삭제</button>
+						 <button class="btn btn-outline-dark" >수정</button>
+						 <button class="btn btn-outline-dark" >삭제</button>
 						</div>
 					</td>
 				</tr>
