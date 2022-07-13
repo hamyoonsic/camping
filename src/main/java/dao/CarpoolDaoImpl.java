@@ -7,22 +7,21 @@ import org.apache.ibatis.session.SqlSession;
 
 import vo.CarpoolVo;
 
-public class CarpoolDaoImpl implements CarpoolDao{
-	
+public class CarpoolDaoImpl implements CarpoolDao {
+
 	SqlSession sqlSession;
 	
 	public void setSqlSession(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
 
+	@Override
 	public List<CarpoolVo> selectList() {
-
-		List<CarpoolVo> list = sqlSession.selectList("carpool.carpool_list");
-		
-		return list;
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("carpool.carpool_list");
 	}
-	
-	
+
+
 	public List<CarpoolVo> selectList(Map map) {
 		// TODO Auto-generated method stub
 		
@@ -34,8 +33,6 @@ public class CarpoolDaoImpl implements CarpoolDao{
 		
 		return list;
 	}
-	
-	
 	
 	public CarpoolVo selectOne(int carpool_idx) {
 
