@@ -17,4 +17,14 @@
 	</bean>
 	
 	
+	<bean id="review_dao" class="dao.ReviewDaoImpl">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	
+	<bean id="market_dao" class="dao.MarketDaoImpl">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	
+	
+	
 </beans>

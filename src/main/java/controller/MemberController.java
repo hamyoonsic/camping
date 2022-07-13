@@ -78,9 +78,10 @@ public class MemberController {
 		
 	}
 	
-	//·Î±×ÀÎ Æû
+	
+	
 	@RequestMapping("insert_form.do")
-	public String login_form() {
+	public String insert_form() {
 		
 		return "member/member_signup_form";
 	}

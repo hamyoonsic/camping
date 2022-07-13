@@ -8,12 +8,11 @@
 		<setting name="defaultExecutorType" value="REUSE" />
 	</settings>
 	
-	
-	
-	
 	<mappers>
 		<mapper resource="config/mybatis/mapper/member.xml" />
 		<mapper resource="config/mybatis/mapper/carpool.xml" />
+		<mapper resource="config/mybatis/mapper/market.xml" />
+		<mapper resource="config/mybatis/mapper/review.xml" />
 		<mapper resource="config/mybatis/mapper/review_reply.xml" />
 	</mappers>
 	
