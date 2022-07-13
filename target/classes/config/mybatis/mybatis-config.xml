@@ -12,11 +12,11 @@
 	
 	
 	<mappers>
-<<<<<<< .merge_file_a42384
 		<mapper resource="config/mybatis/mapper/member.xml" />
-=======
 		<mapper resource="config/mybatis/mapper/carpool.xml" />
->>>>>>> .merge_file_a39080
+		<mapper resource="config/mybatis/mapper/review_reply.xml" />
 	</mappers>
+	
+	
 	
 </configuration>

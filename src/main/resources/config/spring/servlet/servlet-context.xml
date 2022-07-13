@@ -36,5 +36,9 @@
 		<beans:property name="carpool_dao" ref="carpool_dao"/>
 	</beans:bean>
 	
+	<beans:bean class="controller.ReplyController">
+		<beans:property name="review_reply_dao" ref="review_reply_dao"/>
+	</beans:bean>
+	
 	
 </beans:beans>
