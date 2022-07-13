@@ -21,9 +21,7 @@ public class MemberVo {
 	}
 	
 	
-<<<<<<< HEAD
-=======
-	
+
 	
 	
 	
@@ -44,7 +42,7 @@ public class MemberVo {
 
 
 
->>>>>>> cb87b1492189691c45fdaaa14f0b4cad7e9d3ed0
+
 	public int getMem_idx() {
 		return mem_idx;
 	}

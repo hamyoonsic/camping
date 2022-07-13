@@ -15,7 +15,6 @@
    <!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
    <resources mapping="/resources/**" location="/resources/" />
 
-<<<<<<< HEAD
    <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
    <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
       <beans:property name="prefix" value="/WEB-INF/views/" />
@@ -37,38 +36,5 @@
       <beans:property name="carpool_dao" ref="carpool_dao"/>
    </beans:bean>
    
-   <beans:bean class="controller.MarketController">
-      <beans:property name="market_dao" ref="market_dao"/>
-   </beans:bean>
-   
-   <beans:bean class="controller.ReviewController">
-      <beans:property name="review_dao" ref="review_dao"/>
-   </beans:bean>
-   
    
 </beans:beans>
-=======
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jsp" />
-	</beans:bean>
-	
-	
-	<!-- <context:component-scan base-package="com.ict.camping" /> -->
-	
-	<!--수동생성  -->
-	<context:annotation-config/>
-	<beans:bean class="com.ict.camping.HomeController"></beans:bean>
-	
-	<beans:bean class="controller.MemberController">
-		<beans:property name="member_dao" ref="member_dao"/>
-	</beans:bean>
-	
-	<beans:bean class="controller.CarpoolController">
-		<beans:property name="carpool_dao" ref="carpool_dao"/>
-	</beans:bean>
-	
-	
-</beans:beans>
->>>>>>> cb87b1492189691c45fdaaa14f0b4cad7e9d3ed0
