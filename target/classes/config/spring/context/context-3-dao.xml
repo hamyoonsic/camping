@@ -8,6 +8,7 @@
 		<property name="sqlSession" ref="sqlSession"></property>
 	</bean>
 	
+<<<<<<< HEAD
 	<bean id="carpool_dao" class="dao.CarpoolDaoImpl">
 		<property name="sqlSession" ref="sqlSession"></property>
 	</bean>
@@ -20,5 +21,7 @@
 	<bean id="market_dao" class="dao.MarketDaoImpl">
 		<property name="sqlSession" ref="sqlSession"></property>
 	</bean>
+=======
+>>>>>>> cb87b1492189691c45fdaaa14f0b4cad7e9d3ed0
 	
 </beans>

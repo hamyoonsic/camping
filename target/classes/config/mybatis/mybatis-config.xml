@@ -8,6 +8,7 @@
 		<setting name="defaultExecutorType" value="REUSE" />
 	</settings>
 	
+<<<<<<< HEAD
 	<mappers>
 		<mapper resource="config/mybatis/mapper/member.xml" />
 		<mapper resource="config/mybatis/mapper/carpool.xml" />
@@ -18,4 +19,17 @@
 	
 	
 	
+=======
+	
+	
+	
+	<mappers>
+<<<<<<< .merge_file_a42384
+		<mapper resource="config/mybatis/mapper/member.xml" />
+=======
+		<mapper resource="config/mybatis/mapper/carpool.xml" />
+>>>>>>> .merge_file_a39080
+	</mappers>
+	
+>>>>>>> cb87b1492189691c45fdaaa14f0b4cad7e9d3ed0
 </configuration>

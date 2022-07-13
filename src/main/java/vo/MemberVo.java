@@ -21,6 +21,30 @@ public class MemberVo {
 	}
 	
 	
+<<<<<<< HEAD
+=======
+	
+	
+	
+	
+	public MemberVo(String mem_email, String mem_pwd, String mem_nickname, String mem_gender, String mem_birth,
+			String mem_pic_filename, String mem_profile) {
+		super();
+		this.mem_email = mem_email;
+		this.mem_pwd = mem_pwd;
+		this.mem_nickname = mem_nickname;
+		this.mem_gender = mem_gender;
+		this.mem_birth = mem_birth;
+		this.mem_pic_filename = mem_pic_filename;
+		this.mem_profile = mem_profile;
+	}
+
+
+
+
+
+
+>>>>>>> cb87b1492189691c45fdaaa14f0b4cad7e9d3ed0
 	public int getMem_idx() {
 		return mem_idx;
 	}

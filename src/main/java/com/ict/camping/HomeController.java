@@ -36,4 +36,8 @@ public class HomeController {
 		return "homepage/main";
 	}
 	
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> cb87b1492189691c45fdaaa14f0b4cad7e9d3ed0

@@ -10,15 +10,24 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+
 <style type="text/css">
+
+#main_box{
+	width	:	100%;
+	background-color: #14870c;
+
+}
+
 
 #signup{
 	width:  500px;
 	height: 720px;
 	margin: auto;
-	margin-top: 50px;
+	/* margin-top: 50px; */
  	border-radius: 10px 10px 10px 10px;
- 	border:  solid red ;
+ 	/* border:  solid red ; */
+ 	background-color: white;
 	
 }
 #imgbok{
@@ -97,15 +106,107 @@ h1{
 
 
 </style>
+<script type="text/javascript">
+
+var regular_email =/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+
+
+$(function(){
+	
+	
+	$("#mem_email").keyup(function(event){
+		
+		var mem_email =$(this).val();
+		
+		if(regular_email.test(mem_email)==false){
+			
+			$("#mem_email").html("영문자, 숫자 3~15자리까지 입력 가능합니다.")
+		    .css("color","#ffcccc");
+
+			//가입하기 버튼 비활성화
+			$("#btn_register").attr("disabled",true);
+			
+			
+			return;
+						
+			
+		}
+		
+		
+	})
+	
+	
+});
+
+/* 체크  */
+function send(f) {
+		
+		//입력값 체크(이름/비번/우편번호/주소)
+		var mem_email 	  	= f.mem_name.value.trim();
+		var mem_pwd	  		= f.m_pwd.value.trim();
+		var mem_nickname 	= f.mem_nickname.value.trim();
+		var mem_birth	  	= f.mem_birth.value.trim();
+		var mem_pic      	= f.mem_pic.value;
+		var mem_profile 	= f.mem_profile.value.trim();
+		if(m_name == ''){
+			alert('이름을 입력하세요');
+			f.m_name.value='';
+			f.m_name.focus();
+			return;
+		}
+		
+		
+		if(m_pwd == ''){
+			alert('비밀번호를 입력하세요');
+			f.m_pwd.value='';
+			f.m_pwd.focus();
+			return;
+		}
+		
+		
+		if(m_zipcode == ''){
+			alert('우편번호를 입력하세요');
+			f.m_zipcode.value='';
+			f.m_zipcode.focus();
+			return;
+		}
+		
+		
+		if(m_addr == ''){
+			alert('주소를 입력하세요');
+			f.m_addr.value='';
+			f.m_addr.focus();
+			return;
+		}
+		
+		
+		f.action = "insert.do"; // MemberInsertAction
+		f.submit(); 
+	}
+	
+
+
+
+
+
+
+</script>
+
+
+
 </head>
 <body>
+<div id="main_box">
 	<!-- <form enctype="multipart/form-data" id="ajaxForm" method="post">
     <input type="file" id="ajaxFile" style="display:none;"  onChange="ajaxFileChange();" >파일이 체인지 되었을시 
 	</form> -->
+	
 	<div id="signup" >
 		<div  id="imgbok" >
-			<img alt="이미지없음" src="../img/camp.png">
+			<img alt="이미지없음" src="${ pageContext.request.contextPath }/resources/img/camp.png">
 		</div>
+		
+		<form>
 			<h1>signup</h1>
 		<div id="signup_form" >
 			<table class="table_login">
@@ -156,13 +257,15 @@ h1{
 				
 				
 			    <tr>
-			    	<td ><input  class="btn btn-success "  type="button" id="btn_signup" value="signup">
+			    	<td ><input  class="btn btn-success "  type="button" id="btn_signup" value="signup" 
+			    				disabled="disabled"	onclick="send(this.form);">
 			    	<input  class="btn btn-primary "  type="button" id="btn_cancel" value="cancel"></td>
 			    </tr>
 			
 			</table>
 		</div>
-		
+	  </form>
 	</div>
+</div>
 </body>
 </html>

@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
 <!-- Bootstrap 3.x -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -88,32 +90,108 @@ h1{
 	margin-top: 60px;
 }
 
-
-
-
-
-
 </style>
+<script type="text/javascript">
+
+
+	function send(f){
+		
+		var mem_email = f.mem_email.value.trim();
+		var mem_pwd = f.mem_pwd.value.trim();
+		
+		if(mem_email==''){
+			alert('이메일을 입력하세요');
+			f.mem_email.value='';
+			f.mem_email.focus();
+			return;
+		}
+		
+		if(mem_pwd==''){
+			alert("패스워드를 입력하세요");
+			f.mem_pwd.value='';
+			f.mem_pwd.focus();
+			return;
+			
+		}
+		
+		f.action="login.do";
+		f.submit();
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+</script>
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+	
+	  //0.1초후에 showMessage함수 호출
+	  setTimeout(showMessage,100);
+	  
+  });
+  
+  function showMessage(){
+	  
+	 // /member/login_form.do?reason=fail_id
+	 if("${ param.reason eq 'fail_email' }" =="true"){
+		 alert('이메일이 틀렸습니다');
+		 return;
+	 } 		  
+	  
+	 // /member/login_form.do?reason=fail_pwd
+	 if("${ param.reason eq 'fail_pwd' }" =="true"){
+		 alert('비밀번호가 틀렸습니다');
+		 return;
+	 } 
+	 
+	 // /member/login_form.do?reason=session_timeout
+	 if("${ param.reason eq 'session_timeout' }" =="true"){
+		 alert('로그아웃 되었습니다');
+		 return;
+	 } 
+	 	  
+	  
+  }
+  
+
+</script>
+
+
+
 </head>
 <body>
+	<form>
 	<div id="login" >
 		<div  id="imgbok" >
-			<img alt="이미지없음" src="../img/camp.png">
+			<img alt="이미지없음" src="${ pageContext.request.contextPath }/resources/img/camp.png">
 		</div>
 			<h1>login</h1>
 		<div id="login_form" >
 			<table class="table_login">
 				<tr>
-					<td><input type="text" id="mem_email" name="mem_email" 
+					<td><input type="text" id="mem_email" name="mem_email" value="${param.mem_email }"
 							required="required" placeholder="email"/></td>
 				</tr>
 				
 				<tr>
-					<td><input type="text" id="mem_pwd" name="mem_pwd" 
+					<td><input type="password" id="mem_pwd" name="mem_pwd" 
 							required="required" placeholder="password"/></td>
 				</tr>
 			    <tr>
-			    	<td ><input  class="btn btn-success "  type="button" id="btn_login" value="login">
+			    	<td ><input  class="btn btn-success "  type="button" id="btn_login" value="login"
+			    				onclick="send(this.form);">
 			    	<input  class="btn btn-primary "  type="button" id="btn_signup_form" value="signup"></td>
 			    </tr>
 			
@@ -121,5 +199,6 @@ h1{
 		</div>
 		
 	</div>
+	</form>
 </body>
 </html>

@@ -8,6 +8,12 @@
 		<setting name="defaultExecutorType" value="REUSE" />
 	</settings>
 	
+<<<<<<< HEAD
+=======
+	
+	
+	
+>>>>>>> cb87b1492189691c45fdaaa14f0b4cad7e9d3ed0
 	<mappers>
 		<mapper resource="config/mybatis/mapper/member.xml" />
 		<mapper resource="config/mybatis/mapper/carpool.xml" />
