@@ -72,16 +72,17 @@ public class MemberController {
 		session.setAttribute("user", user);
 		
 		map.put("mem_nickname",user.getMem_nickname());
+		map.put("grade_idx", user.getGrade_idx());
 		map.put("result", "success");
 		return map;
 		
 	}
 	
 	//·Î±×ÀÎ Æû
-	@RequestMapping("login_form.do")
+	@RequestMapping("insert_form.do")
 	public String login_form() {
 		
-		return "member/member_login_form";
+		return "member/member_signup_form";
 	}
 	
 	

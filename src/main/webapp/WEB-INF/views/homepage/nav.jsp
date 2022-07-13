@@ -170,10 +170,10 @@
 									// result_data = {'result': 'fail_pwd'}
 									
 									if(result_data.result=='fail_email'){
-										Swal.fire('email이 틀립니다..!!');
+										Swal.fire('로그인실패!',"email이 존재하지 않습니다",'warning');
 										return;
 									}else if (result_data.result=='fail_pwd'){
-										Swal.fire("passwore가 틀립니다");
+										Swal.fire('로그인 실패!',"passwore가 틀립니다",'error');
 										return;
 									}
 									if(result_data.result=='success'){
@@ -181,8 +181,11 @@
 								            icon: 'success',                         
 								            title: result_data.mem_nickname +"님"  ,        
 								            text: '환영합니다!'
+								        }).then(function(){
+								        	location.href="";
+								        	
 								        });
-										location.href="";
+										
 									}
 									
 								}
@@ -200,7 +203,7 @@
 					}); 
 			});
 	
-	
+			
 	});
 	
 
@@ -223,11 +226,14 @@
 			
 		</ul>
 			<c:if test="${not empty user }">
-				<ul class="mypage">
-					<li><a href="#">${mem_grade}</a></li>
-					<li><a href="#">${mem_nickname}님</a></li>
-					<li><a href="#">쪽지함</a></li>
-				</ul>
+			
+					<ul class="mypage">
+						<li><a href="#">${user.grade_idx}</a></li>
+						<li><a href="#">${user.mem_nickname}님</a></li>
+						<li><a href="#">쪽지함</a></li>
+						<li><a href="#">로그아웃</a></li>
+					</ul>
+			
 			</c:if>
 	</div>
 </body>
