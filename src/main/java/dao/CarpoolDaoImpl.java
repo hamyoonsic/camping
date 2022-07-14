@@ -1,11 +1,11 @@
 package dao;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
 import vo.CarpoolVo;
+import vo.Carpool_likeVo;
 
 public class CarpoolDaoImpl implements CarpoolDao {
 
@@ -21,27 +21,23 @@ public class CarpoolDaoImpl implements CarpoolDao {
 		return sqlSession.selectList("carpool.carpool_list");
 	}
 
-
-	public List<CarpoolVo> selectList(Map map) {
+	@Override
+	public int carpool_insertlike(int carpool_idx) {
 		// TODO Auto-generated method stub
-		
-		List<CarpoolVo> list = null;
-		
-		
-		list = sqlSession.selectList("carpool.carpool_list_condition", map);
-		
-		
-		return list;
+		return sqlSession.insert("carpool.carpool_insertlike");
 	}
-	
-	public CarpoolVo selectOne(int carpool_idx) {
 
-		 CarpoolVo vo = null;
-	
-		vo = sqlSession.selectOne("carpool.carpool_one", carpool_idx);
-		
-		return vo;
+	@Override
+	public int carpool_deletelike(int carpool_idx) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
-	
-	
+
+
+
+
+
+
+
+
 }
