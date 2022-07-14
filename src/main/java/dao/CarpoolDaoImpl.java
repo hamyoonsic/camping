@@ -20,4 +20,23 @@ public class CarpoolDaoImpl implements CarpoolDao {
 		return sqlSession.selectList("carpool.carpool_list");
 	}
 
+	@Override
+	public int carpool_insertlike(int carpool_idx) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("carpool.carpool_insertlike");
+	}
+
+	@Override
+	public int carpool_deletelike(int carpool_idx) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+
+
+
+
+
 }

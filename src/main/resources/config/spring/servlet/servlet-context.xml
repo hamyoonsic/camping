@@ -26,7 +26,6 @@
 	
 	<!--수동생성  -->
 	<context:annotation-config/>
-	<beans:bean class="com.ict.camping.HomeController"></beans:bean>
 	
 	<beans:bean class="controller.MemberController">
 		<beans:property name="member_dao" ref="member_dao"/>
