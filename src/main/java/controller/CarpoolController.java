@@ -47,7 +47,7 @@ public class CarpoolController {
 		return "board/carpool_board";
 	}
 	
-	@RequestMapping("/homepage/main.do")
+	@RequestMapping("/")
 	public String main(Model model) {
 		
 		List<CarpoolVo> list = carpool_dao.selectList();
@@ -67,15 +67,17 @@ public class CarpoolController {
 		return "homepage/carpool_market";
 	}
 	
-	@ResponseBody
-	@RequestMapping(value ="/carpool_insertlike.do", method = RequestMethod.POST)
-	public Map carpool_insertlike(@RequestParam Map map) {
-		
-		Map map = new Map;
-	
-		int res = carpool_dao.carpool_insertlike(map);
-		
-		return "redirect:carpool_list.do";
-	}
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value ="/carpool_insertlike.do", method = RequestMethod.POST)
+	 * public Map carpool_insertlike(@RequestParam Map map) {
+	 * 
+	 * Map map = new Map;
+	 * 
+	 * int res = carpool_dao.carpool_insertlike(map);
+	 * 
+	 * return "redirect:carpool_list.do"; }
+	 */
 
 }
