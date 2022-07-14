@@ -79,7 +79,7 @@ h1{
 	border: none;
 	border-bottom: 1px solid gray;
 	margin-left: 80px;
- 	margin-top: 45px; 
+ 	margin-top: 25px; 
  	
 }
 
@@ -100,7 +100,11 @@ h1{
 	margin-top: 60px;
 }
 
-
+.badge{
+	
+	margin-top: 100px;
+	
+}
 
 
 
@@ -111,17 +115,18 @@ h1{
 var regular_email =/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 
 
-$(function(){
+$(document).ready(function(){
 	
 	
 	$("#mem_email").keyup(function(event){
 		
 		var mem_email =$(this).val();
+		console.log(mem_email);
 		
 		if(regular_email.test(mem_email)==false){
 			
-			$("#mem_email").html("영문자, 숫자 3~15자리까지 입력 가능합니다.")
-		    .css("color","#ffcccc");
+			$("#mem_msg").html("@가 들어가야 합니다")
+		    .css("color","red");
 
 			//가입하기 버튼 비활성화
 			$("#btn_register").attr("disabled",true);
@@ -132,9 +137,46 @@ $(function(){
 			
 		}
 		
+		$.ajax({
+				url		:'check_email.do',
+				data	:{'mem_email':mem_email},
+				dataType:'json',
+				success :function(res_data){
+					
+					$("#emial_msg").html("사용가능한 아이디입니다")
+					.css("color","blue");
+					
+					
+				}()
+			
+			
+			
+		});
 		
-	})
+		
+		
+		
+		
+	});
 	
+	$(".badge").click(function(){
+		
+		$("#imageFile").click();
+	});
+	
+	
+	$("#imageFile").on("change", function(event) {
+
+	    var file = event.target.files[0];
+
+	    var reader = new FileReader(); 
+	    reader.onload = function(e) {
+
+	        $("#preview").attr("src", e.target.result);
+	    }
+
+	    reader.readAsDataURL(file);
+	});
 	
 });
 
@@ -142,40 +184,54 @@ $(function(){
 function send(f) {
 		
 		//입력값 체크(이름/비번/우편번호/주소)
-		var mem_email 	  	= f.mem_name.value.trim();
-		var mem_pwd	  		= f.m_pwd.value.trim();
-		var mem_nickname 	= f.mem_nickname.value.trim();
-		var mem_birth	  	= f.mem_birth.value.trim();
-		var mem_pic      	= f.mem_pic.value;
-		var mem_profile 	= f.mem_profile.value.trim();
-		if(m_name == ''){
-			alert('이름을 입력하세요');
-			f.m_name.value='';
-			f.m_name.focus();
+		var mem_email 	  		= f.mem_name.value.trim();
+		var mem_pwd	  			= f.mem_pwd.value.trim();
+		var mem_nickname 		= f.mem_nickname.value.trim();
+		var mem_birth	  		= f.mem_birth.value.trim();
+		var mem_pic_filename 	= f.mem_pic_filename.value;
+		var mem_profile 		= f.mem_profile.value.trim();
+		if(mem_email == ''){
+			alert('email을 입력하세요');
+			f.mem_email.value='';
+			f.mem_email.focus();
 			return;
 		}
 		
 		
-		if(m_pwd == ''){
+		if(mem_pwd == ''){
 			alert('비밀번호를 입력하세요');
-			f.m_pwd.value='';
-			f.m_pwd.focus();
+			f.mem_pwd.value='';
+			f.mem_pwd.focus();
 			return;
 		}
 		
 		
-		if(m_zipcode == ''){
-			alert('우편번호를 입력하세요');
-			f.m_zipcode.value='';
-			f.m_zipcode.focus();
+		if(mem_nickname == ''){
+			alert('닉네임을 입력하세요');
+			f.mem_nickname.value='';
+			f.mem_nickname.focus();
+			return;
+		}
+		
+		if(mem_birth == ''){
+			alert('생일을 입력하세요');
+			f.mem_birth.value='';
+			f.mem_birth.focus();
 			return;
 		}
 		
 		
-		if(m_addr == ''){
-			alert('주소를 입력하세요');
-			f.m_addr.value='';
-			f.m_addr.focus();
+		if(mem_pic_filename == ''){
+			alert('사진을 넣어주세요');
+			
+			return;
+		}
+		
+		
+		if(mem_profile == ''){
+			alert('내용을 넣어주세요');
+			f.mem_profile.value='';
+			f.mem_profile.focus();
 			return;
 		}
 		
@@ -191,29 +247,42 @@ function send(f) {
 
 
 </script>
+<script type="text/javascript">
 
+	
 
+</script>
 
 </head>
 <body>
 <div id="main_box">
 	<!-- <form enctype="multipart/form-data" id="ajaxForm" method="post">
     <input type="file" id="ajaxFile" style="display:none;"  onChange="ajaxFileChange();" >파일이 체인지 되었을시 
-	</form> -->
+	</form>  -->
 	
 	<div id="signup" >
 		<div  id="imgbok" >
-			<img alt="이미지없음" src="${ pageContext.request.contextPath }/resources/img/camp.png">
+			<img alt="이미지없음" src="${ pageContext.request.contextPath }/resources/img/camp.png" >
+			
 		</div>
-		
+		<div class="container">         
+			  <img id="preview"  src="${ pageContext.request.contextPath }/resources/images/unsplash_people/people1.jpg" class="img-circle" alt="Cinque Terre"  width="124" height="116">
+			  <span class="badge"><img src="${ pageContext.request.contextPath }/resources/images/heart-1.png" width="20px" height="20px"></span>
+			</div>
+					
+		      <!--  <a href="#">News <span class="badge">5</span></a><br> -->
 		<form>
+		 <input type="file" id="imageFile" style="display:none;" name="mem_pic_filename" onChange="ajaxFileChange();" >
+			
 			<h1>signup</h1>
 		<div id="signup_form" >
 			<table class="table_login">
 				<tr>
 					
 					<td><input type="text" id="mem_email" name="mem_email" 
-						 required="required" placeholder="  @를 포함한 email주소를 입력하세요."/></td>
+						 required="required" placeholder="  @를 포함한 email주소를 입력하세요.">
+						<span id="email_msg"></span>						
+						 </td>
 					
 				</tr>
 				
@@ -237,19 +306,19 @@ function send(f) {
 							required="required" placeholder="Social Security Number"/></td>
 					
 				</tr>
-				
+				<!-- 
 				<tr>
 					
 					<td><input type="file"  class="mem_signup_form"  id="mem_pic" name="mem_pic" value="pic"></td>
 					
 				</tr>
-				
+				 -->
 				
 				
 				<tr>
 					
-					<td><input type="text"  class="mem_signup_form"   id="mem_profile" name="mem_profile" 
-							required="required" placeholder="myprofile"/></td>
+					<td><textarea  class="mem_signup_form"   id="mem_profile" name="mem_profile" 
+							required="required" placeholder="myprofile"></textarea></td>
 					
 				</tr>
 				
