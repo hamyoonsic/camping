@@ -178,7 +178,7 @@
 	<div id="header">
 		<div id="title">단양 캠핑 다녀왔어요</div>
 		<div id="post_profile_box">
-			<img src="images/unsplash_people/people1.jpg" id="post_writer_profile">
+			<img src="${pageContext.request.contextPath}/resources/images/unsplash_people/people1.jpg" id="post_writer_profile">
 		</div>
 		<div id="subject"> 김주원 / 2022.6.30</div>
 	</div>
@@ -193,17 +193,17 @@
 		
 		<%-- <c:if test=""> --%>
 			<div id="comment_box">
-				<c:forEach begin="1" end="3">
+				<c:forEach var="vo" items="${review_reply_list}">
 					<hr>
 					<div id="comment">
 						<div id="comment_profile_box">
-							<img src="images/unsplash_people/people2.jpg" id="comment_profile">
+							<img src="${pageContext.request.contextPath}/resources/images/unsplash_people/people2.jpg" id="comment_profile">
 						</div>
 						
-						<div id="comment_writer">김일성 Dec10.2016 <br><br>혹시 그 요리웹툰 더블피에와 똑딱쿠킹 아니였나요?ㅋㅋㅋ저도 학생때 엄청 많이 봤어요!</div>
+						<div id="comment_writer">${vo.mem_idx} <br><br>${vo.review_reply_content}</div>
 						<div id="comment_content"></div>
 						<div id="comment_like">
-							<img src="images/like.png" id="like_btn" onclick="">
+							<img src="${pageContext.request.contextPath}/resources/images/like.png" id="like_btn" onclick="">
 							<div id="like_count">15</div>
 						</div>					
 					</div>

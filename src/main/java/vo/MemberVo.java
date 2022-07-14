@@ -21,7 +21,7 @@ public class MemberVo {
 	}
 	
 	
-	
+
 	
 	
 	
@@ -36,6 +36,7 @@ public class MemberVo {
 		this.mem_pic_filename = mem_pic_filename;
 		this.mem_profile = mem_profile;
 	}
+
 
 
 

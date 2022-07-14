@@ -6,9 +6,9 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import vo.CarpoolVo;
-import vo.ReviewVo;
+import vo.MarketVo;
 
-public class ReviewDaoImpl implements ReviewDao {
+public class MarketDaoImpl implements MarketDao {
 
 	SqlSession sqlSession;
 	
@@ -18,31 +18,30 @@ public class ReviewDaoImpl implements ReviewDao {
 
 	
 	@Override
-	public List<ReviewVo> selectList() {
+	public List<MarketVo> selectList() {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("carpool.carpool_list");
+		return sqlSession.selectList("market.market_list");
 	}
 
 	@Override
-	public List<ReviewVo> selectList(Map map) {
+	public List<MarketVo> selectList(Map map) {
 		// TODO Auto-generated method stub
-		List<ReviewVo> list = null;
+		List<MarketVo> list = null;
 		
 		
-		list = sqlSession.selectList("review.review_list_condition", map);
+		list = sqlSession.selectList("market.market_list_condition", map);
 		
 		
 		return list;
 	}
 
 	@Override
-	public ReviewVo selectOne(int review_idx) {
+	public MarketVo selectOne(int market_idx) {
 		// TODO Auto-generated method stub
-
-
-		ReviewVo vo = null;
-		
-		vo = sqlSession.selectOne("carpool.carpool_one", review_idx);
+		 	
+		MarketVo vo = null;
+			
+		vo = sqlSession.selectOne("market.market_one",market_idx);
 		
 		return vo;
 	}

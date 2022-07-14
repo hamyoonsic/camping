@@ -8,9 +8,23 @@
 		<property name="sqlSession" ref="sqlSession"></property>
 	</bean>
 	
-		<bean id="carpool_dao" class="dao.CarpoolDaoImpl">
+	<bean id="carpool_dao" class="dao.CarpoolDaoImpl">
 		<property name="sqlSession" ref="sqlSession"></property>
 	</bean>
+	
+	<bean id="review_reply_dao" class="dao.ReviewReplyDaoImpl">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	
+	
+	<bean id="review_dao" class="dao.ReviewDaoImpl">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	
+	<bean id="market_dao" class="dao.MarketDaoImpl">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	
 	
 	
 </beans>

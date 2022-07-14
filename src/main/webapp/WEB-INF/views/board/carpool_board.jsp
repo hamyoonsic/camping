@@ -11,6 +11,30 @@
 
 <link href="${ pageContext.request.contextPath }/resources/carpool_board.css" rel="stylesheet" type="text/css">
 
+<script type="text/javascript">
+
+
+function search() {
+	
+	var search = $("#search").val();
+	var search_text = $("#searchText").val().trim();
+	
+	//전체검색이 아닌경우
+	if(search != 'all' && search_text == ''){
+		alert('검색어를 입력하세요!!');
+		$("#searchText").val('');
+		$("#searchText").focus();
+		return;
+	}
+	
+	location.href="list.do?search=" + search + "&search_text=" + encodeURIComponent(search_text);
+	
+	
+	
+}
+
+
+</script>
 </head>
 <body>
 
@@ -26,16 +50,17 @@
 						<option>작성자</option>
 				</select></td>
 				<td>
-				  <input type="text" class="form-control"
-					     placeholder="검색어 입력" name="searchText" maxlength="100" >
+				  <input type="text" class="form-control" id="searchText"
+					     placeholder="검색어 입력" name="searchText" maxlength="100" value="${ param.search_text }" >
 				</td>
 				<td>
-				  <button type="submit" class="btn-search">검색</button>
+				  <button type="submit" class="btn-search" value="검색" onclick="search();">검색</button>
 				</td>
 			</tr>
 
 		</table>
 	</form>
+
   <input class="btn" type="button" value="글쓰기"
 		 onclick="location.href='../homepage/main.do'">
   
