@@ -12,8 +12,15 @@ public class CarpoolVo {
 	int			carpool_hit_count;
 	int			carpool_like_count;
 	String		carpool_ip;
+	int			cnt;
 	
 	
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	public String getMem_nickname() {
 		return mem_nickname;
 	}

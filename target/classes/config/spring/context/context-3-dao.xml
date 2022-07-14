@@ -8,5 +8,9 @@
 		<property name="sqlSession" ref="sqlSession"></property>
 	</bean>
 	
+		<bean id="carpool_dao" class="dao.CarpoolDaoImpl">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	
 	
 </beans>
