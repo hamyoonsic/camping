@@ -63,7 +63,7 @@
 	<c:forEach var="vo" items="${ list }">
 		<tr>
 			<td>${ vo.carpool_idx }</td>
-			<td class="subject"><a href="#">${ vo.carpool_title }</td>
+			<td class="subject"><a href="carpool_view.do?carpool_idx=${vo.carpool_idx }&page=${ empty param.page ? 1 : param.page}">${ vo.carpool_title }</td>
 			<td>${ vo.carpool_hit_count }</td>
 			<td>${ vo.cnt }</td>
 			<td>${ vo.mem_nickname }</td>

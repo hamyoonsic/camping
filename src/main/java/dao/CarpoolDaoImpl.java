@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -31,6 +32,66 @@ public class CarpoolDaoImpl implements CarpoolDao {
 	public int carpool_deletelike(CarpoolVo vo) {
 		// TODO Auto-generated method stub
 		return sqlSession.delete("carpool.carpool_deletelike",vo);
+	}
+
+	@Override
+	public CarpoolVo selectOne(int carpool_idx) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("carpool.carpool_one",carpool_idx);
+	}
+
+	@Override
+	public int selectRowTotal() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int selectRowTotal(Map map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int insert(CarpoolVo vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int reply(CarpoolVo vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int delete(int carpool_idx) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int update(CarpoolVo vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int update_step(CarpoolVo vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int update_readhit(int carpool_idx) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int modify(CarpoolVo vo) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	

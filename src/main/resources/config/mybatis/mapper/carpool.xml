@@ -12,6 +12,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	from
 	 (select * from CARPOOL) c order by c.carpool_idx desc
 	</select>
+	
+	<!--carpool_idx해당되는 게시물1건   -->
+	<select id="carpool_one" parameterType="int" resultType="vo.CarpoolVo">
+		select * from carpool where carpool_idx=#{carpool_idx}
+	</select>
 
 	<!--  게시글 추천 시 Like 테이블에 insert  -->
 	<insert id="carpool_insertlike" parameterType="vo.CarpoolVo"> 
