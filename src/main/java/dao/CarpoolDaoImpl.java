@@ -28,9 +28,9 @@ public class CarpoolDaoImpl implements CarpoolDao {
 	}
 
 	@Override
-	public int carpool_deletelike(int carpool_idx) {
+	public int carpool_deletelike(CarpoolVo vo) {
 		// TODO Auto-generated method stub
-		return sqlSession.insert("carpool.carpool_deletelike",carpool_idx);
+		return sqlSession.delete("carpool.carpool_deletelike",vo);
 	}
 
 	

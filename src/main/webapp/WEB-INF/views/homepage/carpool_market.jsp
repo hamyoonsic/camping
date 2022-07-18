@@ -22,6 +22,10 @@
     <script type="text/javascript">
    		var mem_idx = "${user.mem_idx}";
    		var carpool_idx = "${vo.carpool_idx}";
+   		var carpool_like_idx = "${vo.carpool_like_idx}";
+   		var market_idx = "${vo.market_idx}";
+   		var market_like_idx = "${vo.market_like_idx}";
+   		
    		
 		function updatelike(carpool_idx){
 			
@@ -40,7 +44,61 @@
 	        //console.log(mem_idx);
 	        //console.log(carpool_idx);
 	    }
- 
+		
+		function deletelike(carpool_idx){
+			
+		  	$.ajax({
+	            type : "POST",  
+	            url : "/camping/carpool_deletelike.do",       
+	            dataType : "json",   
+	            data : {  'mem_idx' : mem_idx,'carpool_idx' : carpool_idx},
+	            success : function(data) {
+	                   location.reload();
+	            },
+	            error : function(){
+	               alert("로그인 하셔야 합니다.");
+	            }
+	        });  
+	        //console.log(mem_idx);
+	        //console.log(carpool_idx);
+	    }
+		 
+		function updatelike1(market_idx){
+			
+		  	$.ajax({
+	            type : "POST",  
+	            url : "/camping/market_insertlike.do",       
+	            dataType : "json",   
+	            data : {  'mem_idx' : mem_idx,'market_idx' : market_idx},
+	            success : function(data) {
+	                   location.reload();
+	            },
+	            error : function(){
+	               alert("로그인 하셔야 합니다.");
+	            }
+	        });  
+	        //console.log(mem_idx);
+	        //console.log(carpool_idx);
+	    }
+		
+		function deletelike1(market_idx){
+			
+		  	$.ajax({
+	            type : "POST",  
+	            url : "/camping/market_deletelike.do",       
+	            dataType : "json",   
+	            data : {  'mem_idx' : mem_idx,'market_idx' : market_idx},
+	            success : function(data) {
+	                   location.reload();
+	            },
+	            error : function(){
+	               alert("로그인 하셔야 합니다.");
+	            }
+	        });  
+	        //console.log(mem_idx);
+	        //console.log(carpool_idx);
+	    }
+  
     </script>
     
     
@@ -170,7 +228,7 @@
         float: left; 
         border: 1px solid #bcbcbc;
         font-size: 15px;
-        text-align: right;
+        text-align: left;
         box-shadow: 2px 2px 2px gray;
         border-radius: 10px 10px;
       }
@@ -192,10 +250,10 @@
 	        </div>
 	        <div id="carpool-left2" style="text-align:right; font-size: 15px" >
 	        <span></span><br>
-	        <span>+더보기</span>
+	        <span><a href="/camping/board/carpool_list.do">+더보기</a></span>
 	        </div>
 	        <div id="carpool-left3">
-	       <c:forEach var="vo" items="${ list }">
+	       <c:forEach var="vo" items="${ list }" begin="0" end="4">
 	        <div id="carpool-table-mini">
 	         <table>
 	         	<tr>
@@ -203,11 +261,13 @@
 	         		<td style="width: 60%">&nbsp;${ vo.carpool_title }</td>
 	         		<td style="width: 25%">&nbsp;${ vo.mem_nickname }</td>
 	         		<td style="width: 15%">&nbsp;${ fn:substring(vo.carpool_regdate,5,10) }</td>
-	         		<td><button type="button" style="background: none; border: none;" onclick="updatelike('${ vo.carpool_idx }');">
+	         		
 	         		<c:if test="${(empty user.mem_idx) or (vo.heart_flag eq 0)}">
+	         		<td><button type="button" style="background: none; border: none;" onclick="updatelike('${ vo.carpool_idx }');">
 	         		<img src="${ pageContext.request.contextPath }/resources/images/heart-0.png" width="20px" height="20px">
 	         		</c:if>
 	         		<c:if test="${vo.heart_flag eq 1 }">
+	         			<td><button type="button" style="background: none; border: none;" onclick="deletelike('${ vo.carpool_idx }');">
 	         			<img src="${ pageContext.request.contextPath }/resources/images/heart-1.png" width="20px" height="20px">
 	         		</c:if>
 	         		</button></td>
@@ -226,20 +286,28 @@
         </div>
          <div id="market-right2" style="text-align:right; font-size: 15px" >
         <span></span><br>
-        <span>+더보기</span>
+        <span><a href="/camping/board/market_list.do">+더보기</a></span>
         </div>
         <div id="market-right3">
-        <c:forEach begin="1" end="7">
+        <c:forEach var="vo" items="${ list1 }" begin="0" end="4">
         <div id="market-table-mini">
          <table>
          	<tr>
-         		<td>게시물 이름</td>
-         		<td>조회수</td>
-         		<td>게시날짜</td>
-         		<td>작성자</td>
-         		<td><img src="${ pageContext.request.contextPath }/resources/images/heart-1.png" width="20px" height="20px"></td>
-         		<td>좋아요수</td>
-         	</tr>
+         		<td style="width: 60%">&nbsp;${ vo.market_title }</td>
+         		<td style="width: 25%">&nbsp;${ vo.mem_nickname }</td>
+         		<td style="width: 15%">&nbsp;${ fn:substring(vo.market_regdate,5,10) }</td>
+         		
+         		<c:if test="${(empty user.mem_idx) or (vo.heart_flag eq 0)}">
+         		<td><button type="button" style="background: none; border: none;" onclick="updatelike1('${ vo.market_idx }');">
+         		<img src="${ pageContext.request.contextPath }/resources/images/heart-0.png" width="20px" height="20px">
+         		</c:if>
+         		<c:if test="${vo.heart_flag eq 1 }">
+         			<td><button type="button" style="background: none; border: none;" onclick="deletelike1('${ vo.market_idx }');">
+         			<img src="${ pageContext.request.contextPath }/resources/images/heart-1.png" width="20px" height="20px">
+         		</c:if>
+         		</button></td>
+         		<td style="width: 20%">&nbsp;&nbsp;${ vo.cnt }&nbsp;&nbsp;</td>
+	         	</tr>
          </table>
          </div>
          </c:forEach>

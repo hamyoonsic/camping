@@ -70,6 +70,7 @@
 			<td>${ fn:substring(vo.carpool_regdate,0,10) }</td>
 		</tr>
 	</c:forEach>
+	</tbody>
 </table>
 <div class="page_wrap">
    <div class="page_nation">

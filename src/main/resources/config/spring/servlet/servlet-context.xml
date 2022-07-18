@@ -33,6 +33,11 @@
 	
 	<beans:bean class="controller.CarpoolController">
 		<beans:property name="carpool_dao" ref="carpool_dao"/>
+		<beans:property name="market_dao" ref="market_dao"/>
+	</beans:bean>
+	
+	<beans:bean class="controller.MarketController">
+		<beans:property name="market_dao" ref="market_dao"/>
 	</beans:bean>
 	
 	

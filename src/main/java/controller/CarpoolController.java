@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.CarpoolDao;
+import dao.MarketDao;
 import vo.CarpoolVo;
+import vo.MarketVo;
 import vo.MemberVo;
 
 @Controller
@@ -33,6 +35,12 @@ public class CarpoolController {
 	HttpSession session;
 	
 	CarpoolDao carpool_dao;
+	
+	MarketDao market_dao;
+
+	public void setMarket_dao(MarketDao market_dao) {
+		this.market_dao = market_dao;
+	}
 
 	public void setCarpool_dao(CarpoolDao carpool_dao) {
 		this.carpool_dao = carpool_dao;
@@ -62,8 +70,10 @@ public class CarpoolController {
 		if(user!=null)m_idx=user.getMem_idx();
 		
 		List<CarpoolVo> list = carpool_dao.selectList(m_idx);
+		List<MarketVo> list1 = market_dao.selectList(m_idx);
 		
 		model.addAttribute("list",list);
+		model.addAttribute("list1",list1);
 		
 		return "homepage/main";
 	}
@@ -98,9 +108,13 @@ public class CarpoolController {
 	
 	@ResponseBody
 	@RequestMapping(value ="/carpool_deletelike.do", method = RequestMethod.POST)
-	public int carpool_insertlike(@RequestParam int carpool_like_idx) {
+	public int carpool_deletelike(@RequestParam int mem_idx,int carpool_idx,Model model,CarpoolVo vo) {
 		
-		int res = carpool_dao.carpool_deletelike(carpool_like_idx);
+		Map map = new HashMap();
+		map.put("m_idx", mem_idx);
+		map.put("carpool_idx", carpool_idx);
+	
+		int res = carpool_dao.carpool_deletelike(vo);
 		
 		return 1;
 	}
