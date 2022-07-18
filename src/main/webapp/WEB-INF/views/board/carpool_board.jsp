@@ -65,7 +65,7 @@
 			<td>${ vo.carpool_idx }</td>
 			<td class="subject"><a href="#">${ vo.carpool_title }</td>
 			<td>${ vo.carpool_hit_count }</td>
-			<td>${ vo.carpool_like_count }</td>
+			<td>${ vo.cnt }</td>
 			<td>${ vo.mem_nickname }</td>
 			<td>${ fn:substring(vo.carpool_regdate,0,10) }</td>
 		</tr>

@@ -13,8 +13,15 @@ public class CarpoolVo {
 	int			carpool_like_count;
 	String		carpool_ip;
 	int			cnt;
+	int			heart_flag;
 	
 	
+	public int getHeart_flag() {
+		return heart_flag;
+	}
+	public void setHeart_flag(int heart_flag) {
+		this.heart_flag = heart_flag;
+	}
 	public int getCnt() {
 		return cnt;
 	}

@@ -109,10 +109,5 @@
 <div id="footer">
 	<%@include file ="footer.jsp" %>
 </div>
-
-<div>
-	<%@include file ="../board/carpool_board.jsp" %>
-</div>
-
 </body>
 </html>

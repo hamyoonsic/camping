@@ -21,6 +21,7 @@
    
     <script type="text/javascript">
    		var mem_idx = "${user.mem_idx}";
+   		var carpool_idx = "${vo.carpool_idx}";
    		
 		function updatelike(carpool_idx){
 			
@@ -28,13 +29,12 @@
 	            type : "POST",  
 	            url : "/camping/carpool_insertlike.do",       
 	            dataType : "json",   
-	            data : {  mem_idx : mem_idx,carpool_idx : carpool_idx},
+	            data : {  'mem_idx' : mem_idx,'carpool_idx' : carpool_idx},
 	            success : function(data) {
-	                   // location.reload();
-	                   console.log('성공');
+	                   location.reload();
 	            },
 	            error : function(){
-	               alert("통신 에러");
+	               alert("로그인 하셔야 합니다.");
 	            }
 	        });  
 	        //console.log(mem_idx);
@@ -200,14 +200,18 @@
 	         <table>
 	         	<tr>
 	         		
-	         		<td style="width: 50%">&nbsp;${ vo.carpool_title }</td>
-	         		<td style="width: 5%">${ vo.carpool_hit_count }</td>
-	         		<td style="width: 25%">&nbsp;${ fn:substring(vo.carpool_regdate,0,10) }</td>
-	         		<td style="width: 20%">&nbsp;${ vo.mem_nickname }</td>
+	         		<td style="width: 60%">&nbsp;${ vo.carpool_title }</td>
+	         		<td style="width: 25%">&nbsp;${ vo.mem_nickname }</td>
+	         		<td style="width: 15%">&nbsp;${ fn:substring(vo.carpool_regdate,5,10) }</td>
 	         		<td><button type="button" style="background: none; border: none;" onclick="updatelike('${ vo.carpool_idx }');">
-	         		<img src="${ pageContext.request.contextPath }/resources/images/heart-1.png" width="20px" height="20px">
+	         		<c:if test="${(empty user.mem_idx) or (vo.heart_flag eq 0)}">
+	         		<img src="${ pageContext.request.contextPath }/resources/images/heart-0.png" width="20px" height="20px">
+	         		</c:if>
+	         		<c:if test="${vo.heart_flag eq 1 }">
+	         			<img src="${ pageContext.request.contextPath }/resources/images/heart-1.png" width="20px" height="20px">
+	         		</c:if>
 	         		</button></td>
-	         		<td style="width: 5%">&nbsp;&nbsp;${ vo.cnt }&nbsp;&nbsp;</td>
+	         		<td style="width: 20%">&nbsp;&nbsp;${ vo.cnt }&nbsp;&nbsp;</td>
 	         	</tr>
 	         </table>
 	         </div>

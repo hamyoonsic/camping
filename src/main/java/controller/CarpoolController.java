@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.CarpoolDao;
 import vo.CarpoolVo;
+import vo.MemberVo;
 
 @Controller
 public class CarpoolController {
@@ -30,7 +32,6 @@ public class CarpoolController {
 	@Autowired
 	HttpSession session;
 	
-	
 	CarpoolDao carpool_dao;
 
 	public void setCarpool_dao(CarpoolDao carpool_dao) {
@@ -40,7 +41,12 @@ public class CarpoolController {
 	@RequestMapping("/board/carpool_list.do")
 	public String list(Model model) {
 		
-		List<CarpoolVo> list = carpool_dao.selectList();
+		int m_idx = 0;
+		MemberVo user = (MemberVo) session.getAttribute("user");
+		
+		if(user!=null)m_idx=user.getMem_idx();
+		
+		List<CarpoolVo> list = carpool_dao.selectList(m_idx);
 		
 		model.addAttribute("list",list);
 		
@@ -50,7 +56,12 @@ public class CarpoolController {
 	@RequestMapping("/")
 	public String main(Model model) {
 		
-		List<CarpoolVo> list = carpool_dao.selectList();
+		int m_idx = 0;
+		MemberVo user = (MemberVo) session.getAttribute("user");
+		
+		if(user!=null)m_idx=user.getMem_idx();
+		
+		List<CarpoolVo> list = carpool_dao.selectList(m_idx);
 		
 		model.addAttribute("list",list);
 		
@@ -60,22 +71,38 @@ public class CarpoolController {
 	@RequestMapping("/homepage/carpool.do")
 	public String carpool(Model model) {
 		
-		List<CarpoolVo> list = carpool_dao.selectList();
+		int m_idx = 0;
+		MemberVo user = (MemberVo) session.getAttribute("user");
+		
+		if(user!=null)m_idx=user.getMem_idx();
+		
+		List<CarpoolVo> list = carpool_dao.selectList(m_idx);
 		
 		model.addAttribute("list",list);
 		
 		return "homepage/carpool_market";
 	}
-	/*
+	
 	@ResponseBody
 	@RequestMapping(value ="/carpool_insertlike.do", method = RequestMethod.POST)
-	public Map carpool_insertlike(@RequestParam Map map) {
+	public Map carpool_insertlike(@RequestParam int mem_idx,int carpool_idx,Model model,CarpoolVo vo) {
 		
-		Map map = new Map;
+		Map map = new HashMap();
+		map.put("m_idx", mem_idx);
+		map.put("carpool_idx", carpool_idx);
 	
-		int res = carpool_dao.carpool_insertlike(map);
+		int res = carpool_dao.carpool_insertlike(vo);
 		
-		return "redirect:carpool_list.do";
-	}*/
+		return map;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value ="/carpool_deletelike.do", method = RequestMethod.POST)
+	public int carpool_insertlike(@RequestParam int carpool_like_idx) {
+		
+		int res = carpool_dao.carpool_deletelike(carpool_like_idx);
+		
+		return 1;
+	}
 
 }
