@@ -35,5 +35,9 @@
 		<beans:property name="carpool_dao" ref="carpool_dao"/>
 	</beans:bean>
 	
+	<beans:bean class="controller.GradeController">
+		<beans:property name="grade_dao" ref="grade_dao"/>
+	</beans:bean>
+	
 	
 </beans:beans>
