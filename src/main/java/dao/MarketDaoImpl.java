@@ -84,7 +84,7 @@ public class MarketDaoImpl implements MarketDao {
 	@Override
 	public int update_readhit(int market_idx) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("market.market_update_readhit", market_idx);
 	}
 
 	@Override

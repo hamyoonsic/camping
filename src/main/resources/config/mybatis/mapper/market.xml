@@ -27,6 +27,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="market_deletelike" parameterType="vo.MarketVo"> 
 		delete from market_like where market_idx=#{market_idx} and mem_idx=#{mem_idx}
 	</delete>
+	
+	<!-- 조회수 증가 -->
+	<update id="market_update_readhit" parameterType="int">
+		update market 
+			set market_hit_count = market_hit_count + 1 
+		where market_idx = #{ market_idx}
+	</update>
 
 </mapper>
 

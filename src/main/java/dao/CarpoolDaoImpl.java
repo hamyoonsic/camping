@@ -85,7 +85,7 @@ public class CarpoolDaoImpl implements CarpoolDao {
 	@Override
 	public int update_readhit(int carpool_idx) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("carpool.carpool_update_readhit", carpool_idx);
 	}
 
 	@Override

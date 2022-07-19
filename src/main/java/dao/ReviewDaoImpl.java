@@ -84,7 +84,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	@Override
 	public int update_readhit(int review_idx) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("review.review_update_readhit", review_idx);
 	}
 
 	@Override

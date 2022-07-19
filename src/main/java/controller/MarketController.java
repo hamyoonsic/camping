@@ -69,6 +69,9 @@ public class MarketController {
 		
 		model.addAttribute("list1",list1);
 		
+		//세션에 저장되어있는 Show정보를 삭제한다.
+		session.removeAttribute("show");
+		
 		return "board/market_board";
 		}
 	

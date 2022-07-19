@@ -27,6 +27,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="review_deletelike" parameterType="vo.ReviewVo"> 
 		delete from review_like where review_idx=#{review_idx} and mem_idx=#{mem_idx}
 	</delete>
+	
+	<!-- 조회수 증가 -->
+	<update id="review_update_readhit" parameterType="int">
+		update review 
+			set review_hit_count = review_hit_count + 1 
+		where review_idx = #{ review_idx}
+	</update>
 
 </mapper>
 

@@ -57,6 +57,9 @@ public class CarpoolController {
 		
 		model.addAttribute("list",list);
 		
+		//세션에 저장되어있는 Show정보를 삭제한다.
+		session.removeAttribute("show");
+		
 		return "board/carpool_board";
 	}
 	

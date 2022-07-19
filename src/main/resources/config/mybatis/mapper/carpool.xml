@@ -27,6 +27,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="carpool_deletelike" parameterType="vo.CarpoolVo"> 
 		delete from carpool_like where carpool_idx=#{carpool_idx} and mem_idx=#{mem_idx}
 	</delete>
+	
+	<!-- 조회수 증가 -->
+	<update id="carpool_update_readhit" parameterType="int">
+		update carpool 
+			set carpool_hit_count = carpool_hit_count + 1 
+		where carpool_idx = #{ carpool_idx}
+	</update>
 
 </mapper>
 
