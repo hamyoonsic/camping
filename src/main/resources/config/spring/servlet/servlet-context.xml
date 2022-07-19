@@ -43,5 +43,10 @@
 	<beans:bean class="controller.ReviewController">
 		<beans:property name="review_dao" ref="review_dao"/>
 	</beans:bean>
+
+	<beans:bean class="controller.GradeController">
+		<beans:property name="grade_dao" ref="grade_dao"/>
+	</beans:bean>
 	
+
 </beans:beans>

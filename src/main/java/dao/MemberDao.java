@@ -18,6 +18,7 @@ public interface MemberDao {
 		 MemberVo selectOne(String mem_email);
 	//mem_nickname 중복확인
 		 MemberVo selectOne1(String mem_nickname);
+	
 		 
 	
 }

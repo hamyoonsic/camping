@@ -20,6 +20,11 @@
 		<property name="sqlSession" ref="sqlSession"></property>
 	</bean>
 	
+	<bean id="grade_dao" class="dao.GradeDaoImpl">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+		
+		
 	
 	
 	
