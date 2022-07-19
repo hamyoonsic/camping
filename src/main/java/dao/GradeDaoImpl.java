@@ -11,13 +11,9 @@ public class GradeDaoImpl implements GradeDao {
 	SqlSession sqlSession;
 	
 	
-	
-	
 	public void setSqlSession(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
-
-
 
 
 	@Override
@@ -25,8 +21,6 @@ public class GradeDaoImpl implements GradeDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
 
 
 	@Override

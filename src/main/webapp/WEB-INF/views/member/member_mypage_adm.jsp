@@ -186,19 +186,19 @@
 		border:1px solid #ccc;
 	}
 	.page_nation .first {
-		background:#f8f8f8 url('images/page_pprev.png') no-repeat center center;
+		background:#f8f8f8 url('${ pageContext.request.contextPath }/resources/images/page_pprev.png') no-repeat center center;
 		margin-left:0;
 	}
 	.page_nation .prev {
-		background:#f8f8f8 url('images/page_prev.png') no-repeat center center;
+		background:#f8f8f8 url('${ pageContext.request.contextPath }/resources/images/page_prev.png') no-repeat center center;
 		margin-right:7px;
 	}
 	.page_nation .next {
-		background:#f8f8f8 url('images/page_next.png') no-repeat center center;
+		background:#f8f8f8 url('${ pageContext.request.contextPath }/resources/images/page_next.png') no-repeat center center;
 		margin-left:7px;
 	}
 	.page_nation .last {
-		background:#f8f8f8 url('images/page_nnext.png') no-repeat center center;
+		background:#f8f8f8 url('${ pageContext.request.contextPath }/resources/images/page_nnext.png') no-repeat center center;
 		margin-right:0;
 	}
 	.page_nation a:hover, 
