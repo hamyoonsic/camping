@@ -12,6 +12,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	from
 	 (select * from MARKET) m order by m.market_idx desc
 	</select>
+	
+	<!--market_idx해당되는 게시물1건   -->
+	<select id="market_one" parameterType="int" resultType="vo.MarketVo">
+		select * from market where market_idx=#{market_idx}
+	</select>
 
 	<!--  게시글 추천 시 Like 테이블에 insert  -->
 	<insert id="market_insertlike" parameterType="vo.MarketVo"> 

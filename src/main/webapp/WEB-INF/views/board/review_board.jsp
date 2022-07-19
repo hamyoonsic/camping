@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
     
 <!DOCTYPE html>
 <html>
@@ -25,7 +27,7 @@
 				</select></td>
 				<td>
 				  <input type="text" class="form-control"
-					     placeholder="검색어 입력" name="searchText" maxlength="100">
+					     placeholder="검색어 입력" name="searchText" maxlength="100" >
 				</td>
 				<td>
 				  <button type="submit" class="btn-search">검색</button>
@@ -35,7 +37,7 @@
 		</table>
 	</form>
   <input class="btn" type="button" value="글쓰기"
-		 onclick="location.href=#">
+		 onclick="location.href='../homepage/main.do'">
   
 </div>
 <table  class="table_list">
@@ -47,46 +49,28 @@
 <col width="200px">
 </colgroup>
 <thead>
-<tr >
+<tr>
   <th>번호</th>
   <th>제목</th>
-  <th>좋아요</th>
   <th>조회수</th>
+  <th>좋아요</th>
   <th>작성자</th>
   <th>작성일</th>
 </tr>
 </thead>
 
 <tbody>
- <tr>
-  <td>1</td>
-  <td class="subject"><a href="#">난지 캠핑장 다녀온 썰 푼다</a></td>
-  <td>1</td>
-  <td>13</td>
-  <td>캠핑조아</td>
-  <td>2022.06.23</td>
- </tr>
- <tr>
-  <td>2</td>
-  <td class="subject"><a href="#">시흥 기가막힌 캠핑카 여행!!</a></td>
-  <td>7</td>
-  <td>13</td>
-  <td>캠핑짱</td>
-  <td>2022.06.23</td>
- </tr>
- <tr>
-  <td>3</td>
-  <td class="subject"><a href="#">충주호를 바라보는 최고의 캠핑장!</a></td>
-  <td>3</td>
-  <td>15</td>
-  <td>캠핑</td>
-  <td>2022.06.23</td>
- </tr>
- <!-- 게시글없는경우 -->
- <tr>
-  <td colspan="6">현재 게시글이 없습니다.</td>
- </tr>
-</tbody>
+	<c:forEach var="vo" items="${ list }">
+		<tr>
+			<td>${ vo.review_idx }</td>
+			<td class="subject"><a href="review_view.do?review_idx=${vo.review_idx }&page=${ empty param.page ? 1 : param.page}">${ vo.review_title }</td>
+			<td>${ vo.review_hit_count }</td>
+			<td>${ vo.cnt }</td>
+			<td>${ vo.mem_nickname }</td>
+			<td>${ fn:substring(vo.review_regdate,0,10) }</td>
+		</tr>
+	</c:forEach>
+	</tbody>
 </table>
 <div class="page_wrap">
    <div class="page_nation">

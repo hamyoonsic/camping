@@ -98,6 +98,25 @@ public class MarketController {
 			return 1;
 		}
 	
-	
+		@RequestMapping("board/market_view.do")
+		public String market_view(int market_idx,Model model) {
+			
+			//b_idx에 해당되는 게시물 정보 얻어온다 
+			MarketVo vo = market_dao.selectOne(market_idx);
+			
+			//게시물을 안봤으면 조회수 증가. 게시물 본지 안본지는 세션에 쇼라는 정보 넣어.
+			if(session.getAttribute("show")==null) {
+				
+				//조회수 증가
+				int res = market_dao.update_readhit(market_idx);
+				
+				//Show정보를 세션에 넣는다
+				session.setAttribute("show", true);
+				
+			}
+			//결과적으로 request binding
+			model.addAttribute("vo", vo);
+			return "board/market_view";
+		}
 	
 }

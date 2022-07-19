@@ -64,7 +64,7 @@
  <c:forEach var="vo" items="${ list1 }">
 		<tr>
 			<td>${ vo.market_idx }</td>
-			<td class="subject"><a href="#">${ vo.market_title }</td>
+			<td class="subject"><a href="market_view.do?market_idx=${vo.market_idx }&page=${ empty param.page ? 1 : param.page}">${ vo.market_title }</td>
 			<td>${ vo.market_hit_count }</td>
 			<td>${ vo.cnt }</td>
 			<td>${ vo.mem_nickname }</td>

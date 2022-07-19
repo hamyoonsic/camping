@@ -217,9 +217,9 @@
 	<div class="wrap">
 		<ul class="nav">
 			<li><a href="#link_header">HOME</a></li>
-			<li><a href="#link_main_text0">REVIEW</a></li>
-			<li><a href="#link_main_text1">CARPOOL</a></li>
-			<li><a href="#link_main_text1">MARKET</a></li>
+			<li><a href="/camping/board/review_list.do">REVIEW</a></li>
+			<li><a href="/camping/board/carpool_list.do">CARPOOL</a></li>
+			<li><a href="/camping/board/market_list.do">MARKET</a></li>
 			<li><a href="#link_main_text2">WHEATHER</a></li>
 			<li><a href="#" id="btn_login_form" >MYPAGE</a></li>
 			<!--로그인 되어있으면 보여주라  -->

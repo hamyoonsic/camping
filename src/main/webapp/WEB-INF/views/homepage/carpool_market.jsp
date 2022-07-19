@@ -250,7 +250,7 @@
 	        </div>
 	        <div id="carpool-left2" style="text-align:right; font-size: 15px" >
 	        <span></span><br>
-	        <span><a href="/camping/board/carpool_list.do">+더보기</a></span>
+	        <span><a href="/camping/board/carpool_list.do" style="text-decoration: none; color: black;">+더보기</a></span>
 	        </div>
 	        <div id="carpool-left3">
 	       <c:forEach var="vo" items="${ list }" begin="0" end="4">
@@ -258,7 +258,7 @@
 	         <table>
 	         	<tr>
 	         		
-	         		<td style="width: 60%">&nbsp;${ vo.carpool_title }</td>
+	         		<td style="width: 60%"><a href="board/carpool_view.do?carpool_idx=${vo.carpool_idx }&page=${ empty param.page ? 1 : param.page}" style="text-decoration: none; color: black;">&nbsp;${ vo.carpool_title }</td>
 	         		<td style="width: 25%">&nbsp;${ vo.mem_nickname }</td>
 	         		<td style="width: 15%">&nbsp;${ fn:substring(vo.carpool_regdate,5,10) }</td>
 	         		
@@ -286,14 +286,14 @@
         </div>
          <div id="market-right2" style="text-align:right; font-size: 15px" >
         <span></span><br>
-        <span><a href="/camping/board/market_list.do">+더보기</a></span>
+        <span><a href="/camping/board/market_list.do" style="text-decoration: none; color: black;">+더보기</a></span>
         </div>
         <div id="market-right3">
         <c:forEach var="vo" items="${ list1 }" begin="0" end="4">
         <div id="market-table-mini">
          <table>
          	<tr>
-         		<td style="width: 60%">&nbsp;${ vo.market_title }</td>
+         		<td style="width: 60%"><a href="board/market_view.do?market_idx=${vo.market_idx }&page=${ empty param.page ? 1 : param.page}" style="text-decoration: none; color: black;">&nbsp;${ vo.market_title }</td>
          		<td style="width: 25%">&nbsp;${ vo.mem_nickname }</td>
          		<td style="width: 15%">&nbsp;${ fn:substring(vo.market_regdate,5,10) }</td>
          		
