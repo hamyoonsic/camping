@@ -22,11 +22,12 @@
 	</beans:bean>
 	
 	
+	
 	<!-- <context:component-scan base-package="com.ict.camping" /> -->
 	
 	<!--수동생성  -->
 	<context:annotation-config/>
-	<beans:bean class="com.ict.camping.HomeController"></beans:bean>
+	
 	
 	<beans:bean class="controller.MemberController">
 		<beans:property name="member_dao" ref="member_dao"/>
@@ -34,7 +35,31 @@
 	
 	<beans:bean class="controller.CarpoolController">
 		<beans:property name="carpool_dao" ref="carpool_dao"/>
+		<beans:property name="market_dao" ref="market_dao"/>
 	</beans:bean>
 	
+
+	<beans:bean class="controller.ReplyController">
+		<beans:property name="review_reply_dao" ref="review_reply_dao"/>
+	</beans:bean>
+
+	<beans:bean class="controller.MarketController">
+		<beans:property name="market_dao" ref="market_dao"/>
+	</beans:bean>
 	
+	<beans:bean class="controller.TotalSearchController">
+		<beans:constructor-arg ref="total_search_service"/>
+	</beans:bean>
+
+	
+	<beans:bean class="controller.ReviewController">
+		<beans:property name="review_dao" ref="review_dao"/>
+	</beans:bean>
+
+
+	<beans:bean class="controller.GradeController">
+		<beans:property name="grade_dao" ref="grade_dao"/>
+	</beans:bean>
+	
+
 </beans:beans>

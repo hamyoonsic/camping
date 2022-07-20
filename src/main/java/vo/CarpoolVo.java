@@ -12,7 +12,32 @@ public class CarpoolVo {
 	int			carpool_hit_count;
 	int			carpool_like_count;
 	String		carpool_ip;
+	int			cnt;
+	int 	    carpool_no;
+	int			heart_flag;
 	
+	public int getCarpool_no() {
+		return carpool_no;
+	}
+	public void setCarpool_no(int carpool_no) {
+		this.carpool_no = carpool_no;
+	}
+
+
+	
+	public int getHeart_flag() {
+		return heart_flag;
+	}
+	public void setHeart_flag(int heart_flag) {
+		this.heart_flag = heart_flag;
+	}
+	
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	
 	public String getMem_nickname() {
 		return mem_nickname;

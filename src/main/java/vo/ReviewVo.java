@@ -14,27 +14,41 @@ public class ReviewVo {
 	String review_thumbnail;
 	String review_ip;
 	
+	int review_no;
+	
+	int			cnt;
+	int			heart_flag;
+	
 
-	public ReviewVo() {
-		super();
+	public int getCnt() {
+		return cnt;
 	}
-	
-	
-	public ReviewVo(int review_idx, int category_idx, int mem_idx, String review_title, String review_content,
-			String review_regdate, int review_hit_count, int review_like_count, String review_thumbnail,
-			String review_ip, String mem_nickname) {
-		super();
-		this.review_idx = review_idx;
-		this.category_idx = category_idx;
-		this.mem_idx = mem_idx;
-		this.review_title = review_title;
-		this.review_content = review_content;
-		this.review_regdate = review_regdate;
-		this.review_hit_count = review_hit_count;
-		this.review_like_count = review_like_count;
-		this.review_thumbnail = review_thumbnail;
-		this.review_ip = review_ip;
-		this.mem_nickname = mem_nickname;
+
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+
+
+	public int getHeart_flag() {
+		return heart_flag;
+	}
+
+
+	public void setHeart_flag(int heart_flag) {
+		this.heart_flag = heart_flag;
+	}
+
+
+
+
+	public int getReview_no() {
+		return review_no;
+	}
+
+
+	public void setReview_no(int review_no) {
+		this.review_no = review_no;
 	}
 
 

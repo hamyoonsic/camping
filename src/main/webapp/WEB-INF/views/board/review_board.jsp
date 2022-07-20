@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
+    
+<%@include file="../homepage/nav.jsp" %>    
     
 <!DOCTYPE html>
 <html>
@@ -9,33 +13,73 @@
 
 <link href="${ pageContext.request.contextPath }/resources/review_board.css" rel="stylesheet" type="text/css">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+	
+	function search() {
+		
+		var search = $("#search").val();
+		var search_text = $("#search_text").val().trim();
+		
+		//전체검색이 아닌경우
+		if(search != 'review_all' && search_text == ''){
+			alert('검색어를 입력하세요!!');
+			$("#search_text").val('');
+			$("#search_text").focus();
+			return;
+		}
+		
+		location.href="review_list.do?search=" + search + "&search_text=" + encodeURIComponent(search_text);
+		
+	
+	}
+
+	$(function(){
+		
+		if("${ not empty param.search }"=="true"){
+			$("#search").val('${param.search}');
+		}
+		
+		//전체 검색이 실행시 검색어를 지우기
+		if("${ param.search eq 'review_all' }"=="true"){
+			$("#search_text").val('');
+		}
+		
+	}); 
+
+</script>
+
+
 </head>
 <body>
 
 <h3 id="title">Review</h3>
 <div><a href="">사진리뷰만 보이게 하는 게시판으로 가는 링크</a></div><br>
 <div class="top">
-	<form method="post" name="search" action="">
+	<!-- <form method="post" name="search" action=""> -->
 		<table class="table_option">
 			<tr>
-				<td><select class="form-control" name="searchField" style="font-size:16px;">
-						<option>전체</option>
-						<option>제목</option>
-						<option>작성자</option>
+				<td><select class="form-control" id="search" name="searchField" style="font-size:16px;">
+						<option value="review_all">전체보기</option>
+						<option value="review_title">제목</option>
+						<option value="review_content">내용</option>
+						<option value="mem_nickname">작성자</option>
+						<option value="review_title_review_content_mem_nickname">제목+작성자+내용</option>
 				</select></td>
 				<td>
 				  <input type="text" class="form-control"
-					     placeholder="검색어 입력" name="searchText" maxlength="100">
+					     placeholder="검색어 입력" name="searchText" id="search_text" value="${ param.search_text }" maxlength="100">
 				</td>
 				<td>
-				  <button type="submit" class="btn-search">검색</button>
+				  <button type="button" class="btn-search" value="검색" onclick="search();">검색</button>
 				</td>
 			</tr>
 
 		</table>
-	</form>
+	<!-- </form> -->
   <input class="btn" type="button" value="글쓰기"
-		 onclick="location.href=#">
+		 onclick="location.href='../homepage/main.do'">
   
 </div>
 <table  class="table_list">
@@ -47,65 +91,40 @@
 <col width="200px">
 </colgroup>
 <thead>
-<tr >
+<tr>
   <th>번호</th>
   <th>제목</th>
-  <th>좋아요</th>
   <th>조회수</th>
+  <th>좋아요</th>
   <th>작성자</th>
   <th>작성일</th>
 </tr>
 </thead>
 
 <tbody>
- <tr>
-  <td>1</td>
-  <td class="subject"><a href="#">난지 캠핑장 다녀온 썰 푼다</a></td>
-  <td>1</td>
-  <td>13</td>
-  <td>캠핑조아</td>
-  <td>2022.06.23</td>
- </tr>
- <tr>
-  <td>2</td>
-  <td class="subject"><a href="#">시흥 기가막힌 캠핑카 여행!!</a></td>
-  <td>7</td>
-  <td>13</td>
-  <td>캠핑짱</td>
-  <td>2022.06.23</td>
- </tr>
- <tr>
-  <td>3</td>
-  <td class="subject"><a href="#">충주호를 바라보는 최고의 캠핑장!</a></td>
-  <td>3</td>
-  <td>15</td>
-  <td>캠핑</td>
-  <td>2022.06.23</td>
- </tr>
- <!-- 게시글없는경우 -->
- <tr>
-  <td colspan="6">현재 게시글이 없습니다.</td>
- </tr>
-</tbody>
+	<c:forEach var="vo" items="${ list }">
+		<tr>
+			<td>${ vo.review_no }</td>
+			<td class="subject"><a href="#">${ vo.review_title }</td>
+			<td>${ vo.review_hit_count }</td>
+			<td>${ vo.review_like_count }</td>
+			<td>${ vo.review_idx }</td>
+			<td class="subject"><a href="review_view.do?review_idx=${vo.review_idx }&page=${ empty param.page ? 1 : param.page}">${ vo.review_title }</td>
+			<td>${ vo.cnt }</td>
+			<td>${ vo.mem_nickname }</td>
+			<td>${ fn:substring(vo.review_regdate,0,10) }</td>
+		</tr>
+	</c:forEach>
+	</tbody>
 </table>
-<div class="page_wrap">
+
+ <div class="page_wrap">
    <div class="page_nation">
-      <a class="first" href="#"></a>
-      <a class="prev" href="#"></a>
-      <a href="#" class="active">1</a>
-      <a href="#">2</a>
-      <a href="#">3</a>
-      <a href="#">4</a>
-      <a href="#">5</a>
-      <a href="#">6</a>
-      <a href="#">7</a>
-      <a href="#">8</a>
-      <a href="#">9</a>
-      <a href="#">10</a>
-      <a class="next" href="#"></a>
-      <a class="last" href="#"></a>
-   </div>
-	
+
+          ${ pageMenu }
+ 
+ </div>
+
 </div>
 </body>
 </html>
