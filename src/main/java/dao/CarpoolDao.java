@@ -1,17 +1,18 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import vo.CarpoolVo;
 
 public interface CarpoolDao {
 
 	List<CarpoolVo> selectList();
+	List<CarpoolVo> selectList(String search_text);
+	List<CarpoolVo> selectList(Map map);
 
-	//게시글 좋아요 +1
-	public int carpool_insertlike(int carpool_idx);
-	
-	//게시글 좋아요 -1
-	public int carpool_deletelike(int carpool_idx);	
-	
+	int			  selectRowTotal();
+	int			  selectRowTotal(Map map); 
+
+
 }

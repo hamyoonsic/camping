@@ -8,7 +8,67 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="carpool_list" resultType="vo.CarpoolVo">
 		select * from carpool order by carpool_idx desc
 	</select>
+	
+	<!-- 페이징처리를 위한 조회 -->
+	<select id="carpool_condition_list" parameterType="java.util.Map" resultType="vo.CarpoolVo">
+	select * from
+	(
+		select 
+			c.*,
+			rank() over(order by carpool_idx desc) carpool_no
+		from
+			(select * from carpool
+				<trim prefix="where" prefixOverrides="or">
+					<if test="carpool_title != null">
+						carpool_title like '%' || #{ carpool_title } || '%'
+					</if>			
 
+					<if test="carpool_content!= null">
+						or carpool_content like '%' || #{ carpool_content } || '%'
+					</if>			
+
+					<if test="mem_nickname != null">
+						or mem_nickname like '%' || #{ mem_nickname } || '%'
+					</if>			
+				</trim>
+			
+			) c
+	)	
+		where carpool_no between #{ start } and #{ end }
+	</select>
+	
+	<!-- 전체게시물수 구하기 -->
+	<select id="carpool_row_total" resultType="int">
+		select nvl(count(*),0) from carpool
+	</select>
+	
+	<!-- 검색 조건별 게시물수 구하기 -->
+	<select id="carpool_condition_row_total" parameterType="java.util.Map" resultType="int">
+		select nvl(count(*),0) from carpool
+		<trim prefix="where" prefixOverrides="or">
+					<if test="carpool_title != null">
+						carpool_title like '%' || #{ carpool_title } || '%'
+					</if>			
+
+					<if test="carpool_content!= null">
+						or carpool_content like '%' || #{ carpool_content } || '%'
+					</if>			
+
+					<if test="mem_nickname != null">
+						or mem_nickname like '%' || #{ mem_nickname } || '%'
+					</if>			
+		</trim>
+	</select>
+	
+	<!-- 전체검색 -->
+	<select id="carpool_condition_total" parameterType="java.lang.String" resultType="vo.CarpoolVo">
+		select * from carpool
+			where
+						carpool_title like '%' || #{ search_text } || '%'
+						or  carpool_content like '%' || #{ search_text } || '%'
+	</select>
+	
+	
 
 </mapper>
 

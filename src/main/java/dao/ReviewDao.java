@@ -9,6 +9,7 @@ public interface ReviewDao {
 	
 	
 	public List<ReviewVo> selectList();
+	public List<ReviewVo> selectList(String search_text);
 
 	public List<ReviewVo> selectList(Map map);
 
@@ -16,6 +17,9 @@ public interface ReviewDao {
 	public ReviewVo selectOne(int review_idx);
 
 	
-	
+	int			  selectRowTotal();
+	int			  selectRowTotal(Map map); 
+
+
 
 }

@@ -30,6 +30,27 @@
 
 </style>
 
+<script type="text/javascript">
+
+	function searchAll() {
+		
+		var search_text = $("#search_text").val().trim();
+		
+		if(search_text==''){
+			
+			alert('검색어를 입력하세요!!');
+			$("#search_text").val("");
+			$("#search_text").focus();
+			return;
+		}
+		
+		location.href = "/camping/homepage/total_search_list.do?search_text=" + encodeURIComponent(search_text);
+		
+	}
+
+</script>
+
+
 
 </head>
 
@@ -46,15 +67,15 @@
 			</div>
 			<div class= "search_area">
 			  <form>
-				<input type="search" placeholder="Search">
-				<span><i class="bi-search"></i></span>
+				<input type="search" placeholder="Search" id="search_text" value="${ param.search_text }">
+				<span><i class="bi-search" onclick="searchAll();"></i></span>
 			  </form>
 			<ul class="hashtag">
-				<li><a href="#">#캠핑</a></li>
-				<li><a href="#">#카라반</a></li>
-				<li><a href="#">#캠핑추천</a></li>
-				<li><a href="#">#카풀</a></li>
-				<li><a href="#">#같이갈사람</a></li>
+				<li><a href="/camping/homepage/total_search_list.do?search_text=캠핑">#캠핑</a></li>
+				<li><a href="/camping/homepage/total_search_list.do?search_text=카라반">#카라반</a></li>
+				<li><a href="/camping/homepage/total_search_list.do?search_text=캠핑추천">#캠핑추천</a></li>
+				<li><a href="/camping/homepage/total_search_list.do?search_text=카풀">#카풀</a></li>
+				<li><a href="/camping/homepage/total_search_list.do?search_text=같이갈사람">#같이갈사람</a></li>
 			</ul>
 			</div>
 		</div>

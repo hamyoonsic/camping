@@ -13,7 +13,16 @@ public class CarpoolVo {
 	int			carpool_like_count;
 	String		carpool_ip;
 	int			cnt;
+	int 	    carpool_no;
 	
+	public int getCarpool_no() {
+		return carpool_no;
+	}
+	public void setCarpool_no(int carpool_no) {
+		this.carpool_no = carpool_no;
+	}
+
+
 	
 	public int getCnt() {
 		return cnt;

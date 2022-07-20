@@ -19,13 +19,20 @@ public class ReviewDaoImpl implements ReviewDao {
 	@Override
 	public List<ReviewVo> selectList() {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("review.review_list");
 	}
 
 	@Override
 	public List<ReviewVo> selectList(Map map) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<ReviewVo> list = null;
+		
+		//2.½ÇÇà
+		list = sqlSession.selectList("review.review_condition_list", map);
+		
+		
+		return list;
+
 	}
 
 	@Override
@@ -33,5 +40,25 @@ public class ReviewDaoImpl implements ReviewDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public int selectRowTotal() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("review.review_row_total");
+	}
+
+	@Override
+	public int selectRowTotal(Map map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("review.review_condition_row_total",map);
+	}
+
+
+	@Override
+	public List<ReviewVo> selectList(String search_text) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("review.review_condition_total",search_text);
+	}
+
 
 }

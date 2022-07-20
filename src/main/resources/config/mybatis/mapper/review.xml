@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review">
+
+	<!-- 전체조회 -->
+	<select id="review_list" resultType="vo.ReviewVo">
+		select * from review order by review_idx desc
+	</select>
+	
+	<!-- 페이징처리를 위한 조회 -->
+	<select id="review_condition_list" parameterType="java.util.Map" resultType="vo.ReviewVo">
+	select * from
+	(
+		select 
+			r.*,
+			rank() over(order by review_idx desc) review_no
+		from
+			(select * from review
+				<trim prefix="where" prefixOverrides="or">
+					<if test="review_title != null">
+						review_title like '%' || #{ review_title } || '%'
+					</if>			
+
+					<if test="review_content!= null">
+						or review_content like '%' || #{ review_content } || '%'
+					</if>			
+
+					<if test="mem_nickname != null">
+						or mem_nickname like '%' || #{ mem_nickname } || '%'
+					</if>			
+				</trim>
+			
+			) r
+	)	
+		where review_no between #{ start } and #{ end }
+	</select>
+	
+	<!-- 전체게시물수 구하기 -->
+	<select id="review_row_total" resultType="int">
+		select nvl(count(*),0) from review
+	</select>
+	
+	<!-- 검색 조건별 게시물수 구하기 -->
+	<select id="review_condition_row_total" parameterType="java.util.Map" resultType="int">
+		select nvl(count(*),0) from review
+		<trim prefix="where" prefixOverrides="or">
+					<if test="review_title != null">
+						review_title like '%' || #{ review_title } || '%'
+					</if>			
+
+					<if test="review_content!= null">
+						or review_content like '%' || #{ review_content } || '%'
+					</if>			
+
+					<if test="mem_nickname != null">
+						or mem_nickname like '%' || #{ mem_nickname } || '%'
+					</if>			
+		</trim>
+	</select>
+	
+	<!-- 전체검색 -->
+	<select id="review_condition_total" parameterType="java.lang.String" resultType="vo.ReviewVo">
+		select * from review
+			where
+						review_title like '%' || #{ search_text } || '%'
+						or review_content like '%' || #{ search_text } || '%'
+	
+					
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

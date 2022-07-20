@@ -216,7 +216,7 @@
 
 	<div class="wrap">
 		<ul class="nav">
-			<li><a href="#link_header">HOME</a></li>
+			<li><a href="/camping/">HOME</a></li>
 			<li><a href="#link_main_text0">REVIEW</a></li>
 			<li><a href="#link_main_text1">CARPOOL</a></li>
 			<li><a href="#link_main_text1">MARKET</a></li>

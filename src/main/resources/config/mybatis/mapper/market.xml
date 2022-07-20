@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="market">
+
+	<!-- 전체조회 -->
+	<select id="market_list" resultType="vo.MarketVo">
+		select * from market order by market_idx desc
+	</select>
+	
+	<!-- 페이징처리를 위한 조회 -->
+	<select id="market_condition_list" parameterType="java.util.Map" resultType="vo.MarketVo">
+	select * from
+	(
+		select 
+			m.*,
+			rank() over(order by market_idx desc) market_no
+		from
+			(select * from market
+				<trim prefix="where" prefixOverrides="or">
+					<if test="market_title != null">
+						market_title like '%' || #{ market_title } || '%'
+					</if>			
+
+					<if test="market_content!= null">
+						or market_content like '%' || #{ market_content } || '%'
+					</if>			
+
+					<if test="mem_nickname != null">
+						or mem_nickname like '%' || #{ mem_nickname } || '%'
+					</if>			
+				</trim>
+			
+			) m
+	)	
+		where market_no between #{ start } and #{ end }
+	</select>
+	
+	<!-- 전체게시물수 구하기 -->
+	<select id="market_row_total" resultType="int">
+		select nvl(count(*),0) from market
+	</select>
+	
+	<!-- 검색 조건별 게시물수 구하기 -->
+	<select id="market_condition_row_total" parameterType="java.util.Map" resultType="int">
+		select nvl(count(*),0) from market
+		<trim prefix="where" prefixOverrides="or">
+					<if test="market_title != null">
+						market_title like '%' || #{ market_title } || '%'
+					</if>			
+
+					<if test="market_content!= null">
+						or market_content like '%' || #{ market_content } || '%'
+					</if>			
+
+					<if test="mem_nickname != null">
+						or mem_nickname like '%' || #{ mem_nickname } || '%'
+					</if>			
+		</trim>
+	</select>
+	
+	<!-- 전체검색 -->
+	<select id="market_condition_total" parameterType="java.lang.String" resultType="vo.MarketVo">
+		select * from market
+			where
+						market_title like '%' || #{ search_text } || '%'
+						or market_content like '%' || #{ search_text } || '%'
+	
+	</select>
+	
+	
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

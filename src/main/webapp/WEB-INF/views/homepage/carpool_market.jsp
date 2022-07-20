@@ -199,7 +199,7 @@
 	        <div id="carpool-table-mini">
 	         <table>
 	         	<tr>
-	         		
+	         		<%-- 
 	         		<td style="width: 50%">&nbsp;${ vo.carpool_title }</td>
 	         		<td style="width: 5%">${ vo.carpool_hit_count }</td>
 	         		<td style="width: 25%">&nbsp;${ fn:substring(vo.carpool_regdate,0,10) }</td>
@@ -207,7 +207,7 @@
 	         		<td><button type="button" style="background: none; border: none;" onclick="updatelike('${ vo.carpool_idx }');">
 	         		<img src="${ pageContext.request.contextPath }/resources/images/heart-1.png" width="20px" height="20px">
 	         		</button></td>
-	         		<td style="width: 5%">&nbsp;&nbsp;${ vo.cnt }&nbsp;&nbsp;</td>
+	         		<td style="width: 5%">&nbsp;&nbsp;${ vo.cnt }&nbsp;&nbsp;</td> --%>
 	         	</tr>
 	         </table>
 	         </div>
