@@ -9,6 +9,12 @@
 	</bean>
 	
 	<bean id="carpool_dao" class="dao.CarpoolDaoImpl">
+
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	
+	<bean id="review_reply_dao" class="dao.ReviewReplyDaoImpl">
+
 		<property name="sqlSession" ref="sqlSession"></property>
 	</bean>
 	
@@ -24,9 +30,6 @@
 		<property name="sqlSession" ref="sqlSession"></property>
 	</bean>
 	
-		
-		
-	
-	
+
 	
 </beans>

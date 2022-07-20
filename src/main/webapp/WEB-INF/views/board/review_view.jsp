@@ -103,6 +103,6 @@
 				onclick="del();">
 		</c:if>
 </div>
-
+<%@include file="comment.jsp" %>
 </body>
 </html>
