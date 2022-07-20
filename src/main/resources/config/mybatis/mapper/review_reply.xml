@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review_reply">
+
+	<!-- <resultMap type="vo.ReviewReplyVo" id="review_reply_RM">
+		<result property="*mem_idx*"				column="mem_idx"/>
+		<result property="*mem_nickname*"			column="mem_nickname"/>
+		<result property="*review_idx*"				column="review_idx"/>
+		<result property="*review_reply_content*"	column="review_reply_content"/>
+		<result property="*review_reply_ip*"		column="review_reply_ip"/>
+	</resultMap>
+ -->
+
+	<!--전체 조회  -->
+	<select id="review_reply_list" resultType="vo.ReviewReplyVo">
+		select * from review_reply_view
+	</select>
+
+	<!-- 댓글작성 -->
+	<insert id="review_reply_insert" parameterType ="vo.ReviewReplyVo">
+		insert into review_reply values(seq_review_reply_idx.nextVal,
+										#{mem_idx}, 
+										#{mem_nickname},
+										#{review_idx},
+										#{review_reply_content},
+										0,
+										0,
+										0,
+										sysdate,
+										#{review_reply_ip}
+										)
+	</insert>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
+
     
     
 <!DOCTYPE html>
@@ -50,7 +52,7 @@
 
 </head>
 <body>
-
+<%@include file="../homepage/nav.jsp" %> 
 <h3 id="title">Market</h3>
 <div><a href="">사진리뷰만 보이게 하는 게시판으로 가는 링크</a></div><br>
 <div class="top">
@@ -91,24 +93,25 @@
 <tr >
   <th>번호</th>
   <th>제목</th>
-  <th>좋아요</th>
   <th>조회수</th>
+  <th>좋아요</th>
   <th>작성자</th>
   <th>작성일</th>
 </tr>
 </thead>
 
 <tbody>
-<c:forEach var="vo" items="${ list }">
+ <c:forEach var="vo" items="${ list }">
 		<tr>
 			<td>${ vo.market_no }</td>
-			<td class="subject"><a href="#">${ vo.market_title }</td>
+			<td class="subject"><a href="market_view.do?market_idx=${vo.market_idx }&page=${ empty param.page ? 1 : param.page}">${ vo.market_title }</td>
 			<td>${ vo.market_hit_count }</td>
-			<td>${ vo.market_like_count }</td>
+			<td>${ vo.cnt }</td>
 			<td>${ vo.mem_nickname }</td>
 			<td>${ fn:substring(vo.market_regdate,0,10) }</td>
 		</tr>
 	</c:forEach>
+	</tbody>
 </table>
 
 
@@ -122,6 +125,16 @@
  </div>
  
 <!--  
+=======
+	 <a class="first" href="carpool_list.do?page=1"></a>
+      <a class="prev"  onclick="location.href='?page=${param.page -1}'" ></a> 
+          ${ pageMenu }
+   	 <a class="next" onclick="location.href='?page=${param.page +1}'"></a> 
+   <a class="last" onclick="location.href='?page=${param.page +5}'"></a>
+ </div>
+ 
+ 
+>>>>>>> adf2b26f6bd2cd91200544bd2bc2b7c2e8afaaf4
 <div class="page_wrap">
    <div class="page_nation">
       <a class="first" href="#"></a>

@@ -5,8 +5,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="market">
 
 	<!-- 전체조회 -->
-	<select id="market_list" resultType="vo.MarketVo">
-		select * from market order by market_idx desc
+	<select id="market_list" parameterType="map"  resultType="vo.MarketVo">
+		select m.* ,
+     (select count(market_idx) from MARKET_LIKE where m.market_idx=market_idx) cnt,
+     (select count(market_idx) from MARKET_LIKE where m.market_idx=market_idx and mem_idx=#{m_idx}) heart_flag
+   from
+    (select * from MARKET) m order by m.market_idx desc
 	</select>
 	
 	<!-- 페이징처리를 위한 조회 -->
@@ -15,7 +19,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	(
 		select 
 			m.*,
-			rank() over(order by market_idx desc) market_no
+			rank() over(order by market_idx desc) market_no,
+			 (select count(market_idx) from MARKET_LIKE where m.market_idx=market_idx) cnt,
+     (select count(market_idx) from MARKET_LIKE where m.market_idx=market_idx and mem_idx=#{m_idx}) heart_flag
 		from
 			(select * from market
 				<trim prefix="where" prefixOverrides="or">
@@ -69,7 +75,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	</select>
 	
-	
+	<!--market_idx해당되는 게시물1건   -->
+   <select id="market_one" parameterType="int" resultType="vo.MarketVo">
+      select * from market where market_idx=#{market_idx}
+   </select>
+
+   <!--  게시글 추천 시 Like 테이블에 insert  -->
+   <insert id="market_insertlike" parameterType="vo.MarketVo"> 
+      insert into market_like values(seq_market_like_idx.nextVal,#{mem_idx},#{market_idx},1) 
+   </insert>
+   
+   <!--  게시글 추천취소 시 좋아요 테이블에서 삭제   -->
+   <delete id="market_deletelike" parameterType="vo.MarketVo"> 
+      delete from market_like where market_idx=#{market_idx} and mem_idx=#{mem_idx}
+   </delete>
+   
+   <!-- 조회수 증가 -->
+   <update id="market_update_readhit" parameterType="int">
+      update market 
+         set market_hit_count = market_hit_count + 1 
+      where market_idx = #{ market_idx}
+   </update>
 
 </mapper>
 

@@ -6,35 +6,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!--전체 조회  -->
 <select id="member_list_adm" resultType="vo.MemberVo">
-	select * from member order by  mem_idx  desc
+   select * from member order by  mem_idx  desc
 </select>
 
 <!--m_idx 1건 조회  -->
 <select id="member_one_mem_idx" parameterType="int" resultType="vo.MemberVo">
-	select * from member where mem_idx=#{mem_idx}
+   select * from member where mem_idx=#{mem_idx}
 </select>
 <!--mem_email 1건 조회  -->
 <select id="member_one_mem_email" parameterType="String" resultType="vo.MemberVo">
-	select * from member where mem_email=#{mem_email}
+   select * from member where mem_email=#{mem_email}
 </select>
 <!--mem_nickname중복확인  -->
 <select id="member_one_mem_nickname" parameterType="String" resultType="vo.MemberVo">
-	select * from member where mem_nickname=#{mem_nickname}
+   select * from member where mem_nickname=#{mem_nickname}
 </select>
 
 <!--insert  -->
 <insert id="member_insert" parameterType="vo.MemberVo">
-	insert into member values(seq_member_mem_idx.nextVal,
-                             
+   insert into member values(seq_member_mem_idx.nextVal,
+                       #{ grade_idx},                           
                               #{ mem_email },
                               #{ mem_pwd },
                               #{ mem_nickname },
-                              #{ mem_gender },
                               #{ mem_birth },
-                            	sysdate,
+                               sysdate,
                               #{ mem_pic_filename },
-                              #{ mem_profile}
-                             
+                              #{ mem_profile},
+                              #{ mem_status}
+                             )
 </insert>
 
  <!-- delete -->
@@ -46,19 +46,68 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <update id="member_update" parameterType="vo.MemberVo">
       update member 
              set 
-              	 mem_grade=#{mem_grade},
+                  mem_grade=#{mem_grade},
                  mem_pwd=#{ mem_pwd },           
                  mem_birth=#{ mem_birth },
                  mem_profile=#{mem_profile},
                  mem_pic_filename=#{mem_pic_filename}, 
                  mem_status=#{mem_status}
-      			    where mem_idx=#{ mem_idx }
+                   where mem_idx=#{ mem_idx }
   </update>
+
+<!-- mem_idx가 좋아요 수 체크    --> 
+<select id="member_like_count" parameterType="int" resultType="int">
+  select sum(count) from         
+  (
+     select count(*) as count from review_like where  mem_idx=#{mem_idx}
+     union all      
+     select count(*) as count from market_like where  mem_idx=#{mem_idx}
+     union all           
+     select count(*) as count from carpool_like where  mem_idx=#{mem_idx}
+  )       
+    
+
+
+</select>
+
+<!-- mem_idx가 작성한 댓글 수 체크  --> 
+<select id="member_reply_count" parameterType="int" resultType="int">
+  select sum(count) from         
+  (
+     select count(*) as count from review_reply where  mem_idx=#{mem_idx}
+     union all      
+     select count(*) as count from market_reply where  mem_idx=#{mem_idx}
+     union all           
+     select count(*) as count from carpool_reply where  mem_idx=#{mem_idx}
+  )  
+  
+
+
+</select>
+
+<!-- mem_idx가 작성한 게시물 수 체크  --> 
+<select id="member_category_count" parameterType="int" resultType="int">
+  select sum(count) from         
+  (
+     select count(*) as count from review where  mem_idx=#{mem_idx}
+     union all      
+     select count(*) as count from market where  mem_idx=#{mem_idx}
+     union all           
+     select count(*) as count from carpool where  mem_idx=#{mem_idx}
+  )  
+  
+
+
+</select>
+
+
+
+
+
 
 
 
 </mapper>
-
 
 
 

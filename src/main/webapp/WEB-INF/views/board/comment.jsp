@@ -16,88 +16,12 @@
 <style type="text/css">
 @import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
-	#header{
-		width	:	1920px;
-		height	:	200px;
-		/* border	:	1px solid red; */
-		margin	:	auto;
-	}
-	
-	#content{
-		width	:	1920px;
-		height	:	1200px;
-		/* border	:	1px solid blue; */
-		margin	:	auto;
-	}
 	
 	
 	
-	/*-----------------------------------------------  */
-	
-	#title{
-		margin-top	:	150px;
-		font-family:Nanum Gothic;
-		font-size: 35px;
-		font-weight: 700;
-		text-align	:	center;
-	}
 	
 	
-	#post_profile_box{
-		margin-top	:	50px;
-		margin-left	:	500px;	
-		width	:	60px;
-		height	:	60px;
-		border-radius: 70%;
-    	overflow: hidden;
-    	display	:	inline-block;
-	}
 	
-	#post_writer_profile{
-		width: 100%;
-    	height: 100%;
-    	object-fit: cover;
-    	display	:	inline-block;
-	}
-	
-	#subject{
-		width	:200px;	
-		height	:60px;
-		font-family:Nanum Gothic;
-		font-size: 20px;
-		font-weight: 600;
-		display	:	inline-block;
-	}
-
-	/*-----------------------------------------------  */
-	
-	#main_content_size{	
-		width	:	100%;
-		height	:	700px;
-	}
-	
-	#main_content{
-		width: 800px;
-        height: 600px;
-        margin-top: 40px;
-        margin-left: 560px;
-        margin-right: 15px;
-        margin-bottom: 30px;
-        float: left;
-        border: 1px solid #bcbcbc;
-        border-radius: 20px 20px;	
-	}
-	
-	#views_like_count{
-		margin-left:580px;
-		width	:	680px;
-		height: 50px;
-		display	:	inline-block;
-		text-align:left;
-		font-family:Nanum Gothic;
-		font-size: 15px;
-		font-weight: 500;
-	}
 	
 	#comment_btn{
 		width	:100px;
@@ -288,19 +212,7 @@
 </head>
 <body>
 
-	<div id="header">
-		<div id="title">단양 캠핑 다녀왔어요</div>
-		<div id="post_profile_box">
-			<img src="${pageContext.request.contextPath}/resources/images/unsplash_people/people1.jpg" id="post_writer_profile">
-		</div>
-		<div id="subject"> 김주원${user.mem_nickname } / 2022.6.30</div>
-	</div>
 	
-	<div id="content">
-		<div id="main_content_size">
-			<div id="main_content">글+ 사진 들어갈 곳</div>
-		</div>
-		<div id="views_like_count"> 조회수 112 좋아요 72</div>
 		<!-----------------------------------------------댓글----------------------------->
 		
 		<form>
@@ -319,7 +231,7 @@
 		
 		</form>
 		
-		
+		<!--
 		<input id="comment_btn" type="button" value="댓글 3">
 		
 		
@@ -342,10 +254,10 @@
 				</c:forEach>
 			</div>
 		
-		
+		-->
 		
 		<!-----------------------------------------------댓글----------------------------->
 	
-	</div>
+	
 </body>
 </html>

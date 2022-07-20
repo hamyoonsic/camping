@@ -3,6 +3,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
     
+<%@include file="../homepage/nav.jsp" %> 
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,7 +56,7 @@
 <h3 id="title">Carpool</h3>
 <div><a href="">사진리뷰만 보이게 하는 게시판으로 가는 링크</a></div><br>
 <div class="top">
-	<!-- <form method="post" name="search" action=""> -->
+<!-- 	<form method="post" name="search" action=""> -->
 		<table class="table_option">
 			<tr>
 				<td><select class="form-control" id="search" name="searchField" style="font-size:16px;">
@@ -99,23 +101,18 @@
 </thead>
 
 <tbody>
-	<%-- <c:forEach var="vo" items="${ list }">
+<c:forEach var="vo" items="${ list }">
 		<tr>
 			 <td>${ vo.carpool_no }</td> 
-			<td class="subject"><a href="#">${ vo.carpool_title }</td>
+			<td class="subject"><a href="carpool_view.do?carpool_idx=${vo.carpool_idx }&page=${ empty param.page ? 1 : param.page}">${ vo.carpool_title }</td>
 			<td>${ vo.carpool_hit_count }</td>
-			<td>${ vo.carpool_like_count }</td>
+			<td>${ vo.cnt }</td>
 			<td>${ vo.mem_nickname }</td>
 			<td>${ fn:substring(vo.carpool_regdate,0,10) }</td>
 		</tr>
-	</c:forEach> --%>
+	</c:forEach> 
 </table> 
-
-<div>
-
-</div>
-
- <div class="page_wrap">
+<div class="page_wrap">
    <div class="page_nation">
 	 <%-- <a class="first" href="carpool_list.do?page=1"></a>
 	  <c:if test="${param.page>1}">

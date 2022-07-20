@@ -5,8 +5,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="carpool">
 
 	<!-- 전체조회 -->
-	<select id="carpool_list" resultType="vo.CarpoolVo">
-		select * from carpool order by carpool_idx desc
+	<select id="carpool_list" parameterType="map" resultType="vo.CarpoolVo">
+		select c.* ,
+	     (select count(carpool_idx) from CARPOOL_LIKE where c.carpool_idx=carpool_idx) cnt,
+	     (select count(carpool_idx) from CARPOOL_LIKE where c.carpool_idx=carpool_idx and mem_idx=#{m_idx}) heart_flag
+	  	 from
+	    (select * from CARPOOL) c order by c.carpool_idx desc
 	</select>
 	
 	<!-- 페이징처리를 위한 조회 -->
@@ -15,7 +19,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	(
 		select 
 			c.*,
-			rank() over(order by carpool_idx desc) carpool_no
+			rank() over(order by carpool_idx desc) carpool_no,
+			(select count(carpool_idx) from CARPOOL_LIKE where c.carpool_idx=carpool_idx) cnt,
+	        (select count(carpool_idx) from CARPOOL_LIKE where c.carpool_idx=carpool_idx and mem_idx=#{m_idx}) heart_flag
 		from
 			(select * from carpool
 				<trim prefix="where" prefixOverrides="or">
@@ -67,6 +73,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						carpool_title like '%' || #{ search_text } || '%'
 						or  carpool_content like '%' || #{ search_text } || '%'
 	</select>
+	
+	
+	<!--carpool_idx해당되는 게시물1건   -->
+   <select id="carpool_one" parameterType="int" resultType="vo.CarpoolVo">
+      select * from carpool where carpool_idx=#{carpool_idx}
+   </select>
+
+   <!--  게시글 추천 시 Like 테이블에 insert  -->
+   <insert id="carpool_insertlike" parameterType="vo.CarpoolVo"> 
+      insert into carpool_like values(seq_carpool_like_idx.nextVal,#{mem_idx},#{carpool_idx},1) 
+   </insert>
+   
+   <!--  게시글 추천취소 시 좋아요 테이블에서 삭제   -->
+   <delete id="carpool_deletelike" parameterType="vo.CarpoolVo"> 
+      delete from carpool_like where carpool_idx=#{carpool_idx} and mem_idx=#{mem_idx}
+   </delete>
+   
+   <!-- 조회수 증가 -->
+   <update id="carpool_update_readhit" parameterType="int">
+      update carpool 
+         set carpool_hit_count = carpool_hit_count + 1 
+      where carpool_idx = #{ carpool_idx}
+   </update>
 	
 	
 
