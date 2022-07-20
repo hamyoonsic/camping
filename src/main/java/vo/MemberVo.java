@@ -9,13 +9,38 @@ public class MemberVo {
 	String mem_email;
 	String mem_pwd;
 	String mem_nickname;
-	String mem_gender ;
 	String mem_birth;
 	String mem_regdate;
 	String mem_pic_filename;
 	String mem_profile;
 	int	   mem_status;
 	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
 	public MemberVo() {
 		// TODO Auto-generated constructor stub
 	}
@@ -25,17 +50,30 @@ public class MemberVo {
 	
 	
 	
-	public MemberVo(String mem_email, String mem_pwd, String mem_nickname, String mem_gender, String mem_birth,
-			String mem_pic_filename, String mem_profile) {
+
+
+
+
+
+
+	public MemberVo(int grade_idx, String mem_email, String mem_pwd, String mem_nickname, String mem_birth,
+			String mem_pic_filename, String mem_profile, int mem_status) {
 		super();
+		this.grade_idx = grade_idx;
 		this.mem_email = mem_email;
 		this.mem_pwd = mem_pwd;
 		this.mem_nickname = mem_nickname;
-		this.mem_gender = mem_gender;
 		this.mem_birth = mem_birth;
 		this.mem_pic_filename = mem_pic_filename;
 		this.mem_profile = mem_profile;
+		this.mem_status = mem_status;
 	}
+
+
+
+
+
+
 
 
 
@@ -72,12 +110,7 @@ public class MemberVo {
 	public void setMem_nickname(String mem_nickname) {
 		this.mem_nickname = mem_nickname;
 	}
-	public String getMem_gender() {
-		return mem_gender;
-	}
-	public void setMem_gender(String mem_gender) {
-		this.mem_gender = mem_gender;
-	}
+	
 	public String getMem_birth() {
 		return mem_birth;
 	}

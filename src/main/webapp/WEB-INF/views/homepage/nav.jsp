@@ -108,31 +108,26 @@
 
 </style>
 <script type="text/javascript">
-	function login(){
-		
-		/*로그인 상태체크  */
-		if("${empty user}" == "true"){
-			
-			if (confirm("마이페이지는 로그인 후 이용 가능합니다\n 로그인 하시겠습니까?")==false)return;
-			
-			alert(location.href);
-			
-			
-			location.href="member/login_form.do"
-			
-			return;
-			
-		}	
-		
-		
-	}
-	
+
 	
 	
 	$(document).ready(function(){
 		
 			$("#btn_login_form").click(function(){
 				
+				if("${!empty user}"=="true"){
+					
+					location.href="${pageContext.request.contextPath}/member/mypage/my_page.do";
+				}
+				if("${!empty user and user.grade_idx eq '5'}"=="true"){
+					
+					location.href="${pageContext.request.contextPath}/member/member_mypage_adm.do";
+					
+				
+				}
+			
+				
+				if("${empty user}"=="true"){
 				Swal.fire({
 					  title: 'Login Form',
 					  html: `<input type="text" id="login" class="swal2-input" placeholder="Username">
@@ -201,10 +196,59 @@
 						//Swal.fire('Hi!!');
 					  
 					}); 
+				}
 			});
 	
 			
 	});
+	
+	
+	function logout(){
+		
+		const swalWithBootstrapButtons = Swal.mixin({
+			  customClass: {
+			    confirmButton: 'btn btn-success',
+			    cancelButton: 'btn btn-danger'
+			  },
+			  buttonsStyling: false
+			})
+
+			swalWithBootstrapButtons.fire({
+			  title: '로그아웃 하시겠습니까?',
+			  text: "버튼을 눌러주세요!",
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonText: 'Yes!',
+			  cancelButtonText: 'No, cancel!',
+			  reverseButtons: true
+			}).then((result) => {
+			  if (result.isConfirmed) {
+			    swalWithBootstrapButtons.fire(
+			      'logout',
+			      '되었습니다!',
+			      'success'
+			  	
+			    ).then(function(){
+			    	location.href="${pageContext.request.contextPath}/member/logout.do";
+			    });
+			  } else if (
+			    /* Read more about handling dismissals below */
+			    result.dismiss === Swal.DismissReason.cancel
+			  ) {
+			    swalWithBootstrapButtons.fire(
+			      'Cancelled',
+			      '취소되었습니다;)',
+			      'error'
+			    )
+			  }
+			});
+		
+		
+	}
+	
+	
+	
+	
 	
 
 
@@ -217,9 +261,9 @@
 	<div class="wrap">
 		<ul class="nav">
 			<li><a href="#link_header">HOME</a></li>
-			<li><a href="#link_main_text0">REVIEW</a></li>
-			<li><a href="#link_main_text1">CARPOOL</a></li>
-			<li><a href="#link_main_text1">MARKET</a></li>
+			<li><a href="/camping/board/review_list.do">REVIEW</a></li>
+			<li><a href="/camping/board/carpool_list.do">CARPOOL</a></li>
+			<li><a href="/camping/board/market_list.do">MARKET</a></li>
 			<li><a href="#link_main_text2">WHEATHER</a></li>
 			<li><a href="#" id="btn_login_form" >MYPAGE</a></li>
 			<!--로그인 되어있으면 보여주라  -->
@@ -228,10 +272,32 @@
 			<c:if test="${not empty user }">
 			
 					<ul class="mypage">
-						<li><a href="#">${user.grade_idx}</a></li>
+						
+						<li><a href="#">
+							<c:if test="${user.grade_idx eq 1 }">
+								<img alt="이미지없음" src="${ pageContext.request.contextPath }/resources/images/grade_bronze.JPG" width="30">
+							</c:if>
+							
+							<c:if test="${user.grade_idx eq 2 }">
+								<img alt="이미지없음" src="${ pageContext.request.contextPath }/resources/images/grade_silver.JPG" width="30">
+							</c:if>
+							
+							<c:if test="${user.grade_idx eq 3 }">
+								<img alt="이미지없음" src="${ pageContext.request.contextPath }/resources/images/grade_gold.JPG" width="30">
+							</c:if>
+							
+							<c:if test="${user.grade_idx eq 4 }">
+								<img alt="이미지없음" src="${ pageContext.request.contextPath }/resources/images/grade_platinum.JPG" width="30">
+							</c:if>
+							
+							<c:if test="${user.grade_idx eq 5 }">
+								관리자
+							</c:if>
+							</a></li>
+							
 						<li><a href="#">${user.mem_nickname}님</a></li>
 						<li><a href="#">쪽지함</a></li>
-						<li><a href="#">로그아웃</a></li>
+						<li><a href="#" onclick="logout();">로그아웃</a></li>
 					</ul>
 			
 			</c:if>

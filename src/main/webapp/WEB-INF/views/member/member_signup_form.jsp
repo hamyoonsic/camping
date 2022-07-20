@@ -67,7 +67,7 @@ h1{
 
 #mem_email{
 	
-	width: 350px;
+	width: 230px;
 	border: none;
 	border-bottom: 1px solid gray;
 	margin-left: 80px; 
@@ -75,7 +75,7 @@ h1{
 }
 .mem_signup_form{
 
-	width: 350px;
+	width: 250px;
 	border: none;
 	border-bottom: 1px solid gray;
 	margin-left: 80px;
@@ -110,10 +110,11 @@ h1{
 
 
 </style>
+
 <script type="text/javascript">
 
 var regular_email =/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
-
+var regular_nickname = /^[.]{1,20}$/ ;
 
 $(document).ready(function(){
 	
@@ -125,11 +126,11 @@ $(document).ready(function(){
 		
 		if(regular_email.test(mem_email)==false){
 			
-			$("#mem_msg").html("@가 들어가야 합니다")
+			$("#email_msg").html("@가 들어가야 합니다")
 		    .css("color","red");
 
 			//가입하기 버튼 비활성화
-			$("#btn_register").attr("disabled",true);
+			$("#btn_signup").attr("disabled",true);
 			
 			
 			return;
@@ -137,27 +138,81 @@ $(document).ready(function(){
 			
 		}
 		
-		$.ajax({
+	 	$.ajax({
 				url		:'check_email.do',
 				data	:{'mem_email':mem_email},
 				dataType:'json',
 				success :function(res_data){
-					
-					$("#emial_msg").html("사용가능한 아이디입니다")
+				if(res_data.result){
+					$("#email_msg").html("사용가능한 이메일입니다")
 					.css("color","blue");
 					
+					$("#btn_signup").attr("disabled",false);
 					
-				}()
+				}else{
+					
+					$("#email_msg").html("이미 사용중이 이메일입니다")
+					.css("color","red");
+					$("#btn_signup").attr("disabled",true);
+				}
 			
-			
+	 	},
+	 	 error:function(err){
+	 		 alert(err.responseText);
+	 	 }
 			
 		});
-		
-		
-		
-		
-		
+	 	
 	});
+	 	
+//-------------------------------------------------------------------------------------------
+		$("#mem_nickname").keyup(function(event){
+			
+			var mem_nickname =$(this).val();
+			console.log(mem_nickname);
+			
+			if(regular_nickname.test(mem_nickname)==false){
+				
+				$("#nickname_msg").html("1~20자 이내 사용가능")
+			    .css("color","red");
+
+				//가입하기 버튼 비활성화
+				$("#btn_signup").attr("disabled",true);
+				
+				
+				return;
+							
+				
+			}
+			
+			 	$.ajax({
+						url		:'check_nickname.do',
+						data	:{'mem_nickname':mem_nickname},
+						dataType:'json',
+						success :function(res_data){
+						if(res_data.result_nickname){
+							$("#nickname_msg").html("사용가능한 닉네임입니다")
+							.css("color","blue");
+							
+							$("#btn_signup").attr("disabled",false);
+							
+						}else{
+							
+							$("#nickname_msg").html("이미 사용중이 닉네임입니다")
+							.css("color","red");
+							$("#btn_signup").attr("disabled",true);
+						}
+					
+			 	},
+			 	 error:function(err){
+			 		 alert(err.responseText);
+			 	 }
+			 	
+					
+			});
+	});		 	
+		
+//------------------------------------------------------------------------------------------		
 	
 	$(".badge").click(function(){
 		
@@ -178,18 +233,28 @@ $(document).ready(function(){
 	    reader.readAsDataURL(file);
 	});
 	
-});
 
+
+});	
+	
+
+</script>	
+
+
+<script type="text/javascript">	
 /* 체크  */
 function send(f) {
 		
+		var regular_birth = /[0-9]{4}(0?[1-9]|1[012])(0?[1-9]|[12][0-9]|3[01])/;
+	
 		//입력값 체크(이름/비번/우편번호/주소)
-		var mem_email 	  		= f.mem_name.value.trim();
+		var mem_email 	  		= f.mem_email.value.trim();
 		var mem_pwd	  			= f.mem_pwd.value.trim();
 		var mem_nickname 		= f.mem_nickname.value.trim();
 		var mem_birth	  		= f.mem_birth.value.trim();
-		var mem_pic_filename 	= f.mem_pic_filename.value;
+		var mem_pic          	= f.mem_pic.value; 
 		var mem_profile 		= f.mem_profile.value.trim();
+		
 		if(mem_email == ''){
 			alert('email을 입력하세요');
 			f.mem_email.value='';
@@ -213,20 +278,20 @@ function send(f) {
 			return;
 		}
 		
-		if(mem_birth == ''){
-			alert('생일을 입력하세요');
+		if(!regular_birth.test(mem_birth)){
+			alert('생년월일 8자리를  입력하세요');
 			f.mem_birth.value='';
 			f.mem_birth.focus();
 			return;
 		}
 		
 		
-		if(mem_pic_filename == ''){
+		/* if(mem_pic_filename == ''){
 			alert('사진을 넣어주세요');
 			
 			return;
 		}
-		
+		 */
 		
 		if(mem_profile == ''){
 			alert('내용을 넣어주세요');
@@ -240,18 +305,8 @@ function send(f) {
 		f.submit(); 
 	}
 	
-
-
-
-
-
-
 </script>
-<script type="text/javascript">
 
-	
-
-</script>
 
 </head>
 <body>
@@ -271,8 +326,8 @@ function send(f) {
 			</div>
 					
 		      <!--  <a href="#">News <span class="badge">5</span></a><br> -->
-		<form>
-		 <input type="file" id="imageFile" style="display:none;" name="mem_pic_filename" onChange="ajaxFileChange();" >
+		<form method="POST"  enctype="multipart/form-data">
+		 <input type="file" id="imageFile" style="display:none;" name="mem_pic" onChange="ajaxFileChange();">
 			
 			<h1>signup</h1>
 		<div id="signup_form" >
@@ -280,7 +335,7 @@ function send(f) {
 				<tr>
 					
 					<td><input type="text" id="mem_email" name="mem_email" 
-						 required="required" placeholder="  @를 포함한 email주소를 입력하세요.">
+						 required="required" placeholder="email주소를 입력하세요.">
 						<span id="email_msg"></span>						
 						 </td>
 					
@@ -288,7 +343,7 @@ function send(f) {
 				
 				<tr>
 				
-					<td><input type="text" class="mem_signup_form"    id="mem_pwd" name="mem_pwd" 
+					<td><input type="password" class="mem_signup_form"    id="mem_pwd" name="mem_pwd" 
 						required="required" placeholder=" password "/></td>
 					
 				</tr>
@@ -296,13 +351,14 @@ function send(f) {
 				<tr>
 				
 					<td><input type="text" class="mem_signup_form"   id="mem_nickname" name="mem_nickname" 
-							required="required" placeholder=" nickname "/></td>
+							required="required" placeholder=" nickname "><span id="nickname_msg"></span>		
+							</td>
 					
 				</tr>
 				
 				<tr>
 				
-					<td><input type="text" class="mem_signup_form"    id="mem_birth" name="mem_birth" 
+					<td><input type="text"  class="mem_signup_form"    id="mem_birth" name="mem_birth" 
 							required="required" placeholder="Social Security Number"/></td>
 					
 				</tr>

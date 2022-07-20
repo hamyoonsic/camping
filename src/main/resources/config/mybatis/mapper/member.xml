@@ -25,16 +25,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!--insert  -->
 <insert id="member_insert" parameterType="vo.MemberVo">
 	insert into member values(seq_member_mem_idx.nextVal,
-                             
+							  #{ grade_idx},                           
                               #{ mem_email },
                               #{ mem_pwd },
                               #{ mem_nickname },
-                              #{ mem_gender },
                               #{ mem_birth },
                             	sysdate,
                               #{ mem_pic_filename },
-                              #{ mem_profile}
-                             
+                              #{ mem_profile},
+                              #{ mem_status}
+                             )
 </insert>
 
  <!-- delete -->

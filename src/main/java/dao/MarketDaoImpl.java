@@ -5,9 +5,9 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import vo.ReviewVo;
+import vo.MarketVo;
 
-public class ReviewDaoImpl implements ReviewDao {
+public class MarketDaoImpl implements MarketDao {
 
 	SqlSession sqlSession;
 	
@@ -16,27 +16,27 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public List<ReviewVo> selectList(int m_idx) {
+	public List<MarketVo> selectList(int m_idx) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("review.review_list",m_idx);
+		return sqlSession.selectList("market.market_list",m_idx);
+	}
+	
+	@Override
+	public int market_insertlike(MarketVo vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("market.market_insertlike",vo);
 	}
 
 	@Override
-	public ReviewVo selectOne(int review_idx) {
+	public int market_deletelike(MarketVo vo) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("review.review_one",review_idx);
+		return sqlSession.delete("market.market_deletelike",vo);
 	}
 
 	@Override
-	public int review_insertlike(ReviewVo vo) {
+	public MarketVo selectOne(int market_idx) {
 		// TODO Auto-generated method stub
-		return sqlSession.insert("review.review_insertlike",vo);
-	}
-
-	@Override
-	public int review_deletelike(ReviewVo vo) {
-		// TODO Auto-generated method stub
-		return sqlSession.delete("review.review_deletelike",vo);
+		return sqlSession.selectOne("market.market_one",market_idx);
 	}
 
 	@Override
@@ -52,48 +52,46 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public int insert(ReviewVo vo) {
+	public int insert(MarketVo vo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int reply(ReviewVo vo) {
+	public int reply(MarketVo vo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int delete(int review_idx) {
+	public int delete(int market_idx) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int update(ReviewVo vo) {
+	public int update(MarketVo vo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int update_step(ReviewVo vo) {
+	public int update_step(MarketVo vo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int update_readhit(int review_idx) {
+	public int update_readhit(int market_idx) {
 		// TODO Auto-generated method stub
-		return sqlSession.update("review.review_update_readhit", review_idx);
+		return sqlSession.update("market.market_update_readhit", market_idx);
 	}
 
 	@Override
-	public int modify(ReviewVo vo) {
+	public int modify(MarketVo vo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-	
 
 
 }

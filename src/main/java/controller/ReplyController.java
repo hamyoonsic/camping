@@ -15,7 +15,7 @@ import dao.ReviewReplyDao;
 import vo.ReviewReplyVo;
 
 @Controller
-@RequestMapping("/board/post/")
+@RequestMapping("/board/")
 public class ReplyController {
 
 	ReviewReplyDao review_reply_dao;
@@ -28,7 +28,7 @@ public class ReplyController {
 	HttpServletRequest request;
 	
 	
-	
+	/*
 	@RequestMapping("list.do")
 	public String review_reply_list(Model model) {
 		
@@ -36,9 +36,10 @@ public class ReplyController {
 		
 		model.addAttribute("review_reply_list",list);
 		
-		return "board/post";
+		return "board/review_view";
 		
 	}
+	*/
 	
 	
 	

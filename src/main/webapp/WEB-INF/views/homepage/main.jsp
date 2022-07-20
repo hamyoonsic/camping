@@ -31,6 +31,37 @@
 </style>
 
 
+<script type="text/javascript">
+
+$(document).ready(function(){
+	
+	if("${!empty param.join_success}"=="true"){
+		
+		Swal.fire({
+            icon: 'success',                         
+            title: '가입되었습니다!'  ,        
+            text: '환영합니다!'
+		
+		});
+	}
+	
+	
+	
+	
+});
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
 </head>
 
 
@@ -109,10 +140,5 @@
 <div id="footer">
 	<%@include file ="footer.jsp" %>
 </div>
-
-<div>
-	<%@include file ="../board/carpool_board.jsp" %>
-</div>
-
 </body>
 </html>
