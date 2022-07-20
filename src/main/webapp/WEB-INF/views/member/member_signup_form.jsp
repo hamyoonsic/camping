@@ -114,7 +114,7 @@ h1{
 <script type="text/javascript">
 
 var regular_email =/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
-var regular_nickname = /^[.]{1,20}$/ ;
+var regular_nickname = /^.{1,20}$/ ;
 
 $(document).ready(function(){
 	
