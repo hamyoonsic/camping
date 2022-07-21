@@ -22,6 +22,6 @@
 | Name |GitHub | Position |
 | --- | --- | --- |
 |김주원| joowon |    |
-|최미영| choimiyoung |eorkfclsrn@naver.com|
-|최원영| evenoahchoi |    |
+|최미영| choimiyoung ||
+|최원영| evenoahchoi |eorkfclsrn@naver.com|
 |함윤식| hys |    |
