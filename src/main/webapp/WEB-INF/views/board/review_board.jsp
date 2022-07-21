@@ -105,11 +105,8 @@
 	<c:forEach var="vo" items="${ list }">
 		<tr>
 			<td>${ vo.review_no }</td>
-			<td class="subject"><a href="#">${ vo.review_title }</td>
-			<td>${ vo.review_hit_count }</td>
-			<td>${ vo.review_like_count }</td>
-			<td>${ vo.review_idx }</td>
 			<td class="subject"><a href="review_view.do?review_idx=${vo.review_idx }&page=${ empty param.page ? 1 : param.page}">${ vo.review_title }</td>
+			<td>${ vo.review_hit_count }</td>
 			<td>${ vo.cnt }</td>
 			<td>${ vo.mem_nickname }</td>
 			<td>${ fn:substring(vo.review_regdate,0,10) }</td>
