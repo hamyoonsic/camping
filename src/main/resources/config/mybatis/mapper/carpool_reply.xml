@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="carpool_reply">
+
+	<!-- 댓글목록 -->
+	<select id="carpool_reply_list" resultType="vo.CarpoolReplyVo">
+		select * from carpool_reply_view
+	</select>
+	
+	
+	
+	<!--전체 조회  -->
+	<select id="carpool_reply_list_paging" parameterType="java.util.Map" resultType="vo.CarpoolReplyVo">
+		select * from 
+		(
+			select
+				r.*,
+				rank() over (order by carpool_reply_idx desc) no
+			from(select * from carpool_reply_view where carpool_idx=#{carpool_idx}) r
+		)
+		where no between #{start} and #{end}
+	</select>
+
+
+
+	<!-- 댓글작성 -->
+	<insert id="carpool_reply_insert" parameterType ="vo.CarpoolReplyVo">
+		insert into carpool_reply values(seq_carpool_reply_idx.nextVal,
+										#{mem_idx}, 
+										#{mem_nickname},
+										#{carpool_idx},
+										#{carpool_reply_content},
+										0,
+										0,
+										0,
+										sysdate,
+										#{carpool_reply_ip}
+										)
+	</insert>
+
+
+	<!-- 댓글삭제 -->
+	<delete id="carpool_reply_delete" parameterType="int">
+		delete from carpool_reply where carpool_idx=#{carpool_idx}
+	</delete>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
