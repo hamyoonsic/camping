@@ -5,13 +5,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="carpool">
 
 	<!-- 전체조회 -->
-	<select id="carpool_list" parameterType="int" resultType="vo.CarpoolVo">
+	<select id="carpool_list" parameterType="map" resultType="vo.CarpoolVo">
 	select c.* ,
      (select count(carpool_idx) from CARPOOL_LIKE where c.carpool_idx=carpool_idx) cnt,
      (select count(carpool_idx) from CARPOOL_LIKE where c.carpool_idx=carpool_idx and mem_idx=#{m_idx}) heart_flag
 	from
 	 (select * from CARPOOL) c order by c.carpool_idx desc
 	</select>
+	
+	   <select id="carpool_condition_list" parameterType="java.util.Map" resultType="vo.CarpoolVo">
+   select * from
+   (
+      select 
+         c.*,
+         rank() over(order by carpool_idx desc) carpool_no
+      from
+         (select * from carpool
+            <trim prefix="where" prefixOverrides="or">
+               <if test="carpool_title != null">
+                  carpool_title like '%' || #{ carpool_title } || '%'
+               </if>         
+
+               <if test="carpool_content!= null">
+                  or carpool_content like '%' || #{ carpool_content } || '%'
+               </if>         
+
+               <if test="mem_nickname != null">
+                  or mem_nickname like '%' || #{ mem_nickname } || '%'
+               </if>         
+            </trim>
+         
+         ) c
+   )   
+      where carpool_no between #{ start } and #{ end }
+   </select>
+	
+	
 	
 	<!--carpool_idx해당되는 게시물1건   -->
 	<select id="carpool_one" parameterType="int" resultType="vo.CarpoolVo">

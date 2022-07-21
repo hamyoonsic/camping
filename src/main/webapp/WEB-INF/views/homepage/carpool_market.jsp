@@ -258,9 +258,9 @@
 	         <table>
 	         	<tr>
 	         		
-	         		<td style="width: 60%"><a href="board/carpool_view.do?carpool_idx=${vo.carpool_idx }&page=${ empty param.page ? 1 : param.page}" style="text-decoration: none; color: black;">&nbsp;${ vo.carpool_title }</td>
-	         		<td style="width: 25%">&nbsp;${ vo.mem_nickname }</td>
-	         		<td style="width: 15%">&nbsp;${ fn:substring(vo.carpool_regdate,5,10) }</td>
+	         		<td style="width: 60%;"><a href="board/carpool_view.do?carpool_idx=${vo.carpool_idx }&page=${ empty param.page ? 1 : param.page}" style="text-decoration: none; color: black;">&nbsp;${ vo.carpool_title }</td>
+	         		<td style="width: 20%;">&nbsp;${ vo.mem_nickname }</td>
+	         		<td style="width: 12%;">&nbsp;${ fn:substring(vo.carpool_regdate,5,10) }</td>
 	         		
 	         		<c:if test="${(empty user.mem_idx) or (vo.heart_flag eq 0)}">
 	         		<td><button type="button" style="background: none; border: none;" onclick="updatelike('${ vo.carpool_idx }');">
@@ -271,7 +271,7 @@
 	         			<img src="${ pageContext.request.contextPath }/resources/images/heart-1.png" width="20px" height="20px">
 	         		</c:if>
 	         		</button></td>
-	         		<td style="width: 20%">&nbsp;&nbsp;${ vo.cnt }&nbsp;&nbsp;</td>
+	         		<td style="width: 8%; text-align: center;" >&nbsp;&nbsp;${ vo.cnt }&nbsp;&nbsp;</td>
 	         	</tr>
 	         </table>
 	         </div>

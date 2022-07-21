@@ -94,6 +94,12 @@ public class CarpoolDaoImpl implements CarpoolDao {
 		return 0;
 	}
 
+	@Override
+	public List<CarpoolVo> selectList(Map map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("carpool.carpool_list",map);
+	}
+
 	
 
 

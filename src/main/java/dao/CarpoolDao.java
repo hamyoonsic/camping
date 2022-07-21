@@ -8,6 +8,7 @@ import vo.CarpoolVo;
 public interface CarpoolDao {
 
 	List<CarpoolVo> selectList(int m_idx);
+	List<CarpoolVo> selectList(Map map);
 	CarpoolVo selectOne(int carpool_idx);
 
 	//게시글 좋아요 +1

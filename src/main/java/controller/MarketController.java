@@ -77,25 +77,17 @@ public class MarketController {
 	
 		@ResponseBody
 		@RequestMapping(value ="/market_insertlike.do", method = RequestMethod.POST)
-		public Map market_insertlike(@RequestParam int mem_idx,int market_idx,Model model,MarketVo vo) {
-			
-			Map map = new HashMap();
-			map.put("m_idx", mem_idx);
-			map.put("market_idx", market_idx);
-		
+		public int market_insertlike(MarketVo vo) {
+	
 			int res = market_dao.market_insertlike(vo);
 			
-			return map;
+			return 1;
 		}
 		
 		@ResponseBody
 		@RequestMapping(value ="/market_deletelike.do", method = RequestMethod.POST)
-		public int market_deletelike(@RequestParam int mem_idx,int market_idx,Model model,MarketVo vo) {
+		public int market_deletelike(MarketVo vo) {
 			
-			Map map = new HashMap();
-			map.put("m_idx", mem_idx);
-			map.put("market_idx", market_idx);
-		
 			int res = market_dao.market_deletelike(vo);
 			
 			return 1;

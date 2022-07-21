@@ -77,25 +77,17 @@ public class ReviewController {
 	
 	@ResponseBody
 	@RequestMapping(value ="/review_insertlike.do", method = RequestMethod.POST)
-	public Map review_insertlike(@RequestParam int mem_idx,int review_idx,Model model,ReviewVo vo) {
-		
-		Map map = new HashMap();
-		map.put("m_idx", mem_idx);
-		map.put("review_idx", review_idx);
-	
+	public int review_insertlike(ReviewVo vo) {
+
 		int res = review_dao.review_insertlike(vo);
 		
-		return map;
+		return 1;
 	}
 	
 	@ResponseBody
 	@RequestMapping(value ="/review_deletelike.do", method = RequestMethod.POST)
-	public int review_deletelike(@RequestParam int mem_idx,int review_idx,Model model,ReviewVo vo) {
-		
-		Map map = new HashMap();
-		map.put("m_idx", mem_idx);
-		map.put("review_idx", review_idx);
-	
+	public int review_deletelike(ReviewVo vo) {
+
 		int res = review_dao.review_deletelike(vo);
 		
 		return 1;

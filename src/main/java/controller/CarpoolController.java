@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import common.MyConstant;
 import dao.CarpoolDao;
 import dao.MarketDao;
+import util.Paging;
 import vo.CarpoolVo;
 import vo.MarketVo;
 import vo.MemberVo;
@@ -46,20 +48,69 @@ public class CarpoolController {
 	}
 	
 	@RequestMapping("/board/carpool_list.do")
-	public String list(Model model) {
+	public String list(@RequestParam(value="page", required = false, defaultValue = "1") int nowPage,
+			@RequestParam(value="search", required = false, defaultValue = "carpool_all") String search,			
+			@RequestParam(value="search_text", required = false) String search_text,			  
+	        Model model) {
 		
 		int m_idx = 0;
-		MemberVo user = (MemberVo) session.getAttribute("user");
 		
+		MemberVo user = (MemberVo) session.getAttribute("user");
+		int start = (nowPage-1) * MyConstant.Carpool.BLOCK_LIST + 1;
+		int end = start + MyConstant.Carpool.BLOCK_LIST - 1;
 		if(user!=null)m_idx=user.getMem_idx();
 		
-		List<CarpoolVo> list = carpool_dao.selectList(m_idx);
-		
-		model.addAttribute("list",list);
 		
 		//세션에 저장되어있는 Show정보를 삭제한다.
 		session.removeAttribute("show");
 		
+		Map map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("m_idx", m_idx);
+		
+		//전체검색이 아니면 검색조건주기
+		if(!search.equals("carpool_all")) {
+			
+			if(search.equals("carpool_title_carpool_content_mem_nickname")) { //제목+이름+내용
+				
+					map.put("carpool_title", search_text);
+					map.put("carpool_content", search_text);
+					map.put("mem_nickname", search_text);
+					
+			} else if(search.equals("carpool_title")) {//제목
+				
+				map.put("carpool_title", search_text);
+				
+			} else if(search.equals("carpool_content")) {//내용
+				
+				map.put("carpool_content", search_text);
+			
+			} else if(search.equals("mem_nickname")) {//닉네임
+		
+				map.put("mem_nickname", search_text);
+			}
+				
+		}
+		
+		//전체게시물 수 구하기
+		int rowTotal = carpool_dao.selectRowTotal(map);
+		
+		String search_filter = String.format("search=%s&search_text=%s", search, search_text);
+		
+		String pageMenu = Paging.getPaging("carpool_list.do",
+											 search_filter, 
+											 nowPage, 
+											 rowTotal, 
+											 MyConstant.Carpool.BLOCK_LIST, 
+											 MyConstant.Carpool.BLOCK_PAGE);
+		
+		
+		List<CarpoolVo> list2 = carpool_dao.selectList(map);
+		
+		model.addAttribute("list2",list2);
+		model.addAttribute("pageMenu", pageMenu);
+	
 		return "board/carpool_board";
 	}
 	
@@ -97,25 +148,17 @@ public class CarpoolController {
 	
 	@ResponseBody
 	@RequestMapping(value ="/carpool_insertlike.do", method = RequestMethod.POST)
-	public Map carpool_insertlike(@RequestParam int mem_idx,int carpool_idx,Model model,CarpoolVo vo) {
+	public int carpool_insertlike(CarpoolVo vo) {
 		
-		Map map = new HashMap();
-		map.put("m_idx", mem_idx);
-		map.put("carpool_idx", carpool_idx);
-	
 		int res = carpool_dao.carpool_insertlike(vo);
 		
-		return map;
+		return 1;
 	}
 	
 	@ResponseBody
 	@RequestMapping(value ="/carpool_deletelike.do", method = RequestMethod.POST)
-	public int carpool_deletelike(@RequestParam int mem_idx,int carpool_idx,Model model,CarpoolVo vo) {
+	public int carpool_deletelike(CarpoolVo vo) {
 		
-		Map map = new HashMap();
-		map.put("m_idx", mem_idx);
-		map.put("carpool_idx", carpool_idx);
-	
 		int res = carpool_dao.carpool_deletelike(vo);
 		
 		return 1;
