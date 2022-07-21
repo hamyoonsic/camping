@@ -5,4 +5,10 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
+	<bean id="total_search_service" class="service.TotalSearchServiceImpl">
+		<constructor-arg ref="carpool_dao"/>
+		<constructor-arg ref="market_dao"/>
+		<constructor-arg ref="review_dao"/>
+	</bean>
+		
 </beans>

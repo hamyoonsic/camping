@@ -14,7 +14,14 @@
 	</bean>
 	
 	<bean id="review_reply_dao" class="dao.ReviewReplyDaoImpl">
-
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	
+	<bean id="market_reply_dao" class="dao.MarketReplyDaoImpl">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	
+	<bean id="carpool_reply_dao" class="dao.CarpoolReplyDaoImpl">
 		<property name="sqlSession" ref="sqlSession"></property>
 	</bean>
 	

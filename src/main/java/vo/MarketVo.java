@@ -10,13 +10,6 @@ public class MarketVo {
 	String 	market_content;
 	String 	market_regdate;
 	int		market_hit_count;
-	public String getMem_nickname() {
-		return mem_nickname;
-	}
-
-	public void setMem_nickname(String mem_nickname) {
-		this.mem_nickname = mem_nickname;
-	}
 
 	int 	market_like_count;
 	String	market_thumbnail;
@@ -28,7 +21,15 @@ public class MarketVo {
 	int			cnt;
 	int			heart_flag;
 
+	int 	    market_no;
 	
+	public String getMem_nickname() {
+		return mem_nickname;
+	}
+	
+	public void setMem_nickname(String mem_nickname) {
+		this.mem_nickname = mem_nickname;
+	}
 	
 	public int getCnt() {
 		return cnt;
@@ -143,7 +144,12 @@ public class MarketVo {
 	}
 	
 
-	
-	
+	public int getMarket_no() {
+		return market_no;
+	}
+
+	public void setMarket_no(int market_no) {
+		this.market_no = market_no;
+	}
 	
 }

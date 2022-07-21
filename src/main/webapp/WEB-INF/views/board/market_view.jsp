@@ -86,7 +86,7 @@
 
 </head>
 <body>
-
+<%@include file="../homepage/nav.jsp" %>
 <div id="box">
 	<div id="subject">제목:${vo.market_title}</div>
 	<div id="content">${vo.market_content }</div>
@@ -103,6 +103,6 @@
 				onclick="del();">
 		</c:if>
 </div>
-
+<%@include file="market_comment.jsp" %>
 </body>
 </html>

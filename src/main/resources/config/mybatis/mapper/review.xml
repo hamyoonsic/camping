@@ -5,35 +5,98 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="review">
 
 	<!-- 전체조회 -->
-	<select id="review_list" parameterType="int" resultType="vo.ReviewVo">
-	select r.* ,
-     (select count(review_idx) from REVIEW_LIKE where r.review_idx=review_idx) cnt,
-     (select count(review_idx) from REVIEW_LIKE where r.review_idx=review_idx and mem_idx=#{m_idx}) heart_flag
-	from
-	 (select * from REVIEW) r order by r.review_idx desc
+	<select id="review_list" parameterType="map" resultType="vo.ReviewVo">
+		select r.* ,
+	     (select count(review_idx) from REVIEW_LIKE where r.review_idx=review_idx) cnt,
+	     (select count(review_idx) from REVIEW_LIKE where r.review_idx=review_idx and mem_idx=#{m_idx}) heart_flag
+	   from
+    (select * from REVIEW) r order by r.review_idx desc
+	</select>
+	
+	<!-- 페이징처리를 위한 조회 -->
+	<select id="review_condition_list" parameterType="java.util.Map" resultType="vo.ReviewVo">
+	select * from
+	(
+		select 
+			r.*,
+			rank() over(order by review_idx desc) review_no,
+			 (select count(review_idx) from REVIEW_LIKE where r.review_idx=review_idx) cnt,
+	     (select count(review_idx) from REVIEW_LIKE where r.review_idx=review_idx and mem_idx=#{m_idx}) heart_flag
+		from
+			(select * from review
+				<trim prefix="where" prefixOverrides="or">
+					<if test="review_title != null">
+						review_title like '%' || #{ review_title } || '%'
+					</if>			
+
+					<if test="review_content!= null">
+						or review_content like '%' || #{ review_content } || '%'
+					</if>			
+
+					<if test="mem_nickname != null">
+						or mem_nickname like '%' || #{ mem_nickname } || '%'
+					</if>			
+				</trim>
+			
+			) r
+	)	
+		where review_no between #{ start } and #{ end }
+	</select>
+	
+	<!-- 전체게시물수 구하기 -->
+	<select id="review_row_total" resultType="int">
+		select nvl(count(*),0) from review
+	</select>
+	
+	<!-- 검색 조건별 게시물수 구하기 -->
+	<select id="review_condition_row_total" parameterType="java.util.Map" resultType="int">
+		select nvl(count(*),0) from review
+		<trim prefix="where" prefixOverrides="or">
+					<if test="review_title != null">
+						review_title like '%' || #{ review_title } || '%'
+					</if>			
+
+					<if test="review_content!= null">
+						or review_content like '%' || #{ review_content } || '%'
+					</if>			
+
+					<if test="mem_nickname != null">
+						or mem_nickname like '%' || #{ mem_nickname } || '%'
+					</if>			
+		</trim>
+	</select>
+	
+	<!-- 전체검색 -->
+	<select id="review_condition_total" parameterType="java.lang.String" resultType="vo.ReviewVo">
+		select * from review
+			where
+						review_title like '%' || #{ search_text } || '%'
+						or review_content like '%' || #{ search_text } || '%'
+	
+					
 	</select>
 	
 	<!--review_idx해당되는 게시물1건   -->
-	<select id="review_one" parameterType="int" resultType="vo.ReviewVo">
-		select * from review where review_idx=#{review_idx}
-	</select>
+   <select id="review_one" parameterType="int" resultType="vo.ReviewVo">
+      select * from review where review_idx=#{review_idx}
+   </select>
 
-	<!--  게시글 추천 시 Like 테이블에 insert  -->
-	<insert id="review_insertlike" parameterType="vo.ReviewVo"> 
-		insert into review_like values(seq_review_like_idx.nextVal,#{mem_idx},#{review_idx},1) 
-	</insert>
-	
-	<!--  게시글 추천취소 시 좋아요 테이블에서 삭제   -->
-	<delete id="review_deletelike" parameterType="vo.ReviewVo"> 
-		delete from review_like where review_idx=#{review_idx} and mem_idx=#{mem_idx}
-	</delete>
-	
-	<!-- 조회수 증가 -->
-	<update id="review_update_readhit" parameterType="int">
-		update review 
-			set review_hit_count = review_hit_count + 1 
-		where review_idx = #{ review_idx}
-	</update>
+   <!--  게시글 추천 시 Like 테이블에 insert  -->
+   <insert id="review_insertlike" parameterType="vo.ReviewVo"> 
+      insert into review_like values(seq_review_like_idx.nextVal,#{mem_idx},#{review_idx},1) 
+   </insert>
+   
+   <!--  게시글 추천취소 시 좋아요 테이블에서 삭제   -->
+   <delete id="review_deletelike" parameterType="vo.ReviewVo"> 
+      delete from review_like where review_idx=#{review_idx} and mem_idx=#{mem_idx}
+   </delete>
+   
+   <!-- 조회수 증가 -->
+   <update id="review_update_readhit" parameterType="int">
+      update review 
+         set review_hit_count = review_hit_count + 1 
+      where review_idx = #{ review_idx}
+   </update>
 
 </mapper>
 
