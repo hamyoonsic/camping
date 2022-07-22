@@ -228,6 +228,7 @@ public class MemberController {
       model.addAttribute("categoryCount",categoryCount);
       model.addAttribute("replyLikeCount",replyLikeCount);
       
+      
       return "mypage/my_page";
    }
    
