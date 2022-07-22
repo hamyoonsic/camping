@@ -187,7 +187,12 @@
 									}else if (result_data.result=='fail_pwd'){
 										Swal.fire('로그인 실패!',"passwore가 틀립니다",'error');
 										return;
+									}else if (result_data.result=='fail_mem_out'){
+								
+										Swal.fire('로그인 실패!',"탈퇴한 회원입니다.",'error');
+										return;
 									}
+									
 									if(result_data.result=='success'){
 										Swal.fire({
 								            icon: 'success',                         
