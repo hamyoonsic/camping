@@ -9,10 +9,19 @@
 	</bean>
 	
 	<bean id="carpool_dao" class="dao.CarpoolDaoImpl">
+
 		<property name="sqlSession" ref="sqlSession"></property>
 	</bean>
 	
-	<bean id="review_dao" class="dao.ReviewDaoImpl">
+	<bean id="review_reply_dao" class="dao.ReviewReplyDaoImpl">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	
+	<bean id="market_reply_dao" class="dao.MarketReplyDaoImpl">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	
+	<bean id="carpool_reply_dao" class="dao.CarpoolReplyDaoImpl">
 		<property name="sqlSession" ref="sqlSession"></property>
 	</bean>
 	
@@ -20,8 +29,7 @@
 		<property name="sqlSession" ref="sqlSession"></property>
 	</bean>
 	
-	<bean id="review_reply_dao" class="dao.ReviewReplyDaoImpl">
-
+	<bean id="review_dao" class="dao.ReviewDaoImpl">
 		<property name="sqlSession" ref="sqlSession"></property>
 	</bean>
 	
