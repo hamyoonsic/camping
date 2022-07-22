@@ -86,7 +86,7 @@
 
 </head>
 <body>
-
+<%@include file="../homepage/nav.jsp" %>
 <div id="box">
 	<div id="subject">제목:${vo.carpool_title}</div>
 	<div id="content">${vo.carpool_content }</div>
@@ -103,7 +103,7 @@
 				onclick="del();">
 		</c:if>
 </div>
-
+<%@include file="carpool_comment.jsp" %>
 
 </body>
 </html>

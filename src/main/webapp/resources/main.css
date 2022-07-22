@@ -108,16 +108,14 @@
 	max-width:1000px;
 	width: 100%;
 	margin: 0 auto;
-
-	
-}
+}	
 
 .slideitem img{
 	border-radius: 25px;
 
 	width: 100%;
-	/* overflow: hidden;
-	height: 600px; */
+	/* overflow: hidden;*/
+	
 }
 
 .slidebox .slidelist{

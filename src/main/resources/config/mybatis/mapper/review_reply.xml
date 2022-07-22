@@ -4,19 +4,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="review_reply">
 
-	<!-- <resultMap type="vo.ReviewReplyVo" id="review_reply_RM">
-		<result property="*mem_idx*"				column="mem_idx"/>
-		<result property="*mem_nickname*"			column="mem_nickname"/>
-		<result property="*review_idx*"				column="review_idx"/>
-		<result property="*review_reply_content*"	column="review_reply_content"/>
-		<result property="*review_reply_ip*"		column="review_reply_ip"/>
-	</resultMap>
- -->
-
-	<!--전체 조회  -->
+	<!-- 댓글목록 -->
 	<select id="review_reply_list" resultType="vo.ReviewReplyVo">
 		select * from review_reply_view
 	</select>
+	
+	
+	
+	<!--전체 조회  -->
+	<select id="review_reply_list_paging" parameterType="java.util.Map" resultType="vo.ReviewReplyVo">
+		select * from 
+		(
+			select
+				r.*,
+				rank() over (order by review_reply_idx desc) no
+			from(select * from review_reply_view where review_idx=#{review_idx}) r
+		)
+		where no between #{start} and #{end}
+	</select>
+
+
 
 	<!-- 댓글작성 -->
 	<insert id="review_reply_insert" parameterType ="vo.ReviewReplyVo">
@@ -33,6 +40,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 										)
 	</insert>
 
+
+	<!-- 댓글삭제 -->
+	<delete id="review_reply_delete" parameterType="int">
+		delete from review_reply where review_idx=#{review_idx}
+	</delete>
 
 </mapper>
 

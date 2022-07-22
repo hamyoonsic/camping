@@ -31,12 +31,16 @@
 	display:flex;
 	width: 100%;
 	justify-content:space-around;
-	line-height: 80px;
+	line-height: 50px;
 	color: black;
-	margin-bottom: 0px;
+	margin-bottom: 150px;
 	list-style: none;
 	font-weight: 700;
 	
+	margin-top: -50px;
+	padding-top: 0px;
+	
+
 	
 }
 

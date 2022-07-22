@@ -187,7 +187,7 @@
 			success	:	function(res_data){
 				
 				if(res_data.result){
-					$("#textarea").val("");
+					$("#review_reply_content").val("");
 					review_reply_list(global_page);
 					
 				}
@@ -203,7 +203,7 @@
 			}
 		});
 	}//end : review_reply_insert
-	
+
 	//댓글목록 가져오기
 	var	global_page=1;
 	function review_reply_list(reply_page){

@@ -124,7 +124,7 @@
 		display	:	inline-block;
 	}
 	
-	#review_reply_content{
+	#carpool_reply_content{
 		width:100%;
 		height:100%;
 		resize: none;
@@ -148,7 +148,7 @@
 
 
 	$(function(){
-		review_reply_list(1);
+		carpool_reply_list(1);
 		/* $("#comment_btn").click(function(){
 		
 			$("#comment_box").toggle();
@@ -158,7 +158,7 @@
 	});
 	
 	//댓글작성
-	function review_reply_insert(){
+	function carpool_reply_insert(){
 		
 		if("${empty user }"=="true"){
 			
@@ -166,29 +166,29 @@
 			return;
 		}
 		
-		var review_reply_content = $("#review_reply_content").val().trim();
+		var carpool_reply_content = $("#carpool_reply_content").val().trim();
 		
-		if(review_reply_content==''){
+		if(carpool_reply_content==''){
 			
 			alert('내용을 입력하세요');
-			review_reply_content.focus();
+			carpool_reply_content.focus();
 			return;
 			
 		}
 		
 		$.ajax({
 			
-			url		:	'review_reply_insert.do',
+			url		:	'carpool_reply_insert.do',
 			data	:	{	'mem_idx':"${user.mem_idx}",
 							'mem_nickname':"${user.mem_nickname}",
-							"review_reply_content":review_reply_content,
-							"review_idx":"${param.review_idx}"
+							"carpool_reply_content":carpool_reply_content,
+							"carpool_idx":"${param.carpool_idx}"
 						},
 			success	:	function(res_data){
 				
 				if(res_data.result){
-					$("#textarea").val("");
-					review_reply_list(global_page);
+					$("#carpool_reply_content").val("");
+					carpool_reply_list(global_page);
 					
 				}
 				
@@ -202,16 +202,16 @@
 				
 			}
 		});
-	}//end : review_reply_insert
+	}//end : carpool_reply_insert
 	
 	//댓글목록 가져오기
 	var	global_page=1;
-	function review_reply_list(reply_page){
+	function carpool_reply_list(reply_page){
 		
 		$.ajax({
 			
-			url			:	"review_reply_list.do",
-			data		:	{"review_idx":"${param.review_idx}" , "page":reply_page},
+			url			:	"carpool_reply_list.do",
+			data		:	{"carpool_idx":"${param.carpool_idx}" , "page":reply_page},
 			success		:	function(res_data){
 				
 				$("#comment_box").html(res_data);
@@ -222,7 +222,7 @@
 				
 			}
 		});
-	}//end : review_reply_list
+	}//end : carpool_reply_list
 	
 	
 
@@ -237,15 +237,15 @@
 		
 		
 			<input type="hidden" id="mem_nickname" value="${user.mem_nickname}">
-			<input type="hidden" id="reivew_idx" value="${review_idx}">
+			<input type="hidden" id="reivew_idx" value="${carpool_idx}">
 			<div id="comment_write">
 				<div id="comment_write_box">
-					<textarea id="review_reply_content" placeholder="댓글을 작성하세요"></textarea>
+					<textarea id="carpool_reply_content" placeholder="댓글을 작성하세요"></textarea>
 				</div>
 				<div id="comment_write_pic">
 					<img src="${pageContext.request.contextPath}/resources/images/unsplash_people/people2.jpg" id="comment_profile">
 				</div>
-				<input type="button" value="댓글 작성" onclick="review_reply_insert();">
+				<input type="button" value="댓글 작성" onclick="carpool_reply_insert();">
 			</div>
 		
 		

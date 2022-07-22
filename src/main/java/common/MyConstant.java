@@ -26,6 +26,14 @@ public class MyConstant {
 		
 	}
 	
+	//관리자페이지 멤버 상수
+	public static class Member{
+		
+		public static final int BLOCK_LIST = 5; //한화면당 보여질 게시물수
+		public static final int BLOCK_PAGE = 5; //한화면당 보여질 페이지수
+		
+	}
+	
 	
 	
 	

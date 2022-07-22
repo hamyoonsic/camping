@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -24,7 +25,7 @@ public class MemberDaoImpl implements MemberDao {
       
       List<MemberVo> list = null;
       
-      list = sqlSession.selectList("member.member_list_adm");
+      list = sqlSession.selectList("member.member_mypage_adm");
       
       
       return list;
@@ -103,35 +104,47 @@ public class MemberDaoImpl implements MemberDao {
    }
 
 
-
-	@Override
-	public int selectOne_reply_like_count(int mem_idx) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("member.member_reply_like_count",mem_idx);
+	//∆‰¿Ã¬°
+	
+	
+	@Override 
+	  public int selectRowTotal(Map map) { 
+		
+		return sqlSession.selectOne("member.member_condition_row_total",map); 
+	  
 	}
-
-
-
+	
+	
 	
 	@Override
-	public int member_update(MemberVo vo) {
+	public List<MemberVo> selectConditionList(Map map) {
 		// TODO Auto-generated method stub
-		return sqlSession.update("member.member_update",vo);
+		
+		List<MemberVo> list = null;
+		
+		//2.Ω««‡
+		list = sqlSession.selectList("member.member_condition_list", map);
+		
+		
+		return list;
 	}
+
+
+
+	/*
+	 * @Override public int selectRowTotal() { // TODO Auto-generated method stub
+	 * return sqlSession.selectOne("member.member_row_total"); }
+	 */
 
 
 
 	@Override
-	public int member_out(MemberVo vo) {
+	public List<MemberVo> selectList(Map map) {
 		// TODO Auto-generated method stub
-		return sqlSession.update("member.member_out",vo);
+		 return sqlSession.selectList("member.member_mypage_adm",map);
 	}
 
 
 
-	public int photo_upload(MemberVo vo) {
-		// TODO Auto-generated method stub
-		return sqlSession.update("member.photo_upload",vo);
-	}
 
 }

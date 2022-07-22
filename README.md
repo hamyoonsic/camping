@@ -19,9 +19,9 @@
 
 👨‍👨‍👧‍👧팀원구성
 --
-| Name |GitHub | Position |
+| Name |GitHub | E-Mail |
 | --- | --- | --- |
 |김주원| joowon |    |
-|최미영| choimiyoung |    |
-|최원영| evenoahchoi |    |
+|최미영| choimiyoung ||
+|최원영| [evenoahchoi](https://github.com/evenoahchoi) |eorkfclsrn@naver.com|
 |함윤식| hys |    |

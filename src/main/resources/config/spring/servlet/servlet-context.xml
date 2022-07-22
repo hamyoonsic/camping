@@ -22,7 +22,6 @@
 	</beans:bean>
 	
 	
-	
 	<!-- <context:component-scan base-package="com.ict.camping" /> -->
 	
 	<!--수동생성  -->
@@ -41,14 +40,17 @@
 
 	<beans:bean class="controller.ReplyController">
 		<beans:property name="review_reply_dao" ref="review_reply_dao"/>
+		<beans:property name="market_reply_dao" ref="market_reply_dao"/>
+		<beans:property name="carpool_reply_dao" ref="carpool_reply_dao"/>
 	</beans:bean>
+	
 
 	<beans:bean class="controller.MarketController">
 		<beans:property name="market_dao" ref="market_dao"/>
 	</beans:bean>
-	
+
 	<beans:bean class="controller.TotalSearchController">
-		<beans:constructor-arg ref="total_search_service"/>
+		<beans:constructor-arg ref="total_search_service" />
 	</beans:bean>
 
 	
