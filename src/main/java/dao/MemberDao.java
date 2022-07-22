@@ -1,8 +1,10 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import vo.MemberVo;
+
 
 public interface MemberDao {
 
@@ -28,9 +30,13 @@ public interface MemberDao {
       
    //mem_idx에 해당하는 게시물 카운트 수  구하기 
    int selectOne_category_count(int mem_idx);
-   
-   
-   
+
+   //페이징&검색관련
+   int selectRowTotal(Map map); 
+   List<MemberVo> selectConditionList(Map map);
+  // int			  selectRowTotal();
+   List<MemberVo> selectList(Map map);
+
        
    
 }

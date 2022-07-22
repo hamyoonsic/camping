@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -24,7 +25,7 @@ public class MemberDaoImpl implements MemberDao {
       
       List<MemberVo> list = null;
       
-      list = sqlSession.selectList("member.member_list_adm");
+      list = sqlSession.selectList("member.member_mypage_adm");
       
       
       return list;
@@ -101,5 +102,49 @@ public class MemberDaoImpl implements MemberDao {
       // TODO Auto-generated method stub
       return sqlSession.selectOne("member.member_category_count",mem_idx );
    }
+
+
+	//∆‰¿Ã¬°
+	
+	
+	@Override 
+	  public int selectRowTotal(Map map) { 
+		
+		return sqlSession.selectOne("member.member_condition_row_total",map); 
+	  
+	}
+	
+	
+	
+	@Override
+	public List<MemberVo> selectConditionList(Map map) {
+		// TODO Auto-generated method stub
+		
+		List<MemberVo> list = null;
+		
+		//2.Ω««‡
+		list = sqlSession.selectList("member.member_condition_list", map);
+		
+		
+		return list;
+	}
+
+
+
+	/*
+	 * @Override public int selectRowTotal() { // TODO Auto-generated method stub
+	 * return sqlSession.selectOne("member.member_row_total"); }
+	 */
+
+
+
+	@Override
+	public List<MemberVo> selectList(Map map) {
+		// TODO Auto-generated method stub
+		 return sqlSession.selectList("member.member_mypage_adm",map);
+	}
+
+
+
 
 }

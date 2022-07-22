@@ -2,7 +2,6 @@ package controller;
 
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +10,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.User;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import common.MyConstant;
 import dao.MemberDao;
+import util.Paging;
 import vo.MemberVo;
 
 @Controller
@@ -40,20 +40,67 @@ public class MemberController {
    MemberDao member_dao;
 
    public void setMember_dao(MemberDao member_dao) {
-      this.member_dao = member_dao;
+      
+	   this.member_dao = member_dao;
    }
    
-   @RequestMapping("member_mypage_adm.do")
-   public String list(Model model) {
+   
+   	//관리자페이지 멤버전체조회
+      @RequestMapping("member_mypage_adm.do")
+      public String list(@RequestParam(value="page", required = false, defaultValue = "1") int nowPage,
+      					  @RequestParam(value="search", required = false, defaultValue = "member_all") String search,         
+      					  @RequestParam(value="search_text", required = false) String search_text,           
+      					  Model model) {
+   	   
+   	  int start = (nowPage-1) * MyConstant.Member.BLOCK_LIST + 1;
+   	  int end = start + MyConstant.Member.BLOCK_LIST - 1;
+   	  
+   	  	 Map map = new HashMap();
+         map.put("start", start);
+         map.put("end", end);
+         
+         
+         //전체검색이 아니면 검색조건주기
+         if(!search.equals("member_all")) {
+            
+            if(search.equals("grade_idx_mem_regdate")) { //등급+가입일자
+               
+                  map.put("grade_idx", search_text);
+                  map.put("mem_regdate", search_text);
+                  
+            } else if(search.equals("grade_idx")) {//등급
+               
+               map.put("grade_idx", search_text);
+               
+            } else if(search.equals("mem_regdate")) {//가입일자
+               
+               map.put("mem_regdate", search_text);
+            
+            } 
+               
+         }
+       
+         //전체게시물 수 구하기
+         int rowTotal = member_dao.selectRowTotal(map);
+         
+         String search_filter = String.format("search=%s&search_text=%s", search, search_text);
+         
+         String pageMenu = Paging.getPaging("member_mypage_adm.do",
+                                     search_filter, 
+                                     nowPage, 
+                                     rowTotal, 
+                                     MyConstant.Member.BLOCK_LIST, 
+                                     MyConstant.Member.BLOCK_PAGE);
+         
+         List<MemberVo> list = member_dao.selectConditionList(map);
+         
+         model.addAttribute("list",list);
+         model.addAttribute("pageMenu", pageMenu);
       
-      List<MemberVo> list =member_dao.selectList();
-      model.addAttribute("list", list);
+         return "member/member_mypage_adm";
+         
+      }
       
-      
-      
-      return "member/member_mypage_adm";
-      
-   }
    
    @RequestMapping("login.do")
    @ResponseBody

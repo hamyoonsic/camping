@@ -15,7 +15,7 @@ public class MemberVo {
 	String mem_profile;
 	int	   mem_status;
 	
-	
+	int  mem_no;
 	
 	public MemberVo() {
 		// TODO Auto-generated constructor stub
@@ -33,6 +33,19 @@ public class MemberVo {
 		this.mem_pic_filename = mem_pic_filename;
 		this.mem_profile = mem_profile;
 		this.mem_status = mem_status;
+	}
+
+	
+	
+	
+
+	public int getMem_no() {
+		return mem_no;
+	}
+
+
+	public void setMem_no(int mem_no) {
+		this.mem_no = mem_no;
 	}
 
 

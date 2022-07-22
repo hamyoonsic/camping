@@ -36,7 +36,7 @@
 
 .intro_text2 {
 	margin-bottom: 40px;
-	margin-top:500px;
+	margin-top:300px;
 }
 
 .intro_text2 h1 {
@@ -51,7 +51,7 @@
 
 .intro_text2>h3>a{
 	
-	/* float: right; */
+	/* float: right; */ 
 	margin-right: 100px;
 	color: black;
 	font-size: 20d/*  */px;
@@ -63,15 +63,25 @@
 	font-weight: lighter;
 	color: #636363;
 	font-size: 20px;
-	
+	text-align: center;
+	margin-top: 80px;
 	
 	}
+
+#more{
+	float: right;  
+	margin-right: 80px;
+	color: black;
+	font-size: 20px;
+
+}
 
 
 .icons {
 	display: flex;
 	justify-content:flex-end;
 	/* width: 1280px; */
+	width: 90%;
 	margin: auto;
 	text-align: center;
 	
@@ -104,7 +114,7 @@
 }
 
 .big{
-	width:25rem;
+	width:37rem;
 	border-radius: 15px;
 	height: 470px;
 	margin-bottom: 10px;
@@ -178,7 +188,8 @@
 		<div class="wrap2">
 			<div class="intro_bg2">
 				<div class="intro_text2">
-					<h1>REVIEW</h1><h3><a href="">MORE+</a></h3>
+					<h1>REVIEW</h1>
+					<h3 id="more"><a href="/camping/board/review_list.do">MORE+</a></h3>
 				</div>
 					<h2>이 달의 best review를 소개합니다.</h2>
 				</div>
