@@ -19,27 +19,6 @@
 
 
 
-$(document).ready(function(){
-   
-   
-      function write_list(){
-         
-      $.ajax({
-         
-         
-         
-      });   
-         
-         
-         
-      }
-   
-   
-   
-   
-   
-   
-});
 
 
 
@@ -92,7 +71,7 @@ $(document).ready(function(){
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
    <img src="${ pageContext.request.contextPath }/resources/upload/${ user.mem_pic_filename }" width="120px" height="120px"><br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   <a href="">개인정보수정</a>
+   <a href="my_profile_page.do">개인정보수정</a>
    <img src="${ pageContext.request.contextPath }/resources/images/message.png" width="30px" height="30px"><!-- 뱃지기능추가 -->
    </div>
    
@@ -102,7 +81,7 @@ $(document).ready(function(){
    <span><a href="#" onchange="write_list();" >내가 쓴 글 <font color="gray">${categoryCount }</font></a></span>&nbsp;&nbsp;
    <span><a href="#" onchange="write_comment_list();" >내가 쓴 댓글<font color="gray">${ replyCount }</font></a></span>&nbsp;&nbsp;
    <span><a href="#" onchange="my_like_list();" >내가 좋아요한 글<font color="gray">${ likeCount }</font></a></span>&nbsp;&nbsp;
-   <span><a href="#" onchange="my_like_reply_list();" >내가 좋아요한 댓글</a></span>
+   <span><a href="#" onchange="my_like_reply_list();" >내가 좋아요한 댓글<font color="gray">${ replyLikeCount }</font></a></span>
    </div>
    
    <!-- 실제 아래에 목록 보여주기 -->

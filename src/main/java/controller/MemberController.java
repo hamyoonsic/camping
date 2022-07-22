@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.User;
+import org.apache.taglibs.standard.lang.jstl.test.beans.PublicBean1;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -63,7 +64,6 @@ public class MemberController {
       MemberVo user = member_dao.selectOne(mem_email);
       
       //mem_email 체크
-      
       Map map = new HashMap();
       if(user==null) {
          
@@ -77,6 +77,13 @@ public class MemberController {
       
          map.put("result", "fail_pwd");
          return map;
+      }
+      
+      if(user.getMem_status()==0) {
+    	  System.out.println("mem_out");
+    	  map.put("result", "fail_mem_out");
+          return map;
+    	  
       }
    
       session.setAttribute("user", user);
@@ -153,7 +160,7 @@ public class MemberController {
       
       model.addAttribute("join_success","join_success");
       
-      return "redirect:../";
+      return "redirect:/";
    }
    
    @RequestMapping("check_email.do")
@@ -200,26 +207,161 @@ public class MemberController {
    
    @RequestMapping("mypage/my_page.do")
    public String mypage(Model model) {
+	   
       MemberVo user=null;
-      if((user=(MemberVo) session.getAttribute("user"))==null) {
-         
-         model.addAttribute("reson", "session_timeout");
-         return "redirect:login_form.do";
-      }
+		
+		  if((user=(MemberVo) session.getAttribute("user"))==null) {
+		  
+		  model.addAttribute("reson", "session_timeout"); return
+		  "redirect:login_form.do";
+		  
+		  }
+		 
       
-      int likeCount = member_dao.selectOne_like_count(user.getMem_idx());
-      int replyCount = member_dao.selectOne_reply_count(user.getMem_idx());
-      int categoryCount = member_dao.selectOne_category_count(user.getMem_idx());
-      
+      int likeCount 		= member_dao.selectOne_like_count(user.getMem_idx());
+      int replyCount 		= member_dao.selectOne_reply_count(user.getMem_idx());
+      int categoryCount 	= member_dao.selectOne_category_count(user.getMem_idx());
+      int replyLikeCount 	= member_dao.selectOne_reply_like_count(user.getMem_idx());
       
       model.addAttribute("likeCount", likeCount);
       model.addAttribute("replyCount", replyCount);
       model.addAttribute("categoryCount",categoryCount);
+      model.addAttribute("replyLikeCount",replyLikeCount);
       
       return "mypage/my_page";
    }
    
-
+   @RequestMapping("mypage/my_profile_page.do")
+   public String my_profile_page(Model model) {
+	   
+		
+		/*
+		 * MemberVo user=null;
+		 * 
+		 * if((user=(MemberVo) session.getAttribute("user"))==null) {
+		 * 
+		 * model.addAttribute("reson", "session_timeout"); return
+		 * "redirect:login_form.do"; }
+		 */
+	   
+	      
+	   return "mypage/my_profile_page";
+   }
+   
+   @RequestMapping("mypage/modify.do")
+   public String member_update(MemberVo vo,Model model) {
+	   
+		/*
+		 * MemberVo user=null;
+		 * 
+		 * 
+		 * if((user=(MemberVo) session.getAttribute("user"))==null ) {
+		 * 
+		 * model.addAttribute("reson", "session_timeout"); return
+		 * "redirect:login_form.do";
+		 * 
+		 * }
+		 */
+		 
+	 
+      String mem_profile =vo.getMem_profile().replaceAll("\r\n", "<br>");
+      vo.setMem_profile(mem_profile);
+      System.out.println(vo);
+	   
+      int res =member_dao.member_update(vo);
+      MemberVo user1 = member_dao.selectOne(vo.getMem_idx());
+      
+      session.removeAttribute("user");
+      session.setAttribute("user", user1);
+	    
+	   return "redirect:my_page.do";
+	 
+   }
+	
+   
+   @RequestMapping("mypage/photo_upload.do")
+   @ResponseBody
+   public String photo_upload(int mem_idx,@RequestParam MultipartFile mem_pic,Model model) throws Exception {
+	   
+	  
+	   
+	   //업로드 위치 
+	   String web_path ="/resources/upload/";
+	   String abs_path = application.getRealPath(web_path);
+	   
+	   
+	
+	   
+	   MemberVo originVo = member_dao.selectOne(mem_idx);
+	   File deleteFile = new File(abs_path,originVo.getMem_pic_filename());
+	   deleteFile.delete();
+	   
+	   
+	   String p_filename ="no_file";
+	   
+	   if(!mem_pic.isEmpty()) {//업로드된 파일이 있다면
+		   
+		   p_filename = mem_pic.getOriginalFilename();   
+		   
+		   File f =new File(abs_path,p_filename);
+		   
+		   if(f.exists()) {//동일 파일명이 존재하면 이름 바꾸기 
+			   
+			   long time = System.currentTimeMillis();
+			   
+			   p_filename = String.format("%d_%s", time,p_filename);
+			   
+			   f = new File(abs_path,p_filename);
+			   
+			   
+		   }
+		   // 임시저장 파일 -> f로 복사해 온다 
+		   mem_pic.transferTo(f);
+		   
+	   }
+	   
+	   
+	   MemberVo vo = new MemberVo();
+	   vo.setMem_pic_filename(p_filename);
+	   vo.setMem_idx(mem_idx);
+	
+	   
+	   
+	   
+	   int res =member_dao.photo_upload(vo);
+	  
+	   
+	   JSONObject json =new JSONObject();
+	   json.put("p_filename", p_filename);
+	   
+	   String json_str = json.toJSONString();
+	   
+	   return json_str;
+	   
+   }
+   
+   
+   
+   
+   
+   
+   
+   @RequestMapping("mypage/member_out")
+   public String member_out( int mem_idx){
+	   
+	   System.out.println(mem_idx);
+	   
+	   MemberVo vo = new MemberVo();
+	   vo.setMem_status(0);
+	   vo.setMem_idx(mem_idx);
+	   
+	   int res = member_dao.member_out(vo);
+	   
+	   return "redirect:/";
+   }
+	   
+     
+	   
    
    
 }
