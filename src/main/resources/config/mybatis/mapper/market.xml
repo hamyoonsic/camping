@@ -13,6 +13,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     (select * from MARKET) m order by m.market_idx desc
 	</select>
 	
+	<!--mem_idx에 해당하는 list 조회  -->
+   <select id="market_mem_list" parameterType="int" resultType="vo.MarketVo">
+      select * from market where mem_idx =#{mem_idx} order by market_idx desc 
+   </select>
+	
 	<!-- 페이징처리를 위한 조회 -->
 	<select id="market_condition_list" parameterType="java.util.Map" resultType="vo.MarketVo">
 	select * from

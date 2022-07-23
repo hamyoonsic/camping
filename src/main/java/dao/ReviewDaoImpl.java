@@ -129,5 +129,10 @@ public class ReviewDaoImpl implements ReviewDao {
 		return 0;
 	}   
       
-	      
+   //mem_idx에 해당하는 review리스트 가져오기 
+   @Override
+   public List<ReviewVo> review_mem_list(int mem_idx) {
+      // TODO Auto-generated method stub
+      return sqlSession.selectList("review.review_mem_list",mem_idx);
+   }        
 }

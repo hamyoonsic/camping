@@ -34,7 +34,13 @@ public class MyConstant {
 		
 	}
 	
-	
+	//마이페이지 카테고리별 검색
+	public static class Category {
+	      
+	      public static final int BLOCK_LIST = 5; //한화면당 보여질 게시물수
+	      public static final int BLOCK_PAGE = 5; //한화면당 보여질 페이지수
+	      
+	   }
 	
 	
 }

@@ -13,6 +13,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    (select * from CARPOOL) c order by c.carpool_idx desc
 	</select>
 	
+ <!--mem_idx에 해당하는 카풀리스트   -->
+   <select id="carpool_mem_list" parameterType="int" resultType="vo.CarpoolVo">
+                select * from carpool where mem_idx =#{mem_idx} order by carpool_idx desc 
+   </select>
+   
+	
 	<!-- 페이징처리를 위한 조회 -->
 	<select id="carpool_condition_list" parameterType="java.util.Map" resultType="vo.CarpoolVo">
 	select * from

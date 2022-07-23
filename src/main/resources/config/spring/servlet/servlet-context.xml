@@ -52,7 +52,10 @@
 	<beans:bean class="controller.TotalSearchController">
 		<beans:constructor-arg ref="total_search_service" />
 	</beans:bean>
-
+	
+	<beans:bean class="controller.TotalMypageController">
+		<beans:constructor-arg ref="total_mypage_service"/>
+	</beans:bean>
 	
 	<beans:bean class="controller.ReviewController">
 		<beans:property name="review_dao" ref="review_dao"/>
