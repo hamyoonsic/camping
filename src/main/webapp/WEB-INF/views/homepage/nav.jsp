@@ -24,6 +24,7 @@
 	color: #000;
 	margin-right: 80px;
 	cursor: pointer;
+	margin-bottom: 90px;
 	
 }
 
@@ -33,11 +34,11 @@
 	justify-content:space-around;
 	line-height: 50px;
 	color: black;
-	margin-bottom: 150px;
+	/* margin-bottom: 150px;  */
 	list-style: none;
 	font-weight: 700;
 	
-	margin-top: -50px;
+	/* margin-top: -75px; */
 	padding-top: 0px;
 	
 
@@ -85,10 +86,10 @@
 	justify-content:flex-end;
 	line-height:30px;
 	color: black;
-	margin: 0;
+	margin: 0px;
 	list-style: none;
 	font-weight: normal;
-
+	font-size: 13px;
 
 }
 
@@ -101,12 +102,14 @@
 	list-style: none;  */
 	margin-left: 30px;
 	margin-right: 20px;
+	
 }
 
 .mypage>li>a {
 	text-decoration: none;
 	color: black;
 	font-weight: 300;
+   
 }
 
 

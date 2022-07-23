@@ -66,5 +66,7 @@
 		<beans:property name="grade_dao" ref="grade_dao"/>
 	</beans:bean>
 	
+	<!-- CKEditorFileUploadController -->
+ 	<beans:bean class="controller.CKEditorFileUploadController"/>
 
 </beans:beans>

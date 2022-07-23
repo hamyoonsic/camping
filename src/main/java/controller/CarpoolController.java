@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import common.MyConstant;
 import dao.CarpoolDao;
 import dao.MarketDao;
+import dao.MemberDao;
 import util.Paging;
 import vo.CarpoolVo;
 import vo.MarketVo;
@@ -50,7 +51,6 @@ public class CarpoolController {
 	}
 	
 	
-	
 	/*
 	 * @RequestMapping("/board/carpool_list.do") public String list(Model model) {
 	 * 
@@ -60,6 +60,7 @@ public class CarpoolController {
 	 * 
 	 * return "board/carpool_board"; }
 	 */
+
 
 	@RequestMapping("/")
 	   public String main(Model model) {
@@ -181,6 +182,7 @@ public class CarpoolController {
 	      return 1;
 	   }
 	   
+	   //게시글보기
 	   @RequestMapping("board/carpool_view.do")
 	   public String carpool_view(int carpool_idx,Model model) {
 	      
@@ -201,6 +203,93 @@ public class CarpoolController {
 	      model.addAttribute("vo", vo);
 	      return "board/carpool_view";
 	   }
+	
+	   //새글쓰기 폼띄우기
+		@RequestMapping("/board/carpool_insert_form.do")
+		public String carpool_insert_form() {
+
+			return "board/carpool_insert_form";
+		}
+		
+		//새글쓰기
+		@RequestMapping("/board/carpool_insert.do")
+		public String insert(CarpoolVo vo,Model model) {
+			
+			if(session.getAttribute("user")==null) {
+				
+				model.addAttribute("reason", "session_timeout");
+				
+				return "redirect:../board/carpool_list.do";
+			}
+			
+			
+			String carpool_ip = request.getRemoteAddr();
+			vo.setCarpool_ip(carpool_ip);
+			
+			int res = carpool_dao.insert(vo);
+			
+			return "redirect:carpool_list.do";
+		}
+		
+		//게시글수정폼
+		@RequestMapping("/board/carpool_modify_form.do")
+		public String modify_form(int carpool_idx,
+									  Model model) {
+
+			CarpoolVo  vo = carpool_dao.selectOne(carpool_idx);
+			
+			model.addAttribute("vo", vo);
+			
+			return "board/carpool_modify_form";
+		}
+		
+		//게시글수정하기
+		@RequestMapping("/board/carpool_modify.do")
+		public String modify(CarpoolVo vo,
+				             int page,
+				             @RequestParam(value="search",required=false,defaultValue="all") String search,
+					         @RequestParam(value="search_text",required=false) String search_text, 
+				             Model model) {
+			
+			if(session.getAttribute("user")==null) {
+				
+				model.addAttribute("reason", "session_timeout");
+				
+				return "redirect:../board/carpool_list.do";
+			}
+			
+			
+			String carpool_ip = request.getRemoteAddr();
+			vo.setCarpool_ip(carpool_ip);
+			
+			int res = carpool_dao.modify(vo);
+			
+			model.addAttribute("carpool_idx", vo.getCarpool_idx());
+			model.addAttribute("page" , page);
+			model.addAttribute("search", search);
+			model.addAttribute("search_text", search_text);
+			
+			return "redirect:/board/carpool_view.do";
+		}
+		
+		
+		
+		//게시글삭제
+		@RequestMapping("/board/carpool_delete.do")
+		public String delete(int carpool_idx,
+				             int page,
+				             @RequestParam(value="search",required=false,defaultValue="all") String search,
+					         @RequestParam(value="search_text",required=false) String search_text, 
+				             Model model) {
+			
+			int res = carpool_dao.delete(carpool_idx);
+			
+			model.addAttribute("page", page);
+			model.addAttribute("search", search);
+			model.addAttribute("search_text", search_text);
+			
+			return "redirect:carpool_list.do";
+		}
 	
 	
 }
