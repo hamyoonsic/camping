@@ -126,274 +126,296 @@
 
 <script type="text/javascript">
 
-	
-	
-	$(document).ready(function(){
+	function searchAll() {
 		
-			$("#btn_login_form").click(function(){
-				
-				if("${!empty user}"=="true"){
-					
-					location.href="${pageContext.request.contextPath}/member/mypage/my_page.do";
-				}
-				if("${!empty user and user.grade_idx eq '5'}"=="true"){
-					
-					location.href="${pageContext.request.contextPath}/member/member_mypage_adm.do";
-					
-				
-				}
+		var search_text = $("#search_text").val().trim();
+		
+		if(search_text==''){
 			
-				
-				if("${empty user}"=="true"){
-				Swal.fire({
-					  title: 'Login Form',
-					  html: `<input type="text" id="login" class="swal2-input" placeholder="Username">
-					  <input type="password" id="password" class="swal2-input" placeholder="Password">`,
-					  showDenyButton: true,	
-					  confirmButtonText: 'Sign in',
-					 /*  cancelButtonText:'회원가입', */
-					  denyButtonText: '회원가입',
-					  focusConfirm: false,
-					  preConfirm: () => {
-						  
-					    const login = Swal.getPopup().querySelector('#login').value
-					    const password = Swal.getPopup().querySelector('#password').value
-					    if (!login || !password) {
-					      Swal.showValidationMessage(`Please enter login and password`)
-					    }
-					    return { email: login, pwd: password }
-					  }
-					}).then((result) => {
-					  
-						if (result.isConfirmed) {
-							//console.log(result.value.login)
-							var email = result.value.email;
-							var pwd= result.value.pwd;
-							
-							$.ajax({
-								
-								url: 'member/login.do',
-								data:{'mem_email':email,'mem_pwd':pwd},
-								dataType:'json',
-								success:function(result_data){
-									
-									// result_data = {'result': 'success'}
-									// result_data = {'result': 'fail_email'}
-									// result_data = {'result': 'fail_pwd'}
-									
-									if(result_data.result=='fail_email'){
-										Swal.fire('로그인실패!',"email이 존재하지 않습니다",'warning');
-										return;
-									}else if (result_data.result=='fail_pwd'){
-										Swal.fire('로그인 실패!',"passwore가 틀립니다",'error');
-										return;
-									}else if (result_data.result=='fail_mem_out'){
-								
-										Swal.fire('로그인 실패!',"탈퇴한 회원입니다.",'error');
-										return;
-									}
-									
-									if(result_data.result=='success'){
-										Swal.fire({
-								            icon: 'success',                         
-								            title: result_data.mem_nickname +"님"  ,        
-								            text: '환영합니다!'
-								        }).then(function(){
-								        	location.href="";
-								        	
-								        });
-										
-									}
-									
-								}
-							});
-						}else if(result.isDenied){
-							
-							location.href="member/insert_form.do";
-						}
-						
-						
-						//console.log('id',id,'pwd',pwd);
-						
-						//Swal.fire('Hi!!');
-					  
-					}); 
-				}
-			});
-	
-			
-	});
-	
-	
-	function logout(){
+			alert('검색어를 입력하세요!!');
+			$("#search_text").val("");
+			$("#search_text").focus();
+			return;
+		}
 		
-		const swalWithBootstrapButtons = Swal.mixin({
-			  customClass: {
-			    confirmButton: 'btn btn-success',
-			    cancelButton: 'btn btn-danger'
-			  },
-			  buttonsStyling: false
-			})
-
-			swalWithBootstrapButtons.fire({
-			  title: '로그아웃 하시겠습니까?',
-			  text: "버튼을 눌러주세요!",
-			  icon: 'warning',
-			  showCancelButton: true,
-			  confirmButtonText: 'Yes!',
-			  cancelButtonText: 'No, cancel!',
-			  reverseButtons: true
-			}).then((result) => {
-			  if (result.isConfirmed) {
-			    swalWithBootstrapButtons.fire(
-			      'logout',
-			      '되었습니다!',
-			      'success'
-			  	
-			    ).then(function(){
-			    	location.href="${pageContext.request.contextPath}/member/logout.do";
-			    });
-			  } else if (
-			    /* Read more about handling dismissals below */
-			    result.dismiss === Swal.DismissReason.cancel
-			  ) {
-			    swalWithBootstrapButtons.fire(
-			      'Cancelled',
-			      '취소되었습니다;)',
-			      'error'
-			    )
-			  }
-			});
-		
+		location.href = "/camping/homepage/total_search_list.do?search_text=" + encodeURIComponent(search_text);
 		
 	}
-	
-	
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+   
+   
+   $(document).ready(function(){
+      
+         $("#btn_login_form").click(function(){
+            
+            if("${!empty user}"=="true"){
+               
+               location.href="${pageContext.request.contextPath}/member/mypage/my_page.do";
+            }
+            if("${!empty user and user.grade_idx eq '5'}"=="true"){
+               
+               location.href="${pageContext.request.contextPath}/member/member_mypage_adm.do";
+               
+            
+            }
+         
+            
+            if("${empty user}"=="true"){
+            Swal.fire({
+                 title: 'Login Form',
+                 html: `<input type="text" id="login" class="swal2-input" placeholder="Username">
+                 <input type="password" id="password" class="swal2-input" placeholder="Password">`,
+                 showDenyButton: true,   
+                 confirmButtonText: 'Sign in',
+                /*  cancelButtonText:'회원가입', */
+                 denyButtonText: '회원가입',
+                 focusConfirm: false,
+                 preConfirm: () => {
+                    
+                   const login = Swal.getPopup().querySelector('#login').value
+                   const password = Swal.getPopup().querySelector('#password').value
+                   if (!login || !password) {
+                     Swal.showValidationMessage(`Please enter login and password`)
+                   }
+                   return { email: login, pwd: password }
+                 }
+               }).then((result) => {
+                 
+                  if (result.isConfirmed) {
+                     //console.log(result.value.login)
+                     var email = result.value.email;
+                     var pwd= result.value.pwd;
+                     
+                     $.ajax({
+                        
+                        url: 'member/login.do',
+                        data:{'mem_email':email,'mem_pwd':pwd},
+                        dataType:'json',
+                        success:function(result_data){
+                           
+                           // result_data = {'result': 'success'}
+                           // result_data = {'result': 'fail_email'}
+                           // result_data = {'result': 'fail_pwd'}
+                           
+                           if(result_data.result=='fail_email'){
+                              Swal.fire('로그인실패!',"email이 존재하지 않습니다",'warning');
+                              return;
+                           }else if (result_data.result=='fail_pwd'){
+                              Swal.fire('로그인 실패!',"passwore가 틀립니다",'error');
+                              return;
+                           }else if (result_data.result=='fail_mem_out'){
+                        
+                              Swal.fire('로그인 실패!',"탈퇴한 회원입니다.",'error');
+                              return;
+                           }
+                           
+                           if(result_data.result=='success'){
+                              Swal.fire({
+                                    icon: 'success',                         
+                                    title: result_data.mem_nickname +"님"  ,        
+                                    text: '환영합니다!'
+                                }).then(function(){
+                                   location.href="";
+                                   
+                                });
+                              
+                           }
+                           
+                        }
+                     });
+                  }else if(result.isDenied){
+                     
+                     location.href="member/insert_form.do";
+                  }
+                  
+                  
+                  //console.log('id',id,'pwd',pwd);
+                  
+                  //Swal.fire('Hi!!');
+                 
+               }); 
+            }
+         });
+   
+         
+   });
+   
+   
+   function logout(){
+      
+      const swalWithBootstrapButtons = Swal.mixin({
+           customClass: {
+             confirmButton: 'btn btn-success',
+             cancelButton: 'btn btn-danger'
+           },
+           buttonsStyling: false
+         })
+
+         swalWithBootstrapButtons.fire({
+           title: '로그아웃 하시겠습니까?',
+           text: "버튼을 눌러주세요!",
+           icon: 'warning',
+           showCancelButton: true,
+           confirmButtonText: 'Yes!',
+           cancelButtonText: 'No, cancel!',
+           reverseButtons: true
+         }).then((result) => {
+           if (result.isConfirmed) {
+             swalWithBootstrapButtons.fire(
+               'logout',
+               '되었습니다!',
+               'success'
+              
+             ).then(function(){
+                location.href="${pageContext.request.contextPath}/member/logout.do";
+             });
+           } else if (
+             /* Read more about handling dismissals below */
+             result.dismiss === Swal.DismissReason.cancel
+           ) {
+             swalWithBootstrapButtons.fire(
+               'Cancelled',
+               '취소되었습니다;)',
+               'error'
+             )
+           }
+         });
+      
+      
+   }
+   
+   
 </script>
 
 </head>
 
 
 
-
 <body style="margin: 0">
 
-	<div class="wrap">
-		<ul class="nav">
-			<li><a href="#link_header">HOME</a></li>
-			<li><a href="#review2">REVIEW</a></li>
-			<li><a href="#carpool_market">CARPOOL</a></li>
-			<li><a href="#carpool_market">MARKET</a></li>
-			<li><a href="#footer">WHEATER</a></li>
-			<li><a href="#" id="btn_login_form" >MYPAGE</a></li>
-			<!--로그인 되어있으면 보여주라  -->
-			
-		</ul>
-			<c:if test="${not empty user }">
-			
-					<ul class="mypage">
-						
-						<li><a href="#">
-							<c:if test="${user.grade_idx eq 1 }">
-								<img alt="이미지없음" src="${ pageContext.request.contextPath }/resources/images/grade_bronze.JPG" width="30">
-							</c:if>
-							
-							<c:if test="${user.grade_idx eq 2 }">
-								<img alt="이미지없음" src="${ pageContext.request.contextPath }/resources/images/grade_silver.JPG" width="30">
-							</c:if>
-							
-							<c:if test="${user.grade_idx eq 3 }">
-								<img alt="이미지없음" src="${ pageContext.request.contextPath }/resources/images/grade_gold.JPG" width="30">
-							</c:if>
-							
-							<c:if test="${user.grade_idx eq 4 }">
-								<img alt="이미지없음" src="${ pageContext.request.contextPath }/resources/images/grade_platinum.JPG" width="30">
-							</c:if>
-							
-							<c:if test="${user.grade_idx eq 5 }">
-								관리자
-							</c:if>
-							</a></li>
-							
-						<li><a href="#">${user.mem_nickname}님</a></li>
-						<li><a href="#">쪽지함</a></li>
-						<li><a href="#" onclick="logout();">로그아웃</a></li>
-					</ul>
-			
-			</c:if>
-	</div>
+   <div class="wrap">
+      <ul class="nav">
+         <li><a href="#link_header">HOME</a></li>
+         <li><a href="#review2">REVIEW</a></li>
+         <li><a href="#carpool_market">CARPOOL</a></li>
+         <li><a href="#carpool_market">MARKET</a></li>
+         <li><a href="#footer">WHEATER</a></li>
+         <li><a href="#" id="btn_login_form" >MYPAGE</a></li>
+         <!--로그인 되어있으면 보여주라  -->
+         
+      </ul>
+         <c:if test="${not empty user }">
+         
+               <ul class="mypage">
+                  
+                  <li><a href="#">
+                     <c:if test="${user.grade_idx eq 1 }">
+                        <img alt="이미지없음" src="${ pageContext.request.contextPath }/resources/images/grade_bronze.JPG" width="30">
+                     </c:if>
+                     
+                     <c:if test="${user.grade_idx eq 2 }">
+                        <img alt="이미지없음" src="${ pageContext.request.contextPath }/resources/images/grade_silver.JPG" width="30">
+                     </c:if>
+                     
+                     <c:if test="${user.grade_idx eq 3 }">
+                        <img alt="이미지없음" src="${ pageContext.request.contextPath }/resources/images/grade_gold.JPG" width="30">
+                     </c:if>
+                     
+                     <c:if test="${user.grade_idx eq 4 }">
+                        <img alt="이미지없음" src="${ pageContext.request.contextPath }/resources/images/grade_platinum.JPG" width="30">
+                     </c:if>
+                     
+                     <c:if test="${user.grade_idx eq 5 }">
+                        관리자
+                     </c:if>
+                     </a></li>
+                     
+                  <li><a href="#">${user.mem_nickname}님</a></li>
+                  <li><a href="#">쪽지함</a></li>
+                  <li><a href="#" onclick="logout();">로그아웃</a></li>
+               </ul>
+         
+         </c:if>
+   </div>
 
 
-	<div class="wrap_1">
-		
-		<div class="intro_bg">
-			<div class="intro_text">
-				<h1> CAMP US 🏕 </h1>
-			</div>
-			<div class= "search_area">
-			  <form>
-				<input type="search" placeholder="Search" id="search_text" value="${ param.search_text }">
-				<span><i class="bi-search" onclick="searchAll();"></i></span>
-			  </form>
-			<ul class="hashtag">
-				<li><a href="/camping/homepage/total_search_list.do?search_text=캠핑">#캠핑</a></li>
-				<li><a href="/camping/homepage/total_search_list.do?search_text=카라반">#카라반</a></li>
-				<li><a href="/camping/homepage/total_search_list.do?search_text=캠핑추천">#캠핑추천</a></li>
-				<li><a href="/camping/homepage/total_search_list.do?search_text=카풀">#카풀</a></li>
-				<li><a href="/camping/homepage/total_search_list.do?search_text=같이갈사람">#같이갈사람</a></li>
-			</ul>
-			</div>
-		</div>
-	</div>
-	
+   <div class="wrap_1">
+      
+      <div class="intro_bg">
+         <div class="intro_text">
+            <h1> CAMP US 🏕 </h1>
+         </div>
+         <div class= "search_area">
+           <form>
+            <input type="search" placeholder="Search" id="search_text" value="${ param.search_text }">
+            <span><i class="bi-search" onclick="searchAll();"></i></span>
+           </form>
+         <ul class="hashtag">
+            <li><a href="/camping/homepage/total_search_list.do?search_text=캠핑">#캠핑</a></li>
+            <li><a href="/camping/homepage/total_search_list.do?search_text=카라반">#카라반</a></li>
+            <li><a href="/camping/homepage/total_search_list.do?search_text=캠핑추천">#캠핑추천</a></li>
+            <li><a href="/camping/homepage/total_search_list.do?search_text=카풀">#카풀</a></li>
+            <li><a href="/camping/homepage/total_search_list.do?search_text=같이갈사람">#같이갈사람</a></li>
+         </ul>
+         </div>
+      </div>
+   </div>
+   
 <div class="slidebox">
-	<input type="radio" name="slide" id="slide1" checked="checked">
-	<input type="radio" name="slide" id="slide2" >
-	<input type="radio" name="slide" id="slide3">
-	<input type="radio" name="slide" id="slide4">
-	<ul class="slidelist">
-	  <li class="slideitem">
-		<div>
-			<label for="slide4" class="left"></label>
-			<label for="slide2" class="right"></label>
-			<a><img src="${ pageContext.request.contextPath }/resources/images/slideimg01.jpg"></a>
-			
-		</div>
-	  </li>
-	  <li class="slideitem">
-		<div>
-			<label for="slide1" class="left"></label>
-			<label for="slide3" class="right"></label>
-			<a><img src="${ pageContext.request.contextPath }/resources/images/slideimg02.jpg"></a>
-		</div>
-	  </li>
-	  <li class="slideitem">
-		<div>
-			<label for="slide2" class="left"></label>
-			<label for="slide4" class="right"></label>
-			<a><img src="${ pageContext.request.contextPath }/resources/images/slideimg03.jpg"></a>
-		</div>
-	  </li>
-	  <li class="slideitem">
-		<div>
-			<label for="slide3" class="left"></label>
-			<label for="slide1" class="right"></label>
-			<a><img src="${ pageContext.request.contextPath }/resources/images/slideimg04.jpg"></a>
-		</div>
-	  </li>
-	</ul>
+   <input type="radio" name="slide" id="slide1" checked="checked">
+   <input type="radio" name="slide" id="slide2" >
+   <input type="radio" name="slide" id="slide3">
+   <input type="radio" name="slide" id="slide4">
+   <ul class="slidelist">
+     <li class="slideitem">
+      <div>
+         <label for="slide4" class="left"></label>
+         <label for="slide2" class="right"></label>
+         <a><img src="${ pageContext.request.contextPath }/resources/images/slideimg01.jpg"></a>
+         
+      </div>
+     </li>
+     <li class="slideitem">
+      <div>
+         <label for="slide1" class="left"></label>
+         <label for="slide3" class="right"></label>
+         <a><img src="${ pageContext.request.contextPath }/resources/images/slideimg02.jpg"></a>
+      </div>
+     </li>
+     <li class="slideitem">
+      <div>
+         <label for="slide2" class="left"></label>
+         <label for="slide4" class="right"></label>
+         <a><img src="${ pageContext.request.contextPath }/resources/images/slideimg03.jpg"></a>
+      </div>
+     </li>
+     <li class="slideitem">
+      <div>
+         <label for="slide3" class="left"></label>
+         <label for="slide1" class="right"></label>
+         <a><img src="${ pageContext.request.contextPath }/resources/images/slideimg04.jpg"></a>
+      </div>
+     </li>
+   </ul>
 </div>
 
 <div id="review2">
-	<%@include file="review2.jsp" %>
+   <%@include file="review2.jsp" %>
 </div>
 
 <div id="carpool_market">
-	<%@include file="carpool_market.jsp" %>
+   <%@include file="carpool_market.jsp" %>
 </div>
 
 <div id="footer">
-	<%@include file ="footer.jsp" %>
+   <%@include file ="footer.jsp" %>
 </div>
 </body>
 </html>

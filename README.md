@@ -21,7 +21,7 @@
 --
 | Name |GitHub | E-Mail |
 | --- | --- | --- |
-|김주원| joowon |    |
-|최미영| choimiyoung ||
+|김주원| [joowon](https://github.com/juwonkeem) |thddms5341@naver.com|
+|최미영| [choimiyoung](https://github.com/choimiyoung) |gksrlfaldud@naver.com|
 |최원영| [evenoahchoi](https://github.com/evenoahchoi) |eorkfclsrn@naver.com|
-|함윤식| hys |    |
+|함윤식| [hamyoonsic](https://github.com/hamyoonsic) |hys1198@gmail.com|

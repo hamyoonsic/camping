@@ -146,5 +146,44 @@ public class MemberDaoImpl implements MemberDao {
 
 
 
+	  @Override
+	   public int selectOne_reply_like_count(int mem_idx) {
+	      // TODO Auto-generated method stub
+	      return sqlSession.selectOne("member.member_reply_like_count",mem_idx);
+	   }
+
+
+
+
+	   @Override
+	   public int member_update(MemberVo vo) {
+	      // TODO Auto-generated method stub
+	      return sqlSession.update("member.member_update",vo);
+	   }
+
+
+
+
+	   @Override
+	   public int member_out(MemberVo vo) {
+	      // TODO Auto-generated method stub
+	      return sqlSession.update("member.member_out",vo);
+	   }
+
+
+
+
+	   public int photo_upload(MemberVo vo) {
+		      // TODO Auto-generated method stub
+		      return sqlSession.update("member.photo_upload",vo);
+		   }
+
+
+
+
+	
+	
+	
+	
 
 }
