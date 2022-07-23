@@ -41,6 +41,11 @@ public class MyConstant {
 	      public static final int BLOCK_PAGE = 5; //한화면당 보여질 페이지수
 	      
 	   }
-	
+	//댓글상수
+		public static class Comment{
+			
+			public static final int BLOCK_LIST = 10; 
+			public static final int BLOCK_PAGE = 10; 
+		}
 	
 }

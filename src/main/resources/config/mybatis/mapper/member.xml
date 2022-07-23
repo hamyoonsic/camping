@@ -129,11 +129,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="member_reply_like_count" parameterType="int" resultType="int">
    select sum(count) from         
   (
-     select count(*) as count from review_reply_like where  mem_idx=29
+     select count(*) as count from review_reply_like where  mem_idx=#{mem_idx}
      union all      
-     select count(*) as count from market_reply_like where  mem_idx=29
+     select count(*) as count from market_reply_like where  mem_idx=#{mem_idx}
      union all           
-     select count(*) as count from carpool_reply_like where  mem_idx=29
+     select count(*) as count from carpool_reply_like where  mem_idx=#{mem_idx}
   )  
   
 </select>

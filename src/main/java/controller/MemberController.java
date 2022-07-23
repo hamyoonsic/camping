@@ -41,21 +41,21 @@ public class MemberController {
 
    public void setMember_dao(MemberDao member_dao) {
       
-	   this.member_dao = member_dao;
+      this.member_dao = member_dao;
    }
    
    
-   	//관리자페이지 멤버전체조회
+      //관리자페이지 멤버전체조회
       @RequestMapping("member_mypage_adm.do")
       public String list(@RequestParam(value="page", required = false, defaultValue = "1") int nowPage,
-      					  @RequestParam(value="search", required = false, defaultValue = "member_all") String search,         
-      					  @RequestParam(value="search_text", required = false) String search_text,           
-      					  Model model) {
-   	   
-   	  int start = (nowPage-1) * MyConstant.Member.BLOCK_LIST + 1;
-   	  int end = start + MyConstant.Member.BLOCK_LIST - 1;
-   	  
-   	  	 Map map = new HashMap();
+                       @RequestParam(value="search", required = false, defaultValue = "member_all") String search,         
+                       @RequestParam(value="search_text", required = false) String search_text,           
+                       Model model) {
+         
+        int start = (nowPage-1) * MyConstant.Member.BLOCK_LIST + 1;
+        int end = start + MyConstant.Member.BLOCK_LIST - 1;
+        
+            Map map = new HashMap();
          map.put("start", start);
          map.put("end", end);
          
@@ -102,38 +102,45 @@ public class MemberController {
       }
       
    
-   @RequestMapping("login.do")
-   @ResponseBody
-   public Map login(String mem_email,String mem_pwd)
-   {   
-      
-      MemberVo user = member_dao.selectOne(mem_email);
-      
-      //mem_email 체크
-      
-      Map map = new HashMap();
-      if(user==null) {
+      @RequestMapping("login.do")
+      @ResponseBody
+      public Map login(String mem_email,String mem_pwd)
+      {   
          
+         MemberVo user = member_dao.selectOne(mem_email);
+         
+         //mem_email 체크
+         Map map = new HashMap();
+         if(user==null) {
+            
+         
+            map.put("result", "fail_email");
+            return map;
+         }
+         
+         if(user.getMem_pwd().equals(mem_pwd)==false) {
+         
+         
+            map.put("result", "fail_pwd");
+            return map;
+         }
+         
+         if(user.getMem_status()==0) {
+            System.out.println("mem_out");
+            map.put("result", "fail_mem_out");
+             return map;
+            
+         }
       
-         map.put("result", "fail_email");
+         session.setAttribute("user", user);
+         
+         map.put("mem_nickname",user.getMem_nickname());
+         map.put("grade_idx", user.getGrade_idx());
+         map.put("result", "success");
          return map;
+         
       }
       
-      if(user.getMem_pwd().equals(mem_pwd)==false) {
-      
-      
-         map.put("result", "fail_pwd");
-         return map;
-      }
-   
-      session.setAttribute("user", user);
-      
-      map.put("mem_nickname",user.getMem_nickname());
-      map.put("grade_idx", user.getGrade_idx());
-      map.put("result", "success");
-      return map;
-      
-   }
    
    //로그인 폼
    @RequestMapping("insert_form.do")
@@ -191,7 +198,7 @@ public class MemberController {
       String mem_profile =vo.getMem_profile().replaceAll("\r\n", "<br>");
       vo.setMem_profile(mem_profile);
       vo.setGrade_idx(1);
-      vo.setMem_status(0);
+      vo.setMem_status(1);
       
       
       

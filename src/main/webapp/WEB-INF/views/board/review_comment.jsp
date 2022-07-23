@@ -36,10 +36,9 @@
 	
 	#comment_box{
 		width	:	800px;
+		margin	:	auto;
 		height	:	400px;
 		/* border	:	1px solid	red; */
-		margin-left: 560px;
-		display	:	inline-block;
 	}
 	
 	#comment{
@@ -106,11 +105,12 @@
 	
 	#comment_write{
 		
-		width	:	35%;
+		width	:	800px;
 		margin	:	auto;
 		height	:	100px;
-		border	:	1px solid #bcbcbc;
-		border-radius: 20px 20px;
+		border:  1px solid  #cccccc ;
+		box-shadow: 1px 1px 2px black;
+		border-radius: 15px 15px;
 		
 	
 	}
@@ -120,7 +120,7 @@
 		margin-left	:	15px;
 		width	:	70%;
 		height	:	70px;
-		border	:	1px solid blue;
+		/* border	:	1px solid blue; */
 		display	:	inline-block;
 	}
 	
@@ -128,6 +128,7 @@
 		width:100%;
 		height:100%;
 		resize: none;
+		border	:	none;
 	}
 	
 	#comment_write_pic{
@@ -135,11 +136,14 @@
 		margin-left	:	15px;
 		width	:	70px;
 		height	:	70px;
-		border	:	1px solid green;
+		/* border	:	1px solid green; */
 		display	:	inline-block;
 		border-radius: 70%;
     	overflow: hidden;
 	}
+	
+	
+	
 	
 </style>
 
@@ -148,7 +152,10 @@
 
 
 	$(function(){
-		review_reply_list(1);
+		review_reply_list("${param.page}");
+		
+		$("#review_idx").val("${param.review_idx}");
+		
 		/* $("#comment_btn").click(function(){
 		
 			$("#comment_box").toggle();
@@ -188,7 +195,7 @@
 				
 				if(res_data.result){
 					$("#review_reply_content").val("");
-					review_reply_list(global_page);
+					review_reply_list(1);
 					
 				}
 				
@@ -208,21 +215,25 @@
 	var	global_page=1;
 	function review_reply_list(reply_page){
 		
-		$.ajax({
+			$.ajax({
+				
+				url			:	"review_reply_list.do",
+				data		:	{"review_idx":"${param.review_idx}" , "page":reply_page},
+				success		:	function(res_data){
+					
+					$("#comment_box").html(res_data);
+					
+					
+				},
+				error		:	function(err){
+					alert(err.responseText);
+					
+				}
+			});
 			
-			url			:	"review_reply_list.do",
-			data		:	{"review_idx":"${param.review_idx}" , "page":reply_page},
-			success		:	function(res_data){
-				
-				$("#comment_box").html(res_data);
-				
-			},
-			error		:	function(err){
-				alert(err.responseText);
-				
-			}
-		});
-	}//end : review_reply_list
+		}//end : review_reply_list
+		
+		
 	
 	
 
@@ -231,11 +242,7 @@
 
 </head>
 <body>
-
 	
-		
-		
-		
 			<input type="hidden" id="mem_nickname" value="${user.mem_nickname}">
 			<input type="hidden" id="reivew_idx" value="${review_idx}">
 			<div id="comment_write">
@@ -245,7 +252,7 @@
 				<div id="comment_write_pic">
 					<img src="${pageContext.request.contextPath}/resources/images/unsplash_people/people2.jpg" id="comment_profile">
 				</div>
-				<input type="button" value="댓글 작성" onclick="review_reply_insert();">
+				<input  type="button" value="댓글 작성" onclick="review_reply_insert();">
 			</div>
 		
 		

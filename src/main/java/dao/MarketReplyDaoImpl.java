@@ -6,7 +6,6 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import vo.MarketReplyVo;
-import vo.ReviewReplyVo;
 
 public class MarketReplyDaoImpl implements MarketReplyDao {
 	
@@ -35,9 +34,33 @@ public class MarketReplyDaoImpl implements MarketReplyDao {
 	}
 
 	@Override
-	public int delete(int market_idx) {
+	public int delete(int market_reply_idx) {
 		// TODO Auto-generated method stub
-		return sqlSession.delete("market_reply.market_reply_delete",market_idx);
+		return sqlSession.delete("market_reply.market_reply_delete",market_reply_idx);
+	}
+
+	@Override
+	public MarketReplyVo selectOne(int market_reply_idx) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("market_reply.market_reply_one", market_reply_idx);
+	}
+
+	@Override
+	public int update_step(MarketReplyVo baseVo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("market_reply.market_reply_step", baseVo);
+	}
+
+	@Override
+	public int reply(MarketReplyVo vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("market_reply.market_reply_re", vo);
+	}
+	
+	@Override
+	public int selectRowTotal() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("market_reply.market_reply_row_total");
 	}
 
 }
