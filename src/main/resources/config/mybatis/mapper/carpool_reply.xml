@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 댓글목록 -->
 	<select id="carpool_reply_list" resultType="vo.CarpoolReplyVo">
-		select * from carpool_reply_view
+		select * from carpool_reply_view order by carpool_reply_ref desc,carpool_reply_step asc
 	</select>
 	
 	
@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(
 			select
 				r.*,
-				rank() over (order by carpool_reply_idx desc) no
+				rank() over (order by carpool_reply_ref desc,carpool_reply_step asc) no
 			from(select * from carpool_reply_view where carpool_idx=#{carpool_idx}) r
 		)
 		where no between #{start} and #{end}
@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 										#{mem_nickname},
 										#{carpool_idx},
 										#{carpool_reply_content},
-										0,
+										seq_carpool_reply_idx.currVal,
 										0,
 										0,
 										sysdate,
@@ -43,8 +43,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 댓글삭제 -->
 	<delete id="carpool_reply_delete" parameterType="int">
-		delete from carpool_reply where carpool_idx=#{carpool_idx}
+		delete from carpool_reply where carpool_reply_idx=#{carpool_reply_idx}
 	</delete>
+	
+	
+	
+
+	<!-- 레코드 한개 추출 -->
+	<select id="carpool_reply_one" parameterType="int" resultType="vo.CarpoolReplyVo">
+		select * from carpool_reply where carpool_reply_idx=#{carpool_reply_idx}
+	</select>
+	
+	<!-- 동일한 그룹글중에서 기준글보다 step이 큰게시물의 step을 증가 -->
+   	<update id="carpool_reply_step"  parameterType="vo.CarpoolReplyVo">
+        update carpool_reply
+              set carpool_reply_step = carpool_reply_step + 1
+        where carpool_reply_ref=#{ carpool_reply_ref}  and  carpool_reply_step > #{ carpool_reply_step }      
+   	</update>
+	
+	
+	<!-- 답글쓰기 -->
+   <insert id="carpool_reply_re" parameterType="vo.CarpoolReplyVo">
+       insert into carpool_reply values(seq_carpool_reply_idx.nextVal,
+										#{mem_idx}, 
+										#{mem_nickname},
+										#{carpool_idx},
+										#{carpool_reply_content},
+										#{carpool_reply_ref},
+										#{carpool_reply_step},
+										#{carpool_reply_depth},
+										sysdate,
+										#{carpool_reply_ip}
+										)
+   </insert>
+   
+   
+   
+   <!-- 전체 댓글 수 구하기 -->
+   <select id="carpool_reply_row_total"	resultType="int">
+ 		select nvl(count(*),0) from carpool_reply
+   </select>
 
 </mapper>
 
