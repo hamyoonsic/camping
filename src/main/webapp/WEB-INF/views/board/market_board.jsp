@@ -15,6 +15,29 @@
 <link href="${ pageContext.request.contextPath }/resources/market_board.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+
+<!-- 새글쓰기 -->
+<script type="text/javascript">
+
+  function  market_insert_form(){
+	  
+	  //로그인여부
+	  if("${ empty user }" == "true"){
+		  
+		  if(confirm("글쓰기는 로그인후에 가능합니다\n로그인 하시겠습니까?")==false)return;
+		  
+		  //로그인폼으로 이동
+		  location.href="../member/insert_form.do";
+		  
+		  return;
+	  }
+	  
+	  //글쓰기 폼으로 이동( /board/market_insert_form.do )	  
+	  location.href="market_insert_form.do";
+  }
+</script>  
+
+<!-- 검색페이징 -->
 <script type="text/javascript">
 	
 	function search() {
@@ -78,7 +101,7 @@
 		</table>
 	<!-- </form> -->
   <input class="btn" type="button" value="글쓰기"
-		 onclick="location.href=#">
+		 onclick="market_insert_form();">
   
 </div>
 <table  class="table_list">
