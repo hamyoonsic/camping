@@ -102,7 +102,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          set carpool_hit_count = carpool_hit_count + 1 
       where carpool_idx = #{ carpool_idx}
    </update>
-	
+
 	<!-- 새글쓰기 -->
 	<insert id="carpool_insert" parameterType="vo.CarpoolVo">
 	insert into carpool values(seq_carpool_idx.nextVal,

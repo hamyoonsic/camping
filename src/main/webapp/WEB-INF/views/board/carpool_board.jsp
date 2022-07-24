@@ -279,7 +279,7 @@
 		<tr>
 			 <td>${ vo.carpool_no }</td> 
 			 <!-- 사용가능한 게시글일때 -->
-				<td class="subject"><a href="carpool_view.do?carpool_idx=${vo.carpool_idx }&page=${ empty param.page ? 1 : param.page}">${ vo.carpool_title }</td>
+				<td class="subject"><a href="carpool_view.do?carpool_idx=${vo.carpool_idx }&page=${ empty param.page ? 1 : param.page}&search=${ param.search }&search_text=${ param.search_text}">${ vo.carpool_title }</td>
 				<td>${ vo.carpool_hit_count }</td>
 				<td>${ vo.cnt }</td>
 				<td>${ vo.mem_nickname }</td>

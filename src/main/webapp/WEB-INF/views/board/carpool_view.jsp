@@ -84,7 +84,7 @@
 	<div id="regdate">닉네임 : ${vo.mem_nickname}<br>작성일자 : ${fn:substring(vo.carpool_regdate,0,10) }</div>
      <div id="holder">
 		<button class="btn" 
-			onclick="location.href='carpool_list.do?page=${param.page}';">목록보기</button>
+			onclick="location.href='carpool_list.do?page=${param.page}&search=${ param.search }&search_text=${ param.search_text}';">목록보기</button>
 		<!--글쓴이인 경우만 보여 주라   -->
 		<c:if test="${user.mem_idx  eq vo.mem_idx}">
 			<input class="btn btn-info" type="button" value="수정하기" 

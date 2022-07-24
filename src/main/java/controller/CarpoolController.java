@@ -247,7 +247,7 @@ public class CarpoolController {
 		@RequestMapping("/board/carpool_modify.do")
 		public String modify(CarpoolVo vo,
 				             int page,
-				             @RequestParam(value="search",required=false,defaultValue="all") String search,
+				             @RequestParam(value="search",required=false,defaultValue="carpool_all") String search,
 					         @RequestParam(value="search_text",required=false) String search_text, 
 				             Model model) {
 			
@@ -278,7 +278,7 @@ public class CarpoolController {
 		@RequestMapping("/board/carpool_delete.do")
 		public String delete(int carpool_idx,
 				             int page,
-				             @RequestParam(value="search",required=false,defaultValue="all") String search,
+				             @RequestParam(value="search",required=false,defaultValue="carpool_all") String search,
 					         @RequestParam(value="search_text",required=false) String search_text, 
 				             Model model) {
 			

@@ -7,5 +7,6 @@ public interface TotalSearchService {
 	
 	/* Map list(); */
 	Map list(String search_text);
+
 	
 }
