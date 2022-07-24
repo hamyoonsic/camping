@@ -63,4 +63,16 @@ public class MarketReplyDaoImpl implements MarketReplyDao {
 		return sqlSession.selectOne("market_reply.market_reply_row_total");
 	}
 
+	@Override
+	public int market_reply_insertlike(MarketReplyVo vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("market_reply.market_reply_insertlike",vo);
+	}
+
+	@Override
+	public int market_reply_deletelike(MarketReplyVo vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("market_reply.market_reply_deletelike",vo);
+	}
+
 }

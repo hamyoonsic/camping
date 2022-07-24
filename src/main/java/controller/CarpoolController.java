@@ -148,7 +148,7 @@ public class CarpoolController {
 	      return "board/carpool_board";
 	   }
 	
-	//좋아요
+	
 	@RequestMapping("/homepage/carpool.do")
 	   public String carpool(Model model) {
 	      
@@ -163,7 +163,8 @@ public class CarpoolController {
 	      
 	      return "homepage/carpool_market";
 	   }
-	   
+	
+	   //좋아요
 	   @ResponseBody
 	   @RequestMapping(value ="/carpool_insertlike.do", method = RequestMethod.POST)
 	   public int carpool_insertlike(CarpoolVo vo) {
