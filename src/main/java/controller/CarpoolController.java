@@ -19,11 +19,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import common.MyConstant;
 import dao.CarpoolDao;
 import dao.MarketDao;
-import dao.MemberDao;
+import dao.VisitDao;
 import util.Paging;
 import vo.CarpoolVo;
 import vo.MarketVo;
 import vo.MemberVo;
+import vo.VisitVo;
 
 @Controller
 public class CarpoolController {
@@ -37,7 +38,12 @@ public class CarpoolController {
 	@Autowired
 	HttpSession session;
 	
+	VisitDao visit_dao;
 	
+	public void setVisit_dao(VisitDao visit_dao) {
+		this.visit_dao = visit_dao;
+	}
+
 	CarpoolDao carpool_dao;
 
 	public void setCarpool_dao(CarpoolDao carpool_dao) {
@@ -67,11 +73,21 @@ public class CarpoolController {
 	      
 	      int m_idx = 0;
 	      MemberVo user = (MemberVo) session.getAttribute("user");
-	      
 	      if(user!=null)m_idx=user.getMem_idx();
 	      
+	      VisitVo vo = new VisitVo();
+	      
+	      vo.setVisit_ip(request.getRemoteAddr());
+	      vo.setVisit_agent(request.getHeader("User-Agent"));
+	      vo.setMem_idx(m_idx);
+	      
+	      visit_dao.insert(vo);
+	      
+	      
+	     
 	      List<CarpoolVo> list = carpool_dao.selectList(m_idx);
 	      List<MarketVo> list1 = market_dao.selectList(m_idx);
+	    
 	      
 	      model.addAttribute("list",list);
 	      model.addAttribute("list1",list1);

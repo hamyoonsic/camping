@@ -116,7 +116,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 													 default,
 													 default,
 													 #{ market_ip },
-													 '삽니다'
+													 #{ market_buy_sell }
 		 )
 	 </insert>
 

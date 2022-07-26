@@ -35,6 +35,8 @@
 	   
 	   var market_title = f.market_title.value.trim();
 	   var market_content = CKEDITOR.instances.market_content.getData().trim();
+	   var s = document.getElementById("market_buy_sell");
+	   var market_buy_sell = s.options[s.selectedIndex].value;
 	   
 	   if(market_title==''){
 		   alert('제목을 입력하세요!!');
@@ -75,10 +77,10 @@
 	               <td><input name="mem_nickname" value="${ user.mem_nickname }" readonly="readonly">
 	            </tr>
 	            <tr>
-	            <select style="font-size:16px;" value="${ vo.market_buy_sell }">
-						<option value="buy">팝니다</option>
-						<option value="sell">삽니다</option>
-						<option value="free">나눔</option>
+	            <select name="market_buy_sell" id="market_buy_sell" style="font-size:16px;">
+						<option value="팝니다">팝니다</option>
+						<option value="삽니다">삽니다</option>
+						<option value="나눔">나눔</option>
 	            </select>
 	            </tr>
 	            <tr> 
