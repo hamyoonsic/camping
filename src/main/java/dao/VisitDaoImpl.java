@@ -20,4 +20,11 @@ public class VisitDaoImpl implements VisitDao {
 		return sqlSession.insert("visit.visit_insert", vo);
 	}
 
+
+	@Override
+	public int delete(VisitVo vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("visit.visit_delete", vo);
+	}
+
 }

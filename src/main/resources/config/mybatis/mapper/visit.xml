@@ -20,11 +20,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             (
                 VISITOR_SEQ.NEXTVAL,
                 #{visit_ip},
-                SYSDATE,
+                TO_CHAR(SYSDATE,'yyyy.mm.dd'),
                 #{visit_agent},
                 #{mem_idx}
             )
    </insert>
+   
+     <!--  같은날 같은IP 같은m_idx는 삭제    -->
+   <delete id="visit_delete" parameterType="vo.VisitVo"> 
+      delete from visit where visit_ip=#{visit_ip} and visit_time=TO_CHAR(SYSDATE,'yyyy.mm.dd') and mem_idx=#{mem_idx}  
+   </delete>
+   
    
 </mapper>
 

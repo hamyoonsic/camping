@@ -69,18 +69,16 @@ public class CarpoolController {
 
 
 	@RequestMapping("/")
-	   public String main(Model model) {
+	   public String main(Model model,VisitVo vo) {
 	      
 	      int m_idx = 0;
 	      MemberVo user = (MemberVo) session.getAttribute("user");
 	      if(user!=null)m_idx=user.getMem_idx();
 	      
-	      VisitVo vo = new VisitVo();
-	      
 	      vo.setVisit_ip(request.getRemoteAddr());
 	      vo.setVisit_agent(request.getHeader("User-Agent"));
 	      vo.setMem_idx(m_idx);
-	      
+	      visit_dao.delete(vo);
 	      visit_dao.insert(vo);
 	      
 	      
