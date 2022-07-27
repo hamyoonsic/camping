@@ -88,6 +88,10 @@
 			<input class="btn btn-danger"     type="button" value="삭제하기" 
 				onclick="del();">
 		</c:if>
+		<c:if test="${user.grade_idx eq '5'}">
+		<button class="btn" id="btn-a"
+			onclick="location.href='../admin/review_list.do';">관리자페이지</button>
+		</c:if>
 </div>
 <%@include file="review_comment.jsp" %>
 </body>

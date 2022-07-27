@@ -19,7 +19,7 @@
 
 .btn {
   transition: all 0.3s ease;
-  background-color: #E3C9D7;
+  /* background-color: #E3C9D7; */
   color: white;
   font: bold;
 }
@@ -30,7 +30,12 @@
    7px 7px 20px 0px #0002,
    4px 4px 5px 0px #0001;
 }
-
+#btn-a{
+background-color: #71a893;
+}
+#btn-m{
+background-color:#5f96c9;
+}
 
 #box {
 	width: 800px;
@@ -83,8 +88,12 @@
 	<div id="content">${vo.carpool_content }</div>
 	<div id="regdate">닉네임 : ${vo.mem_nickname}<br>작성일자 : ${fn:substring(vo.carpool_regdate,0,10) }</div>
      <div id="holder">
-		<button class="btn" 
+		<button class="btn" id="btn-m"
 			onclick="location.href='carpool_list.do?page=${param.page}&search=${ param.search }&search_text=${ param.search_text}';">목록보기</button>
+		<c:if test="${user.grade_idx eq '5'}">
+		<button class="btn" id="btn-a"
+			onclick="location.href='../admin/carpool_list.do';">관리자페이지</button>
+		</c:if>
 		<!--글쓴이인 경우만 보여 주라   -->
 		<c:if test="${user.mem_idx  eq vo.mem_idx}">
 			<input class="btn btn-info" type="button" value="수정하기" 

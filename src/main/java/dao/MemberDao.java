@@ -10,6 +10,7 @@ public interface MemberDao {
 
    //전체조회
     List<MemberVo> selectList();
+
    
     int insert(MemberVo vo);
     int delete(int mem_idx);

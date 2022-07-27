@@ -247,8 +247,19 @@
 
 </script>
    
-   
-   
+<!-- 등급수정폼 -->   
+<script type="text/javascript">
+
+	function change() {
+		
+		location.href="grade_change.do?mem_idx=${ vo.mem_idx }";
+		
+	}
+
+
+
+</script>   
+  
    
    
    </head>
@@ -317,8 +328,8 @@
             
                <td>
                    <div style="text-align:center;"> 
-                   <button class="btn btn-outline-dark" >수정</button>
-                   <button class="btn btn-outline-dark" >삭제</button>
+                   <button class="btn btn-outline-dark" type="submit"
+                           onclick="change();" >수정</button>
                   </div>
                </td>
             </tr>
