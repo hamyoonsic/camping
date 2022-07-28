@@ -91,7 +91,8 @@ public class ReviewDaoImpl implements ReviewDao {
 	@Override
 	public int insert(ReviewVo vo) {
 		// TODO Auto-generated method stub
-		return sqlSession.insert("review.review_insert", vo);	}
+		return 0;
+	}
 
 
 	@Override
@@ -104,7 +105,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	@Override
 	public int delete(int review_idx) {
 		// TODO Auto-generated method stub
-		return sqlSession.delete("review.review_delete",review_idx);
+		return 0;
 	}
 
 
@@ -125,13 +126,8 @@ public class ReviewDaoImpl implements ReviewDao {
 	@Override
 	public int modify(ReviewVo vo) {
 		// TODO Auto-generated method stub
-		return sqlSession.update("review.review_modify",vo);
+		return 0;
 	}   
       
-   //mem_idx에 해당하는 review리스트 가져오기 
-   @Override
-   public List<ReviewVo> review_mem_list(int mem_idx) {
-      // TODO Auto-generated method stub
-      return sqlSession.selectList("review.review_mem_list",mem_idx);
-   }        
+	      
 }

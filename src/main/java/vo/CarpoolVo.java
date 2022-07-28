@@ -16,7 +16,6 @@ public class CarpoolVo {
 	int 	    carpool_no;
 	int			heart_flag;
 	
-
 	public int getCarpool_no() {
 		return carpool_no;
 	}

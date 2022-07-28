@@ -7,48 +7,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <link href="${ pageContext.request.contextPath }/resources/my_page.css" rel="stylesheet" type="text/css">
+
 </head>
-
-
 <script type="text/javascript">
 
 
-//댓글목록가져오기
-var global_page=1;
-
-function category_list(){
-     
-     $.ajax({
-        url      :   "category_list.do",
-        data      :   {"mem_idx":"${ user.mem_idx }"/* , "page":comment_page */ },
-        success   :   function(res_data){
-           // res_data-> comment_list.jsp의 html 내용
-           $(".bottom_box").html(res_data);
-           
-        },
-        error      :   function(err){
-           alert(err.responseText);
-        }
-     });// end:category_list
-
-}
-
-</script>
 
 
 
-<script type="text/javascript">
-//현재 Document가 배치완료되면
-/*   $(document).ready(function(){
-      
-      //댓글목록 가져오기
-      category_list();
-      
-});  */ 
+
+
+
+
 
 </script>
 
@@ -61,6 +33,7 @@ function category_list(){
       <c:if test="${user.grade_idx eq 1 }">
          <img alt="이미지없음" src="${ pageContext.request.contextPath }/resources/images/grade_bronze.JPG" width="70"height="70px">&nbsp;&nbsp;<br>
       </c:if>
+      
       <c:if test="${user.grade_idx eq 2 }">
          <img alt="이미지없음" src="${ pageContext.request.contextPath }/resources/images/grade_silver.JPG" width="70"height="70px">&nbsp;&nbsp;<br>
       
@@ -105,7 +78,7 @@ function category_list(){
    <!-- 내가쓴글,내가쓴댓글,좋아요글,좋아요댓글 -->
    <div class="middle_box">
    <br><br><br><br>
-   <span><a href="#" onclick="category_list();" >내가 쓴 글 <font color="gray">${categoryCount }</font></a></span>&nbsp;&nbsp;
+   <span><a href="#" onchange="write_list();" >내가 쓴 글 <font color="gray">${categoryCount }</font></a></span>&nbsp;&nbsp;
    <span><a href="#" onchange="write_comment_list();" >내가 쓴 댓글<font color="gray">${ replyCount }</font></a></span>&nbsp;&nbsp;
    <span><a href="#" onchange="my_like_list();" >내가 좋아요한 글<font color="gray">${ likeCount }</font></a></span>&nbsp;&nbsp;
    <span><a href="#" onchange="my_like_reply_list();" >내가 좋아요한 댓글<font color="gray">${ replyLikeCount }</font></a></span>

@@ -12,22 +12,9 @@ public class ReviewReplyVo {
 	int		review_reply_depth;
 	String	review_reply_regdate;
 	String	review_reply_ip;
-	int		heart_flag;
-	int		cnt;
 	
 	
-	public int getHeart_flag() {
-		return heart_flag;
-	}
-	public void setHeart_flag(int heart_flag) {
-		this.heart_flag = heart_flag;
-	}
-	public int getCnt() {
-		return cnt;
-	}
-	public void setCnt(int cnt) {
-		this.cnt = cnt;
-	}
+	
 	public int getReview_reply_idx() {
 		return review_reply_idx;
 	}

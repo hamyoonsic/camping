@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 댓글목록 -->
 	<select id="review_reply_list" resultType="vo.ReviewReplyVo">
-		select * from review_reply_view order by review_reply_ref desc,review_reply_step asc
+		select * from review_reply_view
 	</select>
 	
 	
@@ -17,9 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(
 			select
 				r.*,
-				rank() over (order by review_reply_ref desc,review_reply_step asc) no,
-				(select count(review_reply_idx) from REVIEW_REPLY_LIKE where r.review_reply_idx=review_reply_idx) cnt,
-   				(select count(review_reply_idx) from REVIEW_REPLY_LIKE where r.review_reply_idx=review_reply_idx and mem_idx=#{m_idx}) heart_flag
+				rank() over (order by review_reply_idx desc) no
 			from(select * from review_reply_view where review_idx=#{review_idx}) r
 		)
 		where no between #{start} and #{end}
@@ -34,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 										#{mem_nickname},
 										#{review_idx},
 										#{review_reply_content},
-										seq_review_reply_idx.currVal,
+										0,
 										0,
 										0,
 										sysdate,
@@ -45,56 +43,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 댓글삭제 -->
 	<delete id="review_reply_delete" parameterType="int">
-		delete from review_reply where review_reply_idx=#{review_reply_idx}
+		delete from review_reply where review_idx=#{review_idx}
 	</delete>
 
-
-
-	<!-- 레코드 한개 추출 -->
-	<select id="review_reply_one" parameterType="int" resultType="vo.ReviewReplyVo">
-		select * from review_reply where review_reply_idx=#{review_reply_idx}
-	</select>
-	
-	<!-- 동일한 그룹글중에서 기준글보다 step이 큰게시물의 step을 증가 -->
-   	<update id="review_reply_step"  parameterType="vo.ReviewReplyVo">
-        update review_reply
-              set review_reply_step = review_reply_step + 1
-        where review_reply_ref=#{ review_reply_ref}  and  review_reply_step > #{ review_reply_step }      
-   	</update>
-	
-	
-	<!-- 답글쓰기 -->
-   <insert id="review_reply_re" parameterType="vo.ReviewReplyVo">
-       insert into review_reply values(seq_review_reply_idx.nextVal,
-										#{mem_idx}, 
-										#{mem_nickname},
-										#{review_idx},
-										#{review_reply_content},
-										#{review_reply_ref},
-										#{review_reply_step},
-										#{review_reply_depth},
-										sysdate,
-										#{review_reply_ip}
-										)
-   </insert>
-   
-   
-   
-   <!-- 전체 댓글 수 구하기 -->
-   <select id="review_reply_row_total"	resultType="int">
- 		select nvl(count(*),0) from review_reply
-   </select>
-   
-   
-   <!--  게시글 추천 시 REPLY_Like 테이블에 insert  -->
-   <insert id="review_reply_insertlike" parameterType="vo.ReviewReplyVo"> 
-      insert into review_reply_like values(seq_review_reply_like_idx.nextVal,#{mem_idx},#{review_reply_idx},1) 
-   </insert>
-   
-   <!--  게시글 추천취소 시 REPLY_Like 테이블에서 삭제   -->
-   <delete id="review_reply_deletelike" parameterType="vo.ReviewReplyVo"> 
-      delete from review_reply_like where review_reply_idx=#{review_reply_idx} and mem_idx=#{mem_idx}
-   </delete>
 </mapper>
 
 

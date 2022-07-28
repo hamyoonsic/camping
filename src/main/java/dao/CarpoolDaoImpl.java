@@ -95,7 +95,7 @@ public class CarpoolDaoImpl implements CarpoolDao {
 	@Override
 	public int insert(CarpoolVo vo) {
 		// TODO Auto-generated method stub
-		return sqlSession.insert("carpool.carpool_insert", vo);
+		return 0;
 	}
 
 	@Override
@@ -107,7 +107,7 @@ public class CarpoolDaoImpl implements CarpoolDao {
 	@Override
 	public int delete(int carpool_idx) {
 		// TODO Auto-generated method stub
-		return sqlSession.delete("carpool.carpool_delete",carpool_idx);
+		return 0;
 	}
 
 	@Override
@@ -125,16 +125,10 @@ public class CarpoolDaoImpl implements CarpoolDao {
 	@Override
 	public int modify(CarpoolVo vo) {
 		// TODO Auto-generated method stub
-		return sqlSession.update("carpool.carpool_modify",vo);
+		return 0;
 	}
 
-	
-	 // mem_idx에 해당하는 carpool리스트 가져오기 
-	   @Override
-	   public List<CarpoolVo> carpool_mem_list(int mem_idx) {
-	      // TODO Auto-generated method stub
-	      return sqlSession.selectList("carpool.carpool_mem_list",mem_idx);
-	   }
+
 
 
 }

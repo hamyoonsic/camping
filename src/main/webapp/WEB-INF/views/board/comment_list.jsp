@@ -22,21 +22,21 @@
 
 <script type="text/javascript">
 
-	function comment_del(carpool_idx){
+	function comment_del(review_idx){
 		
 		if(confirm("정말 삭제하시겠습니까?")==false)return;
 		
 		//Ajax로 삭제
 		$.ajax({
 			
-			url			:	"carpool_reply_delete.do",
-			data		:	{"carpool_idx":carpool_idx},
+			url			:	"review_reply_delete.do",
+			data		:	{"review_idx":review_idx},
 			dataType	:	"json",
 			success		:	function(res_data){
 				
 				if(res_data.result){
 					
-					carpool_reply_list(global_page);
+					review_reply_list(global_page);
 					
 				}
 				
@@ -74,15 +74,15 @@
 		   	<b>${vo.mem_nickname}</b>
 		   	<!-- 글쓴이만 삭제 -->
 		   	<c:if test="${user.mem_idx eq vo.mem_idx }">
-		   		<input type="button" value="x" onclick="comment_del('${vo.carpool_idx }');">
+		   		<input type="button" value="x" onclick="comment_del(${vo.review_idx });">
 		   	</c:if>
     	</div>
      
 	    <div class="panel-body">
 	   		<div class="content_type">
-	      		${vo.carpool_reply_content}
+	      		${vo.review_reply_content}
 	      	</div>
-	      	<div class="regdate_type">작성일자 : ${fn:substring(vo.carpool_reply_regdate,0,16) }</div>
+	      	<div class="regdate_type">작성일자 : ${fn:substring(vo.review_reply_regdate,0,16) }</div>
 	    </div>
     </div>
 	

@@ -13,11 +13,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     (select * from MARKET) m order by m.market_idx desc
 	</select>
 	
-	<!--mem_idx에 해당하는 list 조회  -->
-   <select id="market_mem_list" parameterType="int" resultType="vo.MarketVo">
-      select * from market where mem_idx =#{mem_idx} order by market_idx desc 
-   </select>
-	
 	<!-- 페이징처리를 위한 조회 -->
 	<select id="market_condition_list" parameterType="java.util.Map" resultType="vo.MarketVo">
 	select * from
@@ -101,42 +96,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          set market_hit_count = market_hit_count + 1 
       where market_idx = #{ market_idx}
    </update>
-
-  
-   	<!-- 새글쓰기 -->
-	<insert id="market_insert" parameterType="vo.MarketVo">
-	insert into market values( seq_market_idx.nextVal,
-													 1,
-													 #{ mem_idx },
-													 #{ mem_nickname },
-													 #{ market_title },
-													 #{ market_content },
-													 sysdate,
-													 default,
-													 default,
-													 default,
-													 #{ market_ip },
-													 #{ market_buy_sell }
-		 )
-	 </insert>
-
-  <!-- 게시글삭제 -->
-   <delete id="market_delete"   parameterType="int">
-       delete from market where market_idx=#{ market_idx }
-   </delete>
-
-
-   <!-- 게시글수정 -->
-   <update id="market_modify"  parameterType="vo.MarketVo">
-        update market set  market_title = #{ market_title},
-                           market_content = #{ market_content},
-                           market_ip = #{ market_ip },
-                           market_regdate = sysdate
-        where market_idx=#{ market_idx }                    
-   </update>
-   
-   
-
 
 </mapper>
 

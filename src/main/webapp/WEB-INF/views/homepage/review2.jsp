@@ -114,9 +114,9 @@
 }
 
 .big{
-	width:33rem;
+	width:37rem;
 	border-radius: 15px;
-	height: 430px;
+	height: 470px;
 	margin-bottom: 10px;
 }
 

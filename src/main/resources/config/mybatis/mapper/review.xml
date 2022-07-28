@@ -13,11 +13,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     (select * from REVIEW) r order by r.review_idx desc
 	</select>
 	
-	<!--mem_idx에 해당하는 list 조회  -->
-   <select id="review_mem_list" parameterType="int" resultType="vo.MarketVo">
-      select * from review where mem_idx =#{mem_idx} order by review_idx desc 
-   </select>
-	
 	<!-- 페이징처리를 위한 조회 -->
 	<select id="review_condition_list" parameterType="java.util.Map" resultType="vo.ReviewVo">
 	select * from
@@ -102,39 +97,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          set review_hit_count = review_hit_count + 1 
       where review_idx = #{ review_idx}
    </update>
-   
-   	<!-- 새글쓰기 -->
-	<insert id="review_insert" parameterType="vo.ReviewVo">
-	insert into review values( seq_review_idx.nextVal,
-													 1,
-													 #{ mem_idx },
-													 #{ mem_nickname },
-													 #{ review_title },
-													 #{ review_content },
-													 sysdate,
-													 default,
-													 default,
-													 default,
-													 #{ review_ip }
-		 )
-	 </insert>
-
-  <!-- 게시글삭제 -->
-   <delete id="review_delete"   parameterType="int">
-       delete from review where review_idx=#{ review_idx }
-   </delete>
-
-
-   <!-- 게시글수정 -->
-   <update id="review_modify"  parameterType="vo.ReviewVo">
-        update review set  review_title = #{ review_title},
-                           review_content = #{ review_content},
-                           review_ip = #{ review_ip },
-                           review_regdate = sysdate
-        where review_idx=#{ review_idx }                    
-   </update>
-   
-   
 
 </mapper>
 

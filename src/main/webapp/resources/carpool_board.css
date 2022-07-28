@@ -2,11 +2,13 @@
 
 
 body{ 
+	
 	padding:80px; 
 }
 
 #title{
 	color: black;
+
 	padding-bottom: 70px;
 	text-align: center;
 	margin: auto;

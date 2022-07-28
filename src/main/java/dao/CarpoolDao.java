@@ -37,10 +37,4 @@ public interface CarpoolDao {
 	   int     update_readhit(int carpool_idx);//조회수 증가 
 	   int     modify(CarpoolVo vo);   
 	   
-	   //미영코드
-	   //mem_idx에 해당하는 carpool리스트 가져오기 
-	   List<CarpoolVo> carpool_mem_list(int mem_idx);
-	      
-	   
-	   
 }
