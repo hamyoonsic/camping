@@ -17,8 +17,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(
 			select
 				r.*,
-				rank() over (order by carpool_reply_ref desc,carpool_reply_step asc) no
-			from(select * from carpool_reply_view where carpool_idx=#{carpool_idx}) r
+				rank() over (order by carpool_reply_ref desc,carpool_reply_step asc) no,
+				 (select count(carpool_reply_idx) from CARPOOL_REPLY_LIKE where r.carpool_reply_idx=carpool_reply_idx)  cnt,
+   				 (select count(carpool_reply_idx) from CARPOOL_REPLY_LIKE where r.carpool_reply_idx=carpool_reply_idx and mem_idx=#{m_idx}) heart_flag
+			from(select * from carpool_reply_view where carpool_reply_idx=21) r
 		)
 		where no between #{start} and #{end}
 	</select>
@@ -83,6 +85,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <select id="carpool_reply_row_total"	resultType="int">
  		select nvl(count(*),0) from carpool_reply
    </select>
+   
+    <!--   게시글 추천 시 REPLY_Like 테이블에 insert   -->
+	<insert id="carpool_reply_insertlike" parameterType="vo.CarpoolReplyVo"> 
+	insert into carpool_reply_like values(seq_carpool_reply_like_idx.nextVal,#{mem_idx},#{carpool_reply_idx},1) 
+	</insert>
+	<!--   게시글 추천취소 시 REPLY_Like 테이블에서 삭제    -->
+	<delete id="carpool_reply_deletelike" parameterType="vo.CarpoolReplyVo"> 
+	delete from carpool_reply_like where carpool_reply_idx=#{carpool_reply_idx} and mem_idx=#{mem_idx} 
+	</delete>
+   
 
 </mapper>
 

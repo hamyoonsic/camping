@@ -132,9 +132,23 @@ public class MemberController {
              return map;
             
          }
-      
+         int likeCount = member_dao.selectOne_like_count(user.getMem_idx());
+         int replyCount = member_dao.selectOne_reply_count(user.getMem_idx());
+         int categoryCount = member_dao.selectOne_category_count(user.getMem_idx());
+         int replyLikeCount    = member_dao.selectOne_reply_like_count(user.getMem_idx());
+         
          session.setAttribute("user", user);
          
+		if (user.getGrade_idx() == 1 && replyCount > 2 && categoryCount > 0) {
+			member_dao.member_to_silver(user);
+		}
+		if (user.getGrade_idx() == 2 && likeCount > 9  && replyCount > 4 && categoryCount > 0) {
+			member_dao.member_to_gold(user);
+		}	
+		if (user.getGrade_idx() == 3 && likeCount > 14  && replyCount > 5 && categoryCount > 2) {
+			member_dao.member_to_ple(user);
+		}	
+			
          map.put("mem_nickname",user.getMem_nickname());
          map.put("grade_idx", user.getGrade_idx());
          map.put("result", "success");
@@ -459,7 +473,58 @@ public class MemberController {
       
    }
    
+   //멤버를 휴면계정으로 전환
+   @RequestMapping("member_getout.do")
+   public String member_getout(Integer mem_idx){
+	   
+	  MemberVo vo = member_dao.selectOne(mem_idx);
+	  
+      int res = member_dao.member_getout(vo);
       
+      return "redirect:member_mypage_adm.do";
+   }    
+   //멤버를 관리자로 전환  
+   @RequestMapping("member_admin.do")
+   public String member_admin(Integer mem_idx){
+	   
+	  MemberVo vo = member_dao.selectOne(mem_idx);
+	  
+      int res = member_dao.member_admin(vo);
+      
+      return "redirect:member_mypage_adm.do";
+   }     
    
+   //브론즈를 실버로 전환  
+   @RequestMapping("member_to_silver.do")
+   public String member_to_silver(Integer mem_idx){
+	   
+	  MemberVo vo = member_dao.selectOne(mem_idx);
+	  
+      int res = member_dao.member_to_silver(vo);
+      
+      return "redirect:member_mypage_adm.do";
+   } 
+   
+   //실버를 골드로 전환  
+   @RequestMapping("member_to_gold.do")
+   public String member_to_gold(Integer mem_idx){
+	   
+	  MemberVo vo = member_dao.selectOne(mem_idx);
+	  
+      int res = member_dao.member_to_gold(vo);
+      
+      return "redirect:member_mypage_adm.do";
+   } 
+   
+ //골드를 플래티넘으로 전환  
+   @RequestMapping("member_to_ple.do")
+   public String member_to_ple(Integer mem_idx){
+	   
+	  MemberVo vo = member_dao.selectOne(mem_idx);
+	  
+      int res = member_dao.member_to_ple(vo);
+      
+      return "redirect:member_mypage_adm.do";
+   } 
    
 }

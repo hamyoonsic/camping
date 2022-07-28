@@ -4,12 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -19,12 +22,20 @@ import dao.MarketReplyDao;
 import dao.ReviewReplyDao;
 import util.Paging;
 import vo.CarpoolReplyVo;
+import vo.CarpoolVo;
 import vo.MarketReplyVo;
+import vo.MemberVo;
 import vo.ReviewReplyVo;
 
 @Controller
 @RequestMapping("/board/")
 public class ReplyController {
+	
+	@Autowired
+	ServletContext applicaton;
+
+	@Autowired
+	HttpSession session;
 	
 	ReviewReplyDao review_reply_dao;
 	MarketReplyDao market_reply_dao;
@@ -55,12 +66,15 @@ public class ReplyController {
 		
 		int start	=	(nowPage-1)* MyConstant.Comment.BLOCK_LIST + 1;
 		int end		=	start + MyConstant.Comment.BLOCK_LIST - 1 ;
-
+		int m_idx = 0;
+		MemberVo user = (MemberVo) session.getAttribute("user");
+		if(user!=null)m_idx=user.getMem_idx();
 		
 		Map map	=	new HashMap();
 		map.put("start", start);
 		map.put("end", end);
 		map.put("review_idx", review_idx);
+		map.put("m_idx", m_idx);
 		
 		int rowTotal	=	review_reply_dao.selectRowTotal();
 		
@@ -173,6 +187,25 @@ public class ReplyController {
 		
 	}
 	
+	//댓글 좋아요기능
+	 @ResponseBody
+	   @RequestMapping(value ="/review_reply_insertlike.do", method = RequestMethod.POST)
+	   public int review_reply_insertlike(ReviewReplyVo vo) {
+	      
+	      int res = review_reply_dao.review_reply_insertlike(vo);
+	      
+	      return 1;
+	   }
+	   
+	   @ResponseBody
+	   @RequestMapping(value ="/review_reply_deletelike.do", method = RequestMethod.POST)
+	   public int review_reply_deletelike(ReviewReplyVo vo) {
+	      
+	      int res = review_reply_dao.review_reply_deletelike(vo);
+	      
+	      return 1;
+	   }
+	
 	//-----------------------------------------------carpool-------------------------------------------------------------
 		
 		@RequestMapping("carpool_reply_list.do")
@@ -182,11 +215,14 @@ public class ReplyController {
 			
 			int start	=	(nowPage-1)*MyConstant.Comment.BLOCK_LIST + 1;
 			int end		=	start + MyConstant.Comment.BLOCK_LIST - 1 ;
-
+			int m_idx = 0;
+			MemberVo user = (MemberVo) session.getAttribute("user");
+			if(user!=null)m_idx=user.getMem_idx();
 			Map map	=	new HashMap();
 			map.put("start", start);
 			map.put("end", end);
 			map.put("carpool_idx", carpool_idx);
+			map.put("m_idx", m_idx);
 			
 			int rowTotal	=	carpool_reply_dao.selectRowTotal();
 			
@@ -298,6 +334,24 @@ public class ReplyController {
 			
 		}
 		
+		//댓글 좋아요기능
+		 @ResponseBody
+		   @RequestMapping(value ="/carpool_reply_insertlike.do", method = RequestMethod.POST)
+		   public int carpool_reply_insertlike(CarpoolReplyVo vo) {
+		      
+		      int res = carpool_reply_dao.carpool_reply_insertlike(vo);
+		      
+		      return 1;
+		   }
+		   
+		   @ResponseBody
+		   @RequestMapping(value ="/carpool_reply_deletelike.do", method = RequestMethod.POST)
+		   public int carpool_reply_deletelike(CarpoolReplyVo vo) {
+		      
+		      int res = carpool_reply_dao.carpool_reply_deletelike(vo);
+		      
+		      return 1;
+		   }
 		
 		//-----------------------------------------------market-------------------------------------------------------------
 		
@@ -308,11 +362,15 @@ public class ReplyController {
 			
 			int start	=	(nowPage-1)*MyConstant.Comment.BLOCK_LIST + 1;
 			int end		=	start + MyConstant.Comment.BLOCK_LIST - 1 ;
+			int m_idx = 0;
+			MemberVo user = (MemberVo) session.getAttribute("user");
+			if(user!=null)m_idx=user.getMem_idx();
 
 			Map map	=	new HashMap();
 			map.put("start", start);
 			map.put("end", end);
 			map.put("market_idx", market_idx);
+			map.put("m_idx", m_idx);
 			
 			int rowTotal	=	market_reply_dao.selectRowTotal();
 			
@@ -427,7 +485,24 @@ public class ReplyController {
 			
 		}
 		
-		
+	   //댓글 좋아요기능
+	   @ResponseBody
+	   @RequestMapping(value ="/market_reply_insertlike.do", method = RequestMethod.POST)
+	   public int market_reply_insertlike(MarketReplyVo vo) {
+	      
+	      int res = market_reply_dao.market_reply_insertlike(vo);
+	      
+	      return 1;
+	   }
+	   
+	   @ResponseBody
+	   @RequestMapping(value ="/market_reply_deletelike.do", method = RequestMethod.POST)
+	   public int market_reply_deletelike(MarketReplyVo vo) {
+	      
+	      int res = market_reply_dao.market_reply_deletelike(vo);
+	      
+	      return 1;
+	   }
 		
 		
 		

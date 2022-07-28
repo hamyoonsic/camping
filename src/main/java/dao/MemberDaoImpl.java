@@ -179,7 +179,41 @@ public class MemberDaoImpl implements MemberDao {
 		   }
 
 
-	
+	   @Override
+		public int member_getout(MemberVo vo) {
+			// TODO Auto-generated method stub
+			return sqlSession.update("member.member_getout",vo);
+		}
+
+		@Override
+		public int member_admin(MemberVo vo) {
+			// TODO Auto-generated method stub
+			return sqlSession.update("member.member_admin",vo);
+		}
+
+
+
+		@Override
+		public int member_to_silver(MemberVo vo) {
+			// TODO Auto-generated method stub
+			return sqlSession.update("member.member_to_silver",vo);
+		}
+
+
+
+		@Override
+		public int member_to_gold(MemberVo vo) {
+			// TODO Auto-generated method stub
+			return sqlSession.update("member.member_to_gold",vo);
+		}
+
+
+
+		@Override
+		public int member_to_ple(MemberVo vo) {
+			// TODO Auto-generated method stub
+			return sqlSession.update("member.member_to_ple",vo);
+		}
 	
 	
 

@@ -52,6 +52,19 @@ public interface MemberDao {
    //photo_upload
    int photo_upload(MemberVo vo);
    
-    
+   //mem_idx에 해당하는 회원 휴면계정으로 전환
+   int member_getout(MemberVo vo);
+   
+   //mem_idx에 해당하는 회원 관리자로 등업
+   int member_admin(MemberVo vo); 
+   
+   //브론즈를 실버로 전환
+   int member_to_silver(MemberVo vo);
+   
+   //실버를 골드로 전환
+   int member_to_gold(MemberVo vo);
+   
+   //골드를 플레티넘으로 전환
+   int member_to_ple(MemberVo vo);
    
 }

@@ -20,4 +20,10 @@ public interface CarpoolReplyDao {
 	int 				reply(CarpoolReplyVo vo);
 	
 	int 				selectRowTotal();
+	
+   //게시글 좋아요 +1
+   public int carpool_reply_insertlike(CarpoolReplyVo vo);
+   
+   //게시글 좋아요 -1
+   public int carpool_reply_deletelike(CarpoolReplyVo vo);
 }

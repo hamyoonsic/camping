@@ -73,7 +73,7 @@
 
 	function change() {
 		
-		location.href="grade_change.do";
+		location.href="../member/member_mypage_adm.do";
 		
 	}
 
@@ -172,11 +172,7 @@
           <li class="sub-menu">
             <a href="#" class="active">
               <i class="fa fa-th"></i>
-<<<<<<< HEAD
-              <span>멤버 리스트</span>
-=======
               <span>멤버리스트</span>
->>>>>>> db2d10f6d017efec9a5d6a4c4ffbb87001cf90eb
               </a>
           </li>
         </ul>
@@ -231,7 +227,6 @@
 					<c:forEach var="vo" items="${ list }">
 					<tr>
 						   <td>${ vo.mem_idx }</td>
-						   <td>${ vo.mem_no }</td>
 			               <td>${ vo.grade_idx}</td>
 			               <td>${ vo.mem_nickname }</td>
 			               <td>${ vo.mem_email }</td>
@@ -241,11 +236,11 @@
 				</c:forEach>
 					<tbody id="dataSection"></tbody>
 				</table>
+			</form>
+		</div>
 			<div>
 				<button class="btn btn-sm" onclick="change();">회원 정보 수정</button>
 			</div>
-			</form>
-		</div>
 		</div>
 </section>
 </section>
