@@ -82,7 +82,6 @@
 	<div id="job_button"></div>
 		<input  class="btn btn-primary" type="button" value="목록보기" 
 			onclick="location.href='market_list.do?page=${param.page}&search=${ param.search }&search_text=${ param.search_text}';">
-
 		<!--글쓴이인 경우만 보여 주라   -->
 		<c:if test="${user.mem_idx  eq vo.mem_idx}">
 			<input class="btn btn-info"     type="button" value="수정하기" 
@@ -90,6 +89,10 @@
 			<input class="btn btn-danger"     type="button" value="삭제하기" 
 				onclick="del();">
 		</c:if>
+		<c:if test="${user.grade_idx eq '5'}">
+		<button class="btn" id="btn-a"
+			onclick="location.href='../admin/market_list.do';">관리자페이지</button>
+		</c:if>	
 </div>
 <%@include file="market_comment.jsp" %>
 </body>

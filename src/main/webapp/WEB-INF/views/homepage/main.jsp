@@ -161,7 +161,7 @@
             }
             if("${!empty user and user.grade_idx eq '5'}"=="true"){
                
-               location.href="${pageContext.request.contextPath}/member/member_mypage_adm.do";
+               location.href="${pageContext.request.contextPath}/admin/admin_page.do";
                
             
             }
@@ -369,7 +369,8 @@
    </div>
    
 <div class="slidebox">
-   <input type="radio" name="slide" id="slide1" checked="checked">
+<p class="chuchun">이 달의 추천장소</p>
+   <input type="radio"name="slide" id="slide1" checked="checked">
    <input type="radio" name="slide" id="slide2" >
    <input type="radio" name="slide" id="slide3">
    <input type="radio" name="slide" id="slide4">
