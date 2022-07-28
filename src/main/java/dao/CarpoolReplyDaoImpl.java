@@ -34,9 +34,45 @@ public class CarpoolReplyDaoImpl implements CarpoolReplyDao {
 	}
 
 	@Override
-	public int delete(int carpool_idx) {
+	public int delete(int carpool_reply_idx) {
 		// TODO Auto-generated method stub
-		return sqlSession.delete("carpool_reply.carpool_reply_delete",carpool_idx);
+		return sqlSession.delete("carpool_reply.carpool_reply_delete",carpool_reply_idx);
+	}
+
+	@Override
+	public CarpoolReplyVo selectOne(int carpool_reply_idx) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("carpool_reply.carpool_reply_one", carpool_reply_idx);
+	}
+
+	@Override
+	public int update_step(CarpoolReplyVo baseVo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("carpool_reply.carpool_reply_step", baseVo);
+	}
+
+	@Override
+	public int reply(CarpoolReplyVo vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("carpool_reply.carpool_reply_re", vo);
+	}
+
+	@Override
+	public int selectRowTotal() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("carpool_reply.carpool_reply_row_total");
+	}
+
+	@Override
+	public int carpool_reply_insertlike(CarpoolReplyVo vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("carpool_reply.carpool_reply_insertlike",vo);
+	}
+
+	@Override
+	public int carpool_reply_deletelike(CarpoolReplyVo vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("carpool_reply.carpool_reply_deletelike",vo);
 	}
 
 }

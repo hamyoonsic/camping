@@ -106,7 +106,9 @@
 
 
 <h3 id="title">Carpool</h3>
-<div><a class="lotation" href="">+게시판이동</a></div><br>
+<div><a class="lotation"
+	    href="../board/carpool_list.do?search=carpool_title_carpool_content_mem_nickname&search_text=${ param.search_text}">+게시판이동</a></div><br>
+
 
 <table  class="table_list">
 <colgroup>
@@ -151,7 +153,8 @@
 
 
 <h3 id="title">Market</h3>
-<div><a class="lotation" href="">+게시판이동</a></div><br>
+<div><a class="lotation" 
+		href="../board/market_list.do?search=market_title_market_content_mem_nickname&search_text=${ param.search_text}">+게시판이동</a></div><br>
 
 <table  class="table_list">
 <colgroup>
@@ -179,7 +182,7 @@
 	<c:forEach var="vo" begin="0" end="4" step="1" items="${ map.market_list }">
 		<tr>
 			
-			<td>${ vo.market_no }</td>
+			<td>${ vo.market_idx }</td>
 			<td class="subject"><a href="#">${ vo.market_title }</td>
 			<td>${ vo.market_hit_count }</td>
 			<td>${ vo.market_like_count }</td>
@@ -191,7 +194,8 @@
 
 
 <h3 id="title">Review</h3>
-<div><a class="lotation" href="">+게시판이동</a></div><br>
+<div><a class="lotation" 
+	    href="../board/review_list.do?search=review_title_review_content_mem_nickname&search_text=${ param.search_text}">+게시판이동</a></div><br>
 
 <table  class="table_list">
 <colgroup>
@@ -219,8 +223,8 @@
 	<c:forEach var="vo" begin="0" end="4" step="1" items="${ map.review_list }" >
 		<tr>
 			
-			<td>${ vo.review_no }</td>
-			<td class="subject"><a href="#">${ vo.review_title }</td>
+			<td>${ vo.review_no  }</td>
+			<td class="subject">${ vo.review_title }</td>
 			<td>${ vo.review_hit_count }</td>
 			<td>${ vo.review_like_count }</td>
 			<td>${ vo.mem_nickname }</td>

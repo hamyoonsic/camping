@@ -37,18 +37,49 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      delete from member where mem_idx=#{ mem_idx }
   </delete>
 
- <!-- update -->
+ <!--회원  update -->
+ 
   <update id="member_update" parameterType="vo.MemberVo">
       update member 
              set 
-                  mem_grade=#{mem_grade},
+                
                  mem_pwd=#{ mem_pwd },           
-                 mem_birth=#{ mem_birth },
-                 mem_profile=#{mem_profile},
-                 mem_pic_filename=#{mem_pic_filename}, 
+                 mem_profile=#{mem_profile}
+                      where mem_idx=#{ mem_idx }
+  </update>
+
+  <update id="photo_upload" parameterType="vo.MemberVo">
+      update member 
+             set 
+                 mem_pic_filename=#{mem_pic_filename}
+                      where mem_idx=#{ mem_idx }
+  </update>
+
+
+  <update id="member_out" parameterType="vo.MemberVo">
+     update member 
+           set
+              mem_status=#{mem_status}
+                 where mem_idx=#{mem_idx}
+  </update>
+
+
+
+
+
+   <!--admin페이지에서 사용  -->
+  <update id="member_amd_update" parameterType="vo.MemberVo">
+      update member 
+             set 
+                 mem_grade=#{mem_grade},
                  mem_status=#{mem_status}
                    where mem_idx=#{ mem_idx }
   </update>
+
+
+
+
+
 
 <!-- mem_idx가 좋아요 수 체크    --> 
 <select id="member_like_count" parameterType="int" resultType="int">
@@ -92,8 +123,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   )  
   
 
-
 </select>
+
+<!-- mem_idx가 작성한 댓글수체크  --> 
+<select id="member_reply_like_count" parameterType="int" resultType="int">
+   select sum(count) from         
+  (
+     select count(*) as count from review_reply_like where  mem_idx=#{mem_idx}
+     union all      
+     select count(*) as count from market_reply_like where  mem_idx=#{mem_idx}
+     union all           
+     select count(*) as count from carpool_reply_like where  mem_idx=#{mem_idx}
+  )  
+  
+</select>
+
 
 <!-- 페이징 검색 -->
 
@@ -104,6 +148,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  	 from
 	    (select * from MEMBER) m order by mem_no desc
 </select>
+
+
 
 <!-- 페이징처리를 위한 조회 -->
 	<select id="member_condition_list" parameterType="java.util.Map" resultType="vo.MemberVo">

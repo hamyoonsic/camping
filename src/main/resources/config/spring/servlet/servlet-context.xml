@@ -35,6 +35,7 @@
 	<beans:bean class="controller.CarpoolController">
 		<beans:property name="carpool_dao" ref="carpool_dao"/>
 		<beans:property name="market_dao" ref="market_dao"/>
+		<beans:property name="visit_dao" ref="visit_dao"/>
 	</beans:bean>
 	
 
@@ -52,7 +53,10 @@
 	<beans:bean class="controller.TotalSearchController">
 		<beans:constructor-arg ref="total_search_service" />
 	</beans:bean>
-
+	
+	<beans:bean class="controller.TotalMypageController">
+		<beans:constructor-arg ref="total_mypage_service"/>
+	</beans:bean>
 	
 	<beans:bean class="controller.ReviewController">
 		<beans:property name="review_dao" ref="review_dao"/>
@@ -63,5 +67,7 @@
 		<beans:property name="grade_dao" ref="grade_dao"/>
 	</beans:bean>
 	
+	<!-- CKEditorFileUploadController -->
+ 	<beans:bean class="controller.CKEditorFileUploadController"/>
 
 </beans:beans>

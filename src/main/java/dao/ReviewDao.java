@@ -37,7 +37,10 @@ public interface ReviewDao {
    int     update_readhit(int review_idx);//조회수 증가 
    int     modify(ReviewVo vo);   
 	   
-	   
+   //미영
+   //mem_idx에 해당하는 review리스트 가져오기 
+   
+   List<ReviewVo> review_mem_list(int mem_idx);
 	
 	
 

@@ -20,6 +20,8 @@
 		<mapper resource="config/mybatis/mapper/review_reply.xml" />
 		<mapper resource="config/mybatis/mapper/market_reply.xml" />
 		<mapper resource="config/mybatis/mapper/carpool_reply.xml" />
+		<mapper resource="config/mybatis/mapper/visit.xml" />
+		
 	</mappers>
 	
 	
