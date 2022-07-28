@@ -68,7 +68,6 @@
 
 </script>
 
-<<<<<<< HEAD
 <!-- 등급수정폼 -->   
 <script type="text/javascript">
 
@@ -82,9 +81,6 @@
 
 </script>   
   
-=======
-
->>>>>>> db2d10f6d017efec9a5d6a4c4ffbb87001cf90eb
 
 
 </head>
@@ -223,10 +219,6 @@
 			                <th>e_mail</th>
 			                <th>birth</th>
 			                <th>regdate</th>
-<<<<<<< HEAD
-=======
-			                <th>select</th>
->>>>>>> db2d10f6d017efec9a5d6a4c4ffbb87001cf90eb
 						</tr>
 					</thead>
 					  <c:if test="${ empty list }">
@@ -238,30 +230,20 @@
 			          </c:if>
 					<c:forEach var="vo" items="${ list }">
 					<tr>
-<<<<<<< HEAD
 						   <td>${ vo.mem_idx }</td>
-=======
 						   <td>${ vo.mem_no }</td>
->>>>>>> db2d10f6d017efec9a5d6a4c4ffbb87001cf90eb
 			               <td>${ vo.grade_idx}</td>
 			               <td>${ vo.mem_nickname }</td>
 			               <td>${ vo.mem_email }</td>
 			               <td>${ vo.mem_birth }</td>
 			               <td>${fn:substring(vo.mem_regdate,0,10) }</td>
-<<<<<<< HEAD
-=======
-						   <td><input type="checkbox"></td>
->>>>>>> db2d10f6d017efec9a5d6a4c4ffbb87001cf90eb
 					</tr>
 				</c:forEach>
 					<tbody id="dataSection"></tbody>
 				</table>
-<<<<<<< HEAD
 			<div>
 				<button class="btn btn-sm" onclick="change();">회원 정보 수정</button>
 			</div>
-=======
->>>>>>> db2d10f6d017efec9a5d6a4c4ffbb87001cf90eb
 			</form>
 		</div>
 		</div>

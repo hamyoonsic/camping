@@ -122,11 +122,7 @@ function member_list(member_page){
 	  $.ajax({
 		  
 		  url		:	"../admin/member_list.do",
-<<<<<<< HEAD
 		  data		:	{"member_no":"${ vo.mem_idx }",
-=======
-		  data		:	{"member_no":"${ vo.member_no }",
->>>>>>> db2d10f6d017efec9a5d6a4c4ffbb87001cf90eb
 						 "member_title" :"${vo.member_title}",
 						 "member_hit_count":"${vo.member_hit_count}",
 						 "member_like_count":"${vo.member_like_count}",
@@ -397,11 +393,7 @@ function member_list(member_page){
           <li class="sub-menu">
             <a href="#" onclick="member_list();">
               <i class="fa fa-th"></i>
-<<<<<<< HEAD
-              <span>멤버 리스트</span>
-=======
               <span>멤버리스트</span>
->>>>>>> db2d10f6d017efec9a5d6a4c4ffbb87001cf90eb
               </a>
           </li>
         </ul>

@@ -20,12 +20,10 @@
 		<mapper resource="config/mybatis/mapper/review_reply.xml" />
 		<mapper resource="config/mybatis/mapper/market_reply.xml" />
 		<mapper resource="config/mybatis/mapper/carpool_reply.xml" />
-<<<<<<< HEAD
+
 		<mapper resource="config/mybatis/mapper/visit.xml" />
 		<mapper resource="config/mybatis/mapper/admin.xml"/>
-=======
-		<mapper resource="config/mybatis/mapper/admin.xml" />
->>>>>>> db2d10f6d017efec9a5d6a4c4ffbb87001cf90eb
+
 	</mappers>
 	
 	
