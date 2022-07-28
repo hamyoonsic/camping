@@ -68,6 +68,7 @@
 	</beans:bean>
 	
 	<beans:bean class="controller.AdminController">
+<<<<<<< HEAD
 		<beans:property name="carpool_dao" ref="carpool_dao" />
 		<beans:property name="market_dao" ref="market_dao" />
 		<beans:property name="member_dao" ref="member_dao" />
@@ -75,6 +76,15 @@
 		<beans:property name="grade_dao" ref="grade_dao" />
 	</beans:bean>
 
+=======
+		<beans:property name="carpool_dao" ref="carpool_dao"/>
+		<beans:property name="market_dao" ref="market_dao"/>
+		<beans:property name="member_dao" ref="member_dao"/>
+		<beans:property name="review_dao" ref="review_dao"/>
+		<beans:property name="grade_dao" ref="grade_dao"/>
+	</beans:bean>
+	
+>>>>>>> db2d10f6d017efec9a5d6a4c4ffbb87001cf90eb
 	<!-- CKEditorFileUploadController -->
  	<beans:bean class="controller.CKEditorFileUploadController"/>
 

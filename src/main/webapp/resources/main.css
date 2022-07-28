@@ -13,6 +13,15 @@
 	
 }
 
+p{
+	font-weight: bold;
+	font-size: 20px;
+	margin-top: 30px;
+	
+}
+
+
+
 .wrap_1{
 	
 	text-align: center;
@@ -107,7 +116,10 @@
 .slidebox{
 	max-width:1000px;
 	width: 100%;
+	
 	margin: 0 auto;
+	
+	
 }	
 
 .slideitem img{

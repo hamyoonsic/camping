@@ -139,7 +139,7 @@
 	font-size: 20px;
 	/* text-decoration: none; */
 	text-align: center;
-	margin-bottom: 100px; 
+	margin-bottom: 50px; 
 }
 
 
@@ -169,7 +169,7 @@
 	color: white;
 
 	margin: 25px auto;
-	margin-bottom: 100px; 
+	margin-bottom: 50px; 
 	
 
 }

@@ -1044,8 +1044,13 @@ public class AdminController {
 		                    @RequestParam(value="search_text", required = false) String search_text,           
 		                    Model model) {
 		      
+<<<<<<< HEAD
 		     int start = (nowPage-1) * MyConstant.Admin.BLOCK_LIST + 1;
 		     int end = start + MyConstant.Admin.BLOCK_LIST - 1;
+=======
+		     int start = (nowPage-1) * MyConstant.Member.BLOCK_LIST + 1;
+		     int end = start + MyConstant.Member.BLOCK_LIST - 1;
+>>>>>>> db2d10f6d017efec9a5d6a4c4ffbb87001cf90eb
 		     
 		      Map map = new HashMap();
 		      map.put("start", start);
@@ -1081,8 +1086,13 @@ public class AdminController {
 		                                  search_filter, 
 		                                  nowPage, 
 		                                  rowTotal, 
+<<<<<<< HEAD
 		                                  MyConstant.Admin.BLOCK_LIST, 
 		                                  MyConstant.Admin.BLOCK_PAGE);
+=======
+		                                  MyConstant.Member.BLOCK_LIST, 
+		                                  MyConstant.Member.BLOCK_PAGE);
+>>>>>>> db2d10f6d017efec9a5d6a4c4ffbb87001cf90eb
 		      
 		      List<MemberVo> list = member_dao.selectConditionList(map);
 		      

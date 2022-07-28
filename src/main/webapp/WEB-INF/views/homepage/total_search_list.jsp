@@ -12,6 +12,9 @@
 
 <style type="text/css">
 
+*{
+	
+}
 
 .top{
  	width: 100%;
@@ -120,7 +123,7 @@
 </colgroup>
 <thead>
 <tr>
-  <th>번호</th>
+  <th> </th>
   <th>제목</th>
   <th>조회수</th>
   <th>좋아요</th>
@@ -133,12 +136,12 @@
 	<c:if test="${ empty map.carpool_list }">
 		<td rowspan="6" colspan="6">검색결과가 없습니다.</td>
 	</c:if>
-
+	
     <!-- for(CarpoolVo vo : map.carpool_list) -->
 	<c:forEach var="vo" begin="0" end="4" step="1" items="${ map.carpool_list }">
 		<tr>
-			<td>${ vo.carpool_no }</td>
-			<td class="subject"><a href="#">${ vo.carpool_title }</td>
+			<td></td>
+			<td class="subject">${ vo.carpool_title }</td>
 			<td>${ vo.carpool_hit_count }</td>
 			<td>${ vo.carpool_like_count }</td>
 			<td>${ vo.mem_nickname }</td>
@@ -166,7 +169,7 @@
 </colgroup>
 <thead>
 <tr>
-  <th>번호</th>
+  <th></th>
   <th>제목</th>
   <th>조회수</th>
   <th>좋아요</th>
@@ -182,8 +185,8 @@
 	<c:forEach var="vo" begin="0" end="4" step="1" items="${ map.market_list }">
 		<tr>
 			
-			<td>${ vo.market_idx }</td>
-			<td class="subject"><a href="#">${ vo.market_title }</td>
+			<td></td>
+			<td class="subject">${ vo.market_title }</td>
 			<td>${ vo.market_hit_count }</td>
 			<td>${ vo.market_like_count }</td>
 			<td>${ vo.mem_nickname }</td>
@@ -207,7 +210,7 @@
 </colgroup>
 <thead>
 <tr>
-  <th>번호</th>
+  <th></th>
   <th>제목</th>
   <th>조회수</th>
   <th>좋아요</th>
@@ -223,7 +226,7 @@
 	<c:forEach var="vo" begin="0" end="4" step="1" items="${ map.review_list }" >
 		<tr>
 			
-			<td>${ vo.review_no  }</td>
+			<td></td>
 			<td class="subject">${ vo.review_title }</td>
 			<td>${ vo.review_hit_count }</td>
 			<td>${ vo.review_like_count }</td>

@@ -120,6 +120,7 @@
          $('[id*=disp]').empty();
          check   =   0;
 
+<<<<<<< HEAD
       }
       
       if(check==0){
@@ -180,6 +181,32 @@
         //console.log(mem_idx);
         //console.log(carpool_idx);
     }
+=======
+		}
+		
+		if(check==0){
+			check++;
+			$.ajax({
+				
+				url			:	"carpool_comment_form.do",
+				data		:	{'carpool_reply_idx':carpool_reply_idx, "page":"${param.page}"},
+				success		:	function(res_data){
+					
+					$("#disp"+carpool_reply_idx).html(res_data);
+					
+				},
+				error		:	function(err){
+					alert(err.responseText);
+					
+				}
+			});
+			
+		}
+		
+	}
+		
+	
+>>>>>>> db2d10f6d017efec9a5d6a4c4ffbb87001cf90eb
 
    
 
@@ -212,6 +239,7 @@
 <!-- for(CommentVo vo : list) -->
 <c:forEach var="vo" items="${list}">
 
+<<<<<<< HEAD
 
 
    <div class="commment_click${vo.carpool_reply_depth}"
@@ -265,6 +293,38 @@
       </div>
    </div>
    <div id="disp${vo.carpool_reply_idx}"></div>
+=======
+	
+	
+	<div class="commment_click${vo.carpool_reply_depth}" onclick="comment_re('${vo.carpool_reply_idx}');">
+		
+		<div class="box">
+			<b class="nickname">${vo.mem_nickname}</b>
+	    	<div class="box-heading">
+			   
+			   	<div id="comment_write_pic">
+			   	
+					<img src="${pageContext.request.contextPath}/resources/images/unsplash_people/people2.jpg" id="comment_profile">
+				</div>
+			   	<!-- 글쓴이만 삭제 -->
+			   	<c:if test="${user.mem_idx eq vo.mem_idx }">
+			   		<div class="x">
+			   			<input type="button" value="x" onclick="comment_del('${vo.carpool_reply_idx }');">
+			   		</div>
+			   	</c:if>
+	    	</div>
+	     
+		    <div class="box-body">
+		   		<div class="content_type">
+		      		${vo.carpool_reply_content}
+		      	</div>
+		      	<div class="regdate_type"> 작성일자 : ${fn:substring(vo.carpool_reply_regdate,0,16) }</div>
+		    </div>
+	    </div>
+	</div>
+		<div id="disp${vo.carpool_reply_idx}">
+	</div>
+>>>>>>> db2d10f6d017efec9a5d6a4c4ffbb87001cf90eb
 </c:forEach>
 
 <hr>

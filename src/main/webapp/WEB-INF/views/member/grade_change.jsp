@@ -246,27 +246,56 @@
 	}); 
 
 </script>
-   
-<!-- 등급수정폼 -->   
+
+
+<!-- 등급변경 -->  
 <script type="text/javascript">
 
-	function change() {
+	function modify() {
+	
+		var grade_no = $("#grade_no").val(); 	
+	
+		if(grade_no=='bronze') {
+			
+			
+			
+			alert('브론즈');
+			
+		}
 		
-		location.href="grade_change.do?mem_idx=${ vo.mem_idx }";
+		if(grade_no=='silver') {
+		
+			$("#grade_no").val("silver").prop("selected", true);
+			
+			alert('실버');
+			
+		}
+		
+		if(grade_no=='gold') {
+			
+			alert('골드');
+			
+		}
+		
+		if(grade_no=='fla') {
+			
+			alert('플래티넘');
+			
+		}
+		
 		
 	}
 
 
-
 </script>   
-  
+   
    
    
    </head>
    <body>
    
    
-   <h id="title">member list</h5>
+   <h id="title">grade</h5>
    <div class="top">
     <!--   <form method="post" name="search" action=""> -->
 		<table class="table_option">
@@ -294,42 +323,45 @@
        <table  class="table_list">
           <thead>
              <tr>
-                <th>number</th>
-                <th>grade</th>
+                <th>기존등급</th>
+                <th>변경등급</th>
                 <th>nickname</th>
                 <th>e_mail</th>
-                <th>birth</th>
-                <th>regdate</th>
+                <th>글 작성 수</th>
+                <th>가입일자</th>
+                <th>좋아요 수</th>
+                <th>댓글 수</th>
                 <th>select</th>
              </tr>
           </thead>
           
-          <tbody>
-                <c:if test="${empty list }">
-                <tr>
-                   <td colspan="7" align="center">
-                      <font color="red">등록된 회원이 없습니다</font>
-                   </td>
-                </tr> 
-                </c:if>
-          </tbody>
+     
              
           <tbody>
              <c:forEach  var="vo" items="${list}">
       
             <tr>
             
-               <td>${ vo.mem_no }</td>
                <td>${ vo.grade_idx}</td>
+               <td>
+                 <select name="grade_no" id="grade_no">
+	               	<option value="bronze">브론즈</option>
+	               	<option value="silver">실버</option>
+	               	<option value="gold">골드</option>
+	               	<option value="fla">플래티넘</option>
+                 </select>	
+               </td>
                <td>${ vo.mem_nickname }</td>
                <td>${ vo.mem_email }</td>
-               <td>${ vo.mem_birth }</td>
+               <td></td>
                <td>${fn:substring(vo.mem_regdate,0,10) }</td>
+               <td></td>
+               <td></td>
             
                <td>
                    <div style="text-align:center;"> 
-                   <button class="btn btn-outline-dark" type="submit"
-                           onclick="change();" >수정</button>
+                   <button type="submit" class="btn btn-outline-dark" onclick="modify();" >변경</button>
+                   <button class="btn btn-outline-dark" >탈퇴</button>
                   </div>
                </td>
             </tr>
