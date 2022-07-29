@@ -13,11 +13,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!--전체 조회  -->
 	<select id="market_reply_list_paging" parameterType="java.util.Map" resultType="vo.MarketReplyVo">
-		select * from 
+		select * from
 		(
 			select
 				r.*,
-				rank() over (order by market_reply_ref desc,market_reply_step asc) no
+				rank() over (order by market_reply_ref desc,market_reply_step asc) no,
+				(select count(market_reply_idx) from MARKET_REPLY_LIKE where r.market_reply_idx=market_reply_idx) cnt,
+   				(select count(market_reply_idx) from MARKET_REPLY_LIKE where r.market_reply_idx=market_reply_idx and mem_idx=#{m_idx}) heart_flag
 			from(select * from market_reply_view where market_idx=#{market_idx}) r
 		)
 		where no between #{start} and #{end}

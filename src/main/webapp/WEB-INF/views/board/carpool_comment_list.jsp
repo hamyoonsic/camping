@@ -230,17 +230,26 @@
 		      	</div>
 		      	<div class="regdate_type"> 작성일자 : ${fn:substring(vo.carpool_reply_regdate,0,16) }</div>
 		      	<div>
-		      	 <c:if test="${(empty user.mem_idx) or (vo.heart_flag eq 0)}">
-                  <td><button type="button" style="background: none; border: none;"onclick="updatelike('${ vo.carpool_reply_idx }');">
-                  <img src="${ pageContext.request.contextPath }/resources/images/heart-0.png" width="20px" height="20px">
-                  </c:if>
-                  <c:if test="${vo.heart_flag eq 1 }">
-                     <td><button type="button" style="background: none; border: none;"onclick="deletelike('${ vo.carpool_reply_idx }');">
-                     <img src="${ pageContext.request.contextPath }/resources/images/heart-1.png" width="20px" height="20px">
-                  </c:if>
-                  </button></td>
-                  <td style="width: 8%; text-align: center;" >&nbsp;&nbsp;${ vo.cnt }&nbsp;&nbsp;</td>
-                  </div>
+					<c:if test="${(empty user.mem_idx) or (vo.heart_flag eq 0)}">
+						<td><button type="button"
+								style="background: none; border: none;"
+								onclick="updatelike('${ vo.carpool_reply_idx }');">
+								<img
+									src="${ pageContext.request.contextPath }/resources/images/heart-0.png"
+									width="20px" height="20px">
+					</c:if>
+					<c:if test="${vo.heart_flag eq 1 }">
+						<td><button type="button"
+								style="background: none; border: none;"
+								onclick="deletelike('${ vo.carpool_reply_idx }');">
+								<img
+									src="${ pageContext.request.contextPath }/resources/images/heart-1.png"
+									width="20px" height="20px">
+					</c:if>
+					</button>
+					</td>
+					<td style="width: 8%; text-align: center;">&nbsp;&nbsp;${ vo.cnt }&nbsp;&nbsp;</td>
+				</div>
 		    </div>
 	    </div>
 	</div>
