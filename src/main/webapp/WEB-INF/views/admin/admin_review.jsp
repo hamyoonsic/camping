@@ -186,7 +186,7 @@
           </li>
           
           <li class="sub-menu">
-            <a href="#" onclick="best_list();">
+            <a href="admin_best_list.do">
               <i class="fa fa-th"></i>
               <span>베스트리뷰</span>
               </a>
