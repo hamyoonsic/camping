@@ -40,8 +40,9 @@ public interface ReviewDao {
    //미영
    //mem_idx에 해당하는 review리스트 가져오기 
    
-   List<ReviewVo> review_mem_list(int mem_idx);
+   List<ReviewVo> review_mem_list(Map map);
 	
-	
+ //mem_idx에 해당하는 carpool 게시글 좋아요한 리스트 
+   List<ReviewVo> review_like_mem_list(Map map);
 
 }

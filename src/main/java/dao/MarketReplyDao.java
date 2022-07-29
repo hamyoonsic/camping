@@ -20,4 +20,9 @@ public interface MarketReplyDao {
 	int 				reply(MarketReplyVo vo);
 	
 	int 				selectRowTotal();
+	
+	//미영
+	//mem_idx에 해당하는 market_reply리스트 가져오기 
+	List<MarketReplyVo> market_reply_mem_list(Map map);
+	
 }

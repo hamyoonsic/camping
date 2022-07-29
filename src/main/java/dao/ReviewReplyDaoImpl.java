@@ -63,4 +63,10 @@ public class ReviewReplyDaoImpl implements ReviewReplyDao {
 		return sqlSession.selectOne("review_reply.review_reply_row_total");
 	}
 
+	@Override
+	public List<ReviewReplyVo> review_reply_mem_list(Map map) {
+		// TODO Auto-generated method stub
+		return  sqlSession.selectList("review_reply.review_reply_mem_list",map);
+	}
+
 }

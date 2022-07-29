@@ -38,7 +38,7 @@
 
 <!-- for(CommentVo vo : list) -->
 <div>${pageMenu}</div>
-<c:forEach var="vo1"  items="${map1.carpool_mem_list }">
+<c:forEach var="vo1"  items="${map1.carpool_reply_mem_list }">
 
     <div class="panel panel-success">
       <div class="panel-heading">
@@ -49,13 +49,13 @@
       
       <div class="panel-body">
          <div class="content_type">
-            ${ vo1.carpool_title }
+            <%-- ${ vo1.carpool_reply_title } --%>
          </div> 
-         <div class="regdate_type">작성일자: ${ fn:substring(vo1.carpool_regdate,0,16) }</div>
+         <div class="regdate_type">작성일자: ${ fn:substring(vo1.carpool_reply_regdate,0,16) }</div>
       </div>
     </div>
 </c:forEach>
-<c:forEach var="vo2"  items="${map1.market_mem_list }">
+<c:forEach var="vo2"  items="${map1.market_reply_mem_list }">
 
     <div class="panel panel-success">
       <div class="panel-heading">
@@ -66,13 +66,13 @@
       
       <div class="panel-body">
          <div class="content_type">
-            ${ vo2.market_title }
+           <%--  ${ vo2.market_reply_title } --%>
          </div> 
-         <div class="regdate_type">작성일자: ${ fn:substring(vo2.market_regdate,0,16) }</div>
+         <div class="regdate_type">작성일자: ${ fn:substring(vo2.market_reply_regdate,0,16) }</div>
       </div>
     </div>
 </c:forEach>   
-<c:forEach var="vo3"  items="${map1.review_mem_list }">
+<c:forEach var="vo3"  items="${map1.review_reply_mem_list }">
 
     <div class="panel panel-success">
       <div class="panel-heading">
@@ -83,9 +83,9 @@
       
       <div class="panel-body">
          <div class="content_type">
-            ${ vo3.review_title }
+          <%--   ${ vo3.review_reply_title } --%>
          </div> 
-         <div class="regdate_type">작성일자: ${ fn:substring(vo3.review_regdate,0,16) }</div>
+         <div class="regdate_type">작성일자: ${ fn:substring(vo3.review_reply_regdate,0,16) }</div>
       </div>
     </div>
 </c:forEach>

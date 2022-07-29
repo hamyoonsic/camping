@@ -14,9 +14,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
  <!--mem_idx에 해당하는 카풀리스트   -->
-   <select id="carpool_mem_list" parameterType="int" resultType="vo.CarpoolVo">
-                select * from carpool where mem_idx =#{mem_idx} order by carpool_idx desc 
+   <select id="carpool_mem_list" parameterType="java.util.Map" resultType="vo.CarpoolVo">
+     select * from
+	(
+	   select
+	      c.*,
+	      rank() over(order by carpool_idx desc) no
+	   from  (select * from carpool where mem_idx=#{mem_idx}) c
+	)
+	where no between #{start} and #{end}
    </select>
+   
+    <!--mem_idx에 해당하는 좋아요한 게시글  조회  -->
+   	<select id="carpool_like_mem_list" parameterType="int" resultType="vo.CarpoolVo">
+		select * from
+		(
+		   select
+		      cl.*,
+		      rank() over(order by carpool_idx desc) no
+		   from  (  select * from carpool
+					where  carpool_idx in (select carpool_idx from carpool_like where mem_idx=#{mem_idx})
+		          ) cl
+		)
+		where no between #{start} and #{end}
+	
+	</select>
+   
+   
    
 	
 	<!-- 페이징처리를 위한 조회 -->

@@ -63,4 +63,10 @@ public class CarpoolReplyDaoImpl implements CarpoolReplyDao {
 		return sqlSession.selectOne("carpool_reply.carpool_reply_row_total");
 	}
 
+	@Override
+	public List<CarpoolReplyVo> carpool_reply_mem_list(Map map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("carpool_reply.carpool_reply_mem_list",map);
+	}
+
 }

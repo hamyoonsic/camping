@@ -131,8 +131,15 @@ public class ReviewDaoImpl implements ReviewDao {
       
    //mem_idx에 해당하는 review리스트 가져오기 
    @Override
-   public List<ReviewVo> review_mem_list(int mem_idx) {
+   public List<ReviewVo> review_mem_list(Map map) {
       // TODO Auto-generated method stub
-      return sqlSession.selectList("review.review_mem_list",mem_idx);
-   }        
+      return sqlSession.selectList("review.review_mem_list",map);
+   }
+
+
+@Override
+public List<ReviewVo> review_like_mem_list(Map map) {
+	// TODO Auto-generated method stub
+	return sqlSession.selectList("review.review_like_mem_list",map);
+}        
 }

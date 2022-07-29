@@ -14,6 +14,7 @@ public class CarpoolReplyVo {
 	String	carpool_reply_ip;
 	
 	
+	
 	public int getCarpool_reply_idx() {
 		return carpool_reply_idx;
 	}

@@ -17,12 +17,39 @@
 <script type="text/javascript">
 
 
-//댓글목록가져오기
+//내가쓴 게시물 목록가져오기
 var global_page=1;
 
-function category_list(){
-     
-     $.ajax({
+function category_list(comment_page){
+		 /* alert("되라"); */
+      
+      $.ajax({
+        url      :   "category_list.do",
+        data      :   {"mem_idx":"${ user.mem_idx }"/* , "page":comment_page */ },
+        success   :   function(res_data){
+           // res_data-> comment_list.jsp의 html 내용
+           $(".bottom_box").html(res_data);
+           
+        },
+        error      :   function(err){
+           alert(err.responseText);
+        }
+     });// end:category_list
+
+}
+
+</script>
+
+<script type="text/javascript">
+
+
+//내가 쓴 댓글목록가져오기
+var global_page=1;
+
+function category_list(comment_page){
+		 /* alert("되라"); */
+      
+      $.ajax({
         url      :   "category_list.do",
         data      :   {"mem_idx":"${ user.mem_idx }"/* , "page":comment_page */ },
         success   :   function(res_data){
@@ -42,15 +69,73 @@ function category_list(){
 
 
 <script type="text/javascript">
-//현재 Document가 배치완료되면
-/*   $(document).ready(function(){
+
+
+//댓글목록가져오기
+var global_page=1;
+
+function category_reply_list(comment_page){
+		/*  alert("되라"); */
       
-      //댓글목록 가져오기
-      category_list();
-      
-});  */ 
+      $.ajax({
+        url      :   "category_reply_list.do",
+        data      :   {"mem_idx":"${ user.mem_idx }"/* , "page":comment_page */ },
+        success   :   function(res_data){
+           // res_data-> comment_list.jsp의 html 내용
+           $(".bottom_box").html(res_data);
+           
+        },
+        error      :   function(err){
+           alert(err.responseText);
+        }
+     });// end:category_list
+
+}
 
 </script>
+
+<script type="text/javascript">
+
+
+//댓글목록가져오기
+var global_page=1;
+
+function category_like_list(comment_page){
+		/*  alert("되라"); */
+      
+      $.ajax({
+        url      :   "category_like_list.do",
+        data      :   {"mem_idx":"${ user.mem_idx }"/* , "page":comment_page */ },
+        success   :   function(res_data){
+           // res_data-> comment_list.jsp의 html 내용
+           $(".bottom_box").html(res_data);
+           
+        },
+        error      :   function(err){
+           alert(err.responseText);
+        }
+     });// end:category_list
+
+}
+
+</script>
+
+
+
+<script type="text/javascript">
+
+
+/*    
+   //현재 Document가 배치완료되면
+   $(document).ready(function(){
+	   
+	   //댓글목록 가져오기
+	   comment_list(1);
+	   
+   }); */
+
+</script>
+
 
 <body>
 <div class="main_box">
@@ -105,16 +190,15 @@ function category_list(){
    <!-- 내가쓴글,내가쓴댓글,좋아요글,좋아요댓글 -->
    <div class="middle_box">
    <br><br><br><br>
+   <hr  color="gray" size="20" >
    <span><a href="#" onclick="category_list();" >내가 쓴 글 <font color="gray">${categoryCount }</font></a></span>&nbsp;&nbsp;
-   <span><a href="#" onchange="write_comment_list();" >내가 쓴 댓글<font color="gray">${ replyCount }</font></a></span>&nbsp;&nbsp;
-   <span><a href="#" onchange="my_like_list();" >내가 좋아요한 글<font color="gray">${ likeCount }</font></a></span>&nbsp;&nbsp;
-   <span><a href="#" onchange="my_like_reply_list();" >내가 좋아요한 댓글<font color="gray">${ replyLikeCount }</font></a></span>
+   <span><a href="#" onclick="category_reply_list();" >내가 쓴 댓글<font color="gray">${ replyCount }</font></a></span>&nbsp;&nbsp;
+   <span><a href="#" onclick="category_like_list();" >내가 좋아요한 글<font color="gray">${ likeCount }</font></a></span>&nbsp;&nbsp;
+   <span><a href="#" onchange="category_like__reply_list();" >내가 좋아요한 댓글<font color="gray">${ replyLikeCount }</font></a></span>
    </div>
    
    <!-- 실제 아래에 목록 보여주기 -->
-   <div class="bottom_box">
-   <span>게시판 테이블 넣어야 할 곳</span>
-   </div>
+   <div	class="bottom_box"></div>
    
    
 

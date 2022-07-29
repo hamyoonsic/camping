@@ -20,4 +20,9 @@ public interface CarpoolReplyDao {
 	int 				reply(CarpoolReplyVo vo);
 	
 	int 				selectRowTotal();
+	
+	//미영
+	//mem_idx에 해당하는 carpool_reply 리스트 가져오기 
+	
+	List<CarpoolReplyVo> carpool_reply_mem_list(Map map);
 }

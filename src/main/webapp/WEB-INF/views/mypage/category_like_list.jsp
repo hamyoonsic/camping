@@ -38,7 +38,7 @@
 
 <!-- for(CommentVo vo : list) -->
 <div>${pageMenu}</div>
-<c:forEach var="vo1"  items="${map1.carpool_mem_list }">
+<c:forEach var="vo1"  items="${map1.carpool_liek_mem_list }">
 
     <div class="panel panel-success">
       <div class="panel-heading">
@@ -55,7 +55,7 @@
       </div>
     </div>
 </c:forEach>
-<c:forEach var="vo2"  items="${map1.market_mem_list }">
+<c:forEach var="vo2"  items="${map1.market_like_mem_list }">
 
     <div class="panel panel-success">
       <div class="panel-heading">
@@ -72,7 +72,7 @@
       </div>
     </div>
 </c:forEach>   
-<c:forEach var="vo3"  items="${map1.review_mem_list }">
+<c:forEach var="vo3"  items="${map1.review_like_mem_list }">
 
     <div class="panel panel-success">
       <div class="panel-heading">

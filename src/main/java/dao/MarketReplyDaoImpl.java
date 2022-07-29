@@ -63,4 +63,10 @@ public class MarketReplyDaoImpl implements MarketReplyDao {
 		return sqlSession.selectOne("market_reply.market_reply_row_total");
 	}
 
+	@Override
+	public List<MarketReplyVo> market_reply_mem_list(Map map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("market_reply.market_reply_mem_list",map);
+	}
+
 }

@@ -23,7 +23,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where no between #{start} and #{end}
 	</select>
 
-
+	
+	<!--미영 /mem_idx에 해당하는 카풀댓글 리스트    -->
+	<select id="carpool_reply_mem_list" parameterType="java.util.Map" resultType="vo.CarpoolReplyVo">
+		select * from
+		(
+		   select
+		      cr.*,
+		      rank() over(order by carpool_reply_idx desc) no
+		   from  (select * from carpool_reply where mem_idx=#{mem_idx}) cr
+		)
+		where no between #{start} and #{end}
+	</select>
+	
+	
 
 	<!-- 댓글작성 -->
 	<insert id="carpool_reply_insert" parameterType ="vo.CarpoolReplyVo">
