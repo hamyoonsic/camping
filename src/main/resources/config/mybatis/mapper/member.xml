@@ -194,7 +194,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 		</trim>
 	</select>
-	
+<!--  관리자가 강퇴(휴면계정으로전환)시킬때  -->
+<update id="member_getout" parameterType="vo.MemberVo"> 
+update member set mem_status=0 where mem_idx=#{mem_idx} 
+</update>
+
+<!--  관리자가 다른 회원 관리자로 등업시킬때  -->
+<update id="member_admin" parameterType="vo.MemberVo"> 
+update member set grade_idx=5 where mem_idx=#{mem_idx} 
+</update>
+
+<!--  브론즈가 실버로 자동등업  -->
+<update id="member_to_silver" parameterType="vo.MemberVo"> 
+update member set grade_idx=2 where mem_idx=#{mem_idx} 
+</update>
+
+<!--  실버가 골드로 자동등업  -->
+<update id="member_to_gold" parameterType="vo.MemberVo"> 
+update member set grade_idx=3 where mem_idx=#{mem_idx} 
+</update>
+
+<!--  골드가 플레티넘으로 자동등업  -->
+<update id="member_to_ple" parameterType="vo.MemberVo"> 
+update member set grade_idx=4 where mem_idx=#{mem_idx} 
+</update>
+
 
 </mapper>
 

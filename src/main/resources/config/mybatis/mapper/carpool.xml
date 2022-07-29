@@ -126,8 +126,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          set carpool_hit_count = carpool_hit_count + 1 
       where carpool_idx = #{ carpool_idx}
    </update>
-	
-	
+
+	<!-- 새글쓰기 -->
+	<insert id="carpool_insert" parameterType="vo.CarpoolVo">
+	insert into carpool values(seq_carpool_idx.nextVal,
+													 2,
+													 #{ mem_idx },
+													 #{ mem_nickname },
+													 #{ carpool_title },
+													 #{ carpool_content },
+													 sysdate,
+													 default,
+													 default,
+													 #{ carpool_ip }
+		 )
+	 </insert>
+
+  <!-- 게시글삭제 -->
+   <delete id="carpool_delete"   parameterType="int">
+       delete from carpool where carpool_idx=#{ carpool_idx }
+   </delete>
+
+
+   <!-- 게시글수정 -->
+   <update id="carpool_modify"  parameterType="vo.CarpoolVo">
+        update carpool set carpool_title = #{ carpool_title},
+                           carpool_content = #{ carpool_content},
+                           carpool_ip = #{ carpool_ip },
+                           carpool_regdate = sysdate
+        where carpool_idx=#{ carpool_idx }                    
+   </update>
 
 </mapper>
 

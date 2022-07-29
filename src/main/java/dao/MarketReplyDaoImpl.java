@@ -68,5 +68,18 @@ public class MarketReplyDaoImpl implements MarketReplyDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("market_reply.market_reply_mem_list",map);
 	}
+	
+	@Override
+	public int market_reply_insertlike(MarketReplyVo vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("market_reply.market_reply_insertlike",vo);
+	}
+
+	@Override
+	public int market_reply_deletelike(MarketReplyVo vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("market_reply.market_reply_deletelike",vo);
+
+	}
 
 }

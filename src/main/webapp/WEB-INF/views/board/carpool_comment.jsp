@@ -167,6 +167,7 @@
 	//댓글작성
 	function carpool_reply_insert(){
 		
+		
 		if("${empty user }"=="true"){
 			
 			alert("댓글작성은 로그인이 필요합니다");
@@ -196,7 +197,6 @@
 				if(res_data.result){
 					$("#carpool_reply_content").val("");
 					carpool_reply_list(1);
-					
 				}
 				
 				

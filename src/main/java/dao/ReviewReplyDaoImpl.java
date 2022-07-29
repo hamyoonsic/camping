@@ -68,5 +68,17 @@ public class ReviewReplyDaoImpl implements ReviewReplyDao {
 		// TODO Auto-generated method stub
 		return  sqlSession.selectList("review_reply.review_reply_mem_list",map);
 	}
+	@Override
+	public int review_reply_insertlike(ReviewReplyVo vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("review_reply.review_reply_insertlike",vo);
+	}
+
+	@Override
+	public int review_reply_deletelike(ReviewReplyVo vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("review_reply.review_reply_deletelike",vo);
+
+	}
 
 }

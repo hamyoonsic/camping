@@ -25,4 +25,9 @@ public interface CarpoolReplyDao {
 	//mem_idx에 해당하는 carpool_reply 리스트 가져오기 
 	
 	List<CarpoolReplyVo> carpool_reply_mem_list(Map map);
+   //게시글 좋아요 +1
+   public int carpool_reply_insertlike(CarpoolReplyVo vo);
+   
+   //게시글 좋아요 -1
+   public int carpool_reply_deletelike(CarpoolReplyVo vo);
 }

@@ -232,6 +232,9 @@ public static String getPaging(String pageURL,
   }
 
 
+
+
+
 //¥Ò±€ ∆‰¿Ã¬°----------------------------------------------------------------------------------
 		public static String review_commentPaging(String pageURL,
 				   int nowPage, 

@@ -114,9 +114,9 @@
 }
 
 .big{
-	width:37rem;
+	width:33rem;
 	border-radius: 15px;
-	height: 470px;
+	height: 430px;
 	margin-bottom: 10px;
 }
 
@@ -139,7 +139,7 @@
 	font-size: 20px;
 	/* text-decoration: none; */
 	text-align: center;
-	margin-bottom: 100px; 
+	margin-bottom: 50px; 
 }
 
 
@@ -169,7 +169,7 @@
 	color: white;
 
 	margin: 25px auto;
-	margin-bottom: 100px; 
+	margin-bottom: 50px; 
 	
 
 }

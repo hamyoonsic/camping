@@ -87,7 +87,7 @@ public class MarketDaoImpl implements MarketDao {
 		@Override
 		public int insert(MarketVo vo) {
 			// TODO Auto-generated method stub
-			return 0;
+			return sqlSession.insert("market.market_insert", vo);
 		}
 
 		@Override
@@ -99,7 +99,8 @@ public class MarketDaoImpl implements MarketDao {
 		@Override
 		public int delete(int market_idx) {
 			// TODO Auto-generated method stub
-			return 0;
+
+			return sqlSession.delete("market.market_delete",market_idx);
 		}
 
 		@Override
@@ -117,7 +118,7 @@ public class MarketDaoImpl implements MarketDao {
 		@Override
 		public int modify(MarketVo vo) {
 			// TODO Auto-generated method stub
-			return 0;
+			return sqlSession.update("market.market_modify",vo);
 		}
 
 		 //mem_idx에 해당하는 market리스트 가져오기 

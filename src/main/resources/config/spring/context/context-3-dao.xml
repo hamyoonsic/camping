@@ -37,6 +37,10 @@
 		<property name="sqlSession" ref="sqlSession"></property>
 	</bean>
 	
+	<bean id="visit_dao" class="dao.VisitDaoImpl">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	
 
 	
 </beans>

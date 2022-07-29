@@ -12,6 +12,9 @@
 
 <style type="text/css">
 
+*{
+	
+}
 
 .top{
  	width: 100%;
@@ -106,7 +109,9 @@
 
 
 <h3 id="title">Carpool</h3>
-<div><a class="lotation" href="">+게시판이동</a></div><br>
+<div><a class="lotation"
+	    href="../board/carpool_list.do?search=carpool_title_carpool_content_mem_nickname&search_text=${ param.search_text}">+게시판이동</a></div><br>
+
 
 <table  class="table_list">
 <colgroup>
@@ -118,7 +123,7 @@
 </colgroup>
 <thead>
 <tr>
-  <th>번호</th>
+  <th> </th>
   <th>제목</th>
   <th>조회수</th>
   <th>좋아요</th>
@@ -131,12 +136,12 @@
 	<c:if test="${ empty map.carpool_list }">
 		<td rowspan="6" colspan="6">검색결과가 없습니다.</td>
 	</c:if>
-
+	
     <!-- for(CarpoolVo vo : map.carpool_list) -->
 	<c:forEach var="vo" begin="0" end="4" step="1" items="${ map.carpool_list }">
 		<tr>
-			<td>${ vo.carpool_no }</td>
-			<td class="subject"><a href="#">${ vo.carpool_title }</td>
+			<td></td>
+			<td class="subject">${ vo.carpool_title }</td>
 			<td>${ vo.carpool_hit_count }</td>
 			<td>${ vo.carpool_like_count }</td>
 			<td>${ vo.mem_nickname }</td>
@@ -151,7 +156,8 @@
 
 
 <h3 id="title">Market</h3>
-<div><a class="lotation" href="">+게시판이동</a></div><br>
+<div><a class="lotation" 
+		href="../board/market_list.do?search=market_title_market_content_mem_nickname&search_text=${ param.search_text}">+게시판이동</a></div><br>
 
 <table  class="table_list">
 <colgroup>
@@ -163,7 +169,7 @@
 </colgroup>
 <thead>
 <tr>
-  <th>번호</th>
+  <th></th>
   <th>제목</th>
   <th>조회수</th>
   <th>좋아요</th>
@@ -179,8 +185,8 @@
 	<c:forEach var="vo" begin="0" end="4" step="1" items="${ map.market_list }">
 		<tr>
 			
-			<td>${ vo.market_no }</td>
-			<td class="subject"><a href="#">${ vo.market_title }</td>
+			<td></td>
+			<td class="subject">${ vo.market_title }</td>
 			<td>${ vo.market_hit_count }</td>
 			<td>${ vo.market_like_count }</td>
 			<td>${ vo.mem_nickname }</td>
@@ -191,7 +197,8 @@
 
 
 <h3 id="title">Review</h3>
-<div><a class="lotation" href="">+게시판이동</a></div><br>
+<div><a class="lotation" 
+	    href="../board/review_list.do?search=review_title_review_content_mem_nickname&search_text=${ param.search_text}">+게시판이동</a></div><br>
 
 <table  class="table_list">
 <colgroup>
@@ -203,7 +210,7 @@
 </colgroup>
 <thead>
 <tr>
-  <th>번호</th>
+  <th></th>
   <th>제목</th>
   <th>조회수</th>
   <th>좋아요</th>
@@ -219,8 +226,8 @@
 	<c:forEach var="vo" begin="0" end="4" step="1" items="${ map.review_list }" >
 		<tr>
 			
-			<td>${ vo.review_no }</td>
-			<td class="subject"><a href="#">${ vo.review_title }</td>
+			<td></td>
+			<td class="subject">${ vo.review_title }</td>
 			<td>${ vo.review_hit_count }</td>
 			<td>${ vo.review_like_count }</td>
 			<td>${ vo.mem_nickname }</td>

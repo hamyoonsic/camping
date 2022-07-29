@@ -13,8 +13,24 @@ public class CarpoolReplyVo {
 	String	carpool_reply_regdate;
 	String	carpool_reply_ip;
 	
+	int		heart_flag;
+	int		cnt;
 	
 	
+
+
+	public int getHeart_flag() {
+		return heart_flag;
+	}
+	public void setHeart_flag(int heart_flag) {
+		this.heart_flag = heart_flag;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	public int getCarpool_reply_idx() {
 		return carpool_reply_idx;
 	}

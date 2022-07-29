@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin">
+
+<!-- 카풀 -->
+	<!-- 전체조회 -->
+	<!-- <select id="ad_carpool_list" parameterType="map" resultType="vo.CarpoolVo">
+		select c.* ,
+	     (select count(carpool_idx) from CARPOOL_LIKE where c.carpool_idx=carpool_idx) cnt,
+	     (select count(carpool_idx) from CARPOOL_LIKE where c.carpool_idx=carpool_idx and mem_idx=#{m_idx}) heart_flag
+	  	 from
+	    (select * from CARPOOL) c order by c.carpool_idx desc
+	</select>
+	 -->
+ <!--mem_idx에 해당하는 카풀리스트   -->
+ <!--   <select id="ad_carpool_mem_list" parameterType="int" resultType="vo.CarpoolVo">
+                select * from carpool where mem_idx =#{mem_idx} order by carpool_idx desc 
+   </select> -->
+   
+	
+	<!-- 페이징처리를 위한 조회 -->
+	<!-- <select id="ad_carpool_condition_list" parameterType="java.util.Map" resultType="vo.CarpoolVo">
+	select * from
+	(
+		select 
+			c.*,
+			rank() over(order by carpool_idx desc) carpool_no,
+			(select count(carpool_idx) from CARPOOL_LIKE where c.carpool_idx=carpool_idx) cnt,
+	        (select count(carpool_idx) from CARPOOL_LIKE where c.carpool_idx=carpool_idx and mem_idx=#{m_idx}) heart_flag
+		from
+			(select * from carpool
+				<trim prefix="where" prefixOverrides="or">
+					<if test="carpool_title != null">
+						carpool_title like '%' || #{ carpool_title } || '%'
+					</if>			
+
+					<if test="carpool_content!= null">
+						or carpool_content like '%' || #{ carpool_content } || '%'
+					</if>			
+
+					<if test="mem_nickname != null">
+						or mem_nickname like '%' || #{ mem_nickname } || '%'
+					</if>			
+				</trim>
+			
+			) c
+	)	
+		where carpool_no between #{ start } and #{ end }
+	</select>
+	 -->
+	<!-- 전체게시물수 구하기 -->
+	<!-- <select id="ad_carpool_row_total" resultType="int">
+		select nvl(count(*),0) from carpool
+	</select> -->
+	
+	<!-- 검색 조건별 게시물수 구하기 -->
+	<!-- <select id="ad_carpool_condition_row_total" parameterType="java.util.Map" resultType="int">
+		select nvl(count(*),0) from carpool
+		<trim prefix="where" prefixOverrides="or">
+					<if test="carpool_title != null">
+						carpool_title like '%' || #{ carpool_title } || '%'
+					</if>			
+
+					<if test="carpool_content!= null">
+						or carpool_content like '%' || #{ carpool_content } || '%'
+					</if>			
+
+					<if test="mem_nickname != null">
+						or mem_nickname like '%' || #{ mem_nickname } || '%'
+					</if>			
+		</trim>
+	</select> -->
+   <!-- 게시글삭제 -->
+   <!-- <delete id="ad_carpool_delete"   parameterType="int">
+       delete from carpool where carpool_idx=#{ carpool_idx }
+   </delete>
+ -->
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

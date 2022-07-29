@@ -17,7 +17,6 @@
 
 
 <style type="text/css">
-
 	
 	
 	.content_type{
@@ -79,7 +78,6 @@
 </style>
 
 <script type="text/javascript">
-
 	function comment_del(carpool_reply_idx){
 		
 		if(confirm("정말 삭제하시겠습니까?")==false)return;
@@ -105,7 +103,6 @@
 			
 		});
 	}
-
 </script>
 
 <script type="text/javascript">
@@ -119,7 +116,6 @@
 			
 			$('[id*=disp]').empty();
 			check	=	0;
-
 		}
 		
 		if(check==0){
@@ -142,15 +138,48 @@
 		}
 		
 	}
-		
+    var mem_idx = "${user.mem_idx}";
+    var carpool_reply_idx = "${vo.carpool_reply_idx}";
+    var carpool_reply_like_idx = "${vo.carpool_reply_like_idx}";
+	function updatelike(carpool_reply_idx){
+        
+        $.ajax({
+            type : "POST",  
+            url : "carpool_reply_insertlike.do",       
+            dataType : "json",   
+            data : {  'mem_idx' : mem_idx,'carpool_reply_idx' : carpool_reply_idx},
+            success : function(data) {
+                   location.reload();
+            },
+            error : function(){
+               alert("로그인 하셔야 합니다.");
+            }
+        });  
+        //console.log(mem_idx);
+        //console.log(carpool_idx);
+    }
+   
+   function deletelike(carpool_reply_idx){
+      
+        $.ajax({
+            type : "POST",  
+            url : "carpool_reply_deletelike.do",       
+            dataType : "json",   
+            data : {  'mem_idx' : mem_idx,'carpool_reply_idx' : carpool_reply_idx},
+            success : function(data) {
+                   location.reload();
+            },
+            error : function(){
+               alert("로그인 하셔야 합니다.");
+            }
+        });  
+        //console.log(mem_idx);
+        //console.log(carpool_idx);
+    }
 	
-
-	
-
 </script>
 
 <script>
-
 	$(function(){
 		
 	
@@ -164,7 +193,6 @@
 		
 	});
 	
-
 </script>
 
 
@@ -201,6 +229,27 @@
 		      		${vo.carpool_reply_content}
 		      	</div>
 		      	<div class="regdate_type"> 작성일자 : ${fn:substring(vo.carpool_reply_regdate,0,16) }</div>
+		      	<div>
+					<c:if test="${(empty user.mem_idx) or (vo.heart_flag eq 0)}">
+						<td><button type="button"
+								style="background: none; border: none;"
+								onclick="updatelike('${ vo.carpool_reply_idx }');">
+								<img
+									src="${ pageContext.request.contextPath }/resources/images/heart-0.png"
+									width="20px" height="20px">
+					</c:if>
+					<c:if test="${vo.heart_flag eq 1 }">
+						<td><button type="button"
+								style="background: none; border: none;"
+								onclick="deletelike('${ vo.carpool_reply_idx }');">
+								<img
+									src="${ pageContext.request.contextPath }/resources/images/heart-1.png"
+									width="20px" height="20px">
+					</c:if>
+					</button>
+					</td>
+					<td style="width: 8%; text-align: center;">&nbsp;&nbsp;${ vo.cnt }&nbsp;&nbsp;</td>
+				</div>
 		    </div>
 	    </div>
 	</div>

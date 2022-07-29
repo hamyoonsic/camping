@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-   
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>   
 <style type="text/css">
    
    body{ 
@@ -32,12 +32,12 @@
       
    }
    
-   
+/*    
    .btn {
       float:right;
    
     }
-   
+    */
    section> #container { 
       padding:20px 0; 
       border-top:2px solid #eee; 
@@ -247,8 +247,71 @@
 
 </script>
    
-   
-   
+<!-- 등급수정폼 -->   
+<script type="text/javascript">
+
+	function change() {
+		
+		location.href="grade_change.do?mem_idx=${ vo.mem_idx }";
+		
+	}
+
+
+
+</script>   
+<script type="text/javascript">
+var mem_idx = "${vo.mem_idx}";
+
+function member_getout(mem_idx){
+	 
+	   Swal.fire({
+	        title: '정말 해당 사용자를 \n 휴면계정으로 \n전환하시겠습니까?',
+	        html: "<h5>선택한 사용자정보가 휴면계정으로 전환됩니다</h5>",
+	        icon: 'question',
+	        showCancelButton: true,
+	        confirmButtonColor: '#3085d6',
+	        cancelButtonColor: '#d33',
+	        confirmButtonText: '강퇴',
+	        cancelButtonText:  '취소'
+	      }).then((result) => {
+	        
+	         if (result.isConfirmed) {
+	            
+	        	 location.href="member_getout.do?mem_idx="+mem_idx; 
+	            
+	            return;
+	            
+	         }
+	      });
+	      
+	   }//member_getout
+	   
+   //관리자로 등업
+   function member_admin(mem_idx){
+		 
+	   Swal.fire({
+	        title: '정말 해당 사용자를 \n 관리자로 \n전환하시겠습니까?',
+	        html: "<h5>선택한 사용자가 관리자로 전환됩니다</h5>",
+	        icon: 'question',
+	        showCancelButton: true,
+	        confirmButtonColor: '#3085d6',
+	        cancelButtonColor: '#d33',
+	        confirmButtonText: '등업',
+	        cancelButtonText:  '취소'
+	      }).then((result) => {
+	        
+	         if (result.isConfirmed) {
+	            
+	        	 location.href="member_admin.do?mem_idx="+mem_idx; 
+	            
+	            return;
+	            
+	         }
+	      });
+	      
+	   }//member_admin   
+  
+</script>       
    
    
    </head>
@@ -283,20 +346,25 @@
        <table  class="table_list">
           <thead>
              <tr>
-                <th>number</th>
-                <th>grade</th>
-                <th>nickname</th>
-                <th>e_mail</th>
-                <th>birth</th>
-                <th>regdate</th>
-                <th>select</th>
+                <th>회원번호</th>
+                <th>등급</th>
+                <th>닉네임</th>
+                <th>쓴글</th>
+                <th>쓴댓글</th>
+                <th>좋아요글</th>
+                <th>좋아요댓글</th>
+                <th>이메일</th>
+                <th>생일</th>
+                <th>가입일</th>
+                <th>휴면여부</th>
+                <th>선택</th>
              </tr>
           </thead>
           
           <tbody>
                 <c:if test="${empty list }">
                 <tr>
-                   <td colspan="7" align="center">
+                   <td colspan="12" align="center">
                       <font color="red">등록된 회원이 없습니다</font>
                    </td>
                 </tr> 
@@ -308,17 +376,28 @@
       
             <tr>
             
-               <td>${ vo.mem_no }</td>
-               <td>${ vo.grade_idx}</td>
+               <td>${ vo.mem_idx }</td>
+               <c:if test="${vo.grade_idx eq 1 }"> <td>브론즈</td></c:if>
+               <c:if test="${vo.grade_idx eq 2 }"> <td>실버</td></c:if>
+               <c:if test="${vo.grade_idx eq 3 }"> <td>골드</td></c:if>
+               <c:if test="${vo.grade_idx eq 4 }"> <td>플레티넘</td></c:if>
+               <c:if test="${vo.grade_idx eq 5 }"> <td>관리자</td></c:if>
                <td>${ vo.mem_nickname }</td>
+               <td>쓴글</td>
+               <td>쓴댓글</td>
+               <td>좋아요글</td>
+               <td>좋아요댓글</td>
                <td>${ vo.mem_email }</td>
                <td>${ vo.mem_birth }</td>
                <td>${fn:substring(vo.mem_regdate,0,10) }</td>
-            
+               <c:if test="${vo.mem_status eq 0 }"> <td style="color: red;">휴면계정</td></c:if>
+               <c:if test="${vo.mem_status eq 1 }"> <td>정상계정</td></c:if>
                <td>
                    <div style="text-align:center;"> 
-                   <button class="btn btn-outline-dark" >수정</button>
-                   <button class="btn btn-outline-dark" >삭제</button>
+                   <button class="btn btn-outline-dark"
+                           onclick="member_getout('${ vo.mem_idx }');" >휴면계정전환</button> 
+                   <button class="btn btn-outline-dark"
+                   		   onclick="member_admin('${ vo.mem_idx }');" >관리자로등업</button>
                   </div>
                </td>
             </tr>

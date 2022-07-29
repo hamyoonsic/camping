@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 import java.util.Map;
 
+import vo.CarpoolReplyVo;
 import vo.MarketReplyVo;
 import vo.ReviewReplyVo;
 
@@ -21,8 +22,16 @@ public interface MarketReplyDao {
 	
 	int 				selectRowTotal();
 	
+
 	//미영
 	//mem_idx에 해당하는 market_reply리스트 가져오기 
 	List<MarketReplyVo> market_reply_mem_list(Map map);
 	
+
+   //게시글 좋아요 +1
+   public int market_reply_insertlike(MarketReplyVo vo);
+   
+   //게시글 좋아요 -1
+   public int market_reply_deletelike(MarketReplyVo vo);
+
 }

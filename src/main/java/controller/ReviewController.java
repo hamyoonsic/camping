@@ -50,9 +50,14 @@ public class ReviewController {
 					    Model model) {
 		
 		int m_idx = 0;
-		
+		  
+	    MemberVo user = (MemberVo) session.getAttribute("user");
 		int start = (nowPage-1) * MyConstant.Review.BLOCK_LIST + 1;
 		int end = start + MyConstant.Review.BLOCK_LIST - 1;
+		if(user!=null)m_idx=user.getMem_idx();
+		
+		 //세션에 저장되어있는 Show정보를 삭제한다.
+	      session.removeAttribute("show");
 		
 		Map map = new HashMap();
 		map.put("start", start);
@@ -62,11 +67,11 @@ public class ReviewController {
 		//전체검색이 아니면 검색조건주기
 		if(!search.equals("review_all")) {
 			
-			if(search.equals("review_title_review_content_review_nickname")) { //제목+이름+내용
+			if(search.equals("review_title_review_content_mem_nickname")) { //제목+이름+내용
 				
 					map.put("review_title", search_text);
 					map.put("review_content", search_text);
-					map.put("review_nickname", search_text);
+					map.put("mem_nickname", search_text);
 					
 			} else if(search.equals("review_title")) {//제목
 				
@@ -84,16 +89,16 @@ public class ReviewController {
 		}
 		
 		//전체게시물 수 구하기
-		int rowTotal = review_dao.selectRowTotal();
+		int rowTotal = review_dao.selectRowTotal(map);
 		
 		String search_filter = String.format("search=%s&search_text=%s", search, search_text);
 		
-		String pageMenu = Paging.getPaging("review_list.do",
-											 search_filter, 
-											 nowPage, 
-											 rowTotal, 
-											 MyConstant.Review.BLOCK_LIST, 
-											 MyConstant.Review.BLOCK_PAGE);
+		String pageMenu = Paging.getPaging("review_list.do", 
+										   search_filter, 
+										   nowPage, 
+										   rowTotal, 
+										   MyConstant.Review.BLOCK_LIST, 
+										   MyConstant.Review.BLOCK_PAGE);
 		
 		
 		List<ReviewVo> list = review_dao.selectConditionList(map);
@@ -158,4 +163,95 @@ public class ReviewController {
 	      return "board/review_view";
 	   }
 	 
+
+	   //새글쓰기 폼띄우기
+		@RequestMapping("/board/review_insert_form.do")
+		public String review_insert_form() {
+
+			return "board/review_insert_form";
+		}
+		
+		//새글쓰기
+		@RequestMapping("/board/review_insert.do")
+		public String insert(ReviewVo vo,Model model) {
+			
+			if(session.getAttribute("user")==null) {
+				
+				model.addAttribute("reason", "session_timeout");
+				
+				return "redirect:../board/review_list.do";
+			}
+			
+			
+			String review_ip = request.getRemoteAddr();
+			vo.setReview_ip(review_ip);
+			
+			int res = review_dao.insert(vo);
+			
+			return "redirect:review_list.do";
+		}
+		
+		//게시글수정폼
+		@RequestMapping("/board/review_modify_form.do")
+		public String modify_form(int review_idx,
+									  Model model) {
+
+			ReviewVo vo = review_dao.selectOne(review_idx);
+			
+			model.addAttribute("vo", vo);
+			
+			return "board/review_modify_form";
+		}
+		
+		//게시글수정하기
+		@RequestMapping("/board/review_modify.do")
+		public String modify(ReviewVo vo,
+				             int page,
+				             @RequestParam(value="search",required=false,defaultValue="review_all") String search,
+					         @RequestParam(value="search_text",required=false) String search_text, 
+				             Model model) {
+			
+			if(session.getAttribute("user")==null) {
+				
+				model.addAttribute("reason", "session_timeout");
+				
+				return "redirect:../board/review_list.do";
+			}
+			
+			
+			String review_ip = request.getRemoteAddr();
+			vo.setReview_ip(review_ip);
+			
+			int res = review_dao.modify(vo);
+			
+			model.addAttribute("review_idx", vo.getReview_idx());
+			model.addAttribute("page" , page);
+			model.addAttribute("search", search);
+			model.addAttribute("search_text", search_text);
+			
+			return "redirect:/board/review_view.do";
+		}
+		
+		
+		
+		//게시글삭제
+		@RequestMapping("/board/review_delete.do")
+		public String delete(int review_idx,
+				             int page,
+				             @RequestParam(value="search",required=false,defaultValue="review_all") String search,
+					         @RequestParam(value="search_text",required=false) String search_text, 
+				             Model model) {
+			
+			int res = review_dao.delete(review_idx);
+			
+			model.addAttribute("page", page);
+			model.addAttribute("search", search);
+			model.addAttribute("search_text", search_text);
+			
+			return "redirect:review_list.do";
+		}
+	
+
+	   
+	   
 }

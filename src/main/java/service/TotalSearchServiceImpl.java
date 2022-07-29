@@ -10,6 +10,7 @@ import dao.ReviewDao;
 
 public class TotalSearchServiceImpl implements TotalSearchService {
 
+
 	CarpoolDao carpool_dao;
 	MarketDao market_dao;
 	ReviewDao review_dao;
@@ -26,23 +27,12 @@ public class TotalSearchServiceImpl implements TotalSearchService {
 		this.review_dao = review_dao;
 	}
 	
-	/*
-	 * @Override public Map list() { // TODO Auto-generated method stub
-	 * 
-	 * List carpool_list = carpool_dao.selectList(); List market_list =
-	 * market_dao.selectList(); List review_list = review_dao.selectList();
-	 * 
-	 * Map map = new HashMap();
-	 * 
-	 * map.put("carpool_list", carpool_list); map.put("market_list", market_list);
-	 * map.put("review_list", review_list);
-	 * 
-	 * 
-	 * return map; }
-	 */
+
+
 	@Override
 	public Map list(String search_text) {
 		// TODO Auto-generated method stub
+
 		List carpool_list = carpool_dao.selectList(search_text);
 		List market_list = market_dao.selectList(search_text);
 		List review_list = review_dao.selectList(search_text);
@@ -56,5 +46,6 @@ public class TotalSearchServiceImpl implements TotalSearchService {
 		
 		return map1;
 	}
-	
+
+
 }

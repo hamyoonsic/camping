@@ -62,6 +62,18 @@ public class CarpoolReplyDaoImpl implements CarpoolReplyDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("carpool_reply.carpool_reply_row_total");
 	}
+	
+	@Override
+	public int carpool_reply_insertlike(CarpoolReplyVo vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("carpool_reply.carpool_reply_insertlike",vo);
+	}
+
+	@Override
+	public int carpool_reply_deletelike(CarpoolReplyVo vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("carpool_reply.carpool_reply_deletelike",vo);
+	}
 
 	@Override
 	public List<CarpoolReplyVo> carpool_reply_mem_list(Map map) {

@@ -47,5 +47,14 @@ public class MyConstant {
 			public static final int BLOCK_LIST = 10; 
 			public static final int BLOCK_PAGE = 10; 
 		}
+		
+		//°ü¸®ÀÚ
+		public static class Admin{
+			
+			public static final int BLOCK_LIST = 10; 
+			public static final int BLOCK_PAGE = 10; 
+		}
+		
+	
 	
 }

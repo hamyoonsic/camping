@@ -43,8 +43,7 @@ public class MemberController {
       
       this.member_dao = member_dao;
    }
-   
-   
+  
       //관리자페이지 멤버전체조회
       @RequestMapping("member_mypage_adm.do")
       public String list(@RequestParam(value="page", required = false, defaultValue = "1") int nowPage,
@@ -55,7 +54,7 @@ public class MemberController {
         int start = (nowPage-1) * MyConstant.Member.BLOCK_LIST + 1;
         int end = start + MyConstant.Member.BLOCK_LIST - 1;
         
-            Map map = new HashMap();
+         Map map = new HashMap();
          map.put("start", start);
          map.put("end", end);
          
@@ -97,7 +96,9 @@ public class MemberController {
          model.addAttribute("list",list);
          model.addAttribute("pageMenu", pageMenu);
       
+         //return "admin/admin_page";
          return "member/member_mypage_adm";
+          //return "member/grade_change";
          
       }
       
@@ -131,9 +132,23 @@ public class MemberController {
              return map;
             
          }
-      
+         int likeCount = member_dao.selectOne_like_count(user.getMem_idx());
+         int replyCount = member_dao.selectOne_reply_count(user.getMem_idx());
+         int categoryCount = member_dao.selectOne_category_count(user.getMem_idx());
+         int replyLikeCount    = member_dao.selectOne_reply_like_count(user.getMem_idx());
+         
          session.setAttribute("user", user);
          
+		if (user.getGrade_idx() == 1 && replyCount > 2 && categoryCount > 0) {
+			member_dao.member_to_silver(user);
+		}
+		if (user.getGrade_idx() == 2 && likeCount > 9  && replyCount > 4 && categoryCount > 0) {
+			member_dao.member_to_gold(user);
+		}	
+		if (user.getGrade_idx() == 3 && likeCount > 14  && replyCount > 5 && categoryCount > 2) {
+			member_dao.member_to_ple(user);
+		}	
+			
          map.put("mem_nickname",user.getMem_nickname());
          map.put("grade_idx", user.getGrade_idx());
          map.put("result", "success");
@@ -385,11 +400,6 @@ public class MemberController {
    }
    
    
-   
-   
-   
-   
-   
    @RequestMapping("mypage/member_out")
    public String member_out( int mem_idx){
       
@@ -404,8 +414,117 @@ public class MemberController {
       return "redirect:/";
    }
       
-     
+   //관리자페이지 멤버등급변경
+   @RequestMapping("grade_change.do")
+   public String list1(@RequestParam(value="page", required = false, defaultValue = "1") int nowPage,
+                    @RequestParam(value="search", required = false, defaultValue = "member_all") String search,         
+                    @RequestParam(value="search_text", required = false) String search_text,           
+                    Model model) {
       
+     int start = (nowPage-1) * MyConstant.Member.BLOCK_LIST + 1;
+     int end = start + MyConstant.Member.BLOCK_LIST - 1;
+     
+      Map map = new HashMap();
+      map.put("start", start);
+      map.put("end", end);
+      
+      
+      //전체검색이 아니면 검색조건주기
+      if(!search.equals("member_all")) {
+         
+         if(search.equals("grade_idx_mem_regdate")) { //등급+가입일자
+            
+               map.put("grade_idx", search_text);
+               map.put("mem_regdate", search_text);
+               
+         } else if(search.equals("grade_idx")) {//등급
+            
+            map.put("grade_idx", search_text);
+            
+         } else if(search.equals("mem_regdate")) {//가입일자
+            
+            map.put("mem_regdate", search_text);
+         
+         } 
+            
+      }
+    
+      //전체게시물 수 구하기
+      int rowTotal = member_dao.selectRowTotal(map);
+      
+      String search_filter = String.format("search=%s&search_text=%s", search, search_text);
+      
+      String pageMenu = Paging.getPaging("grade_change.do",
+                                  search_filter, 
+                                  nowPage, 
+                                  rowTotal, 
+                                  MyConstant.Member.BLOCK_LIST, 
+                                  MyConstant.Member.BLOCK_PAGE);
+      
+      List<MemberVo> list = member_dao.selectConditionList(map);
+      
+      
+      model.addAttribute("list",list);
+      model.addAttribute("pageMenu", pageMenu);
    
+      //return "admin/admin_page";
+     //return "mypage/your_page";
+       return "member/grade_change";
+      
+   }
+   
+   //멤버를 휴면계정으로 전환
+   @RequestMapping("member_getout.do")
+   public String member_getout(Integer mem_idx){
+	   
+	  MemberVo vo = member_dao.selectOne(mem_idx);
+	  
+      int res = member_dao.member_getout(vo);
+      
+      return "redirect:member_mypage_adm.do";
+   }    
+   //멤버를 관리자로 전환  
+   @RequestMapping("member_admin.do")
+   public String member_admin(Integer mem_idx){
+	   
+	  MemberVo vo = member_dao.selectOne(mem_idx);
+	  
+      int res = member_dao.member_admin(vo);
+      
+      return "redirect:member_mypage_adm.do";
+   }     
+   
+   //브론즈를 실버로 전환  
+   @RequestMapping("member_to_silver.do")
+   public String member_to_silver(Integer mem_idx){
+	   
+	  MemberVo vo = member_dao.selectOne(mem_idx);
+	  
+      int res = member_dao.member_to_silver(vo);
+      
+      return "redirect:member_mypage_adm.do";
+   } 
+   
+   //실버를 골드로 전환  
+   @RequestMapping("member_to_gold.do")
+   public String member_to_gold(Integer mem_idx){
+	   
+	  MemberVo vo = member_dao.selectOne(mem_idx);
+	  
+      int res = member_dao.member_to_gold(vo);
+      
+      return "redirect:member_mypage_adm.do";
+   } 
+   
+ //골드를 플래티넘으로 전환  
+   @RequestMapping("member_to_ple.do")
+   public String member_to_ple(Integer mem_idx){
+	   
+	  MemberVo vo = member_dao.selectOne(mem_idx);
+	  
+      int res = member_dao.member_to_ple(vo);
+      
+      return "redirect:member_mypage_adm.do";
+   } 
    
 }
