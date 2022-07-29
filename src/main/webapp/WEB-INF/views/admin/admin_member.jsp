@@ -73,7 +73,7 @@
 
 	function change() {
 		
-		location.href="../member/member_mypage_adm.do";
+		location.href="../admin/grade_change.do";
 		
 	}
 
