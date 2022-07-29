@@ -1,9 +1,0 @@
-diff a/src/main/java/dao/ReviewDaoImpl.java b/src/main/java/dao/ReviewDaoImpl.java	(rejected hunks)
-@@ -131,7 +131,6 @@
-       
-    //mem_idx�� �ش��ϴ� review����Ʈ �������� 
-    @Override
--   public List<ReviewVo> review_mem_list(int mem_idx) {
-    public List<ReviewVo> review_mem_list(Map map) {
-       // TODO Auto-generated method stub
- <<<<<<< HEAD
