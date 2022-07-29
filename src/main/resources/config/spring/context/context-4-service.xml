@@ -11,11 +11,16 @@
 		<constructor-arg ref="review_dao"/>
 	</bean>
 		
-		
 	<bean id="total_mypage_service" class="service.TotalMypageServiceImpl">
 		<constructor-arg ref="carpool_dao"/>
 		<constructor-arg ref="market_dao"/>
 		<constructor-arg ref="review_dao"/>
+		<constructor-arg  ref="carpool_reply_dao" />
+		<constructor-arg  ref="market_reply_dao" />
+		<constructor-arg  ref="review_reply_dao" />
 	</bean>
+	
+		
+	
 		
 </beans>

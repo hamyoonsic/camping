@@ -17,6 +17,8 @@ public class CarpoolReplyVo {
 	int		cnt;
 	
 	
+
+
 	public int getHeart_flag() {
 		return heart_flag;
 	}

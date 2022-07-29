@@ -75,4 +75,10 @@ public class CarpoolReplyDaoImpl implements CarpoolReplyDao {
 		return sqlSession.delete("carpool_reply.carpool_reply_deletelike",vo);
 	}
 
+	@Override
+	public List<CarpoolReplyVo> carpool_reply_mem_list(Map map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("carpool_reply.carpool_reply_mem_list",map);
+	}
+
 }

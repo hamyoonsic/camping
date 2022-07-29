@@ -34,11 +34,11 @@ public class MyConstant {
 		
 	}
 	
-	//마이페이지 카테고리별 검색
+	//마이페이지 게시글 수 토탈
 	public static class Category {
 	      
-	      public static final int BLOCK_LIST = 5; //한화면당 보여질 게시물수
-	      public static final int BLOCK_PAGE = 5; //한화면당 보여질 페이지수
+	      public static final int BLOCK_LIST = 1; //한화면당 보여질 게시물수
+	      public static final int BLOCK_PAGE = 9; //한화면당 보여질 페이지수
 	      
 	   }
 	//댓글상수

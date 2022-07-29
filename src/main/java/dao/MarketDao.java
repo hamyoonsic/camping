@@ -36,6 +36,8 @@ public interface MarketDao {
 	   
 	   //미영코드
 	    //mem_idx에 해당하는 market리스트 가져오기 
-	      List<MarketVo> market_mem_list(int mem_idx);
-
+	      List<MarketVo> market_mem_list(Map map);
+	      
+	    //mem_idx에 해당하는 market 게시글 좋아요한 리스트   
+	      List<MarketVo> market_like_mem_list(Map map);
 }

@@ -67,6 +67,8 @@
 		<beans:property name="grade_dao" ref="grade_dao"/>
 	</beans:bean>
 	
+
+
 	<beans:bean class="controller.AdminController">
 		<beans:property name="carpool_dao" ref="carpool_dao" />
 		<beans:property name="market_dao" ref="market_dao" />
@@ -78,5 +80,6 @@
 
 	<!-- CKEditorFileUploadController -->
  	<beans:bean class="controller.CKEditorFileUploadController"/>
+
 
 </beans:beans>

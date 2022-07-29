@@ -14,9 +14,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!--mem_idx에 해당하는 list 조회  -->
-   <select id="review_mem_list" parameterType="int" resultType="vo.MarketVo">
-      select * from review where mem_idx =#{mem_idx} order by review_idx desc 
+   <select id="review_mem_list" parameterType="int" resultType="vo.ReviewVo">
+     select * from
+	(
+	   select
+	      r.*,
+	      rank() over(order by review_idx desc) no
+	   from  (select * from review where mem_idx=#{mem_idx}) r
+	)
+	where no between #{start} and #{end}
    </select>
+   
+   <!--mem_idx에 해당하는 좋아요한 게시글  조회  -->
+   	<select id="review_like_mem_list" parameterType="int" resultType="vo.ReviewVo">
+		select * from
+		(
+		   select
+		      rl.*,
+		      rank() over(order by review_idx desc) no
+		   from  (  select * from review
+					where  review_idx in (select review_idx from review_like where mem_idx=#{mem_idx})
+		          ) rl
+		)
+		where no between #{start} and #{end}
+	
+	</select>
+   
+   
 	
 	<!-- 페이징처리를 위한 조회 -->
 	<select id="review_condition_list" parameterType="java.util.Map" resultType="vo.ReviewVo">
@@ -146,6 +170,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    		  ]]>
    </select>
    
+
+
+
+
+
+
 
 </mapper>
 

@@ -131,10 +131,16 @@ public class CarpoolDaoImpl implements CarpoolDao {
 	
 	 // mem_idx에 해당하는 carpool리스트 가져오기 
 	   @Override
-	   public List<CarpoolVo> carpool_mem_list(int mem_idx) {
+	   public List<CarpoolVo> carpool_mem_list(Map map) {
 	      // TODO Auto-generated method stub
-	      return sqlSession.selectList("carpool.carpool_mem_list",mem_idx);
+	      return sqlSession.selectList("carpool.carpool_mem_list",map);
 	   }
 
+	@Override
+	public List<CarpoolVo> carpool_like_mem_list(Map map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("carpool.carpool_like_mem_list",map);
+	}
+	
 
 }

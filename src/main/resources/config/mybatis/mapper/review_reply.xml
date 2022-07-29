@@ -25,7 +25,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where no between #{start} and #{end}
 	</select>
 
-
+	<!--미영 /mem_idx에 해당하는 리뷰댓글 리스트    -->
+	<select id="review_reply_mem_list" parameterType="java.util.Map" resultType="vo.ReviewReplyVo">
+		select * from
+		(
+		   select
+		      rr.*,
+		      rank() over(order by review_reply_idx desc) no
+		   from  (select * from review_reply where mem_idx=#{mem_idx}) rr
+		)
+		where no between #{start} and #{end}
+			
+	</select>
+	
+	
 
 	<!-- 댓글작성 -->
 	<insert id="review_reply_insert" parameterType ="vo.ReviewReplyVo">

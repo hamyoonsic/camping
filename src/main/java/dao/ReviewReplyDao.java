@@ -23,11 +23,19 @@ public interface ReviewReplyDao {
 	//전체 댓글 수 구하기
 	int 				selectRowTotal();
 	
+
+	//미영
+	//mem_idx에 해하는 review_replu 리스트 가져오기 
+	
+	List<ReviewReplyVo> review_reply_mem_list(Map map); 
+	
+
    //게시글 좋아요 +1
    public int review_reply_insertlike(ReviewReplyVo vo);
    
    //게시글 좋아요 -1
    public int review_reply_deletelike(ReviewReplyVo vo);
+
 
 	
 	
