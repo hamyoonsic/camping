@@ -23,6 +23,33 @@
   <link href="../resources/css/style-responsive.css" rel="stylesheet">
   <script src="../resources/lib/chart-master/Chart.js"></script>
 
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
+<script type="text/javascript">
+
+	$(function(){
+		 $.ajax({
+			  
+			  url		:	"dashboard.do",
+			  
+			  success	:	function(res_data){
+				  // res_data-> comment_list.jsp의 html 내용
+				  $("#disp").html(res_data);
+				  
+			  },
+			  error		:	function(err){
+				  alert(err.responseText);
+			  }
+		  });
+		
+		
+	});
+
+</script>
+
+
+
 <!-- 카풀 -->
 <script type="text/javascript">
 
@@ -144,6 +171,28 @@ function member_list(member_page){
 
 </script>
 
+<!--베스트리뷰 고르기  -->
+<script type="text/javascript">
+
+	function best_list(){
+		 $.ajax({
+			  
+			  url		:	"../admin/admin_best_list.do",
+							 
+			  
+			  success	:	function(res_data){
+				  // res_data-> comment_list.jsp의 html 내용
+				  $("#disp").html(res_data);
+				  
+			  },
+			  error		:	function(err){
+				  alert(err.responseText);
+			  }
+		  });
+		
+	}
+
+</script>
 
 
 
@@ -396,6 +445,13 @@ function member_list(member_page){
               <span>멤버리스트</span>
               </a>
           </li>
+          
+           <li class="sub-menu">
+            <a href="#" onclick="best_list();">
+              <i class="fa fa-th"></i>
+              <span>베스트리뷰</span>
+              </a>
+          </li>
         </ul>
         <!-- sidebar menu end-->
       
@@ -409,8 +465,9 @@ function member_list(member_page){
     <div id="mamber"></div> -->
 
 
-<%@ include file="admin_dashbord.jsp" %>
-<%@ include file="admin_footer.jsp" %>
+<%-- <%@ include file="admin_dashbord.jsp" %> --%>
+<div><%@ include file="admin_footer.jsp" %></div>
+ 
 
 </body>
 

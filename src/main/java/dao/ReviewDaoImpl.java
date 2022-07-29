@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -134,4 +135,41 @@ public class ReviewDaoImpl implements ReviewDao {
       // TODO Auto-generated method stub
       return sqlSession.selectList("review.review_mem_list",mem_idx);
    }        
+   
+   @Override
+	public List<ReviewVo> best_selecList() {
+		// TODO Auto-generated method stub
+		
+		List<ReviewVo> list = sqlSession.selectList("review.review_best_list");
+		
+		List<ReviewVo> review_list = new ArrayList<ReviewVo>() ;
+		
+		for(ReviewVo vo : list) {
+			
+			String	review_content =  vo.getReview_content();
+			
+			int start_index = review_content.indexOf("/upload/")+8;
+			int end_index = 0;
+			
+			if(review_content.indexOf("png") != -1) {
+				end_index = review_content.indexOf("png")+3;
+				
+			}else if(review_content.indexOf("jpg") != -1) {
+				end_index = review_content.indexOf("jpg")+3;
+				
+			}else if(review_content.indexOf("jpeg") != -1) {
+				end_index = review_content.indexOf("jpeg")+3;
+			}
+			
+			String review_content_url = review_content.substring(start_index, end_index);
+			
+			vo.setReview_thumbnail(review_content_url);
+			
+			review_list.add(vo);
+			
+		}
+		
+		
+		return review_list;
+	}        
 }

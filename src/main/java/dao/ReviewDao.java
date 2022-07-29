@@ -42,6 +42,7 @@ public interface ReviewDao {
    
    List<ReviewVo> review_mem_list(int mem_idx);
 	
-	
-
+   //베스트리뷰 디폴트값으로 최신순 3개 가져오기
+   List<ReviewVo> best_selecList();
+   
 }

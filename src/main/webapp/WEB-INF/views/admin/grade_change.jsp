@@ -80,6 +80,29 @@
 
 
 </script>   
+
+<!--베스트리뷰 고르기  -->
+<script type="text/javascript">
+
+	function best_list(){
+		 $.ajax({
+			  
+			  url		:	"../admin/admin_best_list.do",
+							 
+			  
+			  success	:	function(res_data){
+				  // res_data-> comment_list.jsp의 html 내용
+				  $("#disp").html(res_data);
+				  
+			  },
+			  error		:	function(err){
+				  alert(err.responseText);
+			  }
+		  });
+		
+	}
+
+</script>
 <script type="text/javascript">
 var mem_idx = "${vo.mem_idx}";
 
@@ -227,6 +250,13 @@ function member_getout(mem_idx){
               <span>멤버리스트</span>
               </a>
           </li>
+          
+          <li class="sub-menu">
+            <a href="#" onclick="best_list();">
+              <i class="fa fa-th"></i>
+              <span>베스트리뷰</span>
+              </a>
+          </li>
         </ul>
         <!-- sidebar menu end-->
       
@@ -357,8 +387,7 @@ function member_getout(mem_idx){
 			</div>
 		</div>
 
-<%@ include file="admin_dashbord.jsp" %>
-<%@ include file="admin_footer.jsp" %>	
+	
 		
 </body>
 

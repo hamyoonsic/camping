@@ -1097,10 +1097,30 @@ public class AdminController {
 		       return "admin/grade_change";
 		      
 		   }
-		   
-		      
+	   
+			//베스트리뷰창 눌렀을 경우 jsp반환 + 베스트리뷰 3개 날짜순 선정
+			@RequestMapping("admin_best_list.do")
+			public String admin_best_list(Model model){
+				
+				List<ReviewVo> review_list	=	review_dao.best_selecList();
+				
+				model.addAttribute("review_list", review_list);
+			
+			
+			return "admin/admin_best";
+			
+			}
 		   	
+			//관리자페이지 배치완료시 바로 대시보드 출력
+			@RequestMapping("dashboard.do")
+			public String admin_dashboard(){
+				
+				
+			
+			return "admin/admin_dashboard";
+			
+			}
 			
 				
-	
+				
 }

@@ -99,7 +99,7 @@
                    
                     <div class="col-md-9">
                       <p>
-                        <name>공지</name>
+                       <p>공지<p>
                         전 회원에게 쪽지보내기
                       </p>
                       <form class="form-inline" role="form">
@@ -121,9 +121,9 @@
               <!-- /col-md-4 -->
           
             </div>
+            </div>
 	  </section>
 	    </section>
-    </section>
     <!--main content end-->
      <!-- js placed at the end of the document so the pages load faster -->
   <script src="../resources/lib/jquery/jquery.min.js"></script>
@@ -142,6 +142,6 @@
   <script src="../resources/lib/zabuto_calendar.js"></script>
   
 
-<%@ include file="admin_footer.jsp" %>  
+
 </body>
 </html>

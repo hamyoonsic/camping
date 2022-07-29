@@ -134,6 +134,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where review_idx=#{ review_idx }                    
    </update>
    
+   <!-- 베스트리뷰 최신순 3개 구하기 -->
+   <select id="review_best_list" resultType="vo.ReviewVo">
+   		select 
+   			*
+   		from(
+   				select * from review order by review_regdate desc
+   			)
+   			 <![CDATA[
+   		where rownum <= 3
+   		  ]]>
+   </select>
    
 
 </mapper>
