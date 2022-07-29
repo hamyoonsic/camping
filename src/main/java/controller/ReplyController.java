@@ -217,8 +217,15 @@ public class ReplyController {
 			int end		=	start + MyConstant.Comment.BLOCK_LIST - 1 ;
 			int m_idx = 0;
 			MemberVo user = (MemberVo) session.getAttribute("user");
-			if(user!=null)m_idx=user.getMem_idx();
+			
 			Map map	=	new HashMap();
+			
+			if(user!=null) {
+				
+				m_idx=user.getMem_idx();
+				
+			}
+			
 			map.put("start", start);
 			map.put("end", end);
 			map.put("carpool_idx", carpool_idx);
@@ -335,23 +342,22 @@ public class ReplyController {
 		}
 		
 		//댓글 좋아요기능
-		 @ResponseBody
-		   @RequestMapping(value ="/carpool_reply_insertlike.do", method = RequestMethod.POST)
-		   public int carpool_reply_insertlike(CarpoolReplyVo vo) {
-		      
-		      int res = carpool_reply_dao.carpool_reply_insertlike(vo);
-		      
-		      return 1;
-		   }
+	@ResponseBody
+	@RequestMapping(value ="/carpool_reply_insertlike.do", method = RequestMethod.POST)
+	public int carpool_reply_insertlike(CarpoolReplyVo vo) {
+		int res = carpool_reply_dao.carpool_reply_insertlike(vo);
+		
+		return 1;
+	}
 		   
-		   @ResponseBody
-		   @RequestMapping(value ="/carpool_reply_deletelike.do", method = RequestMethod.POST)
-		   public int carpool_reply_deletelike(CarpoolReplyVo vo) {
-		      
-		      int res = carpool_reply_dao.carpool_reply_deletelike(vo);
-		      
-		      return 1;
-		   }
+   @ResponseBody
+   @RequestMapping(value ="/carpool_reply_deletelike.do", method = RequestMethod.POST)
+   public int carpool_reply_deletelike(CarpoolReplyVo vo) {
+      
+      int res = carpool_reply_dao.carpool_reply_deletelike(vo);
+      
+      return 1;
+   }
 		
 		//-----------------------------------------------market-------------------------------------------------------------
 		

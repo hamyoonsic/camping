@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				rank() over (order by carpool_reply_ref desc,carpool_reply_step asc) no,
 				 (select count(carpool_reply_idx) from CARPOOL_REPLY_LIKE where r.carpool_reply_idx=carpool_reply_idx)  cnt,
    				 (select count(carpool_reply_idx) from CARPOOL_REPLY_LIKE where r.carpool_reply_idx=carpool_reply_idx and mem_idx=#{m_idx}) heart_flag
-			from(select * from carpool_reply_view where carpool_reply_idx=21) r
+			from(select * from carpool_reply_view where carpool_idx=#{carpool_idx}) r
 		)
 		where no between #{start} and #{end}
 	</select>
