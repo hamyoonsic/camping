@@ -215,10 +215,11 @@
 <section id="main-content">
  <section class="wrapper">
   <div class="row">
+	 <div class="col-lg-9 main-chart">
 	<div class="container">
 		<h1>Member_list</h1>
 		<div class="testlist">
-			<form id="boardForm" name="boardForm" method="post">
+		 <form id="boardForm" name="boardForm" method="post">
 				<table class="table table-hover">
 					<colgroup>
 						<col width="10%" />
@@ -266,6 +267,7 @@
 					<tbody id="dataSection"></tbody>
 				</table>
 			</form>
+		</div>
 		</div>
 			<div>
 				<button class="btn btn-sm" onclick="change();">회원 정보 수정</button>

@@ -245,7 +245,7 @@
 						</a>
 					</div>
 					<div class="pro">
-						<img class="small" src="${ pageContext.request.contextPath }/resources/images/rec2.jpg" >
+						<img class="small" src="${ pageContext.request.contextPath }/resources/images/rec2.jpg" ><br>
 			   			<a class="profile" href="#">강아지</a>
 			   		</div>
 				</li>

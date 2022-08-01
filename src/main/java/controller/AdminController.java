@@ -247,19 +247,19 @@ public class AdminController {
 		
 		
 		//게시글삭제
+
 		@RequestMapping("carpool_delete.do")
-		public String delete(int carpool_idx,
-				             int page,
-				             @RequestParam(value="search",required=false,defaultValue="carpool_all") String search,
-					         @RequestParam(value="search_text",required=false) String search_text, 
-				             Model model) {
-			
+		public String delete(int carpool_idx, 
+				@RequestParam(value = "page",        required = false, defaultValue = "1") int page,
+				@RequestParam(value = "search",      required = false, defaultValue = "carpool_all") String search,
+				@RequestParam(value = "search_text", required = false) String search_text, Model model) {
+
 			int res = carpool_dao.delete(carpool_idx);
-			
+
 			model.addAttribute("page", page);
 			model.addAttribute("search", search);
 			model.addAttribute("search_text", search_text);
-			
+
 			return "redirect:../admin/carpool_list.do";
 		}
 	
@@ -446,22 +446,21 @@ public class AdminController {
 			}
 			
 			
-			
 			//게시글삭제
-			@RequestMapping("/board/market_delete.do")
-			public String delete2(int market_idx,
-					             int page,
-					             @RequestParam(value="search",required=false,defaultValue="market_all") String search,
-						         @RequestParam(value="search_text",required=false) String search_text, 
-					             Model model) {
-				
+
+			@RequestMapping("market_delete.do")
+			public String delete2(int market_idx, 
+					@RequestParam(value = "page",        required = false, defaultValue = "1") int page,
+					@RequestParam(value = "search",      required = false, defaultValue = "market_all") String search,
+					@RequestParam(value = "search_text", required = false) String search_text, Model model) {
+
 				int res = market_dao.delete(market_idx);
-				
+
 				model.addAttribute("page", page);
 				model.addAttribute("search", search);
 				model.addAttribute("search_text", search_text);
-				
-				return "redirect:market_list.do";
+
+				return "redirect:../admin/market_list.do";
 			}
 		
 	/////////////////////////////////////////////////////////////////////
@@ -660,22 +659,21 @@ public class AdminController {
 				}
 				
 				
-				
 				//게시글삭제
-				@RequestMapping("/board/review_delete.do")
-				public String delete3(int review_idx,
-						             int page,
-						             @RequestParam(value="search",required=false,defaultValue="review_all") String search,
-							         @RequestParam(value="search_text",required=false) String search_text, 
-						             Model model) {
-					
+
+				@RequestMapping("review_delete.do")
+				public String delete3(int review_idx, 
+						@RequestParam(value = "page",        required = false, defaultValue = "1") int page,
+						@RequestParam(value = "search",      required = false, defaultValue = "review_all") String search,
+						@RequestParam(value = "search_text", required = false) String search_text, Model model) {
+
 					int res = review_dao.delete(review_idx);
-					
+
 					model.addAttribute("page", page);
 					model.addAttribute("search", search);
 					model.addAttribute("search_text", search_text);
-					
-					return "redirect:review_list.do";
+
+					return "redirect:../admin/review_list.do";
 				}
 			
 			////////////////////////////////////////////////////////////

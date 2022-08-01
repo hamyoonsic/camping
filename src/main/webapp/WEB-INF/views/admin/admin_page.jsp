@@ -465,8 +465,7 @@ function member_list(member_page){
     <div id="mamber"></div> -->
 
 
-<%-- <%@ include file="admin_dashbord.jsp" %> --%>
-<div><%@ include file="admin_footer.jsp" %></div>
+<%@ include file="admin_footer.jsp" %>
  
 
 </body>

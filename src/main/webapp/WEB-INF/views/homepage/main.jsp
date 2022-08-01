@@ -30,6 +30,11 @@
 	height	:	1200px;
 } */
 
+.home-top>img{
+
+	width: 30px;
+}
+
 
 .wrap {
 	font-family: 'Noto Sans KR', sans-serif;
@@ -144,7 +149,34 @@
 
 </script>
 
+<!-- top 스크롤 -->
+<script type="text/javascript">
+$( window ).scroll( function() {
+	if ( $( this ).scrollTop() > 300 ) {
+	
+		$( '.home-top' ).fadeIn();
+	
+	} else {
+		
+		$( '.home-top' ).fadeOut();
+	
+	}
+} );
 
+$(document).ready(function(){    
+	
+	var speed = 700; // 스크롤속도    
+	
+	$(".home-top").css("cursor", "pointer").click(function()    {      
+		
+		  $('body, html').animate({scrollTop:0}, speed);    
+	
+		});
+	
+	});
+
+
+</script>
 
 
 <script type="text/javascript">
@@ -406,6 +438,13 @@
      </li>
    </ul>
 </div>
+
+<div style="position: fixed; bottom: 30px; right:30px; ">
+
+<a class="home-top" href=".intro_text"><img src="${ pageContext.request.contextPath }/resources/images/uparrow.png"></a>
+
+</div>
+
 
 <div id="review2">
    <%@include file="review2.jsp" %>

@@ -92,6 +92,25 @@
 
 </script>
 
+<!-- 글 삭제 -->
+<script type="text/javascript">
+	
+
+	function ad_del(carpool_idx) {
+		
+		if (confirm("정말 삭제 하시겠습니까?") == false)
+			return;
+
+		//확인 누르면 삭제하러 가기
+		location.href = "carpool_delete.do?carpool_idx=" + carpool_idx  +"&page=${ param.page }&search=${ param.search }&search_text=${ param.search_text}";
+		
+		
+	} 
+
+
+</script>
+
+
 </head>
 
 <body>
@@ -202,10 +221,11 @@
 <section id="main-content">
  <section class="wrapper">
   <div class="row">
+  <div class="col-lg-9 main-chart">
 	<div class="container">
 		<h1>carpool</h1>
 		<div class="testlist">
-			<form id="boardForm" name="boardForm" method="post">
+			<!-- <form id="boardForm" name="boardForm" method="post"> -->
 				<table class="table table-hover">
 					<colgroup>
 						<col width="10%" />
@@ -231,7 +251,7 @@
 							<th>좋아요</th>
 							<th>작성자</th>
 							<th>등록일자</th>
-							<th><button>삭제</button></th>
+							
 						</tr>
 					</thead>
 					<c:if test="${ empty list }">
@@ -242,21 +262,22 @@
 			             </tr>
 			          </c:if>
 					<c:forEach var="vo" items="${ list }">
-					<tr>
-						 <td>${ vo.carpool_no }</td> 
-						 <!-- 사용가능한 게시글일때 -->
-							<td class="subject"><a href="../board/carpool_view.do?carpool_idx=${vo.carpool_idx }&page=${ empty param.page ? 1 : param.page}&search=${ param.search }&search_text=${ param.search_text}">${ vo.carpool_title }</td>
-							<td>${ vo.carpool_hit_count }</td>
-							<td>${ vo.cnt }</td>
-							<td>${ vo.mem_nickname }</td>
-							<td>${ fn:substring(vo.carpool_regdate,0,10) }</td>
-							<td><input type="checkbox"></td>
-						  
-					</tr>
-	</c:forEach> 
+						<tr>
+							 <td>${ vo.carpool_no }</td> 
+							 <!-- 사용가능한 게시글일때 -->
+								<td class="subject"><a href="../board/carpool_view.do?carpool_idx=${vo.carpool_idx }&page=${ empty param.page ? 1 : param.page}&search=${ param.search }&search_text=${ param.search_text}">${ vo.carpool_title }</td>
+								<td>${ vo.carpool_hit_count }</td>
+								<td>${ vo.cnt }</td>
+								<td>${ vo.mem_nickname }</td>
+								<td>${ fn:substring(vo.carpool_regdate,0,10) }</td>
+								<td><input type="button" value="삭제" id="ad_del" onclick="ad_del('${vo.carpool_idx}');"></td>
+							  
+						</tr>
+					</c:forEach> 
 					<tbody id="dataSection"></tbody>
 				</table>
-			</form>
+			<!-- </form> -->
+		</div>
 		</div>
 		</div>
 </section>
