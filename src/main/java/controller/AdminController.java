@@ -25,11 +25,13 @@ import dao.GradeDao;
 import dao.MarketDao;
 import dao.MemberDao;
 import dao.ReviewDao;
+import dao.VisitDao;
 import util.Paging;
 import vo.CarpoolVo;
 import vo.MarketVo;
 import vo.MemberVo;
 import vo.ReviewVo;
+import vo.VisitVo;
 
 @Controller
 @RequestMapping("/admin/")
@@ -79,12 +81,17 @@ public class AdminController {
 	public void setGrade_dao(GradeDao grade_dao) {
 		this.grade_dao = grade_dao;
 	}
-
+	
+	VisitDao visit_dao;
+	
+	public void setVisit_dao(VisitDao visit_dao) {
+		this.visit_dao = visit_dao;
+	}
 
 	// 관리자 페이지 불러오기
 	@RequestMapping("admin_page.do")
 	public String list() {
-
+		
 		return "admin/admin_page";
 	}
 
@@ -1111,8 +1118,11 @@ public class AdminController {
 		   	
 			//관리자페이지 배치완료시 바로 대시보드 출력
 			@RequestMapping("dashboard.do")
-			public String admin_dashboard(){
-				
+			public String admin_dashboard(Model model){
+
+				 List<VisitVo> list = visit_dao.selectList();
+			    
+			     model.addAttribute("list",list);	
 				
 			
 			return "admin/admin_dashboard";
