@@ -74,7 +74,9 @@
 					<textarea id="carpool_reply_recontent" placeholder="댓글을 작성하세요"></textarea>
 				</div>
 				<div id="comment_write_pic">
-					<img src="${pageContext.request.contextPath}/resources/images/unsplash_people/people2.jpg" id="comment_profile">
+					<img src="${pageContext.request.contextPath}/resources/upload/${user.mem_pic_filename}" 
+					id="comment_profile"
+					onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/unsplash_people/default_pic.jpeg';">
 				</div>
 				<input type="button" value="댓글 작성" onclick="carpool_reply_re();">
 </div>

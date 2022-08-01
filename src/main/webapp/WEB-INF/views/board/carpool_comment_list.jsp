@@ -213,8 +213,9 @@
 	    	<div class="box-heading">
 			   
 			   	<div id="comment_write_pic">
-			   	
-					<img src="${pageContext.request.contextPath}/resources/images/unsplash_people/people2.jpg" id="comment_profile">
+					<img src="${pageContext.request.contextPath}/resources/upload/${vo.mem_pic_filename}" 
+					id="comment_profile"
+					onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/unsplash_people/default_pic.jpeg';">
 				</div>
 			   	<!-- 글쓴이만 삭제 -->
 			   	<c:if test="${user.mem_idx eq vo.mem_idx }">
