@@ -25,7 +25,7 @@ import dao.GradeDao;
 import dao.MarketDao;
 import dao.MemberDao;
 import dao.ReviewDao;
-import util.Paging;
+import util.Paging1;
 import vo.CarpoolVo;
 import vo.MarketVo;
 import vo.MemberVo;
@@ -139,7 +139,7 @@ public class AdminController {
 
 		String search_filter = String.format("search=%s&search_text=%s", search, search_text);
 
-		String pageMenu = Paging.getPaging("carpool_list.do", 
+		String pageMenu = Paging1.getPaging("carpool_list.do", 
 											search_filter, 
 											nowPage, 
 											rowTotal,
@@ -320,7 +320,7 @@ public class AdminController {
 				
 				String search_filter = String.format("search=%s&search_text=%s", search, search_text);
 				
-				String pageMenu = Paging.getPaging("market_list.do",
+				String pageMenu = Paging1.getPaging("market_list.do",
 													 search_filter, 
 													 nowPage, 
 													 rowTotal, 
@@ -520,7 +520,7 @@ public class AdminController {
 				
 				String search_filter = String.format("search=%s&search_text=%s", search, search_text);
 				
-				String pageMenu = Paging.getPaging("review_list.do", 
+				String pageMenu = Paging1.getPaging("review_list.do", 
 												   search_filter, 
 												   nowPage, 
 												   rowTotal, 
@@ -721,7 +721,7 @@ public class AdminController {
 		         
 		         String search_filter = String.format("search=%s&search_text=%s", search, search_text);
 		         
-		         String pageMenu = Paging.getPaging("member_list.do",
+		         String pageMenu = Paging1.getPaging("member_list.do",
 		                                     search_filter, 
 		                                     nowPage, 
 		                                     rowTotal, 
@@ -1077,7 +1077,7 @@ public class AdminController {
 		      
 		      String search_filter = String.format("search=%s&search_text=%s", search, search_text);
 		      
-		      String pageMenu = Paging.getPaging("grade_change.do",
+		      String pageMenu = Paging1.getPaging("grade_change.do",
 		                                  search_filter, 
 		                                  nowPage, 
 		                                  rowTotal, 

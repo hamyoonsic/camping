@@ -20,7 +20,7 @@ import common.MyConstant;
 import dao.CarpoolDao;
 import dao.MarketDao;
 import dao.VisitDao;
-import util.Paging;
+import util.Paging1;
 import vo.CarpoolVo;
 import vo.MarketVo;
 import vo.MemberVo;
@@ -147,7 +147,7 @@ public class CarpoolController {
 	      
 	      String search_filter = String.format("search=%s&search_text=%s", search, search_text);
 	      
-	      String pageMenu = Paging.getPaging("carpool_list.do",
+	      String pageMenu = Paging1.getPaging("carpool_list.do",
 	                                  search_filter, 
 	                                  nowPage, 
 	                                  rowTotal, 

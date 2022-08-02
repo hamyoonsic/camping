@@ -141,4 +141,5 @@ public List<ReviewVo> review_like_mem_list(Map map) {
 	// TODO Auto-generated method stub
 	return sqlSession.selectList("review.review_like_mem_list",map);
 }        
+
 }

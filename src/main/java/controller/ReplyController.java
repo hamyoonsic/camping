@@ -20,7 +20,7 @@ import common.MyConstant;
 import dao.CarpoolReplyDao;
 import dao.MarketReplyDao;
 import dao.ReviewReplyDao;
-import util.Paging;
+import util.Paging1;
 import vo.CarpoolReplyVo;
 import vo.CarpoolVo;
 import vo.MarketReplyVo;
@@ -80,7 +80,7 @@ public class ReplyController {
 		
 		
 		
-		String review_pageMenu	=	Paging.review_commentPaging("review_view.do", 
+		String review_pageMenu	=	Paging1.review_commentPaging("review_view.do", 
 												 nowPage, rowTotal, MyConstant.Comment.BLOCK_LIST, MyConstant.Comment.BLOCK_PAGE, review_idx);
 		List<ReviewReplyVo> list	=	review_reply_dao.selectList(map);
 		
@@ -235,7 +235,7 @@ public class ReplyController {
 			
 			List<CarpoolReplyVo> list	=	carpool_reply_dao.selectList(map);
 			
-			String carpool_pageMenu	=	Paging.carpool_commentPaging("carpool_view.do", 
+			String carpool_pageMenu	=	Paging1.carpool_commentPaging("carpool_view.do", 
 					 nowPage, rowTotal, MyConstant.Comment.BLOCK_LIST, MyConstant.Comment.BLOCK_PAGE, carpool_idx);
 
 			
@@ -383,7 +383,7 @@ public class ReplyController {
 			List<MarketReplyVo> list	=	market_reply_dao.selectList(map);
 			
 			
-			String market_pageMenu	=	Paging.market_commentPaging("market_view.do", 
+			String market_pageMenu	=	Paging1.market_commentPaging("market_view.do", 
 					 nowPage, rowTotal, MyConstant.Comment.BLOCK_LIST, MyConstant.Comment.BLOCK_PAGE, market_idx);
 
 			
