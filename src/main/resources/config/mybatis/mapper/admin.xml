@@ -77,8 +77,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        delete from carpool where carpool_idx=#{ carpool_idx }
    </delete>
  -->
-
-
+ 	<!-- 전체조회 -->
+	<select id="msg_list" parameterType="java.util.Map" resultType="vo.MsgVo">
+		select * from msg 
+      	<trim prefix="where" prefixOverrides="or|and">
+      		msg_receiver=#{mem_nickname} 
+      		<if test="msg_sender!=null">
+      			and msg_sender like '%' || #{ msg_sender } || '%' 
+      		</if>
+      		<if test="msg_content!=null">
+      			or msg_content like '%' || #{ msg_content } || '%'
+      		</if>
+      	</trim>      
+      order by msg_sendtime desc
+	</select>  
+	
+	
+	
+	
+	<!-- 추가  -->
+  <insert id="msg_insert"   parameterType="vo.MsgVo">
+      insert into msg values(seq_msg_idx.nextVal,#{ msg_content },#{ msg_sender },#{ msg_receiver },sysdate,sysdate,'읽지않음')
+  </insert>
+  
+  <!-- 전체공지  -->
+  <insert id="all_msg_insert"   parameterType="vo.MsgVo">
+      insert into msg values(seq_msg_idx.nextVal,#{ msg_content },#{ msg_sender },#{ msg_receiver },sysdate,sysdate,'읽지않음')
+  </insert>
+  
+  <!-- 삭제 -->
+  <delete id="msg_delete"  parameterType="int">
+      delete from msg where msg_idx=#{ msg_idx }
+  </delete>
 </mapper>
 
 

@@ -119,7 +119,22 @@ function category_like_list(comment_page){
 }
 
 </script>
+<script type="text/javascript">
 
+
+//내 쪽지함 가져오기
+
+  function  msg_list(user.mem_idx){
+	  
+	  if("${ empty user }" != "true"){	
+	      
+		 location.href="../admin/msg_list.do"; 	
+	
+	  } 
+	   
+  }//end function
+
+</script>
 
 
 <script type="text/javascript">
@@ -145,22 +160,26 @@ function category_like_list(comment_page){
       <br><br><br>
       <c:if test="${user.grade_idx eq 1 }">
          <img alt="이미지없음" src="${ pageContext.request.contextPath }/resources/images/grade_bronze.JPG" width="70"height="70px">&nbsp;&nbsp;<br>
+      	 브론즈
       </c:if>
       <c:if test="${user.grade_idx eq 2 }">
          <img alt="이미지없음" src="${ pageContext.request.contextPath }/resources/images/grade_silver.JPG" width="70"height="70px">&nbsp;&nbsp;<br>
-      
+      	실버
       </c:if>
       
       <c:if test="${user.grade_idx eq 3 }">
          <img alt="이미지없음" src="${ pageContext.request.contextPath }/resources/images/grade_gold.JPG" width="70"height="70px">&nbsp;&nbsp;<br>
+      	골드
       </c:if>
       
       <c:if test="${user.grade_idx eq 4 }">
          <img alt="이미지없음" src="${ pageContext.request.contextPath }/resources/images/grade_platinum.JPG" width="70"height="70px">&nbsp;&nbsp;<br>
+      	플래티넘
       </c:if>
       
       <c:if test="${user.grade_idx eq 5 }">
          <img alt="이미지없음" >&nbsp;&nbsp;<br>
+      	관리자
       </c:if>
       
       
@@ -184,6 +203,7 @@ function category_like_list(comment_page){
    <img src="${ pageContext.request.contextPath }/resources/upload/${ user.mem_pic_filename }" width="120px" height="120px"><br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
    <a href="my_profile_page.do">개인정보수정</a>
+   <a href="../../admin/msg_list.do?mem_nickname=${user.mem_nickname}">
    <img src="${ pageContext.request.contextPath }/resources/images/message.png" width="30px" height="30px"><!-- 뱃지기능추가 -->
    </div>
    

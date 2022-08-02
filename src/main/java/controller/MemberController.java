@@ -525,6 +525,7 @@ public class MemberController {
       int res = member_dao.member_to_ple(vo);
       
       return "redirect:member_mypage_adm.do";
-   } 
+   }
+   
    
 }

@@ -41,6 +41,10 @@
 		<property name="sqlSession" ref="sqlSession"></property>
 	</bean>
 	
+	<bean id="msg_dao" class="dao.MsgDaoImpl">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	
 
 	
 </beans>

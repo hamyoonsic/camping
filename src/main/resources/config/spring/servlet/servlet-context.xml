@@ -75,7 +75,8 @@
 		<beans:property name="member_dao" ref="member_dao" />
 		<beans:property name="review_dao" ref="review_dao" />
 		<beans:property name="grade_dao" ref="grade_dao" />
-		<beans:property name="visit_dao" ref="visit_dao"/>		
+		<beans:property name="visit_dao" ref="visit_dao"/>	
+		<beans:property name="msg_dao" ref="msg_dao"/>	
 	</beans:bean>
 
 

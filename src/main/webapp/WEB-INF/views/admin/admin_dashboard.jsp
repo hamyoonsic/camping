@@ -24,7 +24,30 @@
   <link href="../resources/css/style.css" rel="stylesheet">
   <link href="../resources/css/style-responsive.css" rel="stylesheet">
   <script src="../resources/lib/chart-master/Chart.js"></script>
+<script type="text/javascript">
 
+   function send(f){ // f = this.form
+	   
+
+       //var content = f.content.value.trim();
+       //CKEditor 설정 후엔 입력값 체크를 다시 해줘야함
+       var msg_content = document.getElementById('InputText').value;
+
+       if(msg_content==''){
+    	   alert('내용을 입력하세요');
+    	   f.msg_content.value='';
+    	   f.msg_content.focus();
+    	   return;
+       }
+       
+	   f.action = "all_msg_insert.do";
+	   f.submit();//전송
+	   
+	   
+   }
+
+
+</script>  
 </head>
 <body>
  
@@ -56,36 +79,7 @@
 	                <div class="value tooltips" data-original-title='${vo.cnt}' data-toggle="tooltip" data-placement="top">${vo.cnt*4}%</div>
 	              </div>
              </c:forEach>
-             
-             <!-- <div class="bar">
-               <div class="title">07.26</div>
-               <div class="value tooltips" data-original-title="10" data-toggle="tooltip" data-placement="top">10%</div>
-             </div>
-          	<div class="bar">
-               <div class="title">07.27</div>
-               <div class="value tooltips" data-original-title="10" data-toggle="tooltip" data-placement="top">10%</div>
-             </div>
-             <div class="bar">
-               <div class="title">07.28</div>
-               <div class="value tooltips" data-original-title="10" data-toggle="tooltip" data-placement="top">20%</div>
-             </div>
-             <div class="bar">
-               <div class="title">07.29</div>
-               <div class="value tooltips" data-original-title="10" data-toggle="tooltip" data-placement="top">30%</div>
-             </div>
-             <div class="bar">
-               <div class="title">07.30</div>
-               <div class="value tooltips" data-original-title="10" data-toggle="tooltip" data-placement="top">40%</div>
-             </div>
-             <div class="bar">
-               <div class="title">07.31</div>
-               <div class="value tooltips" data-original-title="10" data-toggle="tooltip" data-placement="top">50%</div>
-             </div>
-             <div class="bar">
-               <div class="title">08.01</div>
-               <div class="value tooltips" data-original-title="10" data-toggle="tooltip" data-placement="top">60%</div>
-             </div> -->
-             
+            
               </div>
              
          
@@ -114,9 +108,10 @@
                       </p>
                       <form class="form-inline" role="form">
                         <div class="form-group">
-                          <input type="text" class="form-control" id="exampleInputText" placeholder="내용을 입력하세요.">
+                          <input type="text" class="form-control" id="InputText" placeholder="내용을 입력하세요.">
                         </div>
-                        <button type="submit" class="btn btn-default">Send</button>
+                         <input  class="btn  btn-default" type="button"  value="보내기"
+		                             onclick="send(this.form);">
                       </form>
                     </div>
                   </div>

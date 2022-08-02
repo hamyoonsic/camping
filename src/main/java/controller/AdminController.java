@@ -24,12 +24,14 @@ import dao.CarpoolDao;
 import dao.GradeDao;
 import dao.MarketDao;
 import dao.MemberDao;
+import dao.MsgDao;
 import dao.ReviewDao;
 import dao.VisitDao;
 import util.Paging;
 import vo.CarpoolVo;
 import vo.MarketVo;
 import vo.MemberVo;
+import vo.MsgVo;
 import vo.ReviewVo;
 import vo.VisitVo;
 
@@ -86,6 +88,12 @@ public class AdminController {
 	
 	public void setVisit_dao(VisitDao visit_dao) {
 		this.visit_dao = visit_dao;
+	}
+
+	MsgDao msg_dao;
+	
+	public void setMsg_dao(MsgDao msg_dao) {
+		this.msg_dao = msg_dao;
 	}
 
 	// 관리자 페이지 불러오기
@@ -1130,7 +1138,80 @@ public class AdminController {
 			return "admin/admin_dashboard";
 			
 			}
+	
+	//쪽지 리스트 보기
+	@RequestMapping(value="msg_list.do")
+	public String list(@RequestParam(value="search",required = false,defaultValue="all") String search,
+						@RequestParam(value="mem_nickname",required = false,defaultValue="all") String mem_nickname,
+						@RequestParam(value="search_text",required = false)	String search_text,
+						Model model) {
+		
+		//검색조건을 담을 Map
+		Map map = new HashMap();
+		map.put("mem_nickname", mem_nickname);
+		
+		if(!search.equals("all")) { //전체검색이 아니면
 			
+			if(search.equals("name_content")) {//이름+내용
 				
+				map.put("msg_sender", search_text);
+				map.put("msg_content", search_text);
 				
+			}else if(search.equals("msg_sender")) {//이름
+				
+				map.put("msg_sender", search_text);
+				
+			}else if(search.equals("msg_content")) {//내용
+				
+				map.put("msg_content", search_text);
+			}
+		}
+		
+		//목록가져오기
+		List<MsgVo> list = msg_dao.selectList(map);
+
+		//디스패쳐서블릿이 전달해준 저장소 정보(모델)를 이용해서 데이터를 넣는다(맵방식)
+		model.addAttribute("list",list);//결과적으로는 리퀘스트바인딩 되는꼴.
+
+		return "admin/msg_list";
+	}		
+		
+	
+	@RequestMapping("msg_insert_form.do")
+	public String msg_insert_form() {
+		
+		return "admin/msg_insert_form";
+	}
+	
+	@RequestMapping("msg_insert.do")
+	public String msg_insert(MsgVo vo,HttpServletRequest request,Model model) {
+		
+		//5.DB Insert
+		int res = msg_dao.insert(vo);
+		
+		model.addAttribute("mem_nickname", vo.getMsg_sender());
+		
+		return "redirect:msg_list.do";
+	}
+	
+	@RequestMapping("msg_delete.do")
+	public String msg_delete(MsgVo vo,Model model) {
+		
+		//DB delete
+		int res = msg_dao.delete(vo);
+		model.addAttribute("mem_nickname", vo.getMsg_sender());
+		
+		return "redirect:msg_list.do";
+	}
+	
+	@RequestMapping("all_msg_insert.do")
+	public String all_msg_insert(MsgVo vo,HttpServletRequest request,Model model) {
+		
+		//5.DB Insert
+		int res = msg_dao.all_msg_insert(vo);
+		
+		model.addAttribute("mem_nickname", vo.getMsg_sender());
+		
+		return "admin/admin_dashboard";
+	}
 }

@@ -157,6 +157,7 @@
 						<li><a href="#">${user.mem_nickname}님</a></li>
 						<li><a href="#">쪽지함</a></li>
 						<li><a href="#" onclick="logout();">로그아웃</a></li>
+						
 					</ul>
 			
 			</c:if>
