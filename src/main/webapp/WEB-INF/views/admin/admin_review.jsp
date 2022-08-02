@@ -222,8 +222,8 @@
 <section id="main-content">
  <section class="wrapper">
   <div class="row">
-	<div class="container">
 	 <div class="col-lg-9 main-chart">
+	<div class="container">
 		<h1>Review</h1>
 		<div class="testlist">
 		<!-- 	<form id="boardForm" name="boardForm" method="post"> -->

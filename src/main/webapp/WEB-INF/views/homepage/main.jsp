@@ -411,7 +411,7 @@ $(document).ready(function(){    
       <div>
          <label for="slide4" class="left"></label>
          <label for="slide2" class="right"></label>
-         <a><img src="${ pageContext.request.contextPath }/resources/images/slideimg01.jpg"></a>
+         <a><img src="${ pageContext.request.contextPath }/resources/images/chuchun66.jpg"></a>
          
       </div>
      </li>
@@ -419,21 +419,21 @@ $(document).ready(function(){    
       <div>
          <label for="slide1" class="left"></label>
          <label for="slide3" class="right"></label>
-         <a><img src="${ pageContext.request.contextPath }/resources/images/slideimg02.jpg"></a>
+         <a><img src="${ pageContext.request.contextPath }/resources/images/chuchun10.jpg"></a>
       </div>
      </li>
      <li class="slideitem">
       <div>
          <label for="slide2" class="left"></label>
          <label for="slide4" class="right"></label>
-         <a><img src="${ pageContext.request.contextPath }/resources/images/slideimg03.jpg"></a>
+         <a><img src="${ pageContext.request.contextPath }/resources/images/chuchun33.jpg"></a>
       </div>
      </li>
      <li class="slideitem">
       <div>
          <label for="slide3" class="left"></label>
          <label for="slide1" class="right"></label>
-         <a><img src="${ pageContext.request.contextPath }/resources/images/slideimg04.jpg"></a>
+         <a><img src="${ pageContext.request.contextPath }/resources/images/chuchun88.jpg"></a>
       </div>
      </li>
    </ul>
