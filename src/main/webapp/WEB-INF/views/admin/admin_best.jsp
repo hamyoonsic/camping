@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-    
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -17,7 +18,6 @@
 	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
 	crossorigin="anonymous">
 
-<link href="/css/test/test.css" rel="stylesheet" type="text/css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
  <!-- Bootstrap core CSS -->
   <link href="../resources/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -29,10 +29,8 @@
   <link href="../resources/css/style.css" rel="stylesheet">
   <link href="../resources/css/style-responsive.css" rel="stylesheet">
   <script src="../resources/lib/chart-master/Chart.js"></script>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
 
-<!-- °Ë»öÆäÀÌÂ¡ -->
+<!-- ê²€ìƒ‰í˜ì´ì§• -->
 <script type="text/javascript">
 	
 	function search() {
@@ -40,9 +38,9 @@
 		var search = $("#search").val();
 		var search_text = $("#search_text").val().trim();
 		
-		//ÀüÃ¼°Ë»öÀÌ ¾Æ´Ñ°æ¿ì
+		//ì „ì²´ê²€ìƒ‰ì´ ì•„ë‹Œê²½ìš°
 		if(search != 'review_all' && search_text == ''){
-			alert('°Ë»ö¾î¸¦ ÀÔ·ÂÇÏ¼¼¿ä!!');
+			alert('ê²€ìƒ‰ì–´ë¥¼ ì…ë ¥í•˜ì„¸ìš”!!');
 			$("#search_text").val('');
 			$("#search_text").focus();
 			return;
@@ -55,38 +53,49 @@
 
 	$(function(){
 		
+		
+		
 		if("${ not empty param.search }"=="true"){
 			$("#search").val('${param.search}');
 		}
 		
-		//ÀüÃ¼ °Ë»öÀÌ ½ÇÇà½Ã °Ë»ö¾î¸¦ Áö¿ì±â
+		//ì „ì²´ ê²€ìƒ‰ì´ ì‹¤í–‰ì‹œ ê²€ìƒ‰ì–´ë¥¼ ì§€ìš°ê¸°
 		if("${ param.search eq 'review_all' }"=="true"){
 			$("#search_text").val('');
 		}
 		
-		$.ajax({
-			  
-			  url		:	"../admin/review_list.do",
-			  data		:	{"review_no":"${ vo.review_no }",
-							 "review_title" :"${vo.review_title}",
-							 "review_hit_count":"${vo.review_hit_count}",
-							 "review_like_count":"${vo.review_like_count}",
-							 "mem_nickname":"${mem_nickname}",
-							 "review_regdate":"${review_regdate}",
-							 "page":review_page
-							 
-			  },
-			  success	:	function(res_data){
-				  // res_data-> comment_list.jspÀÇ html ³»¿ë
-				  $("#disp2").html(res_data);
-				  
-			  },
-			  error		:	function(err){
-				  alert(err.responseText);
-			  }
-		  });
+		
+		
 		
 	}); 
+
+</script>
+
+<script type="text/javascript">
+
+	function best_select(review_idx){
+		
+		$.ajax({
+			
+			url			:	"../admin/best_select.do",
+			data		:	{"review_idx":review_idx},
+			success		:	function(res_data){
+				
+				$("#disp").html(res_data);
+				alert("í•´ë‹¹ê¸€ì„ ë² ìŠ¤íŠ¸ë¦¬ë·°ë¡œ ë“±ë¡í•˜ì˜€ìŠµë‹ˆë‹¤");
+				location.reload();
+				
+				
+				
+			},
+			error		:	function(err){
+				alert(err.responseText);
+			}
+			
+		});
+		
+		
+	}
 
 </script>
 
@@ -146,13 +155,13 @@
           <!-- settings start -->
           <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" >
-              <i class="fa fa-tasks">½Å±ÔÈ¸¿ø</i>
+              <i class="fa fa-tasks">ì‹ ê·œíšŒì›</i>
               <span class="badge bg-theme">8</span>
               </a>
             <ul class="dropdown-menu extended tasks-bar">
               <div class="notify-arrow notify-arrow-green"></div>
               <li>
-                <p class="green">½Å±ÔÈ¸¿øÀÌ 8¸í °¡ÀÔÇß½À´Ï´Ù.</p>
+                <p class="green">ì‹ ê·œíšŒì›ì´ 8ëª… ê°€ì…í–ˆìŠµë‹ˆë‹¤.</p>
               </li>
        
             </ul>
@@ -161,13 +170,13 @@
           <!-- inbox dropdown start-->
           <li id="header_inbox_bar" class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-              <i class="fa fa-envelope-o">µî¾÷È¸¿ø</i>
+              <i class="fa fa-envelope-o">ë“±ì—…íšŒì›</i>
               <span class="badge bg-theme">3</span>
               </a>
             <ul class="dropdown-menu extended inbox">
               <div class="notify-arrow notify-arrow-green"></div>
               <li>
-                <p class="green">µî¾÷ÀÌ ÇÊ¿äÇÑ È¸¿øÀÌ 3¸íÀÖ½À´Ï´Ù.</p>
+                <p class="green">ë“±ì—…ì´ í•„ìš”í•œ íšŒì›ì´ 3ëª…ìˆìŠµë‹ˆë‹¤.</p>
               </li>
   
         </ul>
@@ -185,7 +194,7 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered"><a href="profile.html"><img src="../resources/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
-          <h5 class="centered">°ü¸®ÀÚÀÓ´ç</h5>
+          <h5 class="centered">ê´€ë¦¬ìì„ë‹¹</h5>
           <li class="mt">
             <a  href="/camping/admin/admin_page.do">
               <i class="fa fa-dashboard"></i>
@@ -196,35 +205,35 @@
           <li class="sub-menu">
             <a href="carpool_list.do">
               <i class="fa fa-th"></i>
-              <span>Ä«Ç® °Ô½ÃÆÇ</span>
+              <span>ì¹´í’€ ê²Œì‹œíŒ</span>
               </a>
           </li>
      
           <li class="sub-menu">
-            <a class="active" href="#" >
+              <a href="market_list.do">
               <i class="fa fa-th"></i>
-              <span>¸¶ÄÏ °Ô½ÃÆÇ</span>
+              <span>ë§ˆì¼“ ê²Œì‹œíŒ</span>
               </a>
           </li>
      
           <li class="sub-menu">
             <a href="review_list.do">
               <i class="fa fa-th"></i>
-              <span>¸®ºä °Ô½ÃÆÇ</span>
+              <span>ë¦¬ë·° ê²Œì‹œíŒ</span>
               </a>
           </li>
         
           <li class="sub-menu">
             <a href="member_list.do">
               <i class="fa fa-th"></i>
-              <span>¸â¹ö¸®½ºÆ®</span>
+              <span>ë©¤ë²„ë¦¬ìŠ¤íŠ¸</span>
               </a>
           </li>
           
           <li class="sub-menu">
-            <a href="admin_best_list.do">
+           <a class="active"href="#">
               <i class="fa fa-th"></i>
-              <span>º£½ºÆ®¸®ºä</span>
+              <span>ë² ìŠ¤íŠ¸ë¦¬ë·°</span>
               </a>
           </li>
         </ul>
@@ -245,7 +254,7 @@
 				<div id="best_review_three">
 					<div class="best_three">
 						<c:forEach var="review_vo" items="${review_list }">
-
+						${review_vo.best_number}
 							<div class="best_pic">
 								<img
 									src="${pageContext.request.contextPath}/resources/upload/${review_vo.review_thumbnail}">
@@ -277,19 +286,19 @@
 					 </div>
 					<thead>
 						<tr>
-							<th>¹øÈ£</th>
-							<th>Á¦¸ñ</th>
-							<th>Á¶È¸¼ö</th>
-							<th>ÁÁ¾Æ¿ä</th>
-							<th>ÀÛ¼ºÀÚ</th>
-							<th>µî·ÏÀÏÀÚ</th>
-							<th><button>»èÁ¦</button></th>
+							<th>ë²ˆí˜¸</th>
+							<th>ì œëª©</th>
+							<th>ì¡°íšŒìˆ˜</th>
+							<th>ì¢‹ì•„ìš”</th>
+							<th>ì‘ì„±ì</th>
+							<th>ë“±ë¡ì¼ì</th>
+							<th></th>
 						</tr>
 					</thead>
 					  <c:if test="${ empty list }">
 			             <tr>
 			                <td colspan="7" align="center">
-			                   °Ô½Ã¹°ÀÌ ¾ø½À´Ï´Ù.
+			                   ê²Œì‹œë¬¼ì´ ì—†ìŠµë‹ˆë‹¤.
 			                </td>
 			             </tr>
 			          </c:if>
@@ -301,7 +310,7 @@
 						<td>${ vo.cnt }</td>
 						<td>${ vo.mem_nickname }</td>
 						<td>${ fn:substring(vo.review_regdate,0,10) }</td>
-						<td><input type="checkbox"></td>
+						<td><input type="button" value="ë² ìŠ¤íŠ¸ë¦¬ë·°ì„ íƒ" onclick="best_select('${vo.review_idx }')"></td>
 					</tr>
 				</c:forEach>
 					<tbody id="dataSection"></tbody>
@@ -328,11 +337,11 @@
 
 			<div class="w100" style="padding-left: 10px">
 				<select class="form-control form-control-sm" name="searchField" id="search">
-					<option value="market_all">ÀüÃ¼º¸±â</option>
-						<option value="market_title">Á¦¸ñ</option>
-						<option value="market_content">³»¿ë</option>
-						<option value="mem_nickname">ÀÛ¼ºÀÚ</option>
-						<option value="market_title_market_content_mem_nickname">Á¦¸ñ+ÀÛ¼ºÀÚ+³»¿ë</option>
+					<option value="all">ì „ì²´ë³´ê¸°</option>
+						<option value="title">ì œëª©</option>
+						<option value="content">ë‚´ìš©</option>
+						<option value="mem_nickname">ì‘ì„±ì</option>
+						<option value="title_content_mem_nickname">ì œëª©+ì‘ì„±ì+ë‚´ìš©</option>
 				</select>
 			</div>
 
@@ -343,7 +352,7 @@
 
 			<div>
 				<button class="btn btn-sm btn-primary" name="btnSearch"
-					id="btnSearch" onclick="search();">°Ë»ö</button>
+					id="btnSearch" onclick="search();">ê²€ìƒ‰</button>
 			</div>
 		</div>
 

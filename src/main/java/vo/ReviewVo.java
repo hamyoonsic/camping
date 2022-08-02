@@ -19,6 +19,29 @@ public class ReviewVo {
 	int			cnt;
 	int			heart_flag;
 	
+	int best_number;
+	String mem_pic_filename;
+	
+
+	public String getMem_pic_filename() {
+		return mem_pic_filename;
+	}
+
+
+	public void setMem_pic_filename(String mem_pic_filename) {
+		this.mem_pic_filename = mem_pic_filename;
+	}
+
+
+	public int getBest_number() {
+		return best_number;
+	}
+
+
+	public void setBest_number(int best_number) {
+		this.best_number = best_number;
+	}
+
 
 	public int getCnt() {
 		return cnt;

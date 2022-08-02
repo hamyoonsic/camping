@@ -30,11 +30,6 @@
 	height	:	1200px;
 } */
 
-.home-top>img{
-
-	width: 30px;
-}
-
 
 .wrap {
 	font-family: 'Noto Sans KR', sans-serif;
@@ -149,34 +144,7 @@
 
 </script>
 
-<!-- top 스크롤 -->
-<script type="text/javascript">
-$( window ).scroll( function() {
-	if ( $( this ).scrollTop() > 300 ) {
-	
-		$( '.home-top' ).fadeIn();
-	
-	} else {
-		
-		$( '.home-top' ).fadeOut();
-	
-	}
-} );
 
-$(document).ready(function(){    
-	
-	var speed = 700; // 스크롤속도    
-	
-	$(".home-top").css("cursor", "pointer").click(function()    {      
-		
-		  $('body, html').animate({scrollTop:0}, speed);    
-	
-		});
-	
-	});
-
-
-</script>
 
 
 <script type="text/javascript">
@@ -326,6 +294,26 @@ $(document).ready(function(){    
    
 </script>
 
+<!-- 배치 완료시 베스트 리뷰 띄우기 -->
+<script type="text/javascript">
+
+	$(function(){
+		
+		$.ajax({
+			
+			url	:	"admin/main_best_list.do",
+			success	:	function(res_data){
+				
+				$("#best_reivew_disp").html(res_data);
+				
+			}
+			
+			
+		});
+		
+	});
+
+</script>
 </head>
 
 
@@ -411,7 +399,7 @@ $(document).ready(function(){    
       <div>
          <label for="slide4" class="left"></label>
          <label for="slide2" class="right"></label>
-         <a><img src="${ pageContext.request.contextPath }/resources/images/chuchun66.jpg"></a>
+         <a><img src="${ pageContext.request.contextPath }/resources/images/slideimg01.jpg"></a>
          
       </div>
      </li>
@@ -419,35 +407,29 @@ $(document).ready(function(){    
       <div>
          <label for="slide1" class="left"></label>
          <label for="slide3" class="right"></label>
-         <a><img src="${ pageContext.request.contextPath }/resources/images/chuchun10.jpg"></a>
+         <a><img src="${ pageContext.request.contextPath }/resources/images/slideimg02.jpg"></a>
       </div>
      </li>
      <li class="slideitem">
       <div>
          <label for="slide2" class="left"></label>
          <label for="slide4" class="right"></label>
-         <a><img src="${ pageContext.request.contextPath }/resources/images/chuchun33.jpg"></a>
+         <a><img src="${ pageContext.request.contextPath }/resources/images/slideimg03.jpg"></a>
       </div>
      </li>
      <li class="slideitem">
       <div>
          <label for="slide3" class="left"></label>
          <label for="slide1" class="right"></label>
-         <a><img src="${ pageContext.request.contextPath }/resources/images/chuchun88.jpg"></a>
+         <a><img src="${ pageContext.request.contextPath }/resources/images/slideimg04.jpg"></a>
       </div>
      </li>
    </ul>
 </div>
 
-<div style="position: fixed; bottom: 30px; right:30px; ">
-
-<a class="home-top" href=".intro_text"><img src="${ pageContext.request.contextPath }/resources/images/uparrow.png"></a>
-
-</div>
-
-
 <div id="review2">
-   <%@include file="review2.jsp" %>
+<div id="best_reivew_disp"></div>
+   <%-- <%@include file="review2.jsp" %> --%>
 </div>
 
 <div id="carpool_market">

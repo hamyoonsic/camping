@@ -18,7 +18,6 @@
 	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
 	crossorigin="anonymous">
 
-<link href="/css/test/test.css" rel="stylesheet" type="text/css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
  <!-- Bootstrap core CSS -->
   <link href="../resources/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -103,7 +102,6 @@
 	}
 
 </script>
-
 <script type="text/javascript">
 var mem_idx = "${vo.mem_idx}";
 
@@ -158,15 +156,6 @@ function member_getout(mem_idx){
   
 </script>       
 
-<script type="text/javascript">
-
-	function back() {
-		
-		location.href="member_list.do"; 
-		
-	}
-
-</script>
 
 </head>
 
@@ -255,14 +244,14 @@ function member_getout(mem_idx){
           </li>
         
           <li class="sub-menu">
-            <a href="member_list.do" class="active" href="#">
+            <a href="member_list.do">
               <i class="fa fa-th"></i>
               <span>멤버리스트</span>
               </a>
           </li>
           
           <li class="sub-menu">
-            <a href="#" onclick="best_list();">
+           <a href="admin_best_list.do">
               <i class="fa fa-th"></i>
               <span>베스트리뷰</span>
               </a>
@@ -278,21 +267,20 @@ function member_getout(mem_idx){
 <section id="main-content">
  <section class="wrapper">
   <div class="row">
-   <div class="col-lg-9 main-chart">
 	<div class="container">
 		<h1>회원정보수정</h1>
 		<div class="testlist">
 			<form id="boardForm" name="boardForm" method="post">
 				<table class="table table-hover">
 					<colgroup>
-						<col width="10%" />
-						<col width="10%" />
-						<col width="10%" />
 						<col width="7%" />
+						<col width="10%" />
 						<col width="10%" />
 						<col width="15%" />
 						<col width="10%" />
-						<col width="20%" />
+						<col width="15%" />
+						<col width="10%" />
+						<col width="10%" />
 						<col width="10%" />
 					</colgroup>
 					
@@ -358,12 +346,11 @@ function member_getout(mem_idx){
 				</c:forEach>
 					<tbody id="dataSection"></tbody>
 				</table>
-				
 			</form>
-					<button class="btn btn-sm" onclick="back();">관리자 페이지 돌아가기</button>
 		</div>
+			<div>
+				<button class="btn btn-sm" onclick="href='member_list.do';">관리자 페이지 돌아가기</button>
 			</div>
-			
 		</div>
 </section>
 </section>
@@ -396,8 +383,6 @@ function member_getout(mem_idx){
 			<div>
 				<button class="btn btn-sm btn-primary" name="btnSearch"
 					id="btnSearch" onclick="search();">검색</button>
-		
-			</div>
 			</div>
 		</div>
 

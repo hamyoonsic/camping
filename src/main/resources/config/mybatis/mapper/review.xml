@@ -163,15 +163,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    		select 
    			*
    		from(
-   				select * from review order by review_regdate desc
+   				select * from main_review_view where  NOT best_number is NULL order by best_number desc
    			)
    			 <![CDATA[
    		where rownum <= 3
    		  ]]>
+   		 
    </select>
    
 
-
+	<insert id="review_best_insert" parameterType="int">
+		insert into best_review values(#{review_idx},seq_best_review.nextVal)
+	</insert>
 
 
 

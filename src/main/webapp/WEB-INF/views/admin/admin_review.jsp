@@ -18,7 +18,6 @@
 	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
 	crossorigin="anonymous">
 
-<link href="/css/test/test.css" rel="stylesheet" type="text/css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
  <!-- Bootstrap core CSS -->
   <link href="../resources/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -90,26 +89,6 @@
 	}
 
 </script>
-
-
-<!-- 글 삭제 -->
-<script type="text/javascript">
-	
-
-	function ad_del(review_idx) {
-		
-		if (confirm("정말 삭제 하시겠습니까?") == false)
-			return;
-
-		//확인 누르면 삭제하러 가기
-		location.href = "review_delete.do?review_idx=" + review_idx  +"&page=${ param.page }&search=${ param.search }&search_text=${ param.search_text}";
-		
-		
-	} 
-
-
-</script>
-
 
 
 </head>
@@ -222,11 +201,10 @@
 <section id="main-content">
  <section class="wrapper">
   <div class="row">
-	 <div class="col-lg-9 main-chart">
 	<div class="container">
 		<h1>Review</h1>
 		<div class="testlist">
-		<!-- 	<form id="boardForm" name="boardForm" method="post"> -->
+			<form id="boardForm" name="boardForm" method="post">
 				<table class="table table-hover">
 					<colgroup>
 						<col width="10%" />
@@ -252,7 +230,7 @@
 							<th>좋아요</th>
 							<th>작성자</th>
 							<th>등록일자</th>
-							
+							<th><button>삭제</button></th>
 						</tr>
 					</thead>
 					  <c:if test="${ empty list }">
@@ -270,13 +248,12 @@
 						<td>${ vo.cnt }</td>
 						<td>${ vo.mem_nickname }</td>
 						<td>${ fn:substring(vo.review_regdate,0,10) }</td>
-						<td><input type="button" value="삭제" id="ad_del" onclick="ad_del('${vo.review_idx}');"></td>
+						<td><input type="checkbox"></td>
 					</tr>
 				</c:forEach>
 					<tbody id="dataSection"></tbody>
 				</table>
-			<!-- </form> -->
-		</div>
+			</form>
 		</div>
 		</div>
 </section>

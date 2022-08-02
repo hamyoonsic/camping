@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
     
 <!DOCTYPE html>
@@ -139,7 +141,8 @@
 	font-size: 20px;
 	/* text-decoration: none; */
 	text-align: center;
-	margin-bottom: 50px; 
+	margin-top: 20px; 
+	display	:	inline-block;
 }
 
 
@@ -174,12 +177,10 @@
 
 }
 
-
-
-
-
-
 </style>
+
+
+
 
 
 </head>
@@ -197,58 +198,33 @@
 	
 		<div class="row">
 			<ul class="icons">
+				<c:forEach var="vo" items="${main_review_list}">
+				
+				
 				<li>
 					<div class="card">
-						<a href="https://blog.naver.com/minororo/222758255231">
-							<img class="big" src="${ pageContext.request.contextPath }/resources/images/camping2.png">
+						<a href="board/review_view.do?review_idx=${vo.review_idx }&page=${ empty param.page ? 1 : param.page}&search=${ param.search }&search_text=${ param.search_text}">
+							<img class="big" src="${ pageContext.request.contextPath }/resources/upload/${vo.review_thumbnail}">
 						</a>	
 					</div>
-					<div class="card-title">태안 어은돌 힐링 아영장을 다녀왔어요.</div>
+					<div class="card-title">${ vo.review_title }</div>
 					<div class="more">
-						<a class="more1" href="https://blog.naver.com/minororo/222758255231">
+						<a class="more1" href="board/review_view.do?review_idx=${vo.review_idx }&page=${ empty param.page ? 1 : param.page}&search=${ param.search }&search_text=${ param.search_text}">
 							MORE
 						</a>
 					</div>
 		
 					<div class="pro">
-						<img class="small" src="${ pageContext.request.contextPath }/resources/images/slideimg01.jpg" >
-			   			<a class="profile" href="#">won</a>
+						<img class="small" src="${ pageContext.request.contextPath }/resources/upload/${vo.mem_pic_filename}"
+						onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/unsplash_people/default_pic.jpeg';">
+			   			<a class="profile" href="#">${vo.mem_nickname}</a>
 			   		</div>
 				</li>
 				
-				<li>
-					<div class="card">
-						<a href="https://blog.naver.com/minororo/222758255231">
-						<img class="big" src="${ pageContext.request.contextPath }/resources/images/rec4.jpg"></a>	
-					</div>
-					<div class="card-title">나의 첫번째 캠핑이야기</div>
-					<div class="more">
-						<a class="more1" href="https://blog.naver.com/minororo/222758255231">
-							MORE
-						</a>
-					</div>
-					<div class="pro">
-						<img class="small" src="${ pageContext.request.contextPath }/resources/images/enu.jpg" >
-			   			<a class="profile" href="#">은우</a>
-			   		</div>
-				</li>
+				</c:forEach>
 				
-				<li>
-					<div class="card">
-						<a href="https://blog.naver.com/minororo/222758255231">
-						<img class="big" src="${ pageContext.request.contextPath }/resources/images/camping1.png"></a>	
-					</div>
-					<div class="card-title">강아지와 캠핑</div>
-					<div class="more">
-						<a class="more1" href="https://blog.naver.com/minororo/222758255231">
-						MORE
-						</a>
-					</div>
-					<div class="pro">
-						<img class="small" src="${ pageContext.request.contextPath }/resources/images/gang.jpg" ><br>
-			   			<a class="profile" href="#">강아지</a>
-			   		</div>
-				</li>
+				
+				
 			</ul>
 		
 	

@@ -18,7 +18,6 @@
 	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
 	crossorigin="anonymous">
 
-<link href="/css/test/test.css" rel="stylesheet" type="text/css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
  <!-- Bootstrap core CSS -->
   <link href="../resources/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -215,11 +214,10 @@
 <section id="main-content">
  <section class="wrapper">
   <div class="row">
-	 <div class="col-lg-9 main-chart">
 	<div class="container">
 		<h1>Member_list</h1>
 		<div class="testlist">
-		 <form id="boardForm" name="boardForm" method="post">
+			<form id="boardForm" name="boardForm" method="post">
 				<table class="table table-hover">
 					<colgroup>
 						<col width="10%" />
@@ -267,7 +265,6 @@
 					<tbody id="dataSection"></tbody>
 				</table>
 			</form>
-		</div>
 		</div>
 			<div>
 				<button class="btn btn-sm" onclick="change();">회원 정보 수정</button>
