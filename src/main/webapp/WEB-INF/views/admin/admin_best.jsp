@@ -83,7 +83,7 @@
 				
 				$("#disp").html(res_data);
 				alert("해당글을 베스트리뷰로 등록하였습니다");
-				location.reload();
+				location.href="admin_best_list.do";
 				
 				
 				
@@ -102,8 +102,9 @@
 <style type="text/css">
 
 	#best_review_box{
-		
-	
+		text-align:center;
+		margin-top: 50px;		
+		margin-bottom: 50px;		
 	}
 
 	.best_three{
@@ -254,7 +255,7 @@
 				<div id="best_review_three">
 					<div class="best_three">
 						<c:forEach var="review_vo" items="${review_list }">
-						${review_vo.best_number}
+						<%-- ${review_vo.best_number} --%>
 							<div class="best_pic">
 								<img
 									src="${pageContext.request.contextPath}/resources/upload/${review_vo.review_thumbnail}">
