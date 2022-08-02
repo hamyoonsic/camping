@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import common.MyConstant;
 import service.TotalMypageService;
 import util.Paging;
+import util.Paging1;
 
 @Controller
 public class TotalMypageController {
@@ -46,11 +47,11 @@ public class TotalMypageController {
         int total_no = (int) map1.get("total_no");
         
         
-        String pageMenu = Paging.mypage_category_getPaging("my_page.do"
-        													, nowPage, 
+        String pageMenu = Paging.getCategoryPaging(
+        													 nowPage, 
         													total_no, 
-        													end, 
-        													total_no);
+        													MyConstant.Category.BLOCK_LIST, 
+        													MyConstant.Category.BLOCK_PAGE);
         
         model.addAttribute("map1", map1);
         model.addAttribute("pageMenu",pageMenu);
@@ -82,7 +83,7 @@ public class TotalMypageController {
 		int total_reply_no = (int) map1.get("total_reply_no");
 				
 		
-		String pageMenu = Paging.mypage_category_getPaging("my_page.do"
+		String pageMenu = Paging1.mypage_category_getPaging("my_page.do"
 				, nowPage, 
 				total_reply_no, 
 				end, 
@@ -118,7 +119,7 @@ public class TotalMypageController {
 		int total_like_no = (int) map1.get("total_like_no");
 		
 		
-		String pageMenu = Paging.mypage_category_getPaging("my_page.do"
+		String pageMenu = Paging1.mypage_category_getPaging("my_page.do"
 				, nowPage, 
 				total_like_no, 
 				end, 

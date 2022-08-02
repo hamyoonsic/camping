@@ -1113,9 +1113,71 @@ public class AdminController {
 		      
 		   }
 	   
-			//베스트리뷰창 눌렀을 경우 jsp반환 + 베스트리뷰 3개 날짜순 선정
+		 //베스트리뷰창 눌렀을 경우 jsp반환 + 베스트리뷰 3개 날짜순 선정
 			@RequestMapping("admin_best_list.do")
-			public String admin_best_list(Model model){
+			public String admin_best_list(@RequestParam(value="page", required = false, defaultValue = "1") int nowPage,
+				    @RequestParam(value="search", required = false, defaultValue = "review_all") String search,			
+				    @RequestParam(value="search_text", required = false) String search_text,			  
+				    Model model){
+				
+					int m_idx = 0;
+					  
+				    MemberVo user = (MemberVo) session.getAttribute("user");
+					int start = (nowPage-1) * MyConstant.Admin.BLOCK_LIST + 1;
+					int end = start + MyConstant.Admin.BLOCK_LIST - 1;
+					if(user!=null)m_idx=user.getMem_idx();
+					
+					 //세션에 저장되어있는 Show정보를 삭제한다.
+				      session.removeAttribute("show");
+					
+					Map map = new HashMap();
+					map.put("start", start);
+					map.put("end", end);
+					map.put("m_idx", m_idx);
+					
+					//전체검색이 아니면 검색조건주기
+					if(!search.equals("review_all")) {
+						
+						if(search.equals("review_title_review_content_mem_nickname")) { //제목+이름+내용
+							
+								map.put("review_title", search_text);
+								map.put("review_content", search_text);
+								map.put("mem_nickname", search_text);
+								
+						} else if(search.equals("review_title")) {//제목
+							
+							map.put("review_title", search_text);
+							
+						} else if(search.equals("review_content")) {//내용
+							
+							map.put("review_content", search_text);
+						
+						} else if(search.equals("mem_nickname")) {//닉네임
+					
+							map.put("mem_nickname", search_text);
+						}
+							
+					}
+					
+				//전체게시물 수 구하기
+				int rowTotal = review_dao.selectRowTotal(map);
+				
+				String search_filter = String.format("search=%s&search_text=%s", search, search_text);
+				
+				String pageMenu = Paging.getPaging("admin_best_list.do", 
+												   search_filter, 
+												   nowPage, 
+												   rowTotal, 
+												   MyConstant.Admin.BLOCK_LIST, 
+												   MyConstant.Admin.BLOCK_PAGE);
+				
+				
+				List<ReviewVo> list = review_dao.selectConditionList(map);
+				
+				model.addAttribute("list",list);
+				model.addAttribute("pageMenu", pageMenu);
+					
+					
 				
 				List<ReviewVo> review_list	=	review_dao.best_selecList();
 				
@@ -1152,11 +1214,14 @@ public class AdminController {
 		
 		if(!search.equals("all")) { //전체검색이 아니면
 			
+
 			if(search.equals("name_content")) {//이름+내용
-				
+
+
 				map.put("msg_sender", search_text);
 				map.put("msg_content", search_text);
 				
+
 			}else if(search.equals("msg_sender")) {//이름
 				
 				map.put("msg_sender", search_text);
@@ -1214,4 +1279,36 @@ public class AdminController {
 		
 		return "admin/admin_dashboard";
 	}
+
+			//베스트 리뷰 선택
+			@RequestMapping("best_select.do")
+			public String best_select( int review_idx, Model model){
+				int res	=	review_dao.best_insert(review_idx);
+				
+				//기존의 디폴트 베스트리뷰3개 리스트 가져오기
+				List<ReviewVo> review_list	=	review_dao.best_selecList();
+				
+				//review_list에 넣기
+			    model.addAttribute("review_list",review_list);	
+				
+			
+			return "admin/admin_best";
+			
+			}
+			
+			//메인페이지 배치완료시 베스트 리뷰 3개 띄우기
+			@RequestMapping("main_best_list.do")
+			public String main_best_list( Model model){
+
+				//기존의 디폴트 베스트리뷰3개 리스트 가져오기
+				List<ReviewVo> main_review_list	=	review_dao.best_selecList();
+				
+				//review_list에 넣기
+			    model.addAttribute("main_review_list",main_review_list);	
+				
+			
+			return "homepage/review2";
+			
+			}
+			
 }

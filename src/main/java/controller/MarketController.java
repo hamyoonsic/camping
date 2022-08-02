@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import common.MyConstant;
 import dao.MarketDao;
-import util.Paging;
+import util.Paging1;
 import vo.MarketVo;
 import vo.MemberVo;
 
@@ -108,7 +108,7 @@ public class MarketController {
 			
 			String search_filter = String.format("search=%s&search_text=%s", search, search_text);
 			
-			String pageMenu = Paging.getPaging("market_list.do",
+			String pageMenu = Paging1.getPaging("market_list.do",
 												 search_filter, 
 												 nowPage, 
 												 rowTotal, 

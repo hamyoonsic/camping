@@ -146,6 +146,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	public List<ReviewVo> best_selecList() {
 		// TODO Auto-generated method stub
 		
+	   //베스트리뷰 중 최근에 고른 3개 가져오기
 		List<ReviewVo> list = sqlSession.selectList("review.review_best_list");
 		
 		List<ReviewVo> review_list = new ArrayList<ReviewVo>() ;
@@ -167,9 +168,11 @@ public class ReviewDaoImpl implements ReviewDao {
 				end_index = review_content.indexOf("jpeg")+3;
 			}
 			
-			String review_content_url = review_content.substring(start_index, end_index);
-			
-			vo.setReview_thumbnail(review_content_url);
+			//글내용에 사진이 있을 경우에만 작업하라
+			if(end_index>0) {
+				String review_content_url = review_content.substring(start_index, end_index);
+				vo.setReview_thumbnail(review_content_url);
+			}
 			
 			review_list.add(vo);
 			
@@ -177,7 +180,16 @@ public class ReviewDaoImpl implements ReviewDao {
 		
 		
 		return review_list;
-	}        
+	}
+
+	//베스트 리뷰 선택시 베스트리뷰 뷰에 추가
+	@Override
+	public int best_insert(int review_idx) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("review.review_best_insert", review_idx);
+	}
+
+   	
 
       
 

@@ -276,7 +276,7 @@
 
 <tbody>
 <c:forEach var="vo" items="${ list }">
-		<tr>
+		  <tr>
 			 <td>${ vo.carpool_no }</td> 
 			 <!-- 사용가능한 게시글일때 -->
 				<td class="subject"><a href="carpool_view.do?carpool_idx=${vo.carpool_idx }&page=${ empty param.page ? 1 : param.page}&search=${ param.search }&search_text=${ param.search_text}">${ vo.carpool_title }</td>
@@ -284,8 +284,7 @@
 				<td>${ vo.cnt }</td>
 				<td>${ vo.mem_nickname }</td>
 				<td>${ fn:substring(vo.carpool_regdate,0,10) }</td>
-			  
-		</tr>
+		  </tr>
 	</c:forEach> 
 </table> 
 <div class="page_wrap">

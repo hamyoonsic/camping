@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import common.MyConstant;
 import dao.ReviewDao;
-import util.Paging;
+import util.Paging1;
 import vo.MemberVo;
 import vo.ReviewVo;
 
@@ -93,7 +93,7 @@ public class ReviewController {
 		
 		String search_filter = String.format("search=%s&search_text=%s", search, search_text);
 		
-		String pageMenu = Paging.getPaging("review_list.do", 
+		String pageMenu = Paging1.getPaging("review_list.do", 
 										   search_filter, 
 										   nowPage, 
 										   rowTotal, 

@@ -295,6 +295,26 @@
 </script>
 
 
+<!-- 배치 완료시 베스트 리뷰 띄우기 -->
+<script type="text/javascript">
+
+	$(function(){
+		
+		$.ajax({
+			
+			url	:	"admin/main_best_list.do",
+			success	:	function(res_data){
+				
+				$("#best_reivew_disp").html(res_data);
+				
+			}
+			
+			
+		});
+		
+	});
+
+</script>
 
 </head>
 
@@ -410,7 +430,8 @@
 </div>
 
 <div id="review2">
-   <%@include file="review2.jsp" %>
+<div id="best_reivew_disp"></div>
+   <%-- <%@include file="review2.jsp" %> --%>
 </div>
 
 <div id="carpool_market">

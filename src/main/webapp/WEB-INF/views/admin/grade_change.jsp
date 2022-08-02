@@ -18,7 +18,6 @@
 	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
 	crossorigin="anonymous">
 
-<link href="/css/test/test.css" rel="stylesheet" type="text/css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
  <!-- Bootstrap core CSS -->
   <link href="../resources/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -252,7 +251,7 @@ function member_getout(mem_idx){
           </li>
           
           <li class="sub-menu">
-            <a href="#" onclick="best_list();">
+           <a href="admin_best_list.do">
               <i class="fa fa-th"></i>
               <span>베스트리뷰</span>
               </a>

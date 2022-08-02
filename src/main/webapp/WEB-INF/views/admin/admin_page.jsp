@@ -22,9 +22,67 @@
   <link href="../resources/css/style.css" rel="stylesheet">
   <link href="../resources/css/style-responsive.css" rel="stylesheet">
   <script src="../resources/lib/chart-master/Chart.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!--sweet alert  -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+
+
+<script type="text/javascript">
+
+
+function logout(){
+   
+   const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+
+      swalWithBootstrapButtons.fire({
+        title: '로그아웃 하시겠습니까?',
+        text: "버튼을 눌러주세요!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            'logout',
+            '되었습니다!',
+            'success'
+           
+          ).then(function(){
+             location.href="${pageContext.request.contextPath}/member/logout.do";
+          });
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Cancelled',
+            '취소되었습니다;)',
+            'error'
+          )
+        }
+      });
+   
+   
+}
+
+
+
+
+
+</script>
+
 	
 <script type="text/javascript">
 
@@ -396,7 +454,7 @@ function member_list(member_page){
       </div>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="login.html">Logout</a></li>
+          <li><a class="logout" href="#" onclick="logout();">Logout</a></li>
         </ul>
       </div>
     </header>
@@ -409,7 +467,7 @@ function member_list(member_page){
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="profile.html"><img src="../resources/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
+          <p class="centered"><img src="../resources/img/ui-sam.jpg" class="img-circle" width="80"></p>
           <h5 class="centered">관리자임당</h5>
           <li class="mt">
             <a class="active" href="/camping/admin/admin_page.do">
@@ -465,8 +523,7 @@ function member_list(member_page){
     <div id="mamber"></div> -->
 
 
-<%-- <%@ include file="admin_dashbord.jsp" %> --%>
-<div><%@ include file="admin_footer.jsp" %></div>
+<%@ include file="admin_footer.jsp" %>
  
 
 </body>

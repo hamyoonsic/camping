@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import common.MyConstant;
 import dao.MemberDao;
-import util.Paging;
+import util.Paging1;
 import vo.MemberVo;
 
 @Controller
@@ -84,7 +84,7 @@ public class MemberController {
          
          String search_filter = String.format("search=%s&search_text=%s", search, search_text);
          
-         String pageMenu = Paging.getPaging("member_mypage_adm.do",
+         String pageMenu = Paging1.getPaging("member_mypage_adm.do",
                                      search_filter, 
                                      nowPage, 
                                      rowTotal, 
@@ -454,7 +454,7 @@ public class MemberController {
       
       String search_filter = String.format("search=%s&search_text=%s", search, search_text);
       
-      String pageMenu = Paging.getPaging("grade_change.do",
+      String pageMenu = Paging1.getPaging("grade_change.do",
                                   search_filter, 
                                   nowPage, 
                                   rowTotal, 

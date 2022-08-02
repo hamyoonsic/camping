@@ -20,12 +20,12 @@
 //내가쓴 게시물 목록가져오기
 var global_page=1;
 
-function category_list(comment_page){
+function category_list(page){
 		 /* alert("되라"); */
       
       $.ajax({
         url      :   "category_list.do",
-        data      :   {"mem_idx":"${ user.mem_idx }"/* , "page":comment_page */ },
+        data      :   {"mem_idx":"${ user.mem_idx }" , "page":page },
         success   :   function(res_data){
            // res_data-> comment_list.jsp의 html 내용
            $(".bottom_box").html(res_data);
@@ -51,7 +51,7 @@ function category_list(comment_page){
       
       $.ajax({
         url      :   "category_list.do",
-        data      :   {"mem_idx":"${ user.mem_idx }"/* , "page":comment_page */ },
+        data      :   {"mem_idx":"${ user.mem_idx }" , "page":comment_page  },
         success   :   function(res_data){
            // res_data-> comment_list.jsp의 html 내용
            $(".bottom_box").html(res_data);
@@ -211,7 +211,7 @@ function category_like_list(comment_page){
    <div class="middle_box">
    <br><br><br><br>
    <hr  color="gray" size="20" >
-   <span><a href="#" onclick="category_list();" >내가 쓴 글 <font color="gray">${categoryCount }</font></a></span>&nbsp;&nbsp;
+   <span><a href="#" onclick="category_list(1);" >내가 쓴 글 <font color="gray">${categoryCount }</font></a></span>&nbsp;&nbsp;
    <span><a href="#" onclick="category_reply_list();" >내가 쓴 댓글<font color="gray">${ replyCount }</font></a></span>&nbsp;&nbsp;
    <span><a href="#" onclick="category_like_list();" >내가 좋아요한 글<font color="gray">${ likeCount }</font></a></span>&nbsp;&nbsp;
    <span><a href="#" onchange="category_like__reply_list();" >내가 좋아요한 댓글<font color="gray">${ replyLikeCount }</font></a></span>
