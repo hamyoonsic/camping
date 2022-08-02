@@ -68,6 +68,47 @@
 
 </script>
 
+<!--베스트리뷰 고르기  -->
+<script type="text/javascript">
+
+	function best_list(){
+		 $.ajax({
+			  
+			  url		:	"../admin/admin_best_list.do",
+							 
+			  
+			  success	:	function(res_data){
+				  // res_data-> comment_list.jsp의 html 내용
+				  $("#disp").html(res_data);
+				  
+			  },
+			  error		:	function(err){
+				  alert(err.responseText);
+			  }
+		  });
+		
+	}
+
+</script>
+
+
+<!-- 글 삭제 -->
+<script type="text/javascript">
+	
+
+	function ad_del(review_idx) {
+		
+		if (confirm("정말 삭제 하시겠습니까?") == false)
+			return;
+
+		//확인 누르면 삭제하러 가기
+		location.href = "review_delete.do?review_idx=" + review_idx  +"&page=${ param.page }&search=${ param.search }&search_text=${ param.search_text}";
+		
+		
+	} 
+
+
+</script>
 
 
 
@@ -163,6 +204,13 @@
               <span>멤버리스트</span>
               </a>
           </li>
+          
+          <li class="sub-menu">
+            <a href="admin_best_list.do">
+              <i class="fa fa-th"></i>
+              <span>베스트리뷰</span>
+              </a>
+          </li>
         </ul>
         <!-- sidebar menu end-->
       
@@ -174,10 +222,11 @@
 <section id="main-content">
  <section class="wrapper">
   <div class="row">
+	 <div class="col-lg-9 main-chart">
 	<div class="container">
 		<h1>Review</h1>
 		<div class="testlist">
-			<form id="boardForm" name="boardForm" method="post">
+		<!-- 	<form id="boardForm" name="boardForm" method="post"> -->
 				<table class="table table-hover">
 					<colgroup>
 						<col width="10%" />
@@ -203,7 +252,7 @@
 							<th>좋아요</th>
 							<th>작성자</th>
 							<th>등록일자</th>
-							<th><button>삭제</button></th>
+							
 						</tr>
 					</thead>
 					  <c:if test="${ empty list }">
@@ -221,12 +270,13 @@
 						<td>${ vo.cnt }</td>
 						<td>${ vo.mem_nickname }</td>
 						<td>${ fn:substring(vo.review_regdate,0,10) }</td>
-						<td><input type="checkbox"></td>
+						<td><input type="button" value="삭제" id="ad_del" onclick="ad_del('${vo.review_idx}');"></td>
 					</tr>
 				</c:forEach>
 					<tbody id="dataSection"></tbody>
 				</table>
-			</form>
+			<!-- </form> -->
+		</div>
 		</div>
 		</div>
 </section>
@@ -265,8 +315,7 @@
 			</div>
 		</div>
 
-<%@ include file="admin_dashbord.jsp" %>
-<%@ include file="admin_footer.jsp" %>	
+
 		
 </body>
 

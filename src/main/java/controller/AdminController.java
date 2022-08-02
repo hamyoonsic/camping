@@ -25,11 +25,16 @@ import dao.GradeDao;
 import dao.MarketDao;
 import dao.MemberDao;
 import dao.ReviewDao;
+
 import util.Paging1;
+
+import dao.VisitDao;
+import util.Paging;
 import vo.CarpoolVo;
 import vo.MarketVo;
 import vo.MemberVo;
 import vo.ReviewVo;
+import vo.VisitVo;
 
 @Controller
 @RequestMapping("/admin/")
@@ -79,12 +84,17 @@ public class AdminController {
 	public void setGrade_dao(GradeDao grade_dao) {
 		this.grade_dao = grade_dao;
 	}
-
+	
+	VisitDao visit_dao;
+	
+	public void setVisit_dao(VisitDao visit_dao) {
+		this.visit_dao = visit_dao;
+	}
 
 	// 관리자 페이지 불러오기
 	@RequestMapping("admin_page.do")
 	public String list() {
-
+		
 		return "admin/admin_page";
 	}
 
@@ -247,19 +257,19 @@ public class AdminController {
 		
 		
 		//게시글삭제
+
 		@RequestMapping("carpool_delete.do")
-		public String delete(int carpool_idx,
-				             int page,
-				             @RequestParam(value="search",required=false,defaultValue="carpool_all") String search,
-					         @RequestParam(value="search_text",required=false) String search_text, 
-				             Model model) {
-			
+		public String delete(int carpool_idx, 
+				@RequestParam(value = "page",        required = false, defaultValue = "1") int page,
+				@RequestParam(value = "search",      required = false, defaultValue = "carpool_all") String search,
+				@RequestParam(value = "search_text", required = false) String search_text, Model model) {
+
 			int res = carpool_dao.delete(carpool_idx);
-			
+
 			model.addAttribute("page", page);
 			model.addAttribute("search", search);
 			model.addAttribute("search_text", search_text);
-			
+
 			return "redirect:../admin/carpool_list.do";
 		}
 	
@@ -446,22 +456,21 @@ public class AdminController {
 			}
 			
 			
-			
 			//게시글삭제
-			@RequestMapping("/board/market_delete.do")
-			public String delete2(int market_idx,
-					             int page,
-					             @RequestParam(value="search",required=false,defaultValue="market_all") String search,
-						         @RequestParam(value="search_text",required=false) String search_text, 
-					             Model model) {
-				
+
+			@RequestMapping("market_delete.do")
+			public String delete2(int market_idx, 
+					@RequestParam(value = "page",        required = false, defaultValue = "1") int page,
+					@RequestParam(value = "search",      required = false, defaultValue = "market_all") String search,
+					@RequestParam(value = "search_text", required = false) String search_text, Model model) {
+
 				int res = market_dao.delete(market_idx);
-				
+
 				model.addAttribute("page", page);
 				model.addAttribute("search", search);
 				model.addAttribute("search_text", search_text);
-				
-				return "redirect:market_list.do";
+
+				return "redirect:../admin/market_list.do";
 			}
 		
 	/////////////////////////////////////////////////////////////////////
@@ -660,22 +669,21 @@ public class AdminController {
 				}
 				
 				
-				
 				//게시글삭제
-				@RequestMapping("/board/review_delete.do")
-				public String delete3(int review_idx,
-						             int page,
-						             @RequestParam(value="search",required=false,defaultValue="review_all") String search,
-							         @RequestParam(value="search_text",required=false) String search_text, 
-						             Model model) {
-					
+
+				@RequestMapping("review_delete.do")
+				public String delete3(int review_idx, 
+						@RequestParam(value = "page",        required = false, defaultValue = "1") int page,
+						@RequestParam(value = "search",      required = false, defaultValue = "review_all") String search,
+						@RequestParam(value = "search_text", required = false) String search_text, Model model) {
+
 					int res = review_dao.delete(review_idx);
-					
+
 					model.addAttribute("page", page);
 					model.addAttribute("search", search);
 					model.addAttribute("search_text", search_text);
-					
-					return "redirect:review_list.do";
+
+					return "redirect:../admin/review_list.do";
 				}
 			
 			////////////////////////////////////////////////////////////
@@ -1097,10 +1105,33 @@ public class AdminController {
 		       return "admin/grade_change";
 		      
 		   }
-		   
-		      
+	   
+			//베스트리뷰창 눌렀을 경우 jsp반환 + 베스트리뷰 3개 날짜순 선정
+			@RequestMapping("admin_best_list.do")
+			public String admin_best_list(Model model){
+				
+				List<ReviewVo> review_list	=	review_dao.best_selecList();
+				
+				model.addAttribute("review_list", review_list);
+			
+			
+			return "admin/admin_best";
+			
+			}
 		   	
+			//관리자페이지 배치완료시 바로 대시보드 출력
+			@RequestMapping("dashboard.do")
+			public String admin_dashboard(Model model){
+
+				 List<VisitVo> list = visit_dao.selectList();
+			    
+			     model.addAttribute("list",list);	
+				
+			
+			return "admin/admin_dashboard";
+			
+			}
 			
 				
-	
+				
 }

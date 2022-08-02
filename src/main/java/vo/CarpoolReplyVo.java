@@ -16,9 +16,17 @@ public class CarpoolReplyVo {
 	int		heart_flag;
 	int		cnt;
 	
+	String mem_pic_filename;
+	
 	
 
 
+	public String getMem_pic_filename() {
+		return mem_pic_filename;
+	}
+	public void setMem_pic_filename(String mem_pic_filename) {
+		this.mem_pic_filename = mem_pic_filename;
+	}
 	public int getHeart_flag() {
 		return heart_flag;
 	}

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,45 +39,53 @@
           <div class="col-lg-9 main-chart">
             <!--CUSTOM CHART START -->
             <div class="border-head">
-              <h3>6개월간 방문자 수</h3>
+              <h3>최근 7일간 방문자 수</h3>
             </div>
             <div class="custom-bar-chart">
               <ul class="y-axis">
-                <li><span>500</span></li>
-                <li><span>400</span></li>
-                <li><span>300</span></li>
-                <li><span>200</span></li>
-                <li><span>100</span></li>
+                <li><span>25</span></li>
+                <li><span>20</span></li>
+                <li><span>15</span></li>
+                <li><span>10</span></li>
+                <li><span>5</span></li>
                 <li><span>0</span></li>
               </ul>
-              <div class="bar">
-                <div class="title">2월</div>
-                <div class="value tooltips" data-original-title="8.500" data-toggle="tooltip" data-placement="top">85%</div>
-              </div>
-              <div class="bar">
-                <div class="title">3월</div>
-                <div class="value tooltips" data-original-title="8.500" data-toggle="tooltip" data-placement="top">85%</div>
-              </div>
-              <div class="bar ">
-                <div class="title">4월</div>
-                <div class="value tooltips" data-original-title="5.000" data-toggle="tooltip" data-placement="top">50%</div>
-              </div>
-              <div class="bar ">
-                <div class="title">5월</div>
-                <div class="value tooltips" data-original-title="6.000" data-toggle="tooltip" data-placement="top">60%</div>
-              </div>
-              <div class="bar ">
-                <div class="title">6월</div>
-                <div class="value tooltips" data-original-title="4.500" data-toggle="tooltip" data-placement="top">45%</div>
-              </div>
-              <div class="bar">
-                <div class="title">7월</div>
-                <div class="value tooltips" data-original-title="3.200" data-toggle="tooltip" data-placement="top">32%</div>
-              </div>
-              <div class="bar ">
-                <div class="title">8월</div>
-                <div class="value tooltips" data-original-title="6.200" data-toggle="tooltip" data-placement="top">62%</div>
-              </div>
+             <c:forEach var="vo" items="${ list }" begin="0" end="6">
+	              <div class="bar">
+	                <div class="title">${vo.visit_time}</div>
+	                <div class="value tooltips" data-original-title='${vo.cnt}' data-toggle="tooltip" data-placement="top">${vo.cnt*4}%</div>
+	              </div>
+             </c:forEach>
+             
+             <!-- <div class="bar">
+               <div class="title">07.26</div>
+               <div class="value tooltips" data-original-title="10" data-toggle="tooltip" data-placement="top">10%</div>
+             </div>
+          	<div class="bar">
+               <div class="title">07.27</div>
+               <div class="value tooltips" data-original-title="10" data-toggle="tooltip" data-placement="top">10%</div>
+             </div>
+             <div class="bar">
+               <div class="title">07.28</div>
+               <div class="value tooltips" data-original-title="10" data-toggle="tooltip" data-placement="top">20%</div>
+             </div>
+             <div class="bar">
+               <div class="title">07.29</div>
+               <div class="value tooltips" data-original-title="10" data-toggle="tooltip" data-placement="top">30%</div>
+             </div>
+             <div class="bar">
+               <div class="title">07.30</div>
+               <div class="value tooltips" data-original-title="10" data-toggle="tooltip" data-placement="top">40%</div>
+             </div>
+             <div class="bar">
+               <div class="title">07.31</div>
+               <div class="value tooltips" data-original-title="10" data-toggle="tooltip" data-placement="top">50%</div>
+             </div>
+             <div class="bar">
+               <div class="title">08.01</div>
+               <div class="value tooltips" data-original-title="10" data-toggle="tooltip" data-placement="top">60%</div>
+             </div> -->
+             
               </div>
              
          
@@ -99,7 +109,7 @@
                    
                     <div class="col-md-9">
                       <p>
-                        <name>공지</name>
+                       <p>공지<p>
                         전 회원에게 쪽지보내기
                       </p>
                       <form class="form-inline" role="form">
@@ -121,9 +131,9 @@
               <!-- /col-md-4 -->
           
             </div>
+            </div>
 	  </section>
 	    </section>
-    </section>
     <!--main content end-->
      <!-- js placed at the end of the document so the pages load faster -->
   <script src="../resources/lib/jquery/jquery.min.js"></script>
@@ -142,6 +152,6 @@
   <script src="../resources/lib/zabuto_calendar.js"></script>
   
 
-<%@ include file="admin_footer.jsp" %>  
+
 </body>
 </html>

@@ -228,8 +228,8 @@
 						</a>
 					</div>
 					<div class="pro">
-						<img class="small" src="${ pageContext.request.contextPath }/resources/images/slideimg01.jpg" >
-			   			<a class="profile" href="#">캠핑</a>
+						<img class="small" src="${ pageContext.request.contextPath }/resources/images/enu.jpg" >
+			   			<a class="profile" href="#">은우</a>
 			   		</div>
 				</li>
 				
@@ -245,7 +245,7 @@
 						</a>
 					</div>
 					<div class="pro">
-						<img class="small" src="${ pageContext.request.contextPath }/resources/images/rec2.jpg" >
+						<img class="small" src="${ pageContext.request.contextPath }/resources/images/gang.jpg" ><br>
 			   			<a class="profile" href="#">강아지</a>
 			   		</div>
 				</li>

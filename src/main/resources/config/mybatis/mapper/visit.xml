@@ -31,6 +31,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       delete from visit where visit_ip=#{visit_ip} and visit_time=TO_CHAR(SYSDATE,'yyyy.mm.dd') and mem_idx=#{mem_idx}  
    </delete>
    
+ 	<!-- 전체조회 -->
+	<select id="visit_list" resultType="vo.VisitVo">
+		SELECT 
+		visit_time,
+	    COUNT(*) cnt
+		FROM visit
+		GROUP BY visit_time
+		ORDER BY visit_time asc
+	</select>  
    
 </mapper>
 

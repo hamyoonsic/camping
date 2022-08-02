@@ -81,6 +81,28 @@
 
 </script>   
   
+  <!--베스트리뷰 고르기  -->
+<script type="text/javascript">
+
+	function best_list(){
+		 $.ajax({
+			  
+			  url		:	"../admin/admin_best_list.do",
+							 
+			  
+			  success	:	function(res_data){
+				  // res_data-> comment_list.jsp의 html 내용
+				  $("#disp").html(res_data);
+				  
+			  },
+			  error		:	function(err){
+				  alert(err.responseText);
+			  }
+		  });
+		
+	}
+
+</script>
 
 
 </head>
@@ -175,6 +197,13 @@
               <span>멤버리스트</span>
               </a>
           </li>
+          
+          <li class="sub-menu">
+             <a href="admin_best_list.do">
+              <i class="fa fa-th"></i>
+              <span>베스트리뷰</span>
+              </a>
+          </li>
         </ul>
         <!-- sidebar menu end-->
       
@@ -186,10 +215,11 @@
 <section id="main-content">
  <section class="wrapper">
   <div class="row">
+	 <div class="col-lg-9 main-chart">
 	<div class="container">
 		<h1>Member_list</h1>
 		<div class="testlist">
-			<form id="boardForm" name="boardForm" method="post">
+		 <form id="boardForm" name="boardForm" method="post">
 				<table class="table table-hover">
 					<colgroup>
 						<col width="10%" />
@@ -238,6 +268,7 @@
 				</table>
 			</form>
 		</div>
+		</div>
 			<div>
 				<button class="btn btn-sm" onclick="change();">회원 정보 수정</button>
 			</div>
@@ -276,8 +307,7 @@
 			</div>
 		</div>
 
-<%@ include file="admin_dashbord.jsp" %>
-<%@ include file="admin_footer.jsp" %>	
+
 		
 </body>
 

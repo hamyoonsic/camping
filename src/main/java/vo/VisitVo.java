@@ -8,7 +8,15 @@ public class VisitVo {
 	String 	visit_agent;
 	int		mem_idx;
 	
+	int cnt;
 	
+	
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	public int getMem_idx() {
 		return mem_idx;
 	}
