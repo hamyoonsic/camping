@@ -25,3 +25,6 @@
 |최미영| [choimiyoung](https://github.com/choimiyoung) |gksrlfaldud@naver.com|
 |최원영| [evenoahchoi](https://github.com/evenoahchoi) |eorkfclsrn@naver.com|
 |함윤식| [hamyoonsic](https://github.com/hamyoonsic) |hys1198@gmail.com|
+
+
+[ICT캠핑피피티_초.pdf](https://github.com/hamyoonsic/camping/files/9305948/ICT._.pdf)
